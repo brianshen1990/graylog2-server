@@ -221,7 +221,7 @@ window.pluginRoutes = AppConfig.gl2AppPathPrefix() ? qualifyUrls(pluginRoutes, A
 defaultExport.pluginRoute = (key) => {
   const route = window.pluginRoutes[key];
   if (!route) {
-    console.error(`Could not find plugin route '${key}'.`);
+    console.error(`无法查找插件路由 '${key}'.`);
   }
 
   return route;

@@ -20,7 +20,7 @@ const TimeRangeOptionsForm = React.createClass({
   getDefaultProps() {
     return {
       options: [],
-      addButtonTitle: 'Add option',
+      addButtonTitle: '添加选项',
       validator: () => true,
     };
   },
@@ -94,7 +94,7 @@ const TimeRangeOptionsForm = React.createClass({
               <div className="input-group">
                 <input type="text"
                        className="form-control"
-                       placeholder="Add description..."
+                       placeholder="添加描述..."
                        value={description}
                        onChange={this._onChange(idx, 'description')} />
                 <span className="input-group-addon">

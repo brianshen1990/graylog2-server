@@ -38,7 +38,7 @@ const EditAlertConditionForm = React.createClass({
     let actions = [];
     if (this.isPermitted(permissions, `streams:edit:${stream.id}`)) {
       actions = [
-        <Button key="edit-button" bsStyle="info" onClick={this._onEdit}>Edit</Button>,
+        <Button key="edit-button" bsStyle="info" onClick={this._onEdit}>编辑</Button>,
       ];
     }
 
@@ -62,8 +62,8 @@ const EditAlertConditionForm = React.createClass({
 
     return (
       <div>
-        <h2>Condition details</h2>
-        <p>Define the condition to evaluate when triggering a new alert.</p>
+        <h2>告警条件详情</h2>
+        <p>定义需要触发告警的条件。</p>
         <AlertConditionForm ref="updateForm"
                             type={condition.type}
                             alertCondition={condition}

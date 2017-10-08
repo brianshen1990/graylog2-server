@@ -59,13 +59,13 @@ const DataAdapterCreate = React.createClass({
       <Row className="content">
         <Col lg={8}>
           <form className="form form-horizontal" onSubmit={() => {}}>
-            <Input label="Data Adapter Type"
+            <Input label="数据转接器类型"
                    required
                    autoFocus
-                   help="The type of data adapter to configure."
+                   help="数据转接器类型配置"
                    labelClassName="col-sm-3"
                    wrapperClassName="col-sm-9">
-              <Select placeholder="Select Data Adapter Type"
+              <Select placeholder="选取数据转接器类型"
                       clearable={false}
                       options={sortedAdapters}
                       matchProp="value"
@@ -78,7 +78,7 @@ const DataAdapterCreate = React.createClass({
       {this.state.dataAdapter && (
         <Row className="content">
           <Col lg={12}>
-            <h3>Configure Adapter</h3>
+            <h3>配置数据转接器</h3>
             <DataAdapterForm dataAdapter={this.state.dataAdapter}
                              type={this.state.type}
                              create

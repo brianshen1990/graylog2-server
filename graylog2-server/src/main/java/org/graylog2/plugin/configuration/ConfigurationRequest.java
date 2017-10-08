@@ -166,18 +166,18 @@ public class ConfigurationRequest {
         public static ConfigurationField bindAddress(String name) {
             return new TextField(
                     name,
-                    "Bind address",
+                    "绑定地址",
                     WILDCARD_IP_ADDRESS,
-                    "Address to listen on. For example 0.0.0.0 or 127.0.0.1."
+                    "绑定监听地址，比如0.0.0.0 或者 127.0.0.1."
             );
         }
 
         public static ConfigurationField portNumber(String name, int port) {
             return new NumberField(
                     name,
-                    "Port",
+                    "绑定端口",
                     port,
-                    "Port to listen on.",
+                    "监听端口",
                     NumberField.Attribute.IS_PORT_NUMBER
             );
         }
@@ -185,9 +185,9 @@ public class ConfigurationRequest {
         public static ConfigurationField recvBufferSize(String name, int size) {
             return new NumberField(
                     name,
-                    "Receive Buffer Size",
+                    "接收缓存大小",
                     size,
-                    "The size in bytes of the recvBufferSize for network connections to this input.",
+                    "该输入的网络接收缓存大小",
                     ConfigurationField.Optional.OPTIONAL,
                     NumberField.Attribute.ONLY_POSITIVE
             );

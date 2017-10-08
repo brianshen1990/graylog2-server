@@ -22,9 +22,9 @@ const WidgetHeader = React.createClass({
     let calculatedAtTime;
 
     if (this.props.calculatedAt) {
-      calculatedAtTime = <span title={this.props.calculatedAt}><Timestamp dateTime={this.props.calculatedAt} relative /></span>;
+      calculatedAtTime = <span title={this.props.calculatedAt}>更新时间: <Timestamp dateTime={this.props.calculatedAt} format="HH:mm:ss" /></span>;
     } else {
-      calculatedAtTime = 'Loading...';
+      calculatedAtTime = '加载中...';
     }
 
     return (

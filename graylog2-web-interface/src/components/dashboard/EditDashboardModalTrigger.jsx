@@ -21,7 +21,7 @@ const EditDashboardModalTrigger = React.createClass({
     let triggerButtonContent;
 
     if (this.props.children === undefined || this.props.children.length === 0) {
-      triggerButtonContent = this._isCreateModal() ? 'Create dashboard' : 'Edit dashboard';
+      triggerButtonContent = this._isCreateModal() ? '创建面板' : '修改面板';
     } else {
       triggerButtonContent = this.props.children;
     }

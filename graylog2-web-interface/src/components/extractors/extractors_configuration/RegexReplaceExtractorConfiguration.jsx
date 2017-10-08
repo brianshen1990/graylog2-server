@@ -39,12 +39,12 @@ const RegexReplaceExtractorConfiguration = React.createClass({
       configuration.replace_all, this.props.exampleMessage);
     promise.then((result) => {
       if (!result.matched) {
-        UserNotification.warning('Regular expression did not match.');
+        UserNotification.warning('正则表达式不匹配.');
         return;
       }
 
       if (!result.match) {
-        UserNotification.warning('Regular expression does not contain any matcher group to extract.');
+        UserNotification.warning('正则表达式不包含提取器的任何匹配.');
         return;
       }
 
@@ -60,16 +60,12 @@ const RegexReplaceExtractorConfiguration = React.createClass({
   render() {
     const regexHelpMessage = (
       <span>
-          The regular expression used for extraction.{' '}
-        Learn more in the <DocumentationLink page={DocsHelper.PAGES.EXTRACTORS} text="documentation" />.
+          正则表达式会被提取器使用.
         </span>
     );
 
     const replacementHelpMessage = (
-      <span>The replacement used for the matching text. Please refer to the{' '}
-        <a target="_blank"
-           href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Matcher.html#replaceAll(java.lang.String)">Matcher</a>{' '}
-        API documentation for the possible options.
+      <span>内容会被替换匹配文件.
       </span>
     );
 
@@ -77,7 +73,7 @@ const RegexReplaceExtractorConfiguration = React.createClass({
       <div>
         <Input type="text"
                id="regex"
-               label="Regular expression"
+               label="正则表达式"
                labelClassName="col-md-2"
                placeholder="^.*string(.+)$"
                onChange={this._onChange('regex')}
@@ -88,7 +84,7 @@ const RegexReplaceExtractorConfiguration = React.createClass({
 
         <Input type="text"
                id="replacement"
-               label="Replacement"
+               label="替换"
                labelClassName="col-md-2"
                placeholder="$1"
                onChange={this._onChange('replacement')}
@@ -99,15 +95,15 @@ const RegexReplaceExtractorConfiguration = React.createClass({
 
         <Input type="checkbox"
                id="replace_all"
-               label="Replace all occurrences of the pattern"
+               label="替换所有出现的模式。"
                wrapperClassName="col-md-offset-2 col-md-10"
                defaultChecked={this.props.configuration.replace_all}
                onChange={this._onChange('replace_all')}
-               help="Whether to replace all occurrences of the given pattern or only the first occurrence." />
+               help="是否需要替换所有出现的模式哈市只是替换第一次出现." />
 
         <Input wrapperClassName="col-md-offset-2 col-md-10">
           <Button bsStyle="info" onClick={this._onTryClick} disabled={this._isTryButtonDisabled()}>
-            {this.state.trying ? <i className="fa fa-spin fa-spinner" /> : 'Try'}
+            {this.state.trying ? <i className="fa fa-spin fa-spinner" /> : '试一试'}
           </Button>
         </Input>
       </div>

@@ -63,7 +63,7 @@ const LookupTablesStore = Reflux.createStore({
         dataAdapters: response.data_adapters,
         pagination: this.pagination,
       });
-    }, this._errorHandler('Fetching lookup tables failed', 'Could not retrieve the lookup tables'));
+    }, this._errorHandler('获取查找表失败', '无法获取查找表'));
 
     LookupTablesActions.searchPaginated.promise(promise);
     return promise;
@@ -81,8 +81,8 @@ const LookupTablesStore = Reflux.createStore({
         cache: response.caches[lookupTable.cache_id],
         dataAdapter: response.data_adapters[lookupTable.data_adapter_id],
       });
-    }, this._errorHandler(`Fetching lookup table ${idOrName} failed`,
-      'Could not retrieve lookup table'));
+    }, this._errorHandler(`获取查找表 ${idOrName} 失败`,
+      '无法获取查找表'));
 
     LookupTablesActions.get.promise(promise);
     return promise;
@@ -92,7 +92,7 @@ const LookupTablesStore = Reflux.createStore({
     const url = this._url('tables');
     const promise = fetch('POST', url, table);
 
-    promise.catch(this._errorHandler('Creating lookup table failed', `Could not create lookup table "${table.name}"`));
+    promise.catch(this._errorHandler('创建查找表失败', `无法创建查找表 "${table.name}"`));
 
     LookupTablesActions.create.promise(promise);
     return promise;
@@ -102,7 +102,7 @@ const LookupTablesStore = Reflux.createStore({
     const url = this._url(`tables/${table.id}`);
     const promise = fetch('PUT', url, table);
 
-    promise.catch(this._errorHandler('Updating lookup table failed', `Could not update lookup table "${table.name}"`));
+    promise.catch(this._errorHandler('查找表更新失败', `无法更新查找表 "${table.name}"`));
 
     LookupTablesActions.update.promise(promise);
     return promise;
@@ -112,7 +112,7 @@ const LookupTablesStore = Reflux.createStore({
     const url = this._url(`tables/${idOrName}`);
     const promise = fetch('DELETE', url);
 
-    promise.catch(this._errorHandler('Deleting lookup table failed', `Could not delete lookup table "${idOrName}"`));
+    promise.catch(this._errorHandler('删除查找表失败', `无法删除查找表 "${idOrName}"`));
 
     LookupTablesActions.delete.promise(promise);
     return promise;
@@ -140,7 +140,7 @@ const LookupTablesStore = Reflux.createStore({
           dataAdapters: response.data_adapters || {},
         },
       });
-    }, this._errorHandler('Fetching lookup table error state failed.', 'Could not error states'));
+    }, this._errorHandler('获取查找表错误状态失败.', '无法获取错误状态'));
 
     LookupTablesActions.getErrors.promise(promise);
     return promise;
@@ -153,7 +153,7 @@ const LookupTablesStore = Reflux.createStore({
       this.trigger({
         lookupResult: response,
       });
-    }, this._errorHandler('Lookup failed', `Could not lookup value for key "${key}" in lookup table "${tableName}"`));
+    }, this._errorHandler('查找失败', `无法为关键字 "${key}" 查找值，在查找表 "${tableName}"中`));
 
     LookupTablesActions.lookup.promise(promise);
     return promise;
@@ -163,8 +163,8 @@ const LookupTablesStore = Reflux.createStore({
     const promise = fetch('POST', this._url(`tables/${table.id}/purge?key=${key}`));
 
     promise.then(() => {
-      UserNotification.success(`Purging cache key "${key}" for lookup table "${table.name}"`, 'Success!');
-    }, this._errorHandler(`Could not purge cache for key "${key}" in lookup table "${table.name}"`, 'Failed!'));
+      UserNotification.success(`成功删除缓存关键字 "${key}" 在查找表 "${table.name}"`, '成功!');
+    }, this._errorHandler(`无法删除缓存关键字 "${key}" 在查找表 "${table.name}"`, '失败!'));
 
     LookupTablesActions.purgeKey.promise(promise);
     return promise;
@@ -174,8 +174,8 @@ const LookupTablesStore = Reflux.createStore({
     const promise = fetch('POST', this._url(`tables/${table.id}/purge`));
 
     promise.then(() => {
-      UserNotification.success(`Purging cache for lookup table "${table.name}"`, 'Success!');
-    }, this._errorHandler(`Could not purge cache for lookup table "${table.name}"`, 'Failed!'));
+      UserNotification.success(`成功删除缓存 在查找表 "${table.name}"`, '成功!');
+    }, this._errorHandler(`无法删除缓存 在查找表 "${table.name}"`, '失败!'));
 
     LookupTablesActions.purgeAll.promise(promise);
     return promise;
@@ -189,7 +189,7 @@ const LookupTablesStore = Reflux.createStore({
       this.trigger({
         validationErrors: response.errors,
       });
-    }, this._errorHandler('Lookup table validation failed', `Could not validate lookup table "${table.name}"`));
+    }, this._errorHandler('查找表验证失败', `无法验证查找表 "${table.name}"`));
     LookupTablesActions.validate.promise(promise);
     return promise;
   },

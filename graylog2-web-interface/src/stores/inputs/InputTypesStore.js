@@ -33,8 +33,8 @@ const InputTypesStore = Reflux.createStore({
           this.trigger(this.getInitialState());
         },
         (error) => {
-          UserNotification.error(`Fetching Input Types failed with status: ${error}`,
-            'Could not retrieve Inputs');
+          UserNotification.error(`获取输入类型失败: ${error}`,
+            '无法获取输入类型');
         });
 
     InputTypesActions.list.promise(promise);
@@ -45,8 +45,8 @@ const InputTypesStore = Reflux.createStore({
 
     promise
       .catch((error) => {
-        UserNotification.error(`Fetching input ${inputTypeId} failed with status: ${error}`,
-          'Could not retrieve input');
+        UserNotification.error(`获取输入 ${inputTypeId} 失败: ${error}`,
+          '无法获取输入');
       });
 
     InputTypesActions.get.promise(promise);

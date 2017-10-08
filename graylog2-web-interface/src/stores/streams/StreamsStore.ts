@@ -36,8 +36,8 @@ class StreamsStore {
     const promise = fetch('GET', URLUtils.qualifyUrl(url))
         .then((result: StreamSummaryResponse) => result.streams)
         .catch((errorThrown) => {
-          UserNotification.error("Loading streams failed with status: " + errorThrown,
-              "Could not load streams");
+          UserNotification.error("加载数据流失败: " + errorThrown,
+              "无法加载数据流");
         });
     return promise;
   }
@@ -48,8 +48,8 @@ class StreamsStore {
   }
   get(streamId: string, callback: ((stream: Stream) => void)) {
     const failCallback = (errorThrown) => {
-      UserNotification.error("Loading Stream failed with status: " + errorThrown,
-        "Could not retrieve Stream");
+      UserNotification.error("加载数据流失败: " + errorThrown,
+        "无法加载数据流");
     };
 
     const url = ApiRoutes.StreamsApiController.get(streamId).url;
@@ -57,8 +57,8 @@ class StreamsStore {
   }
   remove(streamId: string, callback: (() => void)) {
     const failCallback = (errorThrown) => {
-      UserNotification.error("Removing Stream failed with status: " + errorThrown,
-        "Could not remove Stream");
+      UserNotification.error("删除数据流失败: " + errorThrown,
+        "无法删除数据流");
     };
 
     const url = URLUtils.qualifyUrl(ApiRoutes.StreamsApiController.delete(streamId).url);
@@ -66,8 +66,8 @@ class StreamsStore {
   }
   pause(streamId: string, callback: (() => void)) {
     const failCallback = (errorThrown) => {
-      UserNotification.error("Pausing Stream failed with status: " + errorThrown,
-        "Could not pause Stream");
+      UserNotification.error("停止数据流失败: " + errorThrown,
+        "无法停止数据流");
     };
 
     const url = URLUtils.qualifyUrl(ApiRoutes.StreamsApiController.pause(streamId).url);
@@ -80,8 +80,8 @@ class StreamsStore {
   }
   resume(streamId: string, callback: (() => void)) {
     const failCallback = (errorThrown) => {
-      UserNotification.error("Resuming Stream failed with status: " + errorThrown,
-        "Could not resume Stream");
+      UserNotification.error("恢复数据流失败: " + errorThrown,
+        "无法恢复数据流");
     };
 
     const url = URLUtils.qualifyUrl(ApiRoutes.StreamsApiController.resume(streamId).url);
@@ -94,8 +94,8 @@ class StreamsStore {
   }
   save(stream: any, callback: ((streamId: string) => void)) {
     const failCallback = (errorThrown) => {
-      UserNotification.error("Saving Stream failed with status: " + errorThrown,
-        "Could not save Stream");
+      UserNotification.error("保存数据流失败: " + errorThrown,
+        "无法保存数据流");
     };
 
     const url = URLUtils.qualifyUrl(ApiRoutes.StreamsApiController.create().url);
@@ -104,8 +104,8 @@ class StreamsStore {
   }
   update(streamId: string, data: any, callback: (() => void)) {
     const failCallback = (errorThrown) => {
-      UserNotification.error("Updating Stream failed with status: " + errorThrown,
-        "Could not update Stream");
+      UserNotification.error("更新数据流失败: " + errorThrown,
+        "无法更新数据流");
     };
 
     const url = URLUtils.qualifyUrl(ApiRoutes.StreamsApiController.update(streamId).url);
@@ -114,8 +114,8 @@ class StreamsStore {
   }
   cloneStream(streamId: string, data: any, callback: (() => void)) {
     const failCallback = (errorThrown) => {
-      UserNotification.error("Cloning Stream failed with status: " + errorThrown,
-        "Could not clone Stream");
+      UserNotification.error("复制数据流失败: " + errorThrown,
+        "无法复制数据流");
     };
 
     const url = URLUtils.qualifyUrl(ApiRoutes.StreamsApiController.cloneStream(streamId).url);
@@ -126,22 +126,22 @@ class StreamsStore {
     const url = URLUtils.qualifyUrl(ApiRoutes.StreamOutputsApiController.delete(streamId, outputId).url);
 
     fetch('DELETE', url).then(callback, (errorThrown) => {
-      UserNotification.error("Removing output from stream failed with status: " + errorThrown,
-        "Could not remove output from stream");
+      UserNotification.error("删除数据流失败: " + errorThrown,
+        "无法删除数据流");
     }).then(this._emitChange.bind(this));
   }
   addOutput(streamId: string, outputId: string, callback: (errorThrown) => void) {
     const url = URLUtils.qualifyUrl(ApiRoutes.StreamOutputsApiController.add(streamId, outputId).url);
     fetch('POST', url, {outputs: [outputId]}).then(callback, (errorThrown) => {
-      UserNotification.error("Adding output to stream failed with status: " + errorThrown,
-        "Could not add output to stream");
+      UserNotification.error("添加输出到数据流失败: " + errorThrown,
+        "无法添加输出到数据流");
     }).then(this._emitChange.bind(this));
   }
   testMatch(streamId: string, message: any, callback: (response: TestMatchResponse) => void) {
     const url = URLUtils.qualifyUrl(ApiRoutes.StreamsApiController.testMatch(streamId).url);
     fetch('POST', url, message).then(callback, (error) => {
-      UserNotification.error("Testing stream rules of stream failed with status: " + error.message,
-        "Could not test stream rules of stream");
+      UserNotification.error("测试数据流规则失败: " + error.message,
+        "无法测试数据流规则");
     });
   }
   onChange(callback: Callback) {

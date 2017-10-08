@@ -154,7 +154,7 @@ public class KeywordSearchResource extends SearchResource {
             @ApiParam(name = "filter", value = "Filter", required = false) @QueryParam("filter") String filter,
             @ApiParam(name = "fields", value = "Comma separated list of fields to return", required = true) @QueryParam("fields") String fields) {
         checkSearchPermission(filter, RestPermissions.SEARCHES_KEYWORD);
-        final String filename = "graylog-search-result-keyword-" + keyword + ".csv";
+        final String filename = "xxxx-search-result-keyword-" + keyword + ".csv";
         return Response
             .ok(searchKeywordChunked(query, keyword, limit, offset, filter, fields))
             .header("Content-Disposition", "attachment; filename=" + filename)

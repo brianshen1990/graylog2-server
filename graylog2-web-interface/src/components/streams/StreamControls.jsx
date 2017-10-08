@@ -51,7 +51,7 @@ const StreamControls = React.createClass({
 
     return (
       <span>
-        <DropdownButton title="More Actions" ref="dropdownButton" pullRight
+        <DropdownButton title="更多操作" ref="dropdownButton" pullRight
                         id={`more-actions-dropdown-${stream.id}`} disabled={this.props.isDefaultStream}>
           <IfPermitted permissions={`streams:edit:${stream.id}`}>
             <MenuItem key={`editStreams-${stream.id}`} onSelect={this._onEdit}>Edit stream</MenuItem>

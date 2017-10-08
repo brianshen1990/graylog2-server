@@ -77,14 +77,17 @@ const SearchResult = React.createClass({
   togglePageFields() {
     this.setState({ showAllFields: !this.state.showAllFields });
   },
-
+  _get_show_list_in_order(){
+      return ["host_name", "source_address", "destination_address", "destination_port", "action",
+          "ips_rule", "application_id", "type", "malware_name", "source_port"]
+  },
   predefinedFieldSelection(setName) {
     if (setName === 'none') {
       this.updateSelectedFields(Immutable.Set());
     } else if (setName === 'all') {
       this.updateSelectedFields(Immutable.Set(this._fields().map(field => field.name)));
     } else if (setName === 'default') {
-      this.updateSelectedFields(Immutable.Set(['message', 'source']));
+      this.updateSelectedFields(Immutable.Set(this._get_show_list_in_order()));
     }
   },
 
@@ -105,7 +108,28 @@ const SearchResult = React.createClass({
       sortedFields = sortedFields.add('source');
     }
     newFieldSet = newFieldSet.delete('source');
-    const remainingFieldsSorted = newFieldSet.sort((field1, field2) => field1.toLowerCase().localeCompare(field2.toLowerCase()));
+    const remainingFieldsSorted = newFieldSet.sort((field1, field2) => {
+      try {
+        field1 = field1.toLowerCase();
+        field2 = field2.toLowerCase();
+        if (this._get_show_list_in_order().indexOf(field1)>=0 && this._get_show_list_in_order().indexOf(field2)<0) {
+          return -1;
+        }
+        if (this._get_show_list_in_order().indexOf(field1)<0 && this._get_show_list_in_order().indexOf(field2)>=0) {
+          return 1;
+        }
+        if (this._get_show_list_in_order().indexOf(field1)<0 && this._get_show_list_in_order().indexOf(field2)<0) {
+          return field1.toLowerCase().localeCompare(field2.toLowerCase());
+        }
+        if (this._get_show_list_in_order().indexOf(field1)>=0 && this._get_show_list_in_order().indexOf(field2)>=0) {
+          return ((this._get_show_list_in_order().indexOf(field1) > this._get_show_list_in_order().indexOf(field2))?1:-1);
+        }
+      }catch(e){
+        console.log("error_2");
+        console.log(e);
+        return field1.toLowerCase().localeCompare(field2.toLowerCase());
+      }
+    });
     return sortedFields.concat(remainingFieldsSorted);
   },
 
@@ -164,7 +188,7 @@ const SearchResult = React.createClass({
 
     let loadingIndicator;
     if (this.props.loadingSearch) {
-      loadingIndicator = <LoadingIndicator text="Updating search results..." />;
+      loadingIndicator = <LoadingIndicator text="查找结果更新中..." />;
     }
 
     // short circuit if the result turned up empty

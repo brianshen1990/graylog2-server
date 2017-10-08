@@ -27,13 +27,13 @@ const MessageFieldSearchActions = React.createClass({
     let extractors;
     if (typeof messageField === 'string') {
       extractors = (<li className="dropdown-submenu left-submenu">
-        <a href="#">Create extractor for field {this.props.fieldName}</a>
+        <a href="#">为字段{this.props.fieldName}创建提取器</a>
         <ul className="dropdown-menu">
           {ExtractorUtils.EXTRACTOR_TYPES.map(extractorType => this._formatExtractorMenuItem(extractorType))}
         </ul>
       </li>);
     } else {
-      extractors = (<MenuItem disabled>Extractors can only be used with string fields</MenuItem>);
+      extractors = (<MenuItem disabled>提取器只能被用在字符串类型中.</MenuItem>);
     }
     return (
       <div className="message-field-actions pull-right">
@@ -44,8 +44,7 @@ const MessageFieldSearchActions = React.createClass({
                      onClick={this.props.onAddFieldToSearchBar}
                      id={`more-actions-dropdown-field-${this.props.fieldName}`}>
           {extractors}
-          <MenuItem onSelect={this.props.onLoadTerms(this.props.fieldName)}>Show terms
-            of <em>{this.props.fieldName}</em></MenuItem>
+          <MenuItem onSelect={this.props.onLoadTerms(this.props.fieldName)}>显示<em>{this.props.fieldName}相关值</em></MenuItem>
         </SplitButton>
       </div>
     );

@@ -12,7 +12,7 @@ const Notification = React.createClass({
     notification: React.PropTypes.object.isRequired,
   },
   _onClose() {
-    if (window.confirm('Really delete this notification?')) {
+    if (window.confirm('确定删除此通知?')) {
       NotificationsActions.delete(this.props.notification.type);
     }
   },
@@ -28,7 +28,7 @@ const Notification = React.createClass({
           {notificationView.title}{' '}
 
           <span className="notification-timestamp">
-            (triggered <Timestamp dateTime={notification.timestamp} relative />)
+            (触发 相对时间<Timestamp dateTime={notification.timestamp}  />)
           </span>
         </h3>
         <div className="notification-description">

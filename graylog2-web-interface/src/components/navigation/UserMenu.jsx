@@ -25,10 +25,10 @@ const UserMenu = React.createClass({
     return (
       <NavDropdown title={this.props.fullName} id="user-menu-dropdown">
         <LinkContainer to={Routes.SYSTEM.AUTHENTICATION.USERS.edit(encodeURIComponent(this.props.loginName))}>
-          <MenuItem>Edit profile</MenuItem>
+          <MenuItem>编辑策略</MenuItem>
         </LinkContainer>
         <MenuItem divider />
-        <MenuItem onSelect={this.onLogoutClicked}><i className="fa fa-sign-out" /> Log out</MenuItem>
+        <MenuItem onSelect={this.onLogoutClicked}><i className="fa fa-sign-out" /> 注销</MenuItem>
       </NavDropdown>
     );
   },

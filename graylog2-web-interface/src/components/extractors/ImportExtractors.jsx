@@ -18,8 +18,8 @@ const ImportExtractors = React.createClass({
       const extractors = parsedExtractors.extractors;
       ExtractorsActions.import(this.props.input.id, extractors);
     } catch (error) {
-      UserNotification.error(`There was an error while parsing extractors. Are they in JSON format? ${error}`,
-        'Could not import extractors');
+      UserNotification.error(`解析提取器出错. 它们是JSON 格式? ${error}`,
+        '无法导入解析器');
     }
   },
   render() {
@@ -28,14 +28,14 @@ const ImportExtractors = React.createClass({
         <Col md={12}>
           <Row>
             <Col md={12}>
-              <h2>Extractors JSON</h2>
+              <h2>提取器 JSON</h2>
             </Col>
           </Row>
           <Row>
             <Col md={12}>
               <form onSubmit={this._onSubmit}>
                 <Input type="textarea" ref="extractorsInput" id="extractor-export-textarea" rows={30} />
-                <Button type="submit" bsStyle="success">Add extractors to input</Button>
+                <Button type="submit" bsStyle="success">添加提取器到输入</Button>
               </form>
             </Col>
           </Row>

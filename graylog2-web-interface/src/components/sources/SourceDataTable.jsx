@@ -42,7 +42,7 @@ const SourceDataTable = React.createClass({
       .group((d) => {
         const topValues = group.top(this.props.numberOfTopValues);
         const dInTopValues = topValues.some(value => d.name.localeCompare(value.key) === 0);
-        return (dInTopValues ? 'Top sources' : 'Others');
+        return (dInTopValues ? '最多数据源' : '其它');
       })
       .size(this.state.numberOfSources)
       .columns([
@@ -113,9 +113,9 @@ const SourceDataTable = React.createClass({
       <table id="dc-sources-result" className="sources table table-hover">
         <thead>
           <tr>
-            <th style={{ width: '60%' }}>Name</th>
-            <th>Percentage</th>
-            <th>Message count</th>
+            <th style={{ width: '60%' }}>名称</th>
+            <th>比例</th>
+            <th>消息数</th>
             <th style={{ width: 10 }} />
           </tr>
         </thead>
@@ -125,21 +125,21 @@ const SourceDataTable = React.createClass({
     return (
       <div>
         <SourceTitle resetFilterId="dc-sources-result-reset" resetFilters={this.props.resetFilters}>
-          Selected sources
+          选择的数据源
         </SourceTitle>
         <div className="row sources-filtering">
           <div className="col-md-6">
             <div className="form-inline">
               <div className="form-group">
                 <input type="text" className="form-control input-sm" onChange={this._onFilterChanged}
-                       placeholder="Search" />
+                       placeholder="查找" />
               </div>
             </div>
           </div>
           <div className="col-md-6">
             <div className="form-inline text-right">
               <div className="form-group">
-                <label htmlFor="no-results">Show:</label>
+                <label htmlFor="no-results">显示条数:</label>
                 <select id="no-results" className="form-control input-sm" onChange={this._onNumberOfSourcesChanged}
                         value={this.state.numberOfSources}>
                   <option value="10">10</option>

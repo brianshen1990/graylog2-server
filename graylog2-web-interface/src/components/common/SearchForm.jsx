@@ -25,15 +25,15 @@ const SearchForm = React.createClass({
 
   getDefaultProps() {
     return {
-      placeholder: 'Enter search query...',
+      placeholder: '输入查找条件...',
       wrapperClass: 'search',
       queryWidth: 'auto',
       topMargin: 15,
       buttonLeftMargin: 5,
       searchBsStyle: 'default',
-      searchButtonLabel: 'Search',
-      resetButtonLabel: 'Reset',
-      loadingLabel: 'Loading...',
+      searchButtonLabel: '查找',
+      resetButtonLabel: '重置',
+      loadingLabel: '加载中...',
     };
   },
 

@@ -54,7 +54,7 @@ const UserList = React.createClass({
   },
   _deleteUserFunction(username) {
     return () => {
-      if (window.confirm(`Do you really want to delete user ${username}?`)) {
+      if (window.confirm(`确定删除用户 ${username}?`)) {
         this.deleteUser(username);
       }
     };
@@ -69,7 +69,7 @@ const UserList = React.createClass({
       case 'client address': {
         const popover = (<Popover id="decorators-help" className={UserListStyle.sessionBadgeDetails}>
           <p className="description">
-            The address of the client used to initially establish the session, not necessarily its current address.
+            客户地址会在会话中初始化，无需是当前地址.
           </p>
         </Popover>);
 
@@ -96,8 +96,8 @@ const UserList = React.createClass({
     if (user.session_active) {
       const popover = (
         <Popover id="session-badge-details" title="Logged in" className={UserListStyle.sessionBadgeDetails}>
-          <div>Last activity: <Timestamp dateTime={user.last_activity} relative /></div>
-          <div>Client address: {user.client_address}</div>
+          <div>最后活动日期: <Timestamp dateTime={user.last_activity} relative /></div>
+          <div>客户地址: {user.client_address}</div>
         </Popover>
       );
       userBadge = (<OverlayTrigger trigger={['hover', 'focus']} placement="left" overlay={popover} rootClose>
@@ -109,26 +109,26 @@ const UserList = React.createClass({
 
     let actions = null;
     if (user.read_only) {
-      const tooltip = <Tooltip id="system-user">System users can only be modified in the Graylog configuration file.</Tooltip>;
+      const tooltip = <Tooltip id="system-user">系统用户只能在配置文件中更新.</Tooltip>;
       actions = (
         <OverlayTrigger placement="left" overlay={tooltip}>
           <span className={UserListStyle.help}>
-            <Button bsSize="xs" bsStyle="info" disabled>System user</Button>
+            <Button bsSize="xs" bsStyle="info" disabled>系统用户</Button>
           </span>
         </OverlayTrigger>
       );
     } else {
       const deleteAction = (
-        <Button id={`delete-user-${user.username}`} bsStyle="primary" bsSize="xs" title="Delete user"
+        <Button id={`delete-user-${user.username}`} bsStyle="primary" bsSize="xs" title="删除用户"
                 onClick={this._deleteUserFunction(user.username)}>
-          Delete
+          删除
         </Button>
       );
 
       const editAction = (
         <LinkContainer to={Routes.SYSTEM.AUTHENTICATION.USERS.edit(encodeURIComponent(user.username))}>
-          <Button id={`edit-user-${user.username}`} bsStyle="info" bsSize="xs" title={`Edit user ${user.username}`}>
-            Edit
+          <Button id={`edit-user-${user.username}`} bsStyle="info" bsSize="xs" title={`编辑用户 ${user.username}`}>
+            编辑
           </Button>
         </LinkContainer>
       );
@@ -156,7 +156,7 @@ const UserList = React.createClass({
   },
   render() {
     const filterKeys = ['username', 'full_name', 'email', 'client_address'];
-    const headers = ['', 'Name', 'Username', 'Email Address', 'Client Address', 'Role', 'Actions'];
+    const headers = ['', '名称', '用户名', 'Email', '客户端地址', '角色', '操作'];
 
     if (this.state.users && this.state.roles) {
       return (
@@ -170,7 +170,7 @@ const UserList = React.createClass({
                      filterBy="role"
                      filterSuggestions={this.state.roles}
                      dataRowFormatter={this._userInfoFormatter}
-                     filterLabel="Filter Users"
+                     filterLabel="筛选用户"
                      filterKeys={filterKeys} />
         </div>
       );

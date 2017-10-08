@@ -206,7 +206,7 @@ const SearchPage = React.createClass({
     const searchResult = this.state.searchResult;
     searchResult.all_fields = this.state.fields;
     return (
-      <DocumentTitle title="Search">
+      <DocumentTitle title="搜索">
         <SearchResult query={SearchStore.originalQuery} page={SearchStore.page} builtQuery={searchResult.built_query}
                       result={searchResult} histogram={this.state.histogram}
                       formattedHistogram={this.state.histogram.histogram}

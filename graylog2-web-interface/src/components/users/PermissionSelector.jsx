@@ -19,18 +19,18 @@ const PermissionSelector = React.createClass({
       const isEdit = this.props.permissions.contains(`streams:edit:${stream.id}`);
       return (<ButtonGroup bsSize="small">
         <Button bsStyle={isRead ? 'info' : 'default'} onClick={() => this._toggleStreamReadPermissions(stream)}
-                active={isRead}>Allow reading</Button>
+                active={isRead}>允许读</Button>
         <Button bsStyle={isEdit ? 'info' : 'default'} onClick={() => this._toggleStreamEditPermissions(stream)}
-                active={isEdit}>Allow editing</Button>
+                active={isEdit}>允许编辑</Button>
       </ButtonGroup>);
     };
 
     const multiStreamButtons = (streamIds) => {
       return (
         <div className="pull-right" style={{ marginTop: 10, marginBottom: 10 }}>
-          <Button bsSize="xsmall" bsStyle="info" onClick={() => this._toggleAllStreamsRead(streamIds)}>Toggle read permissions</Button>
+          <Button bsSize="xsmall" bsStyle="info" onClick={() => this._toggleAllStreamsRead(streamIds)}>转换读权限</Button>
           &nbsp;
-          <Button bsSize="xsmall" bsStyle="info" onClick={() => this._toggleAllStreamsEdit(streamIds)}>Toggle edit permissions</Button>
+          <Button bsSize="xsmall" bsStyle="info" onClick={() => this._toggleAllStreamsEdit(streamIds)}>转换修改权限</Button>
         </div>
       );
     };
@@ -40,18 +40,18 @@ const PermissionSelector = React.createClass({
       const isEdit = this.props.permissions.contains(`dashboards:edit:${dashboard.id}`);
       return (<ButtonGroup bsSize="small">
         <Button bsStyle={isRead ? 'info' : 'default'} onClick={() => this._toggleDashboardReadPermissions(dashboard)}
-                active={isRead}>Allow reading</Button>
+                active={isRead}>允许读</Button>
         <Button bsStyle={isEdit ? 'info' : 'default'} onClick={() => this._toggleDashboardEditPermissions(dashboard)}
-                active={isEdit}>Allow editing</Button>
+                active={isEdit}>允许编辑</Button>
       </ButtonGroup>);
     };
 
     const multiDashboardButtons = (dashboardIds) => {
       return (
         <div className="pull-right" style={{ marginTop: 10, marginBottom: 10 }}>
-          <Button bsSize="xsmall" bsStyle="info" onClick={() => this._toggleAllDashboardsRead(dashboardIds)}>Toggle read permissions</Button>
+          <Button bsSize="xsmall" bsStyle="info" onClick={() => this._toggleAllDashboardsRead(dashboardIds)}>转换读权限</Button>
           &nbsp;
-          <Button bsSize="xsmall" bsStyle="info" onClick={() => this._toggleAllDashboardsEdit(dashboardIds)}>Toggle edit permissions</Button>
+          <Button bsSize="xsmall" bsStyle="info" onClick={() => this._toggleAllDashboardsEdit(dashboardIds)}>转换修改权限</Button>
         </div>
       );
     };
@@ -59,22 +59,22 @@ const PermissionSelector = React.createClass({
     return (
       <div>
         <Tabs id="permissionSelectorTabs" defaultActiveKey={1} animation={false}>
-          <Tab eventKey={1} title="Streams">
+          <Tab eventKey={1} title="数据流">
             <div style={{ marginTop: 10 }}>
               <TableList
                 items={this.props.streams}
-                filterLabel="Filter Streams"
+                filterLabel="筛选数据流"
                 filterKeys={['title']}
                 itemActionsFactory={streamItemButtons}
                 headerActionsFactory={multiStreamButtons}
               />
             </div>
           </Tab>
-          <Tab eventKey={2} title="Dashboards">
+          <Tab eventKey={2} title="面板">
             <div style={{ marginTop: 10 }}>
               <TableList
                 items={this.props.dashboards}
-                filterLabel="Filter Dashboards"
+                filterLabel="筛选面板"
                 filterKeys={['title']}
                 itemActionsFactory={dashboardItemButtons}
                 headerActionsFactory={multiDashboardButtons}

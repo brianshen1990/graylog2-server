@@ -56,7 +56,7 @@ const InputsList = React.createClass({
     return <InputListItem key={input.id} input={input} currentNode={this.state.node} permissions={this.props.permissions} />;
   },
   _nodeAffix() {
-    return (this.props.node ? ' on this node' : '');
+    return (this.props.node ? ' 在这个节点上' : '');
   },
   render() {
     if (this._isLoading()) {
@@ -74,22 +74,22 @@ const InputsList = React.createClass({
         <Row id="global-inputs" className="content input-list">
           <Col md={12}>
             <h2>
-              Global inputs
+              全局输入
               &nbsp;
-              <small>{this.state.globalInputs.length} configured{this._nodeAffix()}</small>
+              <small>配置了{this.state.globalInputs.length}个{this._nodeAffix()}</small>
             </h2>
-            <EntityList bsNoItemsStyle="info" noItemsText="There are no global inputs."
+            <EntityList bsNoItemsStyle="info" noItemsText="没有全局输入."
                         items={this.state.globalInputs.map(input => this._formatInput(input))} />
           </Col>
         </Row>
         <Row id="local-inputs" className="content input-list">
           <Col md={12}>
             <h2>
-              Local inputs
+              本地输入
               &nbsp;
               <small>{this.state.localInputs.length} configured{this._nodeAffix()}</small>
             </h2>
-            <EntityList bsNoItemsStyle="info" noItemsText={`There are no local inputs${this._nodeAffix()}.`}
+            <EntityList bsNoItemsStyle="info" noItemsText={`没有本地输入${this._nodeAffix()}.`}
                         items={this.state.localInputs.map(input => this._formatInput(input))} />
           </Col>
         </Row>

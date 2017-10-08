@@ -36,28 +36,28 @@ const StackedChartWidgetConfiguration = React.createClass({
           <Input type="text"
                  id={`series-${seriesNo}-field`}
                  name="field"
-                 label="Field"
+                 label="字段"
                  data-series={seriesNo}
                  defaultValue={series.field}
                  onChange={this._bindSeriesValue}
-                 help="Field used to get the series value."
+                 help="用来搜索数据的字段."
                  required />
           <Input type="text"
                  id={`series-${seriesNo}-query`}
                  name="query"
-                 label="Search query"
+                 label="搜索语句"
                  data-series={seriesNo}
                  defaultValue={series.query}
                  onChange={this._bindSeriesValue}
-                 help="Search query that will be executed to get the series value." />
+                 help="用来搜索数据的语句." />
           <Input type="select"
                  id={`series-${seriesNo}-statistical-function`}
                  name="statistical_function"
-                 label="Statistical function"
+                 label="统计功能"
                  data-series={seriesNo}
                  defaultValue={series.statistical_function}
                  onChange={this._bindSeriesValue}
-                 help="Statistical function applied to the series.">
+                 help="用来统计数据的方法.">
             {FieldGraphsStore.constructor.FUNCTIONS.keySeq().map((statFunction) => {
               return (
                 <option key={statFunction} value={statFunction}>

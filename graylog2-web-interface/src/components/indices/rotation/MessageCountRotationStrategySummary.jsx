@@ -9,9 +9,9 @@ const MessageCountRotationStrategySummary = React.createClass({
     return (
       <div>
         <dl>
-          <dt>Index rotation strategy:</dt>
-          <dd>Message Count</dd>
-          <dt>Max docs per index:</dt>
+          <dt>索引循环策略:</dt>
+          <dd>消息数</dd>
+          <dt>每个索引的最大消息数:</dt>
           <dd>{this.props.config.max_docs_per_index}</dd>
         </dl>
       </div>

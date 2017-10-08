@@ -35,9 +35,9 @@ const NodesList = React.createClass({
       <Row className="content">
         <Col md={12}>
           <h2>
-            There <Pluralize value={nodesNo} singular="is" plural="are" /> {nodesNo} active <Pluralize value={nodesNo} singular="node" plural="nodes" />
+            共有<Pluralize value={nodesNo} singular=" " plural=" " /> {nodesNo} 有效 <Pluralize value={nodesNo} singular="节点" plural="节点" />
           </h2>
-          <EntityList bsNoItemsStyle="info" noItemsText="There are no active nodes."
+          <EntityList bsNoItemsStyle="info" noItemsText="没有有效节点。"
                       items={this._formatNodes(this.state.nodes, this.state.clusterOverview)} />
         </Col>
       </Row>

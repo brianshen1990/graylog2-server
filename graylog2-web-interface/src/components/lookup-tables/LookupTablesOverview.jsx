@@ -57,43 +57,43 @@ const LookupTablesOverview = React.createClass({
 
   _helpPopover() {
     return (
-      <Popover id="search-query-help" className={Styles.popoverWide} title="Search Syntax Help">
-        <p><strong>Available search fields</strong></p>
+      <Popover id="search-query-help" className={Styles.popoverWide} title="查找语法帮助">
+        <p><strong>可搜索字段</strong></p>
         <Table condensed>
           <thead>
           <tr>
-            <th>Field</th>
-            <th>Description</th>
+            <th>字段</th>
+            <th>描述</th>
           </tr>
           </thead>
           <tbody>
           <tr>
             <td>id</td>
-            <td>Lookup Table ID</td>
+            <td>查找表 ID</td>
           </tr>
           <tr>
-            <td>title</td>
-            <td>The title of the lookup table</td>
+            <td>标题</td>
+            <td>查找表标题</td>
           </tr>
           <tr>
-            <td>name</td>
-            <td>The reference name of the lookup table</td>
+            <td>名称</td>
+            <td>查找表名称</td>
           </tr>
           <tr>
-            <td>description</td>
-            <td>The description of lookup table</td>
+            <td>描述</td>
+            <td>查找表描述</td>
           </tr>
           </tbody>
         </Table>
-        <p><strong>Examples</strong></p>
+        <p><strong>示例</strong></p>
         <p>
-          Find lookup tables by parts of their names:<br />
+          使用部分的名称来查找：<br />
           <kbd>{'name:geoip'}</kbd><br />
           <kbd>{'name:geo'}</kbd>
         </p>
         <p>
-          Searching without a field name matches against the <code>title</code> field:<br />
-          <kbd>{'geoip'}</kbd> <br />is the same as<br />
+          不指定字段查找： <code>title</code>:<br />
+          <kbd>{'geoip'}</kbd> <br />与此查找等同。<br />
           <kbd>{'title:geoip'}</kbd>
         </p>
       </Popover>
@@ -121,13 +121,13 @@ const LookupTablesOverview = React.createClass({
       <Row className="content">
         <Col md={12}>
           <h2>
-            Configured lookup tables
-            <span>&nbsp;<small>{this.props.pagination.total} total</small></span>
+            配置查找表
+            <span>&nbsp;<small>共{this.props.pagination.total}条</small></span>
           </h2>
           <PaginatedList onChange={this._onPageChange} totalItems={this.props.pagination.total}>
             <SearchForm onSearch={this._onSearch} onReset={this._onReset} useLoadingState>
               <LinkContainer to={Routes.SYSTEM.LOOKUPTABLES.CREATE}>
-                <Button bsStyle="success" style={{ marginLeft: 5 }}>Create lookup table</Button>
+                <Button bsStyle="success" style={{ marginLeft: 5 }}>新建查找表</Button>
               </LinkContainer>
               <OverlayTrigger trigger="click" rootClose placement="right" overlay={this._helpPopover()}>
                 <Button bsStyle="link" className={Styles.searchHelpButton}><i className="fa fa-fw fa-question-circle" /></Button>
@@ -136,12 +136,12 @@ const LookupTablesOverview = React.createClass({
             <Table condensed hover>
               <thead>
                 <tr>
-                  <th>Title</th>
-                  <th>Description</th>
-                  <th>Name</th>
-                  <th>Cache</th>
-                  <th>Data Adapter</th>
-                  <th className={Styles.actions}>Actions</th>
+                  <th>标题</th>
+                  <th>描述</th>
+                  <th>名称</th>
+                  <th>缓存</th>
+                  <th>数据转接器</th>
+                  <th className={Styles.actions}>操作</th>
                 </tr>
               </thead>
               {lookupTables}

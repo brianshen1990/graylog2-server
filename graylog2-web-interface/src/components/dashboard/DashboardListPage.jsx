@@ -45,16 +45,14 @@ const DashboardListPage = React.createClass({
       <EditDashboardModalTrigger action="create" buttonClass="btn-success btn-lg" /> : null;
 
     const pageHeader = (
-      <PageHeader title="Dashboards">
+      <PageHeader title="显示面板">
         <span>
-          Use dashboards to create specific views on your messages. Create a new dashboard here and add
-          any graph or chart you create in other parts of Graylog with one click.
+		  使用显示面板来创建一个特定的视图。可以在这里创建一个新的显示面板并且将在其他地方创建的图形和
+		  图表加入进来。
         </span>
 
         <span>
-          Take a look at the
-          {' '}<DocumentationLink page={DocsHelper.PAGES.DASHBOARDS} text="dashboard tutorial" />{' '}
-          for lots of other useful tips.
+		  可以添加搜索页面的任意组件到面板!
         </span>
 
         {createDashboardButton}
@@ -76,7 +74,7 @@ const DashboardListPage = React.createClass({
     let dashboardList;
 
     if (this.state.dashboards && this.state.dashboards.count() > 0 && this.state.filteredDashboards.isEmpty()) {
-      dashboardList = <div>No dashboards matched your filter criteria.</div>;
+      dashboardList = <div>没有显示面板符合你的筛选条件</div>;
     } else {
       dashboardList = (
         <DashboardList dashboards={this.state.filteredDashboards}

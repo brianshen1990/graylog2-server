@@ -17,21 +17,17 @@ const AlertConditionsPage = React.createClass({
   mixins: [Reflux.connect(CurrentUserStore)],
   render() {
     return (
-      <DocumentTitle title="Alert conditions">
+      <DocumentTitle title="告警条件">
         <div>
-          <PageHeader title="Manage alert conditions">
+          <PageHeader title="管理告警条件">
             <span>
-              Alert conditions define situations that require your attention. Graylog will check those conditions
-              periodically and notify you when their statuses change.
+              告警条件定义了您需要注意的情况。 xxxx 日志平台会定期的检查这些条件， 并且在状态改变的时候通知您。
             </span>
 
-            <span>
-              Read more about alerting in the <DocumentationLink page={DocsHelper.PAGES.ALERTS} text="documentation" />.
-            </span>
 
             <span>
               <LinkContainer to={Routes.ALERTS.NOTIFICATIONS}>
-                <Button bsStyle="info">Manage notifications</Button>
+                <Button bsStyle="info">管理通知</Button>
               </LinkContainer>
             </span>
           </PageHeader>

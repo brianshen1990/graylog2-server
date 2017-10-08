@@ -25,13 +25,13 @@ const IndexSetDetails = React.createClass({
       <Row className="index-set-details">
         <Col md={3}>
           <dl>
-            <dt>Index prefix:</dt>
+            <dt>索引前缀:</dt>
             <dd>{indexSet.index_prefix}</dd>
 
-            <dt>Shards:</dt>
+            <dt>分片:</dt>
             <dd>{indexSet.shards}</dd>
 
-            <dt>Replicas:</dt>
+            <dt>备份分片:</dt>
             <dd>{indexSet.replicas}</dd>
           </dl>
         </Col>

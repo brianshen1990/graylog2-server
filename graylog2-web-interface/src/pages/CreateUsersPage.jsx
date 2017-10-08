@@ -34,10 +34,10 @@ const CreateUsersPage = React.createClass({
     request.permissions = [];
     delete request['session-timeout-never'];
     UsersStore.create(request).then(() => {
-      UserNotification.success(`User ${request.username} was created successfully.`, 'Success!');
+      UserNotification.success(`用户 ${request.username} 创建成功.`, '成功!');
       this.props.history.replaceState(null, Routes.SYSTEM.AUTHENTICATION.USERS.LIST);
     }, () => {
-      UserNotification.error('Failed to create user!', 'Error!');
+      UserNotification.error('创建用户失败!', '错误!');
     });
   },
 
@@ -50,12 +50,11 @@ const CreateUsersPage = React.createClass({
       return <Spinner />;
     }
     return (
-      <DocumentTitle title="Create new user">
+      <DocumentTitle title="创建新用户">
         <span>
-          <PageHeader title="Create new user" subpage>
+          <PageHeader title="创建新用户" subpage>
             <span>
-              Use this page to create new Graylog users. The users and their permissions created here are not limited
-              to the web interface but valid and required for the REST APIs of your Graylog server nodes, too.
+              在此页创建新用户。在此创建的用户和权限将不会限制在网页访问，他们也可以访问节点信息。
             </span>
           </PageHeader>
           <Row>

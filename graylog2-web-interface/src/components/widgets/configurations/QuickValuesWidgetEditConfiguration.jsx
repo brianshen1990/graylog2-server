@@ -16,19 +16,19 @@ const QuickValuesWidgetEditConfiguration = React.createClass({
                type="checkbox"
                id="quickvalues-show-pie-chart"
                name="show_pie_chart"
-               label="Show pie chart"
+               label="显示饼图"
                defaultChecked={this.props.config.show_pie_chart}
                onChange={this.props.onChange}
-               help="Represent data in a pie chart" />
+               help="用饼图显示数据" />
 
         <Input key="showDataTable"
                type="checkbox"
                id="quickvalues-show-data-table"
                name="show_data_table"
-               label="Show data table"
+               label="显示数据列表"
                defaultChecked={this.props.config.show_data_table}
                onChange={this.props.onChange}
-               help="Include a table with quantitative information." />
+               help="显示数据列表." />
       </fieldset>
     );
   },

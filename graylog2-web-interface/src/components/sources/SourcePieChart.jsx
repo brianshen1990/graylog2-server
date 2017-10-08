@@ -65,7 +65,7 @@ const SourcePieChart = React.createClass({
   render() {
     return (
       <div id="dc-sources-pie-chart" ref="sourcePieChart">
-        <SourceTitle className="reset" resetFilters={this.props.resetFilters}>Messages per source</SourceTitle>
+        <SourceTitle className="reset" resetFilters={this.props.resetFilters}>每个数据源的消息数</SourceTitle>
       </div>
     );
   },

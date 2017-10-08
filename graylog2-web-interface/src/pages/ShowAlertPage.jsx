@@ -53,8 +53,8 @@ const ShowAlertPage = React.createClass({
       if (error.additional && error.additional.status === 404) {
         this.setState({ alertCondition: {} });
       } else {
-        UserNotification.error(`Fetching alert condition ${alert.condition_id} failed with status: ${error}`,
-          'Could not get alert condition information');
+        UserNotification.error(`获取告警条件 ${alert.condition_id} 失败: ${error}`,
+          '无法获取告警条件信息');
       }
     });
   },
@@ -77,30 +77,30 @@ const ShowAlertPage = React.createClass({
     let statusLabel;
     let resolvedState;
     if (!alert.is_interval || alert.resolved_at) {
-      statusLabel = <Label bsStyle="success">Resolved</Label>;
+      statusLabel = <Label bsStyle="success">已解决</Label>;
       const resolvedAtTime = alert.resolved_at || alert.triggered_at;
       if (resolvedAtTime) {
         resolvedState = (
           <span>
-            This alert was resolved at <Timestamp dateTime={resolvedAtTime} format={DateTime.Formats.DATETIME} />.
+           告警解决时间<Timestamp dateTime={resolvedAtTime} format={DateTime.Formats.DATETIME} />.
           </span>
         );
       }
     } else {
-      statusLabel = <Label bsStyle="danger">Unresolved</Label>;
+      statusLabel = <Label bsStyle="danger">未解决</Label>;
       resolvedState = (
         <span>
-          This alert was triggered at{' '}
+          告警解决时间{' '}
           <Timestamp dateTime={alert.triggered_at} format={DateTime.Formats.DATETIME} />{' '}
-          and is still unresolved.
+          并且仍然未解决.
         </span>
       );
     }
 
     const title = (
-      <span>{conditionExists ? condition.title || 'Untitled alert' : 'Unknown alert'}&nbsp;
+      <span>{conditionExists ? condition.title || '未命名告警' : '未知告警'}&nbsp;
         <small>
-          on stream <em>{stream.title}</em>&nbsp;
+          在数据流 <em>{stream.title}</em>&nbsp;
           <span className={style.alertStatusLabel}>{statusLabel}</span>
         </small>
       </span>
@@ -108,17 +108,16 @@ const ShowAlertPage = React.createClass({
 
     const conditionDetailsTooltip = (
       <Tooltip id="disabled-condition-details">
-        The condition was most likely deleted since the alert was triggered, no details available.
+        告警可能在触发后被删除, 所以无法显示细节.
       </Tooltip>
     );
 
     return (
-      <DocumentTitle title={`${conditionExists ? condition.title || 'Untitled alert' : 'Unknown alert'} on stream ${stream.title}`}>
+      <DocumentTitle title={`${conditionExists ? condition.title || '未命名告警' : '未知告警'} 在数据流 ${stream.title}`}>
         <div>
           <PageHeader title={title}>
             <span>
-              Check the timeline of this alert, including the notifications sent, and messages received during the
-              alert.
+              检查告警时间线, 包括告警通知发送, 接收到的消息.
             </span>
 
             <span>
@@ -129,12 +128,12 @@ const ShowAlertPage = React.createClass({
               <OverlayElement overlay={conditionDetailsTooltip} placement="top" useOverlay={!condition.id}
                               trigger={['hover', 'focus']}>
                 <LinkContainer to={Routes.show_alert_condition(stream.id, condition.id)} disabled={!condition.id}>
-                  <Button bsStyle="info">Condition details</Button>
+                  <Button bsStyle="info">条件详情</Button>
                 </LinkContainer>
               </OverlayElement>
               &nbsp;
               <LinkContainer to={Routes.ALERTS.LIST}>
-                <Button bsStyle="info">Alerts overview</Button>
+                <Button bsStyle="info">告警概览</Button>
               </LinkContainer>
             </span>
           </PageHeader>

@@ -17,9 +17,9 @@ class MatchingTypeSwitcher extends Component {
     return (
       <div className="streamrule-connector-type-form">
         <div>
-          <Input type="radio" label="A message must match all of the following rules"
+          <Input type="radio" label="消息需满足全部规则"
                  checked={this.props.stream.matching_type === 'AND'} onChange={this.handleTypeChangeToAnd.bind(this)} />
-          <Input type="radio" label="A message must match at least one of the following rules"
+          <Input type="radio" label="消息需满意任一规则"
                  checked={this.props.stream.matching_type === 'OR'} onChange={this.handleTypeChangeToOr.bind(this)} />
         </div>
       </div>
@@ -35,11 +35,11 @@ class MatchingTypeSwitcher extends Component {
   }
 
   handleTypeChange(newValue) {
-    if (window.confirm('You are about to change how rules are applied to this stream, do you want to continue? Changes will take effect immediately.')) {
+    if (window.confirm('即将更新数据流规则，是否继续? 更改会立马生效.')) {
       StreamsStore.update(this.props.stream.id, { matching_type: newValue }, (response) => {
         this.props.onChange();
-        UserNotification.success(`Messages will now be routed into the stream when ${newValue === 'AND' ? 'all' : 'any'} rules are matched`,
-          'Success');
+        UserNotification.success(`消息将被路由到数据流，当 ${newValue === 'AND' ? '全部' : '任何'} 规则匹配`,
+          '成功');
         return response;
       });
     }

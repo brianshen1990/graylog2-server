@@ -54,11 +54,11 @@ const ConfigurationsStore = Reflux.createStore({
       (response) => {
         this.configuration[configType] = response;
         this.trigger({ configuration: this.configuration });
-        UserNotification.success('Configuration updated successfully');
+        UserNotification.success('配置上传成功');
         return response;
       },
       (error) => {
-        UserNotification.error(`Search config update failed: ${error}`, `Could not update search config: ${configType}`);
+        UserNotification.error(`查找配置更新失败: ${error}`, `无法更新查找配置: ${configType}`);
       });
 
     ConfigurationActions.update.promise(promise);
@@ -71,11 +71,11 @@ const ConfigurationsStore = Reflux.createStore({
       (response) => {
         this.configuration[configType] = response;
         this.trigger({ configuration: this.configuration });
-        UserNotification.success('Configuration updated successfully');
+        UserNotification.success('配置成功成功');
         return response;
       },
       (error) => {
-        UserNotification.error(`Message processors config update failed: ${error}`, `Could not update config: ${configType}`);
+        UserNotification.error(`消息处理程序配置更新失败: ${error}`, `无法更新配置: ${configType}`);
       });
 
     ConfigurationActions.updateMessageProcessorsConfig.promise(promise);

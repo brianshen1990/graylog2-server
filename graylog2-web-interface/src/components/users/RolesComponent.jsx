@@ -42,10 +42,10 @@ const RolesComponent = React.createClass({
     this.setState({ showEditRole: true, editRole: role });
   },
   _deleteRole(role) {
-    if (window.confirm(`Do you really want to delete role ${role.name}?`)) {
+    if (window.confirm(`确定要删除角色 ${role.name}?`)) {
       RolesStore.getMembers(role.name).then((membership) => {
         if (membership.users.length !== 0) {
-          UserNotification.error(`Cannot delete role ${role.name}. It is still assigned to ${membership.users.length} users.`);
+          UserNotification.error(`无法删除角色 ${role.name}. 已被分配给 ${membership.users.length} 个用户.`);
         } else {
           RolesStore.deleteRole(role.name).then(this.loadRoles);
         }
@@ -79,14 +79,14 @@ const RolesComponent = React.createClass({
 
     let actionButton;
     if (!this.state.showEditRole) {
-      actionButton = <Button bsStyle="success" onClick={this._showCreateRole}>Add new role</Button>;
+      actionButton = <Button bsStyle="success" onClick={this._showCreateRole}>添加新的角色</Button>;
     }
     return (
       <Row>
         <Col md={12}>
-          <PageHeader title="Roles" subpage>
+          <PageHeader title="角色" subpage>
             <span>
-              Roles bundle permissions which can be assigned to multiple users at once
+              角色和一系列的权限绑定，可将该角色制定给任意多的用户
             </span>
             {null}
             <span>

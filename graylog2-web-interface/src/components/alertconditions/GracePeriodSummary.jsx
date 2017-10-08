@@ -6,14 +6,14 @@ const GracePeriodSummary = React.createClass({
   },
   _formatTime(time) {
     if (time === 1) {
-      return '1 minute';
+      return '1 分钟';
     }
 
-    return `${time} minutes`;
+    return `${time} 分钟`;
   },
   render() {
     const time = this.props.alertCondition.parameters.grace;
-    return <span>Grace period: {this._formatTime(time)}.</span>;
+    return <span>宽限期: {this._formatTime(time)}.</span>;
   },
 });
 

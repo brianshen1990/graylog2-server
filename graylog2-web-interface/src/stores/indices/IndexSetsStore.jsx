@@ -23,8 +23,8 @@ const IndexSetsStore = Reflux.createStore({
           indexSetStats: response.stats,
         }),
         (error) => {
-          UserNotification.error(`Fetching index sets list failed: ${error.message}`,
-            'Could not retrieve index sets.');
+          UserNotification.error(`获取索引集失败: ${error.message}`,
+            '无法获取索引集.');
         });
 
     IndexSetsActions.list.promise(promise);
@@ -41,8 +41,8 @@ const IndexSetsStore = Reflux.createStore({
           indexSetStats: response.stats,
         }),
         (error) => {
-          UserNotification.error(`Fetching index sets list failed: ${this._errorMessage(error)}`,
-            'Could not retrieve index sets.');
+          UserNotification.error(`获取索引集失败: ${this._errorMessage(error)}`,
+            '无法获取索引集.');
         });
 
     IndexSetsActions.listPaginated.promise(promise);
@@ -57,7 +57,7 @@ const IndexSetsStore = Reflux.createStore({
         return response;
       },
       (error) => {
-        UserNotification.error(`Fetching index set '${indexSetId}' failed with status: ${this._errorMessage(error)}`, 'Could not retrieve index set.');
+        UserNotification.error(`获取索引集 '${indexSetId}' 失败: ${this._errorMessage(error)}`, '无法获取索引集.');
       },
     );
 
@@ -69,12 +69,12 @@ const IndexSetsStore = Reflux.createStore({
     const promise = fetch('PUT', url, indexSet);
     promise.then(
       (response) => {
-        UserNotification.success(`Successfully updated index set '${indexSet.title}'`, 'Success');
+        UserNotification.success(`成功更新索引集'${indexSet.title}'`, '成功');
         this.trigger({ indexSet: response });
         return response;
       },
       (error) => {
-        UserNotification.error(`Updating index set '${indexSet.title}' failed with status: ${this._errorMessage(error)}`, 'Could not update index set.');
+        UserNotification.error(`更新索引集 '${indexSet.title}' 失败: ${this._errorMessage(error)}`, '无法更新索引集.');
       },
     );
 
@@ -86,12 +86,12 @@ const IndexSetsStore = Reflux.createStore({
     const promise = fetch('POST', url, indexSet);
     promise.then(
       (response) => {
-        UserNotification.success(`Successfully created index set '${indexSet.title}'`, 'Success');
+        UserNotification.success(`成功创建索引集 '${indexSet.title}'`, '成功');
         this.trigger({ indexSet: response });
         return response;
       },
       (error) => {
-        UserNotification.error(`Creating index set '${indexSet.title}' failed with status: ${this._errorMessage(error)}`, 'Could not create index set.');
+        UserNotification.error(`创建索引集 '${indexSet.title}' 失败: ${this._errorMessage(error)}`, '无法创建索引集.');
       },
     );
 
@@ -103,10 +103,10 @@ const IndexSetsStore = Reflux.createStore({
     const promise = fetch('DELETE', url);
     promise.then(
       () => {
-        UserNotification.success(`Successfully deleted index set '${indexSet.title}'`, 'Success');
+        UserNotification.success(`成功删除索引集 '${indexSet.title}'`, '成功');
       },
       (error) => {
-        UserNotification.error(`Deleting index set '${indexSet.title}' failed with status: ${this._errorMessage(error)}`, 'Could not delete index set.');
+        UserNotification.error(`删除索引集 '${indexSet.title}' 失败: ${this._errorMessage(error)}`, '无法删除索引集.');
       },
     );
 
@@ -118,10 +118,10 @@ const IndexSetsStore = Reflux.createStore({
     const promise = fetch('PUT', url);
     promise.then(
       () => {
-        UserNotification.success(`Successfully set index set '${indexSet.title}' as default`, 'Success');
+        UserNotification.success(`成功设置索引集 '${indexSet.title}' 为默认`, '成功');
       },
       (error) => {
-        UserNotification.error(`Setting index set '${indexSet.title}' as default failed with status: ${this._errorMessage(error)}`, 'Could not set default index set.');
+        UserNotification.error(`设置索引集 '${indexSet.title}' 为默认失败s: ${this._errorMessage(error)}`, '无法设置默认索引集.');
       },
     );
 

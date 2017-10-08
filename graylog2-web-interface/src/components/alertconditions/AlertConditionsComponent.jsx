@@ -44,8 +44,8 @@ const AlertConditionsComponent = React.createClass({
     }
 
     const alertConditions = this.state.allAlertConditions.sort((a1, a2) => {
-      const t1 = a1.title || 'Untitled';
-      const t2 = a2.title || 'Untitled';
+      const t1 = a1.title || '未命名';
+      const t2 = a2.title || '未命名';
       return naturalSort(t1.toLowerCase(), t2.toLowerCase());
     });
 
@@ -53,11 +53,11 @@ const AlertConditionsComponent = React.createClass({
       <div>
         <div className="pull-right">
           <LinkContainer to={Routes.ALERTS.NEW_CONDITION}>
-            <Button bsStyle="success">Add new condition</Button>
+            <Button bsStyle="success">创建新的告警</Button>
           </LinkContainer>
         </div>
-        <h2>Conditions</h2>
-        <p>These are all configured alert conditions.</p>
+        <h2>告警条件</h2>
+        <p>这里是所有配置好的告警条件</p>
         <AlertConditionsList alertConditions={alertConditions} streams={this.state.streams} />
       </div>
     );

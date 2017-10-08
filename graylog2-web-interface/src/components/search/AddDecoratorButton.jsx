@@ -69,21 +69,21 @@ const AddDecoratorButton = React.createClass({
     const configurationForm = (this.state.typeName !== this.PLACEHOLDER ?
       (<ConfigurationForm ref="configurationForm"
                          key="configuration-form-output" configFields={this.state.typeDefinition.requested_configuration}
-                         title={`Create new ${this.state.typeDefinition.name}`}
+                         title={`创建新装饰器 ${this.state.typeDefinition.name}`}
                          typeName={this.state.typeName} includeTitleField={false}
                          submitAction={this._handleSubmit} cancelAction={this._handleCancel} />) : null);
     return (
       <div className={`${DecoratorStyles.decoratorBox} ${DecoratorStyles.addDecoratorButtonContainer}`}>
         <div className={DecoratorStyles.addDecoratorSelect}>
           <Select ref="select"
-                  placeholder="Select decorator"
+                  placeholder="选取的装饰器"
                   onValueChange={this._onTypeChange}
                   options={decoratorTypes}
                   matchProp="label"
                   disabled={this.props.disabled}
                   value={this.state.typeName} />
         </div>
-        <Button bsStyle="success" disabled={!this.state.typeName || this.props.disabled} onClick={this._openModal}>Apply</Button>
+        <Button bsStyle="success" disabled={!this.state.typeName || this.props.disabled} onClick={this._openModal}>应用</Button>
         {this.state.typeName && configurationForm}
       </div>
     );

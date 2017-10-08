@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import Reflux from 'reflux';
 import { Button, DropdownButton, MenuItem } from 'react-bootstrap';
@@ -12,8 +13,8 @@ const SavedSearchesActions = ActionsProvider.getActions('SavedSearches');
 
 const SavedSearchControls = React.createClass({
   propTypes: {
-    currentSavedSearch: React.PropTypes.string, // saved search ID
-    pullRight: React.PropTypes.bool,
+    currentSavedSearch: PropTypes.string, // saved search ID
+    pullRight: PropTypes.bool,
   },
   mixins: [Reflux.listenTo(SavedSearchesStore, '_updateTitle')],
   getInitialState() {
@@ -67,7 +68,7 @@ const SavedSearchControls = React.createClass({
   },
   _deleteSavedSearch(_, event) {
     event.preventDefault();
-    if (window.confirm('Do you really want to delete this saved search?')) {
+    if (window.confirm('确认删除此条保存的搜索吗?')) {
       SavedSearchesActions.delete(this.props.currentSavedSearch);
     }
   },
@@ -75,14 +76,14 @@ const SavedSearchControls = React.createClass({
     this.setState({ error: !SavedSearchesStore.isValidTitle(this.props.currentSavedSearch, this.refs.title.getValue()) });
   },
   _getNewSavedSearchButtons() {
-    return <Button bsStyle="success" bsSize="small" onClick={this._openModal}>Save search criteria</Button>;
+    return <Button bsStyle="success" bsSize="small" onClick={this._openModal}>保存搜索条件</Button>;
   },
   _getEditSavedSearchControls() {
     return (
-      <DropdownButton bsSize="small" title="Saved search" id="saved-search-actions-dropdown" pullRight={this.props.pullRight}>
-        <MenuItem onSelect={this._openModal}>Update search criteria</MenuItem>
+      <DropdownButton bsSize="small" title="保存的搜索条件" id="saved-search-actions-dropdown" pullRight={this.props.pullRight}>
+        <MenuItem onSelect={this._openModal}>更新搜索条件</MenuItem>
         <MenuItem divider />
-        <MenuItem onSelect={this._deleteSavedSearch}>Delete saved search</MenuItem>
+        <MenuItem onSelect={this._deleteSavedSearch}>删除保存的的搜索</MenuItem>
       </DropdownButton>
     );
   },
@@ -91,17 +92,17 @@ const SavedSearchControls = React.createClass({
       <div style={{ display: 'inline-block' }}>
         {this._isSearchSaved() ? this._getEditSavedSearchControls() : this._getNewSavedSearchButtons()}
         <BootstrapModalForm ref="saveSearchModal"
-                            title={this._isSearchSaved() ? 'Update saved search' : 'Save search criteria'}
+                            title={this._isSearchSaved() ? '更新搜索条件' : '保存搜索条件'}
                             onSubmitForm={this._save}
-                            submitButtonText="Save">
+                            submitButtonText="保存">
           <Input type="text"
-                 label="Title"
+                 label="标题"
                  ref="title"
                  required
                  defaultValue={this.state.title}
                  onChange={this._titleChanged}
                  bsStyle={this.state.error ? 'error' : null}
-                 help={this.state.error ? 'Title was already taken.' : 'Type a name describing the current search.'}
+                 help={this.state.error ? '标题已被采用.' : '请输入标题'}
                  autoFocus />
         </BootstrapModalForm>
       </div>

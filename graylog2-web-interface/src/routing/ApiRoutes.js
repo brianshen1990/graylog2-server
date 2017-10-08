@@ -211,6 +211,25 @@ const ApiRoutes = {
     lookupTableTest: () => { return { url: '/tools/lookup_table_tester' }; },
   },
   UniversalSearchApiController: {
+    _transfer_log_type(query) {
+      try {
+        const add_query = "log_type:\"Violation log\"";
+        if(query === "*"){
+          // all
+          query = add_query;
+        }else{
+          // No type
+          var index_count = query.indexOf("log_type:");
+          if(index_count < 0){
+            query = "( " + query + " ) AND " + add_query;
+          }
+        }
+        return query;
+      }catch(e){
+        console.log("error" + e);
+        return query;
+      }
+    },
     _streamFilter(streamId) {
       return (streamId ? { filter: `streams:${streamId}` } : {});
     },
@@ -218,7 +237,7 @@ const ApiRoutes = {
       const queryString = {};
 
       const streamFilter = this._streamFilter(streamId);
-
+      query = this._transfer_log_type(query);
       queryString.query = query;
       Object.keys(timerange).forEach((key) => { queryString[key] = timerange[key]; });
       Object.keys(streamFilter).forEach((key) => { queryString[key] = streamFilter[key]; });

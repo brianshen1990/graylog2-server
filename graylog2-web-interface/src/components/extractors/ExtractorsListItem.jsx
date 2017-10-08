@@ -23,17 +23,17 @@ const ExtractorsListItem = React.createClass({
     this.setState({ showDetails: !this.state.showDetails });
   },
   _deleteExtractor() {
-    if (window.confirm(`Really remove extractor "${this.props.extractor.title}?"`)) {
+    if (window.confirm(`确定要移出消息处理器 "${this.props.extractor.title}?"`)) {
       ExtractorsActions.delete.triggerPromise(this.props.inputId, this.props.extractor);
     }
   },
   _formatExtractorSubtitle() {
     return (
       <span>
-        Trying to extract data from <em>{this.props.extractor.source_field}</em> into{' '}
+        正在尝试从消息中提取 <em>{this.props.extractor.source_field}</em> 到{' '}
         <em>{this.props.extractor.target_field}</em>,{' '}
         {this.props.extractor.cursor_strategy === 'cut' && 'not'}{' '}
-        leaving the original intact.
+        并且原始值不会被改变。
       </span>
     );
   },
@@ -44,11 +44,11 @@ const ExtractorsListItem = React.createClass({
 
     return (
       <div className="configuration-section">
-        <h4>Condition</h4>
+        <h4>条件</h4>
         <ul>
           <li>
-            Will only attempt to run if the message{' '}
-            {this.props.extractor.condition_type === 'string' ? 'includes the string' : 'matches the regular expression'}{' '}
+            将会在消息{' '}
+            {this.props.extractor.condition_type === 'string' ? '包含字符串' : '匹配正在表达式'}{' '}
             <em>{this.props.extractor.condition_value}</em>
           </li>
         </ul>
@@ -60,16 +60,16 @@ const ExtractorsListItem = React.createClass({
 
     actions.push(
       <Button key={`extractor-details-${this.props.extractor.id}`} bsStyle="info" onClick={this._toggleDetails}>
-        Details
+        详情
       </Button>,
     );
     actions.push(
       <LinkContainer key={`edit-extractor-${this.props.extractor.id}`}
                      to={Routes.edit_input_extractor(this.props.nodeId, this.props.inputId, this.props.extractor.id)}>
-        <Button bsStyle="info">Edit</Button>
+        <Button bsStyle="info">编辑</Button>
       </LinkContainer>,
     );
-    actions.push(<Button key={'delete-extractor-'} bsStyle="danger" onClick={this._deleteExtractor}>Delete</Button>);
+    actions.push(<Button key={'delete-extractor-'} bsStyle="danger" onClick={this._deleteExtractor}>删除</Button>);
 
     return actions;
   },
@@ -82,12 +82,12 @@ const ExtractorsListItem = React.createClass({
   _formatConfiguration(extractorConfig) {
     let formattedOptions = this._formatOptions(extractorConfig);
     if (formattedOptions.length === 0) {
-      formattedOptions = <li>No configuration options</li>;
+      formattedOptions = <li>没有配置选项</li>;
     }
 
     return (
       <div className="configuration-section">
-        <h4>Configuration</h4>
+        <h4>配置</h4>
         <ul>
           {formattedOptions}
         </ul>
@@ -169,28 +169,28 @@ const ExtractorsListItem = React.createClass({
     if (metrics.total.time) {
       totalTime = this._formatTimingMetrics(metrics.total.time);
     } else {
-      totalTime = 'No message passed through here yet.';
+      totalTime = '还没有消息经过这里。';
     }
 
     let conditionTime;
     if (metrics.condition.time) {
       conditionTime = this._formatTimingMetrics(metrics.condition.time);
     } else {
-      conditionTime = 'No message passed through here yet.';
+      conditionTime = '还没有消息经过这里。';
     }
 
     let executionTime;
     if (metrics.execution.time) {
       executionTime = this._formatTimingMetrics(metrics.execution.time);
     } else {
-      executionTime = 'No message passed through here yet.';
+      executionTime = '还没有消息经过这里。';
     }
 
     let convertersTime;
     if (metrics.converters.time) {
       convertersTime = this._formatTimingMetrics(metrics.converters.time);
     } else {
-      convertersTime = 'No message passed through here yet.';
+      convertersTime = '还没有消息经过这里。';
     }
 
     return (
@@ -199,19 +199,19 @@ const ExtractorsListItem = React.createClass({
         {conditionCounts}
         <Row>
           <Col md={6}>
-            <h4 style={{ display: 'inline' }}>Total time</h4><br />
+            <h4 style={{ display: 'inline' }}>全部时间</h4><br />
             {totalTime}
           </Col>
           <Col md={6}>
-            <h4 style={{ display: 'inline' }}>Condition time</h4><br />
+            <h4 style={{ display: 'inline' }}>条件时间</h4><br />
             {conditionTime}
           </Col>
           <Col md={6}>
-            <h4 style={{ display: 'inline' }}>Execution time</h4><br />
+            <h4 style={{ display: 'inline' }}>执行时间</h4><br />
             {executionTime}
           </Col>
           <Col md={6}>
-            <h4 style={{ display: 'inline' }}>Converter time</h4><br />
+            <h4 style={{ display: 'inline' }}>转换时间</h4><br />
             {convertersTime}
           </Col>
         </Row>
@@ -230,7 +230,7 @@ const ExtractorsListItem = React.createClass({
         </Col>
         <Col md={4}>
           <div className="graylog-input-metrics">
-            <h3>Metrics</h3>
+            <h3>度量</h3>
             {this._formatMetrics(this.props.extractor.metrics)}
           </div>
         </Col>

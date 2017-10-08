@@ -68,9 +68,9 @@ const EditRole = React.createClass({
   render() {
     let titleText;
     if (this.state.initialName === null) {
-      titleText = 'Create a new role';
+      titleText = '创建角色';
     } else {
-      titleText = `Edit role ${this.state.initialName}`;
+      titleText = `修改角色 ${this.state.initialName}`;
     }
 
     const saveDisabled = this._saveDisabled();
@@ -78,7 +78,7 @@ const EditRole = React.createClass({
     if (saveDisabled) {
       saveDisabledAlert = (
         <Alert bsStyle="warning" style={{ marginBottom: 10 }}>
-          Please name the role and select at least one permission to save it.
+          为角色命名，并且指定对应权限给角色.
         </Alert>
       );
     }
@@ -88,14 +88,14 @@ const EditRole = React.createClass({
         <Col md={12}>
           <h1>{titleText}</h1>
           <div style={{ marginTop: 10 }}>
-            <Input id="role-name" type="text" label="Name" onChange={this._setName} value={this.state.role.name}
+            <Input id="role-name" type="text" label="名称" onChange={this._setName} value={this.state.role.name}
                    required />
-            <Input id="role-description" type="text" label="Description" onChange={this._setDescription}
+            <Input id="role-description" type="text" label="描述" onChange={this._setDescription}
                    value={this.state.role.description} />
 
             <FormGroup>
-              <ControlLabel>Permissions</ControlLabel>
-              <HelpBlock>Select the permissions for this role</HelpBlock>
+              <ControlLabel>权限</ControlLabel>
+              <HelpBlock>为此角色分配权限</HelpBlock>
             </FormGroup>
             <PermissionSelector streams={this.props.streams}
                                 dashboards={this.props.dashboards}
@@ -105,9 +105,9 @@ const EditRole = React.createClass({
             <hr />
             {saveDisabledAlert}
             <Button onClick={this._onSave} style={{ marginRight: 5 }} bsStyle="primary" disabled={saveDisabled}>
-              Save
+              保存
             </Button>
-            <Button onClick={this.props.cancelEdit}>Cancel</Button>
+            <Button onClick={this.props.cancelEdit}>取消</Button>
           </div>
         </Col>
       </Row>);

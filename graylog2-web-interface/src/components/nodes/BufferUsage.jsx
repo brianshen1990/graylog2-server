@@ -51,7 +51,7 @@ const BufferUsage = React.createClass({
     return (
       <div>
         <LinkContainer to={Routes.filtered_metrics(nodeId, this._metricFilter())}>
-          <Button bsSize="xsmall" className="pull-right">Metrics</Button>
+          <Button bsSize="xsmall" className="pull-right">度量</Button>
         </LinkContainer>
         <h3>{this.props.title}</h3>
         <div className="node-buffer-usage">
@@ -59,7 +59,7 @@ const BufferUsage = React.createClass({
                        bsStyle="warning"
                        label={percentLabel} />
         </div>
-        <span><strong>{usage} messages</strong> in {this.props.title.toLowerCase()}, {percentLabel} utilized.</span>
+        <span><strong>{usage} 条消息</strong> 在 {this.props.title.toLowerCase()}, {percentLabel} 被使用过.</span>
       </div>);
   },
 });

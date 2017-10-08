@@ -41,8 +41,8 @@ const FieldQuickValuesStore = {
 
         var promise = fetch('GET', url);
         promise.catch(error => {
-            UserNotification.error('Loading quick values failed with status: ' + error,
-                'Could not load quick values');
+            UserNotification.error('导入快速统计值失败: ' + error,
+                '无法导入快速统计值');
         });
 
         return promise;

@@ -18,25 +18,20 @@ const AlertsPage = React.createClass({
   mixins: [Reflux.connect(CurrentUserStore)],
   render() {
     return (
-      <DocumentTitle title="Alerts">
+      <DocumentTitle title="告警">
         <div>
-          <PageHeader title="Alerts overview">
+          <PageHeader title="告警概览">
             <span>
-              Alerts are triggered when conditions you define are satisfied. Graylog will automatically mark alerts as
-              resolved once the status of your conditions change.
-            </span>
-
-            <span>
-              Read more about alerting in the <DocumentationLink page={DocsHelper.PAGES.ALERTS} text="documentation" />.
+              在满足您定义条件的情况下，告警会被触发。 一旦条件改变，告警会自动重新计算。
             </span>
 
             <span>
               <LinkContainer to={Routes.ALERTS.CONDITIONS}>
-                <Button bsStyle="info">Manage conditions</Button>
+                <Button bsStyle="info">管理 条件</Button>
               </LinkContainer>
               &nbsp;
               <LinkContainer to={Routes.ALERTS.NOTIFICATIONS}>
-                <Button bsStyle="info">Manage notifications</Button>
+                <Button bsStyle="info">管理 通知</Button>
               </LinkContainer>
             </span>
           </PageHeader>

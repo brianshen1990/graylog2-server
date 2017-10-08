@@ -37,7 +37,7 @@ const AlertConditionsList = React.createClass({
       <PaginatedList totalItems={alertConditions.length} onChange={this._onChangePaginatedList}
                      showPageSizeSelect={false} pageSize={this.PAGE_SIZE}>
         <EntityList bsNoItemsStyle="info"
-                    noItemsText="There are no configured conditions."
+                    noItemsText="没有配置好的告警条件"
                     items={this._paginatedConditions().map(condition => this._formatCondition(condition))} />
       </PaginatedList>
     );

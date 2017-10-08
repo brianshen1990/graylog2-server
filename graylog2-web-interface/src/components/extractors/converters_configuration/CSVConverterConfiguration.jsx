@@ -34,7 +34,7 @@ const CSVConverterConfiguration = React.createClass({
   render() {
     const separatorHelpMessage = (
       <span>
-        For example <code>,</code>, <code>\n</code>, and <code>\t</code> will be translated to a single character.
+        示例： <code>,</code>, <code>\n</code>, 和 <code>\t</code> 将会被转义为单个字符。
       </span>
     );
 
@@ -43,7 +43,7 @@ const CSVConverterConfiguration = React.createClass({
         <Input type="checkbox"
                ref="converterEnabled"
                id={`enable-${this.props.type}-converter`}
-               label="Add CSV columns as fields"
+               label="添加CSV 列作为字段。"
                wrapperClassName="col-md-offset-2 col-md-10"
                defaultChecked
                onChange={this._toggleConverter} />
@@ -53,7 +53,7 @@ const CSVConverterConfiguration = React.createClass({
             <div className="xtrc-converter-subfields">
               <Input type="text"
                      id={`${this.props.type}_converter_column_header`}
-                     label="Field names"
+                     label="字段名称"
                      defaultValue={this.props.configuration.column_header}
                      labelClassName="col-md-3"
                      wrapperClassName="col-md-9"
@@ -63,7 +63,7 @@ const CSVConverterConfiguration = React.createClass({
 
               <Input type="text"
                      id={`${this.props.type}_converter_separator`}
-                     label="Separator character"
+                     label="分割字符"
                      defaultValue={this.props.configuration.separator || ','}
                      labelClassName="col-md-3"
                      wrapperClassName="col-md-9"
@@ -73,7 +73,7 @@ const CSVConverterConfiguration = React.createClass({
 
               <Input type="text"
                      id={`${this.props.type}_converter_quote_char`}
-                     label="Quote character"
+                     label="引用字符"
                      defaultValue={this.props.configuration.quote_char || '"'}
                      labelClassName="col-md-3"
                      wrapperClassName="col-md-9"
@@ -82,25 +82,25 @@ const CSVConverterConfiguration = React.createClass({
 
               <Input type="text"
                      id={`${this.props.type}_converter_escape_char`}
-                     label="Escape character"
+                     label="避免字符"
                      defaultValue={this.props.configuration.escape_char || '\\'}
                      labelClassName="col-md-3"
                      wrapperClassName="col-md-9"
                      maxLength="1"
                      onChange={this._onChange('escape_char')}
-                     help="Character used to escape the separator and quote characters." />
+                     help="除了分隔和引用字符外需要添加的字符。" />
 
               <Input type="checkbox"
                      id={`${this.props.type}_converter_strict_quotes`}
-                     label="Use strict quotes"
+                     label="使用严格的引用字符。"
                      wrapperClassName="col-md-offset-3 col-md-9"
                      defaultChecked={this.props.configuration.strict_quotes}
                      onChange={this._onChange('strict_quotes')}
-                     help="Ignore content outside of quotes." />
+                     help="忽略引用符号之外的字符。" />
 
               <Input type="checkbox"
                      id={`${this.props.type}_converter_trim_leading_whitespace`}
-                     label="Trim leading whitespace"
+                     label="消除开头空白字符。"
                      wrapperClassName="col-md-offset-3 col-md-9"
                      defaultChecked={this.props.configuration.trim_leading_whitespace}
                      onChange={this._onChange('trim_leading_whitespace')} />

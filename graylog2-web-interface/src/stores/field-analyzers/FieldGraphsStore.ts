@@ -77,7 +77,7 @@ class FieldGraphsStore {
         });
 
         $(document).on('failed.graylog.fieldgraph', (event, data) => {
-            UserNotification.error(data.errorMessage, "Could not create field graph");
+            UserNotification.error(data.errorMessage, "无法导入图表");
             this.deleteGraph(data.graphId);
         });
 

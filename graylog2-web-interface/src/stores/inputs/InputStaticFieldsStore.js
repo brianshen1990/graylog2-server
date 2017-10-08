@@ -16,12 +16,12 @@ const InputStaticFieldsStore = Reflux.createStore({
       .then(
         (response) => {
           this.trigger({});
-          UserNotification.success(`Static field '${name}' added to '${input.title}' successfully`);
+          UserNotification.success(`添加静态字段 '${name}' 至输入 '${input.title}' 成功`);
           return response;
         },
         (error) => {
-          UserNotification.error(`Adding static field to input failed with: ${error}`,
-            `Could not add static field to input '${input.title}'`);
+          UserNotification.error(`添加静态字段失败: ${error}`,
+            `无法添加静态字段至输入 '${input.title}'`);
         });
 
     return promise;
@@ -34,12 +34,12 @@ const InputStaticFieldsStore = Reflux.createStore({
       .then(
         (response) => {
           this.trigger({});
-          UserNotification.success(`Static field '${name}' removed from '${input.title}' successfully`);
+          UserNotification.success(`移除静态字段 '${name}' 从输入 '${input.title}' 失败`);
           return response;
         },
         (error) => {
-          UserNotification.error(`Removing static field from input failed with: ${error}`,
-            `Could not remove static field '${name} from input '${input.title}'`);
+          UserNotification.error(`移除静态字段失败: ${error}`,
+            `无法移除静态字段 '${name} 从输入 '${input.title}'`);
         });
 
     return promise;

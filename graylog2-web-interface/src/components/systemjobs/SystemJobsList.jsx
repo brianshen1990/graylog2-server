@@ -20,7 +20,7 @@ const SystemJobsList = React.createClass({
       return (
         <Alert bsStyle="info" className="systemjobs-none">
           <i className="fa fa-info-circle" />{' '}
-          &nbsp;No active system jobs.
+          &nbsp;当前没有系统工作。
         </Alert>
       );
     }

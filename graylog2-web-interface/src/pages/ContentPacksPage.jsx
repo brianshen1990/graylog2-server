@@ -10,27 +10,23 @@ import ConfigurationBundles from 'components/source-tagging/ConfigurationBundles
 const ContentPacksPage = React.createClass({
   render() {
     return (
-      <DocumentTitle title="Content packs">
+      <DocumentTitle title="内容包">
         <span>
-          <PageHeader title="Content packs">
+          <PageHeader title="内容包">
             <span>
-              Content packs accelerate the set up process for a specific data source. A content pack can include inputs/extractors, streams, and dashboards.
+              内容包可以加速您的配置。内容包可以包括输入，提取器, 数据流和面板。
             </span>
 
-            <span>
-              Find more content packs in {' '}
-              <a href="https://marketplace.graylog.org/" target="_blank">the Graylog Marketplace</a>.
-            </span>
 
             <LinkContainer to={Routes.SYSTEM.CONTENTPACKS.EXPORT}>
-              <Button bsStyle="success" bsSize="large">Create a content pack</Button>
+              <Button bsStyle="success" bsSize="large">创建内容包</Button>
             </LinkContainer>
           </PageHeader>
 
           <Row className="content">
             <Col md={12}>
 
-              <h2>Select content packs</h2>
+              <h2>选择内容包</h2>
               <div id="react-configuration-bundles">
                 <ConfigurationBundles />
               </div>

@@ -5,7 +5,7 @@ const Spinner = React.createClass({
     text: React.PropTypes.string,
   },
   getDefaultProps() {
-    return { text: 'Loading...' };
+    return { text: '加载中...' };
   },
   getInitialState() {
     return {};

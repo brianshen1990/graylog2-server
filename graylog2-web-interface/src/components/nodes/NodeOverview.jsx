@@ -28,13 +28,13 @@ const NodeOverview = React.createClass({
 
     let pluginCount;
     if (this.props.plugins) {
-      pluginCount = `${this.props.plugins.length} plugins installed`;
+      pluginCount = `${this.props.plugins.length} 个插件被安装在本节点上。`;
     }
 
     let inputCount;
     if (this.props.inputStates) {
       const runningInputs = this.props.inputStates.filter(inputState => inputState.state.toUpperCase() === 'RUNNING');
-      inputCount = `${runningInputs.length} inputs running on this node`;
+      inputCount = `${runningInputs.length} 个输入运行在本节点上`;
     }
 
     return (
@@ -47,27 +47,26 @@ const NodeOverview = React.createClass({
 
         <Row className="content">
           <Col md={12}>
-            <h2 style={{ marginBottom: 5 }}>Memory/Heap usage</h2>
+            <h2 style={{ marginBottom: 5 }}>内存堆栈使用情况。</h2>
             <JvmHeapUsage nodeId={node.node_id} />
           </Col>
         </Row>
 
         <Row className="content">
           <Col md={12}>
-            <h2>Buffers</h2>
+            <h2>缓冲区</h2>
             <p className="description">
-              Buffers are built to cache small amounts of messages for a very short time
-              (usually milliseconds) on their way through the different processors.
+              缓冲区是为各个处理器提供的一小块超短时间存储少量消息的配置。
             </p>
             <Row>
               <Col md={4}>
-                <BufferUsage nodeId={node.node_id} title="Input buffer" bufferType="input" />
+                <BufferUsage nodeId={node.node_id} title="输入缓冲" bufferType="input" />
               </Col>
               <Col md={4}>
-                <BufferUsage nodeId={node.node_id} title="Process buffer" bufferType="process" />
+                <BufferUsage nodeId={node.node_id} title="处理缓冲" bufferType="process" />
               </Col>
               <Col md={4}>
-                <BufferUsage nodeId={node.node_id} title="Output buffer" bufferType="output" />
+                <BufferUsage nodeId={node.node_id} title="输出缓冲" bufferType="output" />
               </Col>
             </Row>
           </Col>
@@ -75,13 +74,9 @@ const NodeOverview = React.createClass({
 
         <Row className="content">
           <Col md={12}>
-            <h2>Disk Journal</h2>
+            <h2>磁盘日志</h2>
             <p className="description">
-              Incoming messages are written to the disk journal to ensure they are kept safe in case of a server
-              failure. The journal also helps keeping Graylog working if any of the outputs is too slow to keep
-              up with the message rate or whenever there is a peak in incoming messages. It makes sure that
-              Graylog does not buffer all of those messages in main memory and avoids overly long garbage
-              collection pauses that way.
+              输入消息会被写入到磁盘日志中以防止服务器出错。
             </p>
             <JournalDetails nodeId={node.node_id} />
           </Col>
@@ -89,7 +84,7 @@ const NodeOverview = React.createClass({
 
         <Row className="content">
           <Col md={6}>
-            <h2>System</h2>
+            <h2>系统</h2>
             <SystemInformation node={node} systemInformation={systemOverview} jvmInformation={this.props.jvmInformation} />
           </Col>
           <Col md={6}>
@@ -100,7 +95,7 @@ const NodeOverview = React.createClass({
 
         <Row className="content">
           <Col md={12}>
-            <h2>Installed plugins <small>{pluginCount}</small></h2>
+            <h2>已安装插件 <small>{pluginCount}</small></h2>
             <PluginsDataTable plugins={this.props.plugins} />
           </Col>
         </Row>
@@ -109,10 +104,10 @@ const NodeOverview = React.createClass({
           <Col md={12}>
             <span className="pull-right">
               <LinkContainer to={Routes.node_inputs(node.node_id)}>
-                <Button bsStyle="success" bsSize="small">Manage inputs</Button>
+                <Button bsStyle="success" bsSize="small">管理输入</Button>
               </LinkContainer>
             </span>
-            <h2 style={{ marginBottom: 15 }}>Available input types <small>{inputCount}</small></h2>
+            <h2 style={{ marginBottom: 15 }}>可用输入类型 <small>{inputCount}</small></h2>
             <InputTypesDataTable inputDescriptions={this.props.inputDescriptions} />
           </Col>
         </Row>

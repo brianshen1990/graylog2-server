@@ -101,33 +101,33 @@ const LUTCachesPage = React.createClass({
     }
 
     return (
-      <DocumentTitle title="Lookup Tables - Caches">
+      <DocumentTitle title="查找表 - 缓存">
         <span>
-          <PageHeader title="Caches for Lookup Tables">
-            <span>Caches provide the actual values for lookup tables</span>
+          <PageHeader title="查找表 - 缓存">
+            <span>缓存为查找表提供实际值。</span>
             {null}
             <span>
               {(isShowing || isEditing) && (
                 <LinkContainer to={Routes.SYSTEM.LOOKUPTABLES.CACHES.edit(this.props.params.cacheName)}
                                onlyActiveOnIndex>
-                  <Button bsStyle="success">Edit</Button>
+                  <Button bsStyle="success">修改</Button>
                 </LinkContainer>
               )}
               &nbsp;
               {(isShowing || isEditing) && (
                 <LinkContainer to={Routes.SYSTEM.LOOKUPTABLES.CACHES.OVERVIEW}
                                onlyActiveOnIndex>
-                  <Button bsStyle="info">Caches</Button>
+                  <Button bsStyle="info">缓存</Button>
                 </LinkContainer>
               )}
               &nbsp;
               <LinkContainer to={Routes.SYSTEM.LOOKUPTABLES.OVERVIEW} onlyActiveOnIndex>
-                <Button bsStyle="info">Lookup Tables</Button>
+                <Button bsStyle="info">查找表</Button>
               </LinkContainer>
               &nbsp;
               <LinkContainer to={Routes.SYSTEM.LOOKUPTABLES.DATA_ADAPTERS.OVERVIEW}
                              onlyActiveOnIndex>
-                <Button bsStyle="info">Data Adapters</Button>
+                <Button bsStyle="info">数据转接器</Button>
               </LinkContainer>
             </span>
           </PageHeader>

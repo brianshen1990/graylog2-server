@@ -38,43 +38,43 @@ const DataAdaptersOverview = React.createClass({
 
   _helpPopover() {
     return (
-      <Popover id="search-query-help" className={Styles.popoverWide} title="Search Syntax Help">
-        <p><strong>Available search fields</strong></p>
+      <Popover id="search-query-help" className={Styles.popoverWide} title="查找语法帮助">
+        <p><strong>可使用查找字段</strong></p>
         <Table condensed>
           <thead>
           <tr>
-            <th>Field</th>
-            <th>Description</th>
+            <th>字段</th>
+            <th>描述</th>
           </tr>
           </thead>
           <tbody>
           <tr>
             <td>id</td>
-            <td>Data Adapter ID</td>
+            <td>数据转接器 ID</td>
           </tr>
           <tr>
-            <td>title</td>
-            <td>The title of the data adapter</td>
+            <td>标题</td>
+            <td>数据转接器的标题</td>
           </tr>
           <tr>
-            <td>name</td>
-            <td>The reference name of the data adapter</td>
+            <td>名称</td>
+            <td>数据转接器的名称(用于查找)</td>
           </tr>
           <tr>
-            <td>description</td>
-            <td>The description of data adapter</td>
+            <td>描述</td>
+            <td>数据转接器的描述</td>
           </tr>
           </tbody>
         </Table>
-        <p><strong>Example</strong></p>
+        <p><strong>示例</strong></p>
         <p>
-          Find data adapters by parts of their names:<br />
+          使用数据转接器的名称来查找：<br />
           <kbd>{'name:geoip'}</kbd><br />
           <kbd>{'name:geo'}</kbd>
         </p>
         <p>
-          Searching without a field name matches against the <code>title</code> field:<br />
-          <kbd>{'geoip'}</kbd> <br />is the same as<br />
+          不使用<em>标题</em>字段查找：<br />
+          <kbd>{'geoip'}</kbd> <br />与此相等同<br />
           <kbd>{'title:geoip'}</kbd>
         </p>
       </Popover>
@@ -95,14 +95,14 @@ const DataAdaptersOverview = React.createClass({
       <Row className="content">
         <Col md={12}>
           <h2>
-            Configured lookup Data Adapters
+            配置查找表数据转接器
             <span>&nbsp;
-              <small>{this.props.pagination.total} total</small></span>
+              <small>共{this.props.pagination.total}条</small></span>
           </h2>
           <PaginatedList onChange={this._onPageChange} totalItems={this.props.pagination.total}>
             <SearchForm onSearch={this._onSearch} onReset={this._onReset} useLoadingState>
               <LinkContainer to={Routes.SYSTEM.LOOKUPTABLES.DATA_ADAPTERS.CREATE}>
-                <Button bsStyle="success" style={{ marginLeft: 5 }}>Create data adapter</Button>
+                <Button bsStyle="success" style={{ marginLeft: 5 }}>创建数据转接器</Button>
               </LinkContainer>
               <OverlayTrigger trigger="click" rootClose placement="right" overlay={this._helpPopover()}>
                 <Button bsStyle="link" className={Styles.searchHelpButton}><i className="fa fa-fw fa-question-circle" /></Button>
@@ -111,11 +111,11 @@ const DataAdaptersOverview = React.createClass({
             <Table condensed hover>
               <thead>
                 <tr>
-                  <th>Title</th>
-                  <th>Description</th>
-                  <th>Name</th>
-                  <th>Throughput</th>
-                  <th className={Styles.actions}>Actions</th>
+                  <th>标题</th>
+                  <th>描述</th>
+                  <th>名称</th>
+                  <th>生产量</th>
+                  <th className={Styles.actions}>操作</th>
                 </tr>
               </thead>
               {dataAdapters}

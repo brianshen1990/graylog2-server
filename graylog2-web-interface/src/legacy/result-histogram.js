@@ -52,7 +52,7 @@ const resultHistogram = {
       renderer: 'bar',
       resolution: selectedResolution,
       series: [{
-        name: 'Messages',
+        name: '消息',
         data: this._histogram,
         color: '#26ADE4',
       }],
@@ -78,10 +78,10 @@ const resultHistogram = {
     new Rickshaw.Graph.HoverDetail({
       graph: resultGraph,
       formatter(series, x, y) {
-        const dateString = new DateTime(x * 1000).toString(DateTime.Formats.COMPLETE);
+        const dateString = new DateTime(x * 1000).toString(DateTime.Formats.DATETIME);
         const date = `<span class="date">${dateString}</span>`;
         const swatch = '<span class="detail_swatch"></span>';
-        const content = `${numeral(parseInt(y)).format('0,0')} messages<br>${date}`;
+        const content = `${numeral(parseInt(y)).format('0,0')} 条消息<br>${date}`;
         return content;
       },
       xFormatter(x) {

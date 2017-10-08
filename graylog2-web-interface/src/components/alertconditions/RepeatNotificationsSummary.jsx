@@ -7,7 +7,7 @@ const RepeatNotificationsSummary = React.createClass({
   render() {
     const repeatNotifications = this.props.alertCondition.parameters.repeat_notifications || false;
     return (
-      <span>Configured to {!repeatNotifications && <b>not</b>} repeat notifications.</span>
+      <span>配置为 {!repeatNotifications && <b>不</b>} 重复通知.</span>
     );
   },
 });

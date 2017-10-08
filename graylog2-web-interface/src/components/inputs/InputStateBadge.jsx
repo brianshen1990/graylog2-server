@@ -76,13 +76,13 @@ const InputStateBadge = React.createClass({
         });
       });
       const popover = (
-        <Popover id="inputstate-badge-details" title={`Input States for ${input.title}`} style={{ fontSize: 12 }}>
+        <Popover id="inputstate-badge-details" title={`输入 ${input.title} 状态`} style={{ fontSize: 12 }}>
           {popOverText}
         </Popover>
       );
       return (
         <OverlayTrigger trigger="click" placement="bottom" overlay={popover} rootClose>
-          <Label bsStyle={this._labelClassForState(sorted)} title="Click to show details"
+          <Label bsStyle={this._labelClassForState(sorted)} title="点击查看详情"
                  bsSize="xsmall" style={{ cursor: 'pointer' }}>{this._textForState(sorted)}</Label>
         </OverlayTrigger>
       );

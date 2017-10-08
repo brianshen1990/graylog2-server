@@ -116,11 +116,11 @@ const ConfigurationsPage = React.createClass({
     const pluginConfigRows = this._pluginConfigRows();
 
     return (
-      <DocumentTitle title="Configurations">
+      <DocumentTitle title="配置">
         <span>
-          <PageHeader title="Configurations">
+          <PageHeader title="配置">
             <span>
-              You can configure system settings for different sub systems on this page.
+              您可在此设定系统的配置。
             </span>
           </PageHeader>
 

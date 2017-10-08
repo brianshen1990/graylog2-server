@@ -159,7 +159,7 @@ public class AbsoluteSearchResource extends SearchResource {
             @ApiParam(name = "filter", value = "Filter", required = false) @QueryParam("filter") String filter,
             @ApiParam(name = "fields", value = "Comma separated list of fields to return", required = true) @QueryParam("fields") String fields) {
         checkSearchPermission(filter, RestPermissions.SEARCHES_ABSOLUTE);
-        final String filename = "graylog-search-result-absolute-" + from + "-" + to + ".csv";
+        final String filename = "xxxx-search-result-absolute-" + from + "-" + to + ".csv";
         return Response
             .ok(searchAbsoluteChunked(query, from, to, limit, offset, filter, fields))
             .header("Content-Disposition", "attachment; filename=" + filename)

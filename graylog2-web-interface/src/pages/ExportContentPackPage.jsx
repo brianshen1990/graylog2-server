@@ -79,7 +79,7 @@ const ExportContentPackPage = React.createClass({
     });
     ConfigurationBundlesActions.export.triggerPromise(request)
       .then((response) => {
-        UserNotification.success('Successfully export content pack. Starting download...', 'Success!');
+        UserNotification.success('成功导出内容包，开始下载...', '成功!');
         FileSaver.save(response, 'content_pack.json', 'application/json', 'utf-8');
       });
   },
@@ -188,10 +188,10 @@ const ExportContentPackPage = React.createClass({
   },
   render() {
     return (
-      <DocumentTitle title="Create a content pack">
+      <DocumentTitle title="创建内容包">
         <span>
-          <PageHeader title="Create a content pack">
-            <span>Export your inputs, outputs, streams and dashboards as a content pack and share it with the community or other setups.</span>
+          <PageHeader title="创建内容包">
+            <span>导出您的输入，输出，数据流和仪表盘作为一个内容包。</span>
           </PageHeader>
 
           <Row className="content">
@@ -199,47 +199,46 @@ const ExportContentPackPage = React.createClass({
               <form className="form-horizontal build-content-pack" onSubmit={this.onSubmit}>
                 <div className="form-group">
                   <Col sm={2}>
-                    <label className="control-label" htmlFor="name">Name</label>
+                    <label className="control-label" htmlFor="name">名称</label>
                   </Col>
                   <Col sm={10}>
                     <input ref="name" type="text" id="name" className="input-xlarge form-control" name="name" required />
-                    <span className="help-block">The name of your configuration bundle.</span>
+                    <span className="help-block">您将使用的名称。</span>
                   </Col>
                 </div>
 
                 <div className="form-group">
                   <Col sm={2}>
-                    <label className="control-label" htmlFor="description">Description</label>
+                    <label className="control-label" htmlFor="description">描述</label>
                   </Col>
                   <Col sm={10}>
                     <textarea ref="description" rows="6" id="description" name="description" className="input-xlarge form-control" required />
                     <span className="help-block">
-                      A description of what your bundle does and possible special instructions for the user.
-                      You can use <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">Markdown</a> syntax.
+                      您将使用的描述。
                     </span>
                   </Col>
                 </div>
 
                 <div className="form-group">
                   <Col sm={2}>
-                    <label className="control-label" htmlFor="category">Category</label>
+                    <label className="control-label" htmlFor="category">类别</label>
                   </Col>
                   <Col sm={10}>
                     <input ref="category" type="text" id="category" name="category" className="input-xlarge form-control" required />
-                    <span className="help-block">A category for your bundle, e.g. Operating Systems, Firewalls or Switches.</span>
+                    <span className="help-block">您将使用的描述。 示例：操作系统, 防火墙。</span>
                   </Col>
                 </div>
 
                 <div className="form-group">
                   <Col sm={2}>
-                    <label className="control-label" htmlFor="inputs">Inputs</label>
+                    <label className="control-label" htmlFor="inputs">输入</label>
                   </Col>
                   <Col sm={10}>
                     {this.isEmpty(this.state.inputs) ?
-                      <span className="help-block help-standalone">There are no inputs to export.</span>
+                      <span className="help-block help-standalone">没有输入可以被导出。</span>
                       :
                       <span>
-                        <Button className="btn btn-sm btn-link select-all" onClick={this.selectAllInputs}>Select all</Button>
+                        <Button className="btn btn-sm btn-link select-all" onClick={this.selectAllInputs}>选择全部</Button>
                         {this.state.inputs.sort((i1, i2) => { return i1.title.localeCompare(i2.title); }).map(this.formatInput)}
                       </span>
                     }
@@ -248,14 +247,14 @@ const ExportContentPackPage = React.createClass({
 
                 <div className="form-group">
                   <Col sm={2}>
-                    <label className="control-label" htmlFor="grokPatterns">Grok Patterns</label>
+                    <label className="control-label" htmlFor="grokPatterns">Grok 模式</label>
                   </Col>
                   <Col sm={10}>
                     {this.isEmpty(this.state.grok_patterns) ?
-                      <span className="help-block help-standalone">There are no grok patterns to export.</span>
+                      <span className="help-block help-standalone">没有 grok 模式可以被导出</span>
                       :
                       <span>
-                        <Button className="btn btn-sm btn-link select-all" onClick={this.selectAllGrokPatterns}>Select all</Button>
+                        <Button className="btn btn-sm btn-link select-all" onClick={this.selectAllGrokPatterns}>选择全部</Button>
                         {this.state.grok_patterns.sort((g1, g2) => { return g1.name.localeCompare(g2.name); }).map(this.formatGrokPattern)}
                       </span>
                       }
@@ -264,11 +263,11 @@ const ExportContentPackPage = React.createClass({
 
                 <div className="form-group">
                   <Col sm={2}>
-                    <label className="control-label" htmlFor="outputs">Outputs</label>
+                    <label className="control-label" htmlFor="outputs">输出</label>
                   </Col>
                   <Col sm={10}>
                     {this.isEmpty(this.state.outputs) ?
-                      <span className="help-block help-standalone">There are no outputs to export.</span>
+                      <span className="help-block help-standalone">没有输出可以被导出。</span>
                       :
                       <span>
                         <Button className="btn btn-sm btn-link select-all" onClick={this.selectAllOutputs}>Select all</Button>
@@ -280,11 +279,11 @@ const ExportContentPackPage = React.createClass({
 
                 <div className="form-group">
                   <Col sm={2}>
-                    <label className="control-label" htmlFor="streams">Streams</label>
+                    <label className="control-label" htmlFor="streams">数据流</label>
                   </Col>
                   <Col sm={10}>
                     {this.isEmpty(this.state.streams) ?
-                      <span className="help-block help-standalone">There are no streams to export.</span>
+                      <span className="help-block help-standalone">没有数据流可以被导出</span>
                       :
                       <span>
                         <Button className="btn btn-sm btn-link select-all" onClick={this.selectAllStreams}>Select all</Button>
@@ -296,14 +295,14 @@ const ExportContentPackPage = React.createClass({
 
                 <div className="form-group">
                   <Col sm={2}>
-                    <label className="control-label" htmlFor="dashboards">Dashboards</label>
+                    <label className="control-label" htmlFor="dashboards">面板</label>
                   </Col>
                   <Col sm={10}>
                     {this.isEmpty(this.state.dashboards) ?
-                      <span className="help-block help-standalone">There are no dashboards to export.</span>
+                      <span className="help-block help-standalone">没有面板可以被导出。</span>
                       :
                       <span>
-                        <Button className="btn btn-sm btn-link select-all" onClick={this.selectAllDashboards}>Select all</Button>
+                        <Button className="btn btn-sm btn-link select-all" onClick={this.selectAllDashboards}>选择全部</Button>
                         {this.state.dashboards.sort((d1, d2) => { return d1.title.localeCompare(d2.title); }).map(this.formatDashboard)}
                       </span>
                       }
@@ -312,11 +311,11 @@ const ExportContentPackPage = React.createClass({
 
                 <div className="form-group">
                   <Col sm={2}>
-                    <label className="control-label" htmlFor="lookup_tables">Lookup Tables</label>
+                    <label className="control-label" htmlFor="lookup_tables">查找表</label>
                   </Col>
                   <Col sm={10}>
                     {this.isEmpty(this.state.lookup_tables) ?
-                      <span className="help-block help-standalone">There are no lookup tables to export.</span>
+                      <span className="help-block help-standalone">没有查找表可以被导出。</span>
                       :
                       <span>
                         <Button className="btn btn-sm btn-link select-all" onClick={this.selectAllLookupTables}>Select all</Button>
@@ -328,14 +327,14 @@ const ExportContentPackPage = React.createClass({
 
                 <div className="form-group">
                   <Col sm={2}>
-                    <label className="control-label" htmlFor="lookup_caches">Lookup Caches</label>
+                    <label className="control-label" htmlFor="lookup_caches">查找缓存</label>
                   </Col>
                   <Col sm={10}>
                     {this.isEmpty(this.state.lookup_caches) ?
-                      <span className="help-block help-standalone">There are no lookup caches to export.</span>
+                      <span className="help-block help-standalone">没有缓存可以被导出。</span>
                       :
                       <span>
-                        <Button className="btn btn-sm btn-link select-all" onClick={this.selectAllLookupCaches}>Select all</Button>
+                        <Button className="btn btn-sm btn-link select-all" onClick={this.selectAllLookupCaches}>选择全部</Button>
                         {this.state.lookup_caches.sort((c1, c2) => { return c1.title.localeCompare(c2.title); }).map(this.formatLookupCache)}
                       </span>
                     }
@@ -344,14 +343,14 @@ const ExportContentPackPage = React.createClass({
 
                 <div className="form-group">
                   <Col sm={2}>
-                    <label className="control-label" htmlFor="lookup_data_adapters">Lookup Data Adapters</label>
+                    <label className="control-label" htmlFor="lookup_data_adapters">查找 数据转接器</label>
                   </Col>
                   <Col sm={10}>
                     {this.isEmpty(this.state.lookup_data_adapters) ?
-                      <span className="help-block help-standalone">There are no lookup data adapters to export.</span>
+                      <span className="help-block help-standalone">没有数据转接器可以被导出。</span>
                       :
                       <span>
-                        <Button className="btn btn-sm btn-link select-all" onClick={this.selectAllLookupDataAdapters}>Select all</Button>
+                        <Button className="btn btn-sm btn-link select-all" onClick={this.selectAllLookupDataAdapters}>选择全部</Button>
                         {this.state.lookup_data_adapters.sort((a1, a2) => { return a1.title.localeCompare(a2.title); }).map(this.formatLookupDataAdapter)}
                       </span>
                     }
@@ -361,14 +360,10 @@ const ExportContentPackPage = React.createClass({
                 <div className="form-group">
                   <Col smOffset={2} sm={10}>
                     <Button bsStyle="success" type="submit">
-                      <i className="fa fa-cloud-download" /> Download my content pack
+                      <i className="fa fa-cloud-download" /> 下载内容包
                     </Button>
 
                     <br /><br />
-                    <p>
-                      <i className="fa fa-lightbulb-o" />&nbsp;
-                      Share your content pack with the community on the <a href="https://marketplace.graylog.org/" target="_blank">Graylog Marketplace</a> after you have downloaded it.
-                    </p>
                   </Col>
                 </div>
               </form>

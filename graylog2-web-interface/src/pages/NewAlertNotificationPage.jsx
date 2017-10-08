@@ -15,25 +15,21 @@ const NewAlertNotificationPage = React.createClass({
   mixins: [Reflux.connect(CurrentUserStore)],
   render() {
     return (
-      <DocumentTitle title="New alert notification">
+      <DocumentTitle title="创建告警通知">
         <div>
-          <PageHeader title="New alert notification">
+          <PageHeader title="创建告警通知">
             <span>
-              Create a new notification that you can use to not miss any of your alerts.
+              创建告警通知，这样您就不会错过任何一条告警。
             </span>
 
             <span>
-              Remember to assign the notifications to use in the alert conditions page.
+              请将告警通知制定给一条告警条件。
             </span>
 
             <span>
               <LinkContainer to={Routes.ALERTS.NOTIFICATIONS}>
-                <Button bsStyle="info">Manage notifications</Button>
+                <Button bsStyle="info">管理消息</Button>
               </LinkContainer>
-              &nbsp;
-              <Button bsStyle="info" href="https://marketplace.graylog.org/" target="_blank">
-                <i className="fa fa-external-link" />&nbsp; Find more notifications
-              </Button>
             </span>
           </PageHeader>
 

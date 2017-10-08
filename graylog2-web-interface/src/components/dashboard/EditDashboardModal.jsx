@@ -31,12 +31,12 @@ const EditDashboardModal = React.createClass({
   render() {
     return (
       <BootstrapModalForm ref="modal"
-                          title={this._isCreateModal() ? 'New Dashboard' : `Edit Dashboard ${this.props.title}`}
+                          title={this._isCreateModal() ? '新面板' : `修改面板 ${this.props.title}`}
                           onSubmitForm={this._save}
-                          submitButtonText="Save">
+                          submitButtonText="保存">
         <fieldset>
-          <Input id={`${this.props.id}-title`} type="text" label="Title:" onChange={this._onTitleChange} value={this.state.title} autoFocus required />
-          <Input type="text" label="Description:" name="Description" onChange={this._onDescriptionChange} value={this.state.description} required />
+          <Input id={`${this.props.id}-title`} type="text" label="标题:" onChange={this._onTitleChange} value={this.state.title} autoFocus required />
+          <Input type="text" label="描述:" name="Description" onChange={this._onDescriptionChange} value={this.state.description} required />
         </fieldset>
       </BootstrapModalForm>
     );

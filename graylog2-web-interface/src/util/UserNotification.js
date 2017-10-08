@@ -2,7 +2,7 @@ import toastr from 'toastr';
 
 const UserNotification = {
   error(message, title) {
-    toastr.error(message, title || 'Error', {
+    toastr.error(message, title || '错误', {
       debug: false,
       positionClass: 'toast-bottom-full-width',
       onclick: null,
@@ -13,7 +13,7 @@ const UserNotification = {
     });
   },
   warning(message, title) {
-    toastr.warning(message, title || 'Attention', {
+    toastr.warning(message, title || '注意', {
       debug: false,
       positionClass: 'toast-bottom-full-width',
       onclick: null,
@@ -24,7 +24,7 @@ const UserNotification = {
     });
   },
   success(message, title) {
-    toastr.success(message, title || 'Information', {
+    toastr.success(message, title || '信息', {
       debug: false,
       positionClass: 'toast-bottom-full-width',
       onclick: null,

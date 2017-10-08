@@ -141,7 +141,7 @@ const IndexSetConfigurationForm = React.createClass({
         <span>
           <Input type="text"
                  id="index-set-index-prefix"
-                 label="Index prefix"
+                 label="索引前缀"
                  name="index_prefix"
                  onChange={this._validateIndexPrefix}
                  value={indexSet.index_prefix}
@@ -150,11 +150,11 @@ const IndexSetConfigurationForm = React.createClass({
                  required />
           <Input type="text"
                  id="index-set-index-analyzer"
-                 label="Analyzer"
+                 label="分析器"
                  name="index_analyzer"
                  onChange={this._onInputChange}
                  value={indexSet.index_analyzer}
-                 help="Elasticsearch analyzer for this index set."
+                 help="Elasticsearch 分析器."
                  required />
         </span>
       );
@@ -168,20 +168,20 @@ const IndexSetConfigurationForm = React.createClass({
               <Col md={12}>
                 <Input type="text"
                        id="index-set-title"
-                       label="Title"
+                       label="标题"
                        name="title"
                        onChange={this._onInputChange}
                        value={indexSet.title}
-                       help="Descriptive name of the index set."
+                       help="索引集标题."
                        autoFocus
                        required />
                 <Input type="text"
                        id="index-set-description"
-                       label="Description"
+                       label="描述"
                        name="description"
                        onChange={this._onInputChange}
                        value={indexSet.description}
-                       help="Add a description of this index set."
+                       help="索引集描述."
                        required />
                 {readOnlyconfig}
                 <Input type="number"
@@ -231,9 +231,9 @@ const IndexSetConfigurationForm = React.createClass({
 
             <Row>
               <Col md={12}>
-                <Button type="submit" bsStyle="primary" style={{ marginRight: 10 }}>Save</Button>
+                <Button type="submit" bsStyle="primary" style={{ marginRight: 10 }}>保存</Button>
                 <LinkContainer to={this.props.cancelLink}>
-                  <Button bsStyle="default">Cancel</Button>
+                  <Button bsStyle="default">取消</Button>
                 </LinkContainer>
               </Col>
             </Row>

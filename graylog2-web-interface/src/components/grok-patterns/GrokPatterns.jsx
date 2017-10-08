@@ -38,7 +38,7 @@ const GrokPatterns = React.createClass({
     });
   },
   confirmedRemove(pattern) {
-    if (window.confirm(`Really delete the grok pattern ${pattern.name}?\nIt will be removed from the system and unavailable for any extractor. If it is still in use by extractors those will fail to work.`)) {
+    if (window.confirm(`确定要删除 ${pattern.name}?\n 删除会造成所有使用该模式的提取器失效。 `)) {
       GrokPatternsStore.deletePattern(pattern, this.loadData);
     }
   },
@@ -46,10 +46,10 @@ const GrokPatterns = React.createClass({
     let formattedHeaderCell;
 
     switch (header.toLocaleLowerCase()) {
-      case 'name':
+      case '名称':
         formattedHeaderCell = <th className="name">{header}</th>;
         break;
-      case 'actions':
+      case '操作':
         formattedHeaderCell = <th className="actions">{header}</th>;
         break;
       default:
@@ -66,7 +66,7 @@ const GrokPatterns = React.createClass({
         <td>
           <Button style={{ marginRight: 5 }} bsStyle="primary" bsSize="xs"
                   onClick={this.confirmedRemove.bind(this, pattern)}>
-            Delete
+            删除
           </Button>
           <EditPatternModal id={pattern.id} name={pattern.name} pattern={pattern.pattern} create={false}
                             reload={this.loadData} savePattern={this.savePattern}
@@ -76,15 +76,14 @@ const GrokPatterns = React.createClass({
     );
   },
   render() {
-    const headers = ['Name', 'Pattern', 'Actions'];
+    const headers = ['名称', '模式', '操作'];
     const filterKeys = ['name'];
 
     return (
       <div>
-        <PageHeader title="Grok patterns">
+        <PageHeader title="Grok 模式">
           <span>
-            This is a list of grok patterns you can use in your Graylog grok extractors. You can add
-            your own manually or import a whole list of patterns from a so called pattern file.
+            以下的Grok 模式列表，您可以在提取器使用。 您也可以添加您自己的Grok 模式。
           </span>
           {null}
           <span>
@@ -105,7 +104,7 @@ const GrokPatterns = React.createClass({
                        sortByKey={'name'}
                        rows={this.state.patterns}
                        dataRowFormatter={this._patternFormatter}
-                       filterLabel="Filter patterns"
+                       filterLabel="筛选模式"
                        filterKeys={filterKeys} />
           </Col>
         </Row>

@@ -113,7 +113,7 @@ const LegacyFieldGraph = React.createClass({
            data-to={this.props.to}
            data-field={this.props.graphOptions.field}>
         <div className="pull-right">
-          <AddToDashboardMenu title="Add to dashboard"
+          <AddToDashboardMenu title="添加到面板"
                               dashboards={this.props.dashboards}
                               widgetType={this._getWidgetType()}
                               configuration={this._getWidgetConfiguration()}
@@ -124,7 +124,7 @@ const LegacyFieldGraph = React.createClass({
                             id="customize-field-graph-dropdown">
               {submenus}
               <MenuItem divider />
-              <MenuItem onSelect={this.props.onDelete}>Dismiss</MenuItem>
+              <MenuItem onSelect={this.props.onDelete}>忽略</MenuItem>
             </DropdownButton>
           </AddToDashboardMenu>
 
@@ -133,7 +133,7 @@ const LegacyFieldGraph = React.createClass({
                     bsSize="small"
                     className="reposition-handle"
                     onClick={e => e.preventDefault()}
-                    title="Drag and drop to merge the graph into another">
+                    title="拖动以将图表放置到另外一个。">
               <i className="fa fa-reorder" />
             </Button>
           </div>
@@ -145,7 +145,7 @@ const LegacyFieldGraph = React.createClass({
             <div className="field-graph-query-color" style={{ backgroundColor: '#4DBCE9' }} />
             &nbsp;
             <span className="type-description" />
-            Query: <span className="field-graph-query" />
+            查找: <span className="field-graph-query" />
           </li>
         </ul>
 
@@ -155,7 +155,7 @@ const LegacyFieldGraph = React.createClass({
         </div>
 
         <div className="merge-hint">
-          <span className="alpha70">Drop to merge charts</span>
+          <span className="alpha70">推动到图表。</span>
         </div>
       </div>
     );

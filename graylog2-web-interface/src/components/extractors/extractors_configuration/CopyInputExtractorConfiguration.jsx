@@ -7,7 +7,7 @@ const CopyInputExtractorConfiguration = React.createClass({
       <div className="form-group">
         <div className="col-md-offset-2 col-md-10">
           <Panel bsStyle="info" style={{ marginBottom: 0 }}>
-            The entire input will be copied verbatim.
+            整个输入会被逐字拷贝.
           </Panel>
         </div>
       </div>

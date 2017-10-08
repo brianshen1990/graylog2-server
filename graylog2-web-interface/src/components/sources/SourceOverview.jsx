@@ -318,7 +318,7 @@ const SourceOverview = React.createClass({
       <div className="row content">
         <div className="col-md-12">
           <div className="alert alert-info">
-            No message sources found for this time range. Did you try using a different one&#63;
+            在此区间中没有找到消息数据源. 是否需要尝试另外一个&#63;
           </div>
         </div>
       </div>
@@ -358,24 +358,22 @@ const SourceOverview = React.createClass({
               <div className="pull-right">
                 <select ref="rangeSelector" className="sources-range form-control input-sm" value={this.state.range}
                         onChange={this._onRangeChanged}>
-                  <option value={hoursToSeconds(1)}>Last Hour</option>
-                  <option value={daysToSeconds(1)}>Last Day</option>
-                  <option value={daysToSeconds(7)}>Last Week</option>
-                  <option value={daysToSeconds(31)}>Last Month</option>
-                  <option value={daysToSeconds(365)}>Last Year</option>
-                  <option value="0">All</option>
+                  <option value={hoursToSeconds(1)}>最近一小时</option>
+                  <option value={daysToSeconds(1)}>最近一天</option>
+                  <option value={daysToSeconds(7)}>最近一周</option>
+                  <option value={daysToSeconds(31)}>最近一个月</option>
+                  <option value={daysToSeconds(365)}>最近一年</option>
+                  <option value="0">全部</option>
                 </select>
               </div>
-              <h1>Sources</h1>
+              <h1>数据源</h1>
             </div>
             <p className="description">
-              This is a list of all sources that sent in messages to Graylog. Note that the list is
-              cached for a few seconds so you might have to wait a bit until a new source appears.
+              所有xxxx 日志平台接收到的消息都在此处。值得注意的是，此处的数据是会缓存一段时间，你可能需要等待一段时间等待新的数据源出现
             </p>
 
             <SupportLink>
-              {' Use your mouse to interact with the table and graphs on this page, and get a better ' +
-              'overview of the sources sending data into Graylog.'}
+              {' 使用鼠标与表格和图表交互。.'}
             </SupportLink>
           </div>
         </div>

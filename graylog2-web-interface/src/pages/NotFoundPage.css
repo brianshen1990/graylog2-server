@@ -1,5 +1,6 @@
 body {
-    background: url('../../public/images/not-found-bg.jpg') no-repeat center center fixed;
+    /* background: url('../../public/images/not-found-bg.jpg') no-repeat center center fixed; */
+    background-color: lightgray;
     -moz-background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;

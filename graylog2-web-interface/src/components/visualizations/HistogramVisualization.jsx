@@ -93,14 +93,14 @@ const HistogramVisualization = React.createClass({
       .centerBar(true)
       .renderHorizontalGridLines(true)
       .brushOn(false)
-      .xAxisLabel('Time')
-      .yAxisLabel('Messages')
+      .xAxisLabel('时间')
+      .yAxisLabel('消息数')
       .renderTitle(false)
       .colors(D3Utils.glColourPalette())
       .on('renderlet', () => {
         const formatTitle = (d) => {
-          const valueText = `${numeral(d.y).format('0,0')} messages`;
-          const keyText = `<span class="date">${new DateTime(d.x).toString(DateTime.Formats.COMPLETE)}</span>`;
+          const valueText = `${numeral(d.y).format('0,0')} 条消息`;
+          const keyText = `<span class="date">${new DateTime(d.x).toString(DateTime.Formats.DATETIME)}</span>`;
 
           return `<div class="datapoint-info">${valueText}<br>${keyText}</div>`;
         };

@@ -23,14 +23,14 @@ const Dashboard = React.createClass({
     StartpageStore.set(this.state.currentUser.username, 'dashboard', this.props.dashboard.id);
   },
   _onDashboardDelete() {
-    if (window.confirm(`Do you really want to delete the dashboard ${this.props.dashboard.title}?`)) {
+    if (window.confirm(`确定删除面板 ${this.props.dashboard.title}?`)) {
       DashboardsStore.remove(this.props.dashboard);
     }
   },
   _getDashboardActions() {
     let dashboardActions;
     const setAsStartpageMenuItem = (
-      <MenuItem onSelect={this._setStartpage} disabled={this.state.currentUser.read_only}>Set as startpage</MenuItem>
+      <MenuItem onSelect={this._setStartpage} disabled={this.state.currentUser.read_only}>设置为起始页</MenuItem>
     );
 
     if (this.isPermitted(this.props.permissions, [`dashboards:edit:${this.props.dashboard.id}`])) {
@@ -39,17 +39,17 @@ const Dashboard = React.createClass({
           <EditDashboardModalTrigger id={this.props.dashboard.id} action="edit" title={this.props.dashboard.title}
                                      description={this.props.dashboard.description} buttonClass="btn-info" />
           &nbsp;
-          <DropdownButton title="More actions" pullRight id={`more-actions-dropdown-${this.props.dashboard.id}`}>
+          <DropdownButton title="更多操作" pullRight id={`more-actions-dropdown-${this.props.dashboard.id}`}>
             {setAsStartpageMenuItem}
             <MenuItem divider />
-            <MenuItem onSelect={this._onDashboardDelete}>Delete this dashboard</MenuItem>
+            <MenuItem onSelect={this._onDashboardDelete}>删除此面板</MenuItem>
           </DropdownButton>
         </div>
       );
     } else {
       dashboardActions = (
         <div className="stream-actions">
-          <DropdownButton title="More actions" pullRight id={`more-actions-dropdown-${this.props.dashboard.id}`}>
+          <DropdownButton title="更多操作" pullRight id={`more-actions-dropdown-${this.props.dashboard.id}`}>
             {setAsStartpageMenuItem}
           </DropdownButton>
         </div>
@@ -60,7 +60,7 @@ const Dashboard = React.createClass({
   },
   render() {
     const createdFromContentPack = (this.props.dashboard.content_pack ?
-      <i className="fa fa-cube" title="Created from content pack" /> : null);
+      <i className="fa fa-cube" title="创建内容包" /> : null);
 
     return (
       <li className="stream">

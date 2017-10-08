@@ -59,13 +59,13 @@ const CacheCreate = React.createClass({
       <Row className="content">
         <Col lg={8}>
           <form className="form form-horizontal" onSubmit={() => {}}>
-            <Input label="Cache Type"
+            <Input label="缓存类型"
                    required
                    autoFocus
-                   help="The type of cache to configure."
+                   help="需要配置的缓存类型"
                    labelClassName="col-sm-3"
                    wrapperClassName="col-sm-9">
-              <Select placeholder="Select Cache Type"
+              <Select placeholder="选择缓存类型。"
                       clearable={false}
                       options={sortedCaches}
                       matchProp="value"
@@ -78,7 +78,7 @@ const CacheCreate = React.createClass({
       {this.state.cache && (
         <Row className="content">
           <Col lg={12}>
-            <h3>Configure Cache</h3>
+            <h3>配置缓存</h3>
             <CacheForm cache={this.state.cache}
                        type={this.state.type}
                        create

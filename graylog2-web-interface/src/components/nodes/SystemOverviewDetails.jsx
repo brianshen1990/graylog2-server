@@ -17,7 +17,7 @@ const SystemOverviewDetails = React.createClass({
     information: PropTypes.object.isRequired,
   },
   _toggleMessageProcessing() {
-    if (confirm(`You are about to ${this.props.information.is_processing ? 'pause' : 'resume'} message processing in this node. Are you sure?`)) {
+    if (confirm(`你讲 ${this.props.information.is_processing ? '暂停' : '恢复'} 消息处理节点.确认?`)) {
       if (this.props.information.is_processing) {
         SystemProcessingStore.pause(this.props.node.node_id);
       } else {
@@ -39,7 +39,7 @@ const SystemOverviewDetails = React.createClass({
     } else {
       processingStatus = (
         <span>
-          <i className="fa fa-exclamation-triangle" />&nbsp; Node is <strong>not</strong> processing messages
+          <i className="fa fa-exclamation-triangle" />&nbsp; 节点<strong>没有在处理</strong> 信息。
         </span>
       );
     }
@@ -48,16 +48,14 @@ const SystemOverviewDetails = React.createClass({
       <Row>
         <Col md={4}>
           <Alert bsStyle="info">
-            <span className="pull-right"> <DocumentationLink page={DocsHelper.PAGES.LOAD_BALANCERS} text="What does this mean?" /></span>
             <i className="fa fa-exchange" />&nbsp;
-            Lifecycle state: <strong>{StringUtils.capitalizeFirstLetter(this.props.information.lifecycle)}</strong>
+            生命周期状态: <strong>{StringUtils.capitalizeFirstLetter(this.props.information.lifecycle)}</strong>
           </Alert>
         </Col>
         <Col md={4}>
           <Alert bsStyle={lbStatus === 'ALIVE' ? 'success' : 'danger'}>
-            <span className="pull-right"> <DocumentationLink page={DocsHelper.PAGES.LOAD_BALANCERS} text="What does this mean?" /></span>
             <i className="fa fa-heart" />&nbsp;
-            Marked as <strong>{lbStatus}</strong> for load balancers
+            标志为 <strong>{lbStatus}</strong>
           </Alert>
         </Col>
         <Col md={4}>
@@ -65,7 +63,7 @@ const SystemOverviewDetails = React.createClass({
             <IfPermitted permissions="processing:changestate">
               <span className="pull-right">
                 <Button onClick={this._toggleMessageProcessing} bsSize="xsmall" bsStyle={information.is_processing ? 'danger' : 'success'}>
-                  {information.is_processing ? 'Pause' : 'Resume'} processing
+                  {information.is_processing ? '暂停' : '恢复'} 处理
                 </Button>
               </span>
             </IfPermitted>

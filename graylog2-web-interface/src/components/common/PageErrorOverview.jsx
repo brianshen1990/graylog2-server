@@ -20,7 +20,7 @@ const PageErrorOverview = React.createClass({
     return (
       <ul>
         {formattedErrors}
-        <li>Check your Graylog logs for more information.</li>
+        <li>检查服务器日志获取更多信息.</li>
       </ul>
     );
   },
@@ -29,8 +29,8 @@ const PageErrorOverview = React.createClass({
       <Row className="jumbotron-container">
         <Col mdOffset={2} md={8}>
           <Jumbotron>
-            <h1>Error getting data</h1>
-            <p>We had trouble fetching some data required to build this page, so here is a picture instead.</p>
+            <h1>获取数据出错</h1>
+            <p>系统在获取数据时出错.</p>
             {this._formatErrors(this.props.errors)}
           </Jumbotron>
         </Col>

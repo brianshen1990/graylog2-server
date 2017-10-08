@@ -28,8 +28,8 @@ const LdapGroupsStore = Reflux.createStore({
       },
       (error) => {
         if (error.additional.status !== 400) {
-          UserNotification.error(`Loading LDAP group list failed with status: ${error}`,
-            'Could not load LDAP group list');
+          UserNotification.error(`加载 LDAP 组条目失败: ${error}`,
+            '无法加载 LDAP 组条目');
         }
       },
     );
@@ -47,8 +47,8 @@ const LdapGroupsStore = Reflux.createStore({
         this.trigger({ mapping: this.mapping });
       },
       (error) => {
-        UserNotification.error(`Loading LDAP group mapping failed with status: ${error}`,
-          'Could not load LDAP group mapping');
+        UserNotification.error(`加载 LDAP 组失败: ${error}`,
+          '无法加载 LDAP 组映射');
       },
     );
 
@@ -62,11 +62,11 @@ const LdapGroupsStore = Reflux.createStore({
     promise.then(
       () => {
         this.loadMapping();
-        UserNotification.success('LDAP group mapping successfully updated.');
+        UserNotification.success('LDAP 组更新成功.');
       },
       (error) => {
-        UserNotification.error(`Updating LDAP group mapping failed with status: ${error}`,
-          'Could not update LDAP group mapping');
+        UserNotification.error(`更新 LDAP 组失败: ${error}`,
+          '无法更新 LDAP 组映射');
       },
     );
 

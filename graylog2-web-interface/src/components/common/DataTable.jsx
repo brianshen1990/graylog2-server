@@ -24,7 +24,7 @@ const DataTable = React.createClass({
     return {
       filterSuggestions: [],
       displayKey: 'value',
-      noDataText: 'No data available.',
+      noDataText: '没有数据.',
       rowClassName: '',
     };
   },
@@ -96,7 +96,7 @@ const DataTable = React.createClass({
     if (this.state.rows.length === 0) {
       data = <p>{this.props.noDataText}</p>;
     } else if (this.state.filteredRows.length === 0) {
-      data = <p>Filter does not match any data.</p>;
+      data = <p>没有匹配.</p>;
     } else {
       data = (
         <table className={`table ${this.props.className}`}>

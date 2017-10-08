@@ -24,8 +24,7 @@ const ExtractorExampleMessage = React.createClass({
     } else {
       messagePreview = (
         <div className="alert alert-warning xtrc-no-example">
-          Could not load an example of field '{this.props.field}'. It is not possible to test
-          the extractor before updating it.
+          无法从示例中导入字段 '{this.props.field}'. 在更新之前无法测试该提取器。
         </div>
       );
     }

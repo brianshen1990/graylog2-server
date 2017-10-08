@@ -21,10 +21,10 @@ const StatisticalCountWidgetConfiguration = React.createClass({
                type="select"
                id="count-statistical-function"
                name="stats_function"
-               label="Statistical function"
+               label="统计方法"
                defaultValue={defaultStatisticalFunction}
                onChange={this.props.onChange}
-               help="Statistical function applied to the data.">
+               help="应用于数据的统计方法.">
           {FieldStatisticsStore.FUNCTIONS.keySeq().sort().map((statFunction) => {
             return (
               <option key={statFunction} value={statFunction}>

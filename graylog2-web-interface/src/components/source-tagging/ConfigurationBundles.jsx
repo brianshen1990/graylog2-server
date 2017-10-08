@@ -79,12 +79,11 @@ const ConfigurationBundles = React.createClass({
       ConfigurationBundlesActions.create.triggerPromise(request)
         .then(
           () => {
-            UserNotification.success('Content pack imported successfully', 'Success!');
+            UserNotification.success('内容包导入成功', '成功!');
             ConfigurationBundlesActions.list();
           },
           () => {
-            UserNotification.error('Error importing content pack, please ensure it is a valid JSON file. Check your ' +
-              'Graylog logs for more information.', 'Could not import content pack');
+            UserNotification.error('内容包导入失败, 请确保内容包JSON文件正确.', '无法导入内容包');
           });
     };
 
@@ -103,13 +102,13 @@ const ConfigurationBundles = React.createClass({
           {this.state.configurationBundles ?
             <Accordion>
               {this._getCategoriesHtml()}
-              <Panel header="Import content pack" eventKey={-1}>
+              <Panel header="导入内容包" eventKey={-1}>
                 <form onSubmit={this.onSubmit} className="upload" encType="multipart/form-data">
-                  <span className="help-block">Remember to apply the content pack after uploading it, to make the changes effective.</span>
+                  <span className="help-block">在上传之后，记得应用该内容包。</span>
                   <div className="form-group">
                     <input ref="uploadedFile" type="file" name="bundle" />
                   </div>
-                  <button type="submit" className="btn btn-success">Upload</button>
+                  <button type="submit" className="btn btn-success">上传</button>
                 </form>
               </Panel>
             </Accordion>

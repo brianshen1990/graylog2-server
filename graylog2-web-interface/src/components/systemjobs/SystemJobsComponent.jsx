@@ -31,10 +31,9 @@ const SystemJobsComponent = React.createClass({
     return (
       <Row className="content">
         <Col md={12}>
-          <h2>System jobs</h2>
+          <h2>系统工作</h2>
           <p className="description">
-            A system job is a long-running task a graylog-server node executes for maintenance reasons. Some jobs
-            provide progress information or can be stopped.
+            系统工作是指xxxx 日志平台需要维护时，需要长期运行的任务。 一些工作会提供进度信息并且被停止。
           </p>
 
           <SystemJobsList jobs={jobs} />

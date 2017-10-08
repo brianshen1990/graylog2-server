@@ -64,66 +64,66 @@ const LookupTable = React.createClass({
           </h3>
           <span>{this.props.table.description}</span>
           <dl>
-            <dt>Data adapter</dt>
+            <dt>数据转接器</dt>
             <dd>
               <LinkContainer to={Routes.SYSTEM.LOOKUPTABLES.DATA_ADAPTERS.show(this.props.dataAdapter.name)}><a>{this.props.dataAdapter.title}</a></LinkContainer>
             </dd>
-            <dt>Cache</dt>
+            <dt>缓存</dt>
             <dd><LinkContainer to={Routes.SYSTEM.LOOKUPTABLES.CACHES.show(this.props.cache.name)}><a>{this.props.cache.title}</a></LinkContainer></dd>
           </dl>
           {
             (this.props.table.default_single_value || this.props.table.default_multi_value) &&
             <dl>
-              <dt>Default single value</dt>
+              <dt>默认单值</dt>
               <dd><code>{this.props.table.default_single_value}</code>{' '}({this.props.table.default_single_value_type.toLowerCase()})</dd>
-              <dt>Default multi value</dt>
+              <dt>默认多值</dt>
               <dd><code>{this.props.table.default_multi_value}</code>{' '}({this.props.table.default_multi_value_type.toLowerCase()})</dd>
             </dl>
           }
-          <h3>Purge Cache</h3>
-          <p>You can purge the complete cache for this lookup table or only the cache entry for a single key.</p>
+          <h3>清除缓存</h3>
+          <p>您可以清除全部或者单个缓存.</p>
           <form onSubmit={this._onPurgeKey}>
             <fieldset>
               <Input type="text"
                      id="purge-key"
                      name="purge-key"
-                     label="Key"
+                     label="关键字"
                      onChange={this._onChangePurgeKey}
-                     help="Key to purge from cache"
+                     help="从缓存中删除该关键字"
                      required
                      value={this.state.purgeKey} />
               <Input>
                 <ButtonToolbar>
-                  <Button type="submit" bsStyle="success">Purge key</Button>
-                  <Button type="button" bsStyle="info" onClick={this._onPurgeAll}>Purge all</Button>
+                  <Button type="submit" bsStyle="success">清除单个缓存</Button>
+                  <Button type="button" bsStyle="info" onClick={this._onPurgeAll}>清除全部</Button>
                 </ButtonToolbar>
               </Input>
             </fieldset>
           </form>
         </Col>
         <Col md={6}>
-          <h3>Test lookup</h3>
-          <p>You can manually query the lookup table using this form. The data will be cached as configured by Graylog.</p>
+          <h3>测试查找</h3>
+          <p>您可以手动查找，这将不会改变系统缓存。</p>
           <form onSubmit={this._lookupKey}>
             <fieldset>
               <Input type="text"
                      id="key"
                      name="key"
-                     label="Key"
+                     label="关键字"
                      required
                      onChange={this._onChange}
-                     help="Key to look up a value for."
+                     help="查找关键字."
                      value={this.state.lookupKey} />
             </fieldset>
             <fieldset>
               <Input>
-                <Button type="submit" bsStyle="success">Look up</Button>
+                <Button type="submit" bsStyle="success">查找</Button>
               </Input>
             </fieldset>
           </form>
           { this.state.lookupResult && (
             <div>
-              <h4>Lookup result</h4>
+              <h4>查找结果</h4>
               <pre>{JSON.stringify(this.state.lookupResult, null, 2)}</pre>
             </div>
           )}

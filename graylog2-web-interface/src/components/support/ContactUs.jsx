@@ -10,24 +10,14 @@ const ContactUs = React.createClass({
       <Row className="content">
         <Col md={12}>
           <div className="support-sources">
-            <h2>Need help?</h2>
+            <h2>需要帮助?</h2>
             <p>
-              Do not hesitate to consult the Graylog community if your questions are not answered in the{' '}
-              <DocumentationLink page={DocsHelper.PAGES.WELCOME} text="documentation" />.
+              请联系 xxxx ，如果您的问题不能在帮助文档中搜索到结果.
             </p>
-
             <ul>
               <li>
                 <i className="fa fa-group" />&nbsp;
-                <a href="https://www.graylog.org/community-support/" target="_blank">Community support</a>
-              </li>
-              <li>
-                <i className="fa fa-github-alt" />&nbsp;
-                <a href="https://github.com/Graylog2/graylog2-server/issues" target="_blank">Issue tracker</a>
-              </li>
-              <li>
-                <i className="fa fa-heart" />&nbsp;
-                <a href="https://www.graylog.org/professional-support" target="_blank">Professional support</a>
+                <a href="#" target="_blank">联系 xxxx</a>
               </li>
             </ul>
           </div>

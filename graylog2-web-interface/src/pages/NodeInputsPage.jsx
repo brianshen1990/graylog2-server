@@ -38,13 +38,13 @@ const NodeInputsPage = React.createClass({
     const title = <span>Inputs of node {this.state.node.short_node_id} / {this.state.node.hostname}</span>;
 
     return (
-      <DocumentTitle title={`Inputs of node ${this.state.node.short_node_id} / ${this.state.node.hostname}`}>
+      <DocumentTitle title={`节点 ${this.state.node.short_node_id} / ${this.state.node.hostname} 的输入`}>
         <div>
           <PageHeader title={title}>
-            <span>Graylog nodes accept data via inputs. On this page you can see which inputs are running on this specific node.</span>
+            <span>xxxx 日志平台 节点通过输入接收数据。 本页您将看到那些输入在特定节点上运行。</span>
 
             <span>
-              You can launch and terminate inputs on your cluster <LinkContainer to={Routes.SYSTEM.INPUTS}><a>here</a></LinkContainer>.
+              您可以在<LinkContainer to={Routes.SYSTEM.INPUTS}><a>这里</a></LinkContainer>开启或者结束集群上的输入。
             </span>
           </PageHeader>
           <InputsList permissions={this.state.currentUser.permissions} node={this.state.node} />

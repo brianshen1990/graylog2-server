@@ -53,7 +53,7 @@ const LookupTableCachesStore = Reflux.createStore({
         query: response.query,
       };
       this.trigger({ pagination: this.pagination, caches: response.caches });
-    }, this._errorHandler('Fetching lookup table caches failed', 'Could not retrieve the lookup caches'));
+    }, this._errorHandler('获取查找表 缓存失败', '无法获取查找表 缓存'));
 
     LookupTableCachesActions.searchPaginated.promise(promise);
     return promise;
@@ -65,7 +65,7 @@ const LookupTableCachesStore = Reflux.createStore({
 
     promise.then((response) => {
       this.trigger({ cache: response });
-    }, this._errorHandler(`Fetching lookup table cache ${idOrName} failed`, 'Could not retrieve lookup table cache'));
+    }, this._errorHandler(`获取查找表 缓存 ${idOrName} 失败`, '无法获取查找表 缓存'));
 
     LookupTableCachesActions.get.promise(promise);
     return promise;
@@ -77,7 +77,7 @@ const LookupTableCachesStore = Reflux.createStore({
 
     promise.then((response) => {
       this.trigger({ cache: response });
-    }, this._errorHandler('Creating lookup table cache failed', `Could not create lookup table cache "${cache.name}"`));
+    }, this._errorHandler('创建查找表 缓存失败', `无法创建查找表 缓存 "${cache.name}"`));
 
     LookupTableCachesActions.create.promise(promise);
     return promise;
@@ -89,7 +89,7 @@ const LookupTableCachesStore = Reflux.createStore({
 
     promise.then((response) => {
       this.trigger({ cache: response });
-    }, this._errorHandler('Updating lookup table cache failed', `Could not update lookup table cache "${cache.name}"`));
+    }, this._errorHandler('更新查找表 缓存失败', `无法更新查找表 缓存 "${cache.name}"`));
 
     LookupTableCachesActions.update.promise(promise);
     return promise;
@@ -101,7 +101,7 @@ const LookupTableCachesStore = Reflux.createStore({
 
     promise.then((response) => {
       this.trigger({ types: response });
-    }, this._errorHandler('Fetching available types failed', 'Could not fetch the available lookup table cache types'));
+    }, this._errorHandler('获取可用类型失败', '无法获取查找表 缓存可用类型'));
 
     LookupTableCachesActions.getTypes.promise(promise);
     return promise;
@@ -111,7 +111,7 @@ const LookupTableCachesStore = Reflux.createStore({
     const url = this._url(`caches/${idOrName}`);
     const promise = fetch('DELETE', url);
 
-    promise.catch(this._errorHandler('Deleting lookup table cache failed', `Could not delete lookup table cache "${idOrName}"`));
+    promise.catch(this._errorHandler('删除查找表 缓存失败', `无法删除查找表 缓存 "${idOrName}"`));
 
     LookupTableCachesActions.delete.promise(promise);
     return promise;
@@ -125,7 +125,7 @@ const LookupTableCachesStore = Reflux.createStore({
       this.trigger({
         validationErrors: response.errors,
       });
-    }, this._errorHandler('Lookup table cache validation failed', `Could not validate lookup table cache "${cache.name}"`));
+    }, this._errorHandler('查找表 缓存验证失败', `无法验证查找表 缓存 "${cache.name}"`));
     LookupTableCachesActions.validate.promise(promise);
     return promise;
   },

@@ -73,18 +73,18 @@ const OutputsComponent = React.createClass({
     });
   },
   _removeOutputGlobally(outputId) {
-    if (window.confirm('Do you really want to terminate this output?')) {
+    if (window.confirm('确定需要停止该输出?')) {
       OutputsStore.remove(outputId, (response) => {
-        UserNotification.success('Output was terminated.', 'Success');
+        UserNotification.success('输出已停止.', '成功');
         this._handleUpdate();
         return response;
       });
     }
   },
   _removeOutputFromStream(outputId, streamId) {
-    if (window.confirm('Do you really want to remove this output from the stream?')) {
+    if (window.confirm('确定需要数据流中移除该输出?')) {
       StreamsStore.removeOutput(streamId, outputId, (response) => {
-        UserNotification.success('Output was removed from stream.', 'Success');
+        UserNotification.success('输出已被从数据流中移除.', '成功');
         this._handleUpdate();
         return response;
       });

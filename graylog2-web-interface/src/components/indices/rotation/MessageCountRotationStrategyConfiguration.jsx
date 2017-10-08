@@ -31,10 +31,10 @@ const MessageCountRotationStrategyConfiguration = React.createClass({
 
           <Input type="number"
                  id="max-docs-per-index"
-                 label="Max documents per index"
+                 label="索引最大文件数"
                  onChange={this._onInputUpdate('max_docs_per_index')}
                  value={this.state.max_docs_per_index}
-                 help="Maximum number of documents in an index before it gets rotated"
+                 help="索引的最大文件数目"
                  required />
         </fieldset>
       </div>

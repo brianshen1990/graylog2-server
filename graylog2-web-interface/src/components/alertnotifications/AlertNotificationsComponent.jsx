@@ -54,11 +54,11 @@ const AlertNotificationsComponent = React.createClass({
       <div>
         <div className="pull-right">
           <LinkContainer to={Routes.ALERTS.NEW_NOTIFICATION}>
-            <Button bsStyle="success">Add new notification</Button>
+            <Button bsStyle="success">创建告警通知</Button>
           </LinkContainer>
         </div>
-        <h2>Notifications</h2>
-        <p>These are all configured alert notifications.</p>
+        <h2>告警通知</h2>
+        <p>以下是所有配置的告警通知。</p>
         <AlertNotificationsList alertNotifications={notifications} streams={this.state.streams}
                                 onNotificationUpdate={this._loadData} onNotificationDelete={this._loadData} />
       </div>

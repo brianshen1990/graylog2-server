@@ -9,9 +9,9 @@ const ClosingRetentionStrategySummary = React.createClass({
     return (
       <div>
         <dl>
-          <dt>Index retention strategy:</dt>
-          <dd>Close</dd>
-          <dt>Max number of indices:</dt>
+          <dt>索引保存策略:</dt>
+          <dd>关闭</dd>
+          <dt>最大索引数目:</dt>
           <dd>{this.props.config.max_number_of_indices}</dd>
         </dl>
       </div>

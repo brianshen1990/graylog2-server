@@ -94,12 +94,12 @@ const LUTTablesPage = React.createClass({
 
     if (isShowing || isEditing) {
       if (!this.state.table) {
-        content = <Spinner text="Loading lookup table" />;
+        content = <Spinner text="正在加载查找表" />;
       } else if (isEditing) {
         content = (
           <Row className="content">
             <Col lg={8}>
-              <h2>Lookup Table</h2>
+              <h2>查找表</h2>
               <LookupTableForm table={this.state.table}
                                create={false}
                                saved={this._saved}
@@ -119,7 +119,7 @@ const LUTTablesPage = React.createClass({
                                     validate={this._validateTable}
                                     validationErrors={this.state.validationErrors} />);
     } else if (!this.state || !this.state.tables) {
-      content = <Spinner text="Loading lookup tables" />;
+      content = <Spinner text="正在加载查找表" />;
     } else {
       content = (<LookupTablesOverview tables={this.state.tables}
                                        caches={this.state.caches}
@@ -129,32 +129,32 @@ const LUTTablesPage = React.createClass({
     }
 
     return (
-      <DocumentTitle title="Lookup Tables">
+      <DocumentTitle title="查找表">
         <span>
-          <PageHeader title="Lookup Tables">
-            <span>Lookup tables can be used in extractors, converters and processing pipelines to translate message fields or to enrich messages.</span>
+          <PageHeader title="查找表">
+            <span> 提取器,转接器 和 处理管道 中转化，以使得消息内容更加丰富。</span>
             {null}
             <span>
               {isShowing && (
                 <LinkContainer to={Routes.SYSTEM.LOOKUPTABLES.edit(this.props.params.tableName)}
                                onlyActiveOnIndex>
-                  <Button bsStyle="success">Edit</Button>
+                  <Button bsStyle="success">编辑</Button>
                 </LinkContainer>
               )}
               &nbsp;
               {(isShowing || isEditing) && (
                 <LinkContainer to={Routes.SYSTEM.LOOKUPTABLES.OVERVIEW} onlyActiveOnIndex>
-                  <Button bsStyle="info">Lookup Tables</Button>
+                  <Button bsStyle="info">查找表</Button>
                 </LinkContainer>
               )}
               &nbsp;
               <LinkContainer to={Routes.SYSTEM.LOOKUPTABLES.CACHES.OVERVIEW} onlyActiveOnIndex>
-                <Button bsStyle="info">Caches</Button>
+                <Button bsStyle="info">缓存</Button>
               </LinkContainer>
               &nbsp;
               <LinkContainer to={Routes.SYSTEM.LOOKUPTABLES.DATA_ADAPTERS.OVERVIEW}
                              onlyActiveOnIndex>
-                <Button bsStyle="info">Data Adapters</Button>
+                <Button bsStyle="info">数据转接器</Button>
               </LinkContainer>
             </span>
           </PageHeader>

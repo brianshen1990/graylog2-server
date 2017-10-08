@@ -27,7 +27,7 @@ const AuthenticationStore = Reflux.createStore({
           this.trigger({ authenticators: response });
           return response;
         },
-        error => UserNotification.error(`Unable to load authentication configuration: ${error}`, 'Could not load authenticators'),
+        error => UserNotification.error(`无法导入认证配置: ${error}`, '无法导入认证配置'),
       );
 
     AuthenticationActions.load.promise(promise);
@@ -40,10 +40,10 @@ const AuthenticationStore = Reflux.createStore({
         .then(
           (response) => {
             this.trigger({ authenticators: response });
-            UserNotification.success('Configuration updated successfully');
+            UserNotification.success('配置更新成功');
             return response;
           },
-          error => UserNotification.error(`Unable to save authentication provider configuration: ${error}`, 'Could not save configuration'),
+          error => UserNotification.error(`保存验证供应配置失败: ${error}`, '无法保存配置'),
         );
       AuthenticationActions.update.promise(promise);
     }

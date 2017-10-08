@@ -36,43 +36,43 @@ const CachesOverview = React.createClass({
 
   _helpPopover() {
     return (
-      <Popover id="search-query-help" className={Styles.popoverWide} title="Search Syntax Help">
-        <p><strong>Available search fields</strong></p>
+      <Popover id="search-query-help" className={Styles.popoverWide} title="查找语法帮助">
+        <p><strong>可搜索字段</strong></p>
         <Table condensed>
           <thead>
             <tr>
-              <th>Field</th>
-              <th>Description</th>
+              <th>字段</th>
+              <th>描述</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>id</td>
-              <td>Cache ID</td>
+              <td>缓存 ID</td>
             </tr>
             <tr>
-              <td>title</td>
-              <td>The title of the cache</td>
+              <td>标题</td>
+              <td>缓存的标题</td>
             </tr>
             <tr>
-              <td>name</td>
-              <td>The reference name of the cache</td>
+              <td>名称</td>
+              <td>缓存名称</td>
             </tr>
             <tr>
-              <td>description</td>
-              <td>The description of cache</td>
+              <td>描述</td>
+              <td>缓存描述</td>
             </tr>
           </tbody>
         </Table>
-        <p><strong>Examples</strong></p>
+        <p><strong>示例</strong></p>
         <p>
-          Find caches by parts of their names:<br />
+          使用名称查找缓存:<br />
           <kbd>{'name:guava'}</kbd><br />
           <kbd>{'name:gua'}</kbd>
         </p>
         <p>
-          Searching without a field name matches against the <code>title</code> field:<br />
-          <kbd>{'guava'}</kbd> <br />is the same as<br />
+          使用 <code>标题</code>查找:<br />
+          <kbd>{'guava'}</kbd> <br />于此效果一致<br />
           <kbd>{'title:guava'}</kbd>
         </p>
       </Popover>
@@ -81,7 +81,7 @@ const CachesOverview = React.createClass({
 
   render() {
     if (!this.props.caches) {
-      return <Spinner text="Loading caches" />;
+      return <Spinner text="导入缓存" />;
     }
     const caches = this.props.caches.map((cache) => {
       return (<CacheTableEntry key={cache.id}
@@ -92,14 +92,14 @@ const CachesOverview = React.createClass({
       <Row className="content">
         <Col md={12}>
           <h2>
-            Configured lookup Caches
+            已配置缓存
             <span>&nbsp;
-              <small>{this.props.pagination.total} total</small></span>
+              <small>共{this.props.pagination.total}条</small></span>
           </h2>
           <PaginatedList onChange={this._onPageChange} totalItems={this.props.pagination.total}>
             <SearchForm onSearch={this._onSearch} onReset={this._onReset} useLoadingState>
               <LinkContainer to={Routes.SYSTEM.LOOKUPTABLES.CACHES.CREATE}>
-                <Button bsStyle="success" style={{ marginLeft: 5 }}>Create cache</Button>
+                <Button bsStyle="success" style={{ marginLeft: 5 }}>新建缓存</Button>
               </LinkContainer>
               <OverlayTrigger trigger="click" rootClose placement="right" overlay={this._helpPopover()}>
                 <Button bsStyle="link" className={Styles.searchHelpButton}><i className="fa fa-fw fa-question-circle" /></Button>
@@ -108,13 +108,13 @@ const CachesOverview = React.createClass({
             <Table condensed hover>
               <thead>
                 <tr>
-                  <th>Title</th>
-                  <th>Description</th>
-                  <th>Name</th>
-                  <th>Entries</th>
-                  <th>Hit rate</th>
-                  <th>Throughput</th>
-                  <th className={Styles.actions}>Actions</th>
+                  <th>标题</th>
+                  <th>描述</th>
+                  <th>名称</th>
+                  <th>缓存数</th>
+                  <th>命中率</th>
+                  <th>查找数目</th>
+                  <th className={Styles.actions}>操作</th>
                 </tr>
               </thead>
               {caches}

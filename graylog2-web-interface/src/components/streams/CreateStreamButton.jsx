@@ -13,7 +13,7 @@ const CreateStreamButton = React.createClass({
   },
   getDefaultProps() {
     return {
-      buttonText: 'Create Stream',
+      buttonText: '创建数据流',
     };
   },
   onClick() {
@@ -26,7 +26,7 @@ const CreateStreamButton = React.createClass({
                 onClick={this.onClick}>
           {this.props.buttonText}
         </Button>
-        <StreamForm ref="streamForm" title="Creating Stream" indexSets={this.props.indexSets}
+        <StreamForm ref="streamForm" title="数据流创建中" indexSets={this.props.indexSets}
                     onSubmit={this.props.onSave} />
       </span>
     );

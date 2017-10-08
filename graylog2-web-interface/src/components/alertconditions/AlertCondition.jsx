@@ -17,7 +17,7 @@ const AlertCondition = React.createClass({
   mixins: [Reflux.connect(AlertConditionsStore), Reflux.connect(CurrentUserStore), PermissionsMixin],
 
   _onDelete() {
-    if (window.confirm('Really delete alert condition?')) {
+    if (window.confirm('确定删除告警条件?')) {
       AlertConditionsActions.delete(this.props.stream.id, this.props.alertCondition.id);
     }
   },
@@ -36,9 +36,9 @@ const AlertCondition = React.createClass({
     let actions = [];
     if (this.isPermitted(permissions, `streams:edit:${stream.id}`)) {
       actions = [
-        <DropdownButton key="more-actions-button" title="Actions" pullRight
+        <DropdownButton key="more-actions-button" title="操作" pullRight
                         id={`more-actions-dropdown-${condition.id}`}>
-          <MenuItem onSelect={this._onDelete}>Delete</MenuItem>
+          <MenuItem onSelect={this._onDelete}>删除</MenuItem>
         </DropdownButton>,
       ];
     }

@@ -12,13 +12,13 @@ const NotificationsList = React.createClass({
   mixins: [Reflux.connect(NotificationsStore)],
   _formatNotificationCount(count) {
     if (count === 0) {
-      return 'is no notification';
+      return '没有通知';
     }
     if (count === 1) {
-      return 'is one notification';
+      return '有 1 条通知';
     }
 
-    return `are ${count} notifications`;
+    return `有 ${count} 条通知`;
   },
   render() {
     if (!this.state.notifications) {
@@ -31,15 +31,15 @@ const NotificationsList = React.createClass({
     let content;
 
     if (count === 0) {
-      title = 'No notifications';
+      title = '没有通知';
       content = (
         <Alert bsStyle="success" className="notifications-none">
           <i className="fa fa-check-circle" />{' '}
-          &nbsp;No notifications
+          &nbsp;没有通知
         </Alert>
       );
     } else {
-      title = `There ${this._formatNotificationCount(count)}`;
+      title = `${this._formatNotificationCount(count)}`;
       content = this.state.notifications.map((notification) => {
         return <Notification key={`${notification.type}-${notification.timestamp}`} notification={notification} />;
       });
@@ -50,8 +50,7 @@ const NotificationsList = React.createClass({
         <Col md={12}>
           <h2>{title}</h2>
           <p className="description">
-            Notifications are triggered by Graylog and indicate a situation you should act upon. Many notification
-            types will also provide a link to the Graylog documentation if you need more information or assistance.
+            通知条目表示存在需要处理的情况， 很多通知会关联帮助文档。
           </p>
 
           {content}

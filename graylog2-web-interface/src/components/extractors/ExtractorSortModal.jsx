@@ -33,11 +33,11 @@ const ExtractorSortModal = React.createClass({
       <BootstrapModalWrapper ref="modal">
         <Modal.Header closeButton>
           <Modal.Title>
-            <span>Sort extractors for <em>{this.props.input.title}</em></span>
+            <span>排序提取器 <em>{this.props.input.title}</em></span>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>Drag and drop the extractors on the list to change the order in which they will be applied.</p>
+          <p>多动提取器以改变应用顺序.</p>
           <Row className="row-sm">
             <Col md={12}>
               <SortableList items={this.props.extractors} onMoveItem={this._updateSorting} />
@@ -45,8 +45,8 @@ const ExtractorSortModal = React.createClass({
           </Row>
         </Modal.Body>
         <Modal.Footer>
-          <Button type="button" onClick={this.close}>Close</Button>
-          <Button type="button" bsStyle="info" onClick={this._saveSorting}>Save</Button>
+          <Button type="button" onClick={this.close}>取消</Button>
+          <Button type="button" bsStyle="info" onClick={this._saveSorting}>保存</Button>
         </Modal.Footer>
       </BootstrapModalWrapper>
     );

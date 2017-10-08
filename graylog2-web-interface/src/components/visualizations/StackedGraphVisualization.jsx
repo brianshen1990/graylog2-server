@@ -208,7 +208,7 @@ const StackedGraphVisualization = React.createClass({
         x: {
           type: 'timeseries',
           label: {
-            text: 'Time',
+            text: '时间',
             position: 'outer-center',
           },
           tick: {
@@ -217,7 +217,7 @@ const StackedGraphVisualization = React.createClass({
         },
         y: {
           label: {
-            text: 'Values',
+            text: '值',
             position: 'outer-middle',
           },
           tick: {

@@ -28,7 +28,7 @@ const SyslogPriLevelConverterConfiguration = React.createClass({
       <div className="xtrc-converter">
         <Input type="checkbox"
                id={`enable-${this.props.type}-converter`}
-               label="Convert from PRI to syslog level"
+               label="Syslog PRI转换为级别"
                wrapperClassName="col-md-offset-2 col-md-10"
                defaultChecked
                onChange={this._toggleConverter} />

@@ -254,12 +254,12 @@ export const FieldChart = {
 
   _onFieldHistogramFail($graphElement, opts, error) {
     if (error.additional && error.additional.status === 400) {
-      sendFailureEvent(opts.chartid, 'Field graphs are only available for numeric fields.');
+      sendFailureEvent(opts.chartid, '图表只能应用在数字字段上.');
     } else {
-      const alert = jQuery('<div>').addClass('alert').addClass('alert-warning').text('Field graph could not be loaded, please try again after reloading the page.');
+      const alert = jQuery('<div>').addClass('alert').addClass('alert-warning').text('字段图加载失败，请重新加载.');
       $graphElement.html(alert);
-      const errorMessage = (error.additional ? ` with status ${error.additional.status}` : ` with error: ${error.message}`);
-      UserNotification.error(`Loading field graph for '${opts.field}' failed ${errorMessage}`);
+      const errorMessage = (error.additional ? `  ${error.additional.status}` : ` : ${error.message}`);
+      UserNotification.error(`加载字段 '${opts.field}' 的字段图失败 ${errorMessage}`);
       console.error(error);
     }
   },
@@ -371,7 +371,7 @@ export const FieldChart = {
         }
       },
       (error) => {
-        UserNotification.error(`Updating field graph data failed: ${error}`, 'Could not update field graph data');
+        UserNotification.error(`更新字段图数据失败: ${error}`, '无法更新字段图数据');
       },
     );
   },

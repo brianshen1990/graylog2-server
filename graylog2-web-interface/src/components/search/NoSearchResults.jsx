@@ -43,18 +43,13 @@ const NoSearchResults = React.createClass({
       <div>
         <Row className="content content-head">
           <Col md={12}>
-            <h1>Nothing found {streamDescription}</h1>
+            <h1>未找到 {streamDescription}</h1>
 
             <p className="description">
-              Your search returned no results, try changing the used time range or the search query.{' '}
-              Do you want more details? <a href="#" onClick={this._showQueryModal}>Show the Elasticsearch query</a>.
+              本次搜索没有结果，可尝试改变搜索时间范围或者搜索条件。{' '}
+              更多细节 <a href="#" onClick={this._showQueryModal}>显示Elasticsearch搜索</a>.
               <ShowQueryModal key="debugQuery" ref="showQueryModal" builtQuery={this.props.builtQuery} />
               <br />
-              <strong>
-                Take a look at the{' '}
-                <DocumentationLink page={DocsHelper.PAGES.SEARCH_QUERY_LANGUAGE} text="documentation" />{' '}
-                if you need help with the search syntax or the time range selector.
-              </strong>
             </p>
           </Col>
         </Row>
@@ -62,13 +57,13 @@ const NoSearchResults = React.createClass({
           <Col md={12}>
             <Row className="row-sm">
               <Col md={4}>
-                <h2>Search Actions</h2>
+                <h2>搜索动作</h2>
               </Col>
               <Col md={8}>
                 <div className="actions">
                   <AddSearchCountToDashboard searchInStream={this.props.searchInStream}
                                              permissions={this.props.permissions} pullRight />
-                  <AddToDashboardMenu title="Add histogram to dashboard"
+                  <AddToDashboardMenu title="添加柱状图到显示面板"
                                       widgetType="SEARCH_RESULT_CHART"
                                       configuration={{ interval: this.props.histogram.interval }}
                                       pullRight
@@ -79,8 +74,7 @@ const NoSearchResults = React.createClass({
             </Row>
 
             <p>
-              In case you expect this search to return results in the future, you can add search widgets to
-              dashboards, and manage your saved searches from here.
+              如果期望本次搜索在将来能返回结果，可将搜索插件添加到显示面板，并且在此管理已存储搜索。
             </p>
           </Col>
         </Row>

@@ -15,23 +15,23 @@ const UnknownAlertCondition = React.createClass({
     const stream = this.props.stream;
 
     const actions = [
-      <DropdownButton key="actions-button" title="Actions" pullRight id={`more-actions-dropdown-${condition.id}`}>
-        <MenuItem onSelect={this.props.onDelete}>Delete</MenuItem>
+      <DropdownButton key="actions-button" title="操作" pullRight id={`more-actions-dropdown-${condition.id}`}>
+        <MenuItem onSelect={this.props.onDelete}>删除</MenuItem>
       </DropdownButton>,
     ];
 
     const content = (
       <Col md={12}>
         <Alert bsStyle="warning">
-          Could not resolve condition type. This is most likely caused by a missing plugin in your Graylog setup.
+          无法解析通知类别，通常是因为插件缺失造成。
         </Alert>
       </Col>
     );
     return (
       <EntityListItem key={`entry-list-${condition.id}`}
-                      title="Unknown condition"
+                      title="未知通知"
                       titleSuffix={`(${condition.type})`}
-                      description={stream ? <span>Watching stream <em>{stream.title}</em></span> : 'Not watching any stream'}
+                      description={stream ? <span>正在查看数据流 <em>{stream.title}</em></span> : '未在查看数据流'}
                       actions={actions}
                       contentRow={content} />
     );

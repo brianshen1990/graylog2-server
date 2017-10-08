@@ -46,7 +46,7 @@ const MetricContainer = React.createClass({
 
   render() {
     if (!this.state.metrics) {
-      return (<span>Loading...</span>);
+      return (<span>加载中...</span>);
     }
     const fullName = this.props.name;
     let throughput = Object.keys(this.state.metrics)

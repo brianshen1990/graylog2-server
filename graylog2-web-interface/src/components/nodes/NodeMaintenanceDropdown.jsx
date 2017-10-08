@@ -15,25 +15,25 @@ const NodeMaintenanceDropdown = React.createClass({
     const apiBrowserURI = new URI(`${this.props.node.transport_address}/api-browser`).normalizePathname().toString();
     return (
       <ButtonGroup>
-        <DropdownButton bsStyle="info" bsSize="lg" title="Actions" id="node-maintenance-actions" pullRight>
+        <DropdownButton bsStyle="info" bsSize="lg" title="操作" id="node-maintenance-actions" pullRight>
           <IfPermitted permissions="threads:dump">
             <LinkContainer to={Routes.SYSTEM.THREADDUMP(this.props.node.node_id)}>
-              <MenuItem>Get thread dump</MenuItem>
+              <MenuItem>获得线程 dump</MenuItem>
             </LinkContainer>
           </IfPermitted>
 
           <LinkContainer to={Routes.SYSTEM.METRICS(this.props.node.node_id)}>
-            <MenuItem>Metrics</MenuItem>
+            <MenuItem>度量</MenuItem>
           </LinkContainer>
 
           <IfPermitted permissions="loggers:read">
             <LinkContainer to={Routes.SYSTEM.LOGGING}>
-              <MenuItem>Configure internal logging</MenuItem>
+              <MenuItem>配置间隔日志</MenuItem>
             </LinkContainer>
           </IfPermitted>
 
           <MenuItem href={apiBrowserURI} target="_blank">
-            API Browser <i className="fa fa-external-link" />
+            API 浏览 <i className="fa fa-external-link" />
           </MenuItem>
         </DropdownButton>
       </ButtonGroup>

@@ -188,8 +188,8 @@ const EditExtractorConverters = React.createClass({
         <div className="form-group">
           <div className="col-md-offset-2 col-md-10">
             <Panel bsStyle="info" style={{ marginBottom: 0 }}>
-              Cannot add converters to{' '}
-              <em>{ExtractorUtils.getReadableExtractorTypeName(this.props.extractorType)}</em> extractors.
+              不能添加转接器到{' '}
+              <em>{ExtractorUtils.getReadableExtractorTypeName(this.props.extractorType)}</em> 提取器.
             </Panel>
           </div>
         </div>
@@ -199,22 +199,22 @@ const EditExtractorConverters = React.createClass({
     return (
       <div>
         <Input id="add-converter"
-               label="Add converter"
+               label="添加转换器"
                labelClassName="col-md-2"
                wrapperClassName="col-md-10"
-               help="Add converters to transform the extracted value.">
+               help="添加转换器以提取对应的值。">
           <Row className="row-sm">
             <Col md={11}>
               <Select ref="addConverter"
                       id="add-converter"
-                      placeholder="Select a converter"
+                      placeholder="选择转换器"
                       options={this._getConverterOptions()}
                       value={this.state.selectedConverter}
                       onChange={this._onConverterSelect} />
             </Col>
             <Col md={1} className="text-right">
               <Button bsStyle="info" onClick={this._onConverterAdd} disabled={!this.state.selectedConverter}>
-                Add
+                添加
               </Button>
             </Col>
           </Row>

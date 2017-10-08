@@ -106,20 +106,20 @@ const EditExtractor = React.createClass({
     let conditionInputHelp;
 
     if (this.state.updatedExtractor.condition_type === 'string') {
-      conditionInputLabel = 'Field contains string';
-      conditionInputHelp = 'Type a string that the field should contain in order to attempt the extraction.';
+      conditionInputLabel = '字段包含该字符串';
+      conditionInputHelp = '输入字符串，当字段中包含该字符串时尝试提取。';
     } else {
-      conditionInputLabel = 'Field matches regular expression';
-      conditionInputHelp = 'Type a regular expression that the field should contain in order to attempt the extraction.';
+      conditionInputLabel = '字段匹配正则表达式';
+      conditionInputHelp = '输入正则表达式，当字段匹配该正则表达式时尝试提取。';
     }
 
     let inputStyle;
     if (this.state.conditionTestResult === true) {
       inputStyle = 'success';
-      conditionInputHelp = 'Matches! Extractor would run against this example.';
+      conditionInputHelp = '匹配! 提取器将会运行一个示例.';
     } else if (this.state.conditionTestResult === false) {
       inputStyle = 'error';
-      conditionInputHelp = 'Does not match! Extractor would not run.';
+      conditionInputHelp = '不匹配!提取器不会运行.';
     }
 
     return (
@@ -138,7 +138,7 @@ const EditExtractor = React.createClass({
             <Col md={1} className="text-right">
               <Button bsStyle="info" onClick={this._testCondition}
                       disabled={this._tryButtonDisabled()}>
-                Try
+                试一试
               </Button>
             </Col>
           </Row>
@@ -166,20 +166,19 @@ const EditExtractor = React.createClass({
   },
 
   render() {
-    const conditionTypeHelpMessage = 'Extracting only from messages that match a certain condition helps you ' +
-      'avoiding wrong or unnecessary extractions and can also save CPU resources.';
+    const conditionTypeHelpMessage = '在特定条件下提取消息将避免错误和不必要提取器，并且可以节省CPU资源。';
 
     const cursorStrategyHelpMessage = (
       <span>
-        Do you want to copy or cut from source? You cannot use the cutting feature on standard fields like{' '}
-        <em>message</em> and <em>source</em>.
+        想要复制或者剪切源数据。不能使用剪切功能在标准字段上，比如{' '}
+        <em>message</em> 和 <em>source</em>.
       </span>
     );
 
     const targetFieldHelpMessage = (
       <span>
-        Choose a field name to store the extracted value. It can only contain <b>alphanumeric characters and{' '}
-        underscores</b>. Example: <em>http_response_code</em>.
+        选择一个字段明后才能去存储抽取出来的值。智能包括<b>字母和{' '}
+        下划线</b>. 示例: <em>http_response_code</em>.
       </span>
     );
 
@@ -187,7 +186,7 @@ const EditExtractor = React.createClass({
     // Grok and JSON extractors create their required fields, so no need to add an input for them
     if (this.state.updatedExtractor.type !== ExtractorUtils.ExtractorTypes.GROK && this.state.updatedExtractor.type !== ExtractorUtils.ExtractorTypes.JSON) {
       storeAsFieldInput = (
-        <Input type="text" ref="targetField" id="target_field" label="Store as field"
+        <Input type="text" ref="targetField" id="target_field" label="存储为字段"
                defaultValue={this.state.updatedExtractor.target_field}
                labelClassName="col-md-2"
                wrapperClassName="col-md-10"
@@ -201,7 +200,7 @@ const EditExtractor = React.createClass({
       <div>
         <Row className="content extractor-list">
           <Col md={12}>
-            <h2>Example message</h2>
+            <h2>示例消息</h2>
             <Row style={{ marginTop: 5 }}>
               <Col md={12}>
                 <ExtractorExampleMessage field={this.state.updatedExtractor.source_field}
@@ -209,12 +208,12 @@ const EditExtractor = React.createClass({
                                          onExampleLoad={this._updateExampleMessage} />
               </Col>
             </Row>
-            <h2>Extractor configuration</h2>
+            <h2>配置提取器</h2>
             <Row>
               <Col md={8}>
                 <form className="extractor-form form-horizontal" method="POST" onSubmit={this._saveExtractor}>
-                  {this._staticField('Extractor type', ExtractorUtils.getReadableExtractorTypeName(this.state.updatedExtractor.type))}
-                  {this._staticField('Source field', this.state.updatedExtractor.source_field)}
+                  {this._staticField('提取器类别', ExtractorUtils.getReadableExtractorTypeName(this.state.updatedExtractor.type))}
+                  {this._staticField('元字段', this.state.updatedExtractor.source_field)}
 
                   <EditExtractorConfiguration ref="extractorConfiguration"
                                               extractorType={this.state.updatedExtractor.type}
@@ -222,14 +221,14 @@ const EditExtractor = React.createClass({
                                               onChange={this._onConfigurationChange}
                                               exampleMessage={this.state.exampleMessage} />
 
-                  <Input label="Condition" labelClassName="col-md-2" wrapperClassName="col-md-10"
+                  <Input label="条件" labelClassName="col-md-2" wrapperClassName="col-md-10"
                          help={conditionTypeHelpMessage}>
                     <div className="radio">
                       <label>
                         <input type="radio" name="condition_type" value="none"
                                onChange={this._onFieldChange('condition_type')}
                                defaultChecked={!this.state.updatedExtractor.condition_type || this.state.updatedExtractor.condition_type === 'none'} />
-                        Always try to extract
+                        总是提取
                       </label>
                     </div>
                     <div className="radio">
@@ -237,7 +236,7 @@ const EditExtractor = React.createClass({
                         <input type="radio" name="condition_type" value="string"
                                onChange={this._onFieldChange('condition_type')}
                                defaultChecked={this.state.updatedExtractor.condition_type === 'string'} />
-                        Only attempt extraction if field contains string
+                        只有在该字段包括指定字符串时提取
                       </label>
                     </div>
                     <div className="radio">
@@ -245,7 +244,7 @@ const EditExtractor = React.createClass({
                         <input type="radio" name="condition_type" value="regex"
                                onChange={this._onFieldChange('condition_type')}
                                defaultChecked={this.state.updatedExtractor.condition_type === 'regex'} />
-                        Only attempt extraction if field matches regular expression
+                        只有在该字段匹配正则表达式时提取
                       </label>
                     </div>
                   </Input>
@@ -253,29 +252,29 @@ const EditExtractor = React.createClass({
 
                   {storeAsFieldInput}
 
-                  <Input label="Extraction strategy" labelClassName="col-md-2" wrapperClassName="col-md-10"
+                  <Input label="提取策略" labelClassName="col-md-2" wrapperClassName="col-md-10"
                          help={cursorStrategyHelpMessage}>
                     <label className="radio-inline">
                       <input type="radio" name="cursor_strategy" value="copy"
                              onChange={this._onFieldChange('cursor_strategy')}
                              defaultChecked={!this.state.updatedExtractor.cursor_strategy || this.state.updatedExtractor.cursor_strategy === 'copy'} />
-                      Copy
+                      复制
                     </label>
                     <label className="radio-inline">
                       <input type="radio" name="cursor_strategy" value="cut"
                              onChange={this._onFieldChange('cursor_strategy')}
                              defaultChecked={this.state.updatedExtractor.cursor_strategy === 'cut'} />
-                      Cut
+                      剪切
                     </label>
                   </Input>
 
-                  <Input type="text" id="title" label="Extractor title"
+                  <Input type="text" id="title" label="提取器标题"
                          defaultValue={this.state.updatedExtractor.title}
                          labelClassName="col-md-2"
                          wrapperClassName="col-md-10"
                          onChange={this._onFieldChange('title')}
                          required
-                         help="A descriptive name for this extractor." />
+                         help="提取器标题" />
 
                   <div style={{ marginBottom: 20 }}>
                     <EditExtractorConverters extractorType={this.state.updatedExtractor.type}
@@ -285,7 +284,7 @@ const EditExtractor = React.createClass({
 
                   <Input wrapperClassName="col-md-offset-2 col-md-10">
                     <Button type="submit" bsStyle="success">
-                      {this.props.action === 'create' ? 'Create extractor' : 'Update extractor'}
+                      {this.props.action === 'create' ? '创建提取器' : '更新提取器'}
                     </Button>
                   </Input>
                 </form>

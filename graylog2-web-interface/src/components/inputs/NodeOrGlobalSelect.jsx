@@ -46,16 +46,16 @@ const NodeOrGlobalSelect = React.createClass({
       });
 
     const nodeSelect = !this.state.global ? (
-      <Input type="select" label="Node" placeholder="placeholder" value={this.state.node}
-             help="On which node should this input start" onChange={this._onChangeNode} required>
-        <option key="placeholder" value="">Select Node</option>
+      <Input type="select" label="节点" placeholder="placeholder" value={this.state.node}
+             help="开始节点" onChange={this._onChangeNode} required>
+        <option key="placeholder" value="">选择节点</option>
         {options}
       </Input>
     ) : null;
 
     return (
       <span>
-        <Input type="checkbox" label="Global" help="Should this input start on all nodes"
+        <Input type="checkbox" label="全局" help="该输入是否需要在所有的节点开启S。"
                checked={this.state.global} onChange={this._onChangeGlobal} />
         {nodeSelect}
       </span>

@@ -20,7 +20,7 @@ const Cache = React.createClass({
     const cache = this.props.cache;
     const plugin = plugins[cache.config.type];
     if (!plugin) {
-      return <p>Unknown cache type {cache.config.type}. Is the plugin missing?</p>;
+      return <p>位置缓存类型 {cache.config.type}. 插件已被移除？</p>;
     }
 
     const summary = plugin.summaryComponent;
@@ -35,11 +35,11 @@ const Cache = React.createClass({
           </h2>
           <div className={Styles.config}>
             <dl>
-              <dt>Description</dt>
-              <dd>{cache.description || <em>No description.</em>}</dd>
+              <dt>描述</dt>
+              <dd>{cache.description || <em>没有描述。</em>}</dd>
             </dl>
           </div>
-          <h4>Configuration</h4>
+          <h4>配置</h4>
           <div className={Styles.config}>
             {React.createElement(summary, { cache: cache })}
           </div>

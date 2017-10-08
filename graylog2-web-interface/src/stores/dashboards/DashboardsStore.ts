@@ -108,8 +108,8 @@ class DashboardsStore {
         return dashboardList;
       }, (error) => {
         if (error.additional.status !== 404) {
-          UserNotification.error("Loading dashboard list failed with status: " + error,
-            "Could not load dashboards");
+          UserNotification.error("导入面板失败: " + error,
+            "无法导入面板");
         }
       });
     return promise;
@@ -125,8 +125,8 @@ class DashboardsStore {
 
     promise.catch((error) => {
       if (error.additional.status !== 404) {
-        UserNotification.error("Loading your dashboard failed with status: " + error.message,
-          "Could not load your dashboard");
+        UserNotification.error("导入面板失败: " + error.message,
+          "无法导入面板");
       }
     });
 
@@ -137,12 +137,12 @@ class DashboardsStore {
     const url = URLUtils.qualifyUrl(ApiRoutes.DashboardsApiController.create().url);
     const promise = fetch('POST', url, {title: title, description: description})
       .then((response) => {
-        UserNotification.success("Dashboard successfully created");
+        UserNotification.success("面板成功创建");
         this.updateWritableDashboards();
         return response.dashboard_id;
       }, (error) => {
-        UserNotification.error("Creating dashboard \"" + title + "\" failed with status: " + error,
-          "Could not create dashboard");
+        UserNotification.error("创建面板 \"" + title + "\" 失败: " + error,
+          "无法创建面板");
       });
 
     return promise;
@@ -153,11 +153,11 @@ class DashboardsStore {
     const promise = fetch('PUT', url, {title: dashboard.title, description: dashboard.description});
 
     promise.then(() => {
-      UserNotification.success("Dashboard successfully updated");
+      UserNotification.success("面板更新成功");
       this.updateWritableDashboards();
     }, (error) => {
-      UserNotification.error("Saving dashboard \"" + dashboard.title + "\" failed with status: " + error,
-        "Could not save dashboard");
+      UserNotification.error("保存面板 \"" + dashboard.title + "\" 失败: " + error,
+        "无法保存面板");
     });
 
     return promise;
@@ -168,11 +168,11 @@ class DashboardsStore {
     const promise = fetch('DELETE', url)
 
     promise.then(() => {
-      UserNotification.success("Dashboard successfully deleted");
+      UserNotification.success("面板删除成功");
       this.updateWritableDashboards();
     }, (error) => {
-      UserNotification.error("Deleting dashboard \"" + dashboard.title + "\" failed with status: " + error,
-        "Could not delete dashboard");
+      UserNotification.error("面板 \"" + dashboard.title + "\" 删除失败: " + error,
+        "无法删除面板");
     });
 
     return promise;
@@ -181,8 +181,8 @@ class DashboardsStore {
   updatePositions(dashboard: Dashboard, positions: any) {
     const url = URLUtils.qualifyUrl(ApiRoutes.DashboardsApiController.updatePositions(dashboard.id).url);
     const promise = fetch('PUT', url, {positions: positions}).catch((error) => {
-      UserNotification.error("Updating widget positions for dashboard \"" + dashboard.title + "\" failed with status: " + error.message,
-        "Could not update dashboard");
+      UserNotification.error("为面板 \"" + dashboard.title + "\" 更新组件位置失败: " + error.message,
+        "无法更新面板");
     });
 
     return promise;

@@ -13,14 +13,14 @@ const SearchStore = StoreProvider.getStore('Search');
 
 const FieldStatisticsStore = {
     FUNCTIONS: Immutable.OrderedMap({
-        count: 'Total',
-        mean: 'Mean',
-        min: 'Minimum',
-        max: 'Maximum',
-        std_deviation: 'Std. deviation',
-        variance: 'Variance',
-        sum: 'Sum',
-        cardinality: 'Cardinality',
+        count: '全部',
+        mean: '均值',
+        min: '最小值',
+        max: '最大值',
+        std_deviation: '标准偏差',
+        variance: '方差',
+        sum: '综合',
+        cardinality: '基数',
     }),
     getFieldStatistics(field: string): Promise<string[]> {
         var originalSearchURLParams = SearchStore.getOriginalSearchURLParams();
@@ -53,8 +53,8 @@ const FieldStatisticsStore = {
 
         var promise = fetch('GET', url);
         promise.catch(error => {
-            UserNotification.error("Loading field statistics failed with status: " + error,
-                "Could not load field statistics");
+            UserNotification.error("导入字段统计失败: " + error,
+                "无法导入字段统计");
         });
 
         return promise;

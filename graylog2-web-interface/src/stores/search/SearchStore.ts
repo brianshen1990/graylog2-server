@@ -70,6 +70,10 @@ class SearchStore {
     }
 
     initializeFieldsFromHash() {
+        var _get_show_list_in_order = function(){
+            return ["host_name", "source_address", "destination_address", "destination_port", "action",
+                "ips_rule", "application_id", "type", "malware_name", "source_port"]
+          };
         var parsedSearch = Immutable.Map<string, any>(URLUtils.getParsedSearch(window.location));
         var parsedHash = Immutable.Map<string, any>(URLUtils.getParsedHash(window.location));
         var fieldsFromHash = parsedHash.get('fields');
@@ -78,7 +82,7 @@ class SearchStore {
             // no hash value, fall back to query if present
             if (fieldsFromQuery === undefined) {
                 // neither hash nor query set, fall back to defaults
-                this.fields = Immutable.Set<string>(['message', 'source']);
+                this.fields = Immutable.Set<string>(_get_show_list_in_order());
             } else {
                 this.fields = Immutable.Set<string>(fieldsFromQuery.split(','));
             }
@@ -212,7 +216,7 @@ class SearchStore {
 
         switch (originalSearch.get('rangeType')) {
             case 'relative':
-                rangeParams = Immutable.Map<string, any>({relative: Number(parsedSearch.get('relative', 5 * 60))});
+                rangeParams = Immutable.Map<string, any>({relative: Number(parsedSearch.get('relative', 60 * 60))});
                 break;
             case 'absolute':
                 rangeParams = Immutable.Map<string, any>({

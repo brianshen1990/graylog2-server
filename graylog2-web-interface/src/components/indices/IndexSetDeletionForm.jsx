@@ -125,7 +125,7 @@ const IndexSetDeletionForm = React.createClass({
                           title={`Delete index set "${this.props.indexSet.title}"?`}
                           onModalOpen={this._onModalOpen}
                           onSubmitForm={this._onDelete}
-                          submitButtonText="Delete"
+                          submitButtonText="删除"
                           submitButtonDisabled={!this._isDeletable()}>
         {this._modalContent()}
       </BootstrapModalForm>

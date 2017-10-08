@@ -8,20 +8,20 @@ const CSVFileAdapterSummary = React.createClass({
   render() {
     const config = this.props.dataAdapter.config;
     return (<dl>
-      <dt>File path</dt>
+      <dt>文件路径</dt>
       <dd>{config.path}</dd>
-      <dt>Separator</dt>
+      <dt>分隔符号</dt>
       <dd><code>{config.separator}</code></dd>
-      <dt>Quote character</dt>
+      <dt>引用符号</dt>
       <dd><code>{config.quotechar}</code></dd>
-      <dt>Key column</dt>
+      <dt>关键字列</dt>
       <dd>{config.key_column}</dd>
-      <dt>Value column</dt>
+      <dt>值列</dt>
       <dd>{config.value_column}</dd>
-      <dt>Check interval</dt>
+      <dt>查询间隔</dt>
       <dd>{config.check_interval} seconds</dd>
-      <dt>Case-insensitive lookup</dt>
-      <dd>{config.case_insensitive_lookup ? 'yes' : 'no'}</dd>
+      <dt>区分大小写</dt>
+      <dd>{config.case_insensitive_lookup ? '是' : '否'}</dd>
     </dl>);
   },
 });

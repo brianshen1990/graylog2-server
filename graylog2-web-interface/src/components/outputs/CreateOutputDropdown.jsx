@@ -26,7 +26,7 @@ const CreateOutputDropdown = React.createClass({
             {outputTypes}
           </select>
                     &nbsp;
-          <button className="btn btn-success" disabled={this.state.typeName === this.PLACEHOLDER} onClick={this._openModal}>Launch new output</button>
+          <button className="btn btn-success" disabled={this.state.typeName === this.PLACEHOLDER} onClick={this._openModal}>开启新输出</button>
         </div>
 
         <ConfigurationForm ref="configurationForm" key="configuration-form-output" configFields={this.state.typeDefinition} title="Create new Output"

@@ -206,11 +206,11 @@ const DataAdapterForm = React.createClass({
               <Input type="text"
                      id="title"
                      name="title"
-                     label="Title"
+                     label="标题"
                      autoFocus
                      required
                      onChange={this._onChange}
-                     help="A short title for this data adapter."
+                     help="数据转接器标题"
                      value={adapter.title}
                      labelClassName="col-sm-3"
                      wrapperClassName="col-sm-9" />
@@ -218,9 +218,9 @@ const DataAdapterForm = React.createClass({
               <Input type="text"
                      id="description"
                      name="description"
-                     label="Description"
+                     label="描述"
                      onChange={this._onChange}
-                     help="Data adapter description."
+                     help="数据转接器描述."
                      value={adapter.description}
                      labelClassName="col-sm-3"
                      wrapperClassName="col-sm-9" />
@@ -228,11 +228,11 @@ const DataAdapterForm = React.createClass({
               <Input type="text"
                      id="name"
                      name="name"
-                     label="Name"
+                     label="名称"
                      required
                      onChange={this._onChange}
                      help={this._validationMessage('name',
-                       'The name that is being used to refer to this data adapter. Must be unique.')}
+                       '名称会被用于检索数据转接器，请确保唯一性。.')}
                      value={adapter.name}
                      labelClassName="col-sm-3"
                      wrapperClassName="col-sm-9"
@@ -241,8 +241,8 @@ const DataAdapterForm = React.createClass({
             {configFieldSet}
             <fieldset>
               <Input wrapperClassName="col-sm-offset-3 col-sm-9">
-                <Button type="submit" bsStyle="success">{this.props.create ? 'Create Adapter'
-                  : 'Update Adapter'}</Button>
+                <Button type="submit" bsStyle="success">{this.props.create ? '创建转接器'
+                  : '更新转接器'}</Button>
               </Input>
             </fieldset>
           </form>

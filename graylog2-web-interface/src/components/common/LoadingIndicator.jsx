@@ -12,7 +12,7 @@ const LoadingIndicator = React.createClass({
 
   getDefaultProps() {
     return {
-      text: 'Loading...',
+      text: '加载中...',
     };
   },
 

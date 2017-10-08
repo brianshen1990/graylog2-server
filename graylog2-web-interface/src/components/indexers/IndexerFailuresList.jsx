@@ -10,7 +10,7 @@ const IndexerFailuresList = React.createClass({
   render() {
     if (this.props.failures.length === 0) {
       return (
-        <Alert bsStyle="success"><i className="fa fa-check-circle" /> Hurray! There are not any indexer failures.</Alert>
+        <Alert bsStyle="success"><i className="fa fa-check-circle" /> 恭喜! 没有 indexer 失败.</Alert>
       );
     }
 
@@ -19,10 +19,10 @@ const IndexerFailuresList = React.createClass({
         <Table className="indexer-failures" striped hover condensed>
           <thead>
             <tr>
-              <th style={{ width: 200 }}>Timestamp</th>
-              <th>Index</th>
-              <th>Letter ID</th>
-              <th>Error message</th>
+              <th style={{ width: 200 }}>时间戳</th>
+              <th>索引</th>
+              <th>信息 ID</th>
+              <th>错误内容</th>
             </tr>
           </thead>
           <tbody>

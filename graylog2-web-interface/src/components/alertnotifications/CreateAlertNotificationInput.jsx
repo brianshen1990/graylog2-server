@@ -44,7 +44,7 @@ const CreateAlertNotificationInput = React.createClass({
 
   _onSubmit(data) {
     if (!this.state.selectedStream) {
-      UserNotification.error('Please select the stream that the condition should check.', 'Could not save condition');
+      UserNotification.error('请选择该告警条件需要检查的数据流.', '无法保存告警条件');
     }
 
     AlarmCallbacksActions.save(this.state.selectedStream.id, data).then(
@@ -66,7 +66,7 @@ const CreateAlertNotificationInput = React.createClass({
       <ConfigurationForm ref="configurationForm"
                          key="configuration-form-output"
                          configFields={typeDefinition.requested_configuration}
-                         title={`Create new ${typeDefinition.name}`}
+                         title={`创建新的 ${typeDefinition.name}`}
                          typeName={type}
                          submitAction={this._onSubmit}
                          cancelAction={this._resetForm} />
@@ -99,29 +99,29 @@ const CreateAlertNotificationInput = React.createClass({
       .sort((s1, s2) => naturalSort(s1.label.toLowerCase(), s2.label.toLowerCase()));
     return (
       <div>
-        <h2>Notification</h2>
+        <h2>告警条件</h2>
         <p className="description">
-          Define the notification that will be triggered from the alert conditions in a stream.
+          定义将在数据流中触发的通知。
         </p>
 
         <Row>
           <Col md={6}>
             <form>
-              <Input label="Notify on stream"
-                     help="Select the stream that should use this notification when its alert conditions are triggered.">
-                <Select placeholder="Select a stream" options={formattedStreams} onValueChange={this._onStreamChange} />
+              <Input label="数据流通知"
+                     help="选取一条数据流， 在告警条件满足的情况下，将会使用该告警。">
+                <Select placeholder="选取数据流" options={formattedStreams} onValueChange={this._onStreamChange} />
               </Input>
 
               <Input type="select" value={this.state.type} onChange={this._onChange}
                      disabled={!this.state.selectedStream}
-                     label="Notification type" help="Select the notification type that will be used.">
-                <option value={this.PLACEHOLDER} disabled>Select a notification type</option>
+                     label="通知类型" help="选择通知类型">
+                <option value={this.PLACEHOLDER} disabled>选择通知类型</option>
                 {availableTypes}
               </Input>
               {notificationForm}
               {' '}
               <Button onClick={this._openForm} disabled={this.state.type === this.PLACEHOLDER} bsStyle="success">
-                Add alert notification
+                添加告警通知
               </Button>
             </form>
           </Col>

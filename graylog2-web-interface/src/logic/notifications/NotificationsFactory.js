@@ -10,56 +10,48 @@ class NotificationsFactory {
     switch (notification.type) {
       case 'check_server_clocks':
         return {
-          title: 'Check the system clocks of your Graylog server nodes.',
+          title: '检查服务器节点时钟.',
           description: (
             <span>
-              A Graylog server node detected a condition where it was deemed to be inactive immediately after being active.
-              This usually indicates either a significant jump in system time, e.g. via NTP, or that a second Graylog server node
-              is active on a system that has a different system time. Please make sure that the clocks of graylog2 systems are synchronized.
+              一个服务器节点启动后失效.
+              这通常以诶这系统时间出错，比如 NTP. 请确保系统节点的同步性.
             </span>
           ),
         };
       case 'deflector_exists_as_index':
         return {
-          title: 'Deflector exists as an index and is not an alias.',
+          title: '索引存在导流流并且是一个别称.',
           description: (
             <span>
-              The deflector is meant to be an alias but exists as an index. Multiple failures of infrastructure can lead
-              to this. Your messages are still indexed but searches and all maintenance tasks will fail or produce incorrect
-              results. It is strongly recommend that you act as soon as possible.
+              导流器通常意味着别称，但是却以索引方式存在. 很多情况会导致该结果. 您的消息仍然会被索引，但是维护和
+              生产数据将会不正确.请采取对应措施.
             </span>
           ),
         };
       case 'email_transport_configuration_invalid':
         return {
-          title: 'Email Transport Configuration is missing or invalid!',
+          title: 'Email传输配置丢失或无效!',
           description: (
             <span>
-              The configuration for the email transport subsystem has shown to be missing or invalid.
-              Please check the related section of your Graylog server configuration file.
-              This is the detailed error message: {notification.details.exception}
+              Email配置子系统显示配置丢失或者无效. 请检查相关配置文件. 详细信息: {notification.details.exception}
             </span>
           ),
         };
       case 'email_transport_failed':
         return {
-          title: 'An error occurred while trying to send an email!',
+          title: '发送邮件失败!',
           description: (
             <span>
-              The Graylog server encountered an error while trying to send an email.
-              This is the detailed error message: {notification.details.exception}
+              系统在发送邮件时出错. 详细信息: {notification.details.exception}
             </span>
           ),
         };
       case 'es_cluster_red':
         return {
-          title: 'Elasticsearch cluster unhealthy (RED)',
+          title: 'Elasticsearch 集群告警 (RED)',
           description: (
             <span>
-              The Elasticsearch cluster state is RED which means shards are unassigned.
-              This usually indicates a crashed and corrupt cluster and needs to be investigated. Graylog will write
-              into the local disk journal. Read how to fix this in {' '}
-              <DocumentationLink page={DocsHelper.PAGES.ES_CLUSTER_STATUS_RED} text="the Elasticsearch setup documentation." />
+              Elasticsearch集群状态为告警. 这一围着分片未被指定. 这通常意味着集群节点错误. 系统会创建日志.
             </span>
           ),
         };
@@ -68,36 +60,30 @@ class NotificationsFactory {
           title: 'Elasticsearch nodes with too low open file limit',
           description: (
             <span>
-              There are Elasticsearch nodes in the cluster that have a too low open file limit (current limit:{' '}
-              <em>{notification.details.max_file_descriptors}</em> on <em>{notification.details.hostname}</em>;
-              should be at least 64000) This will be causing problems
-              that can be hard to diagnose. Read how to raise the maximum number of open files in {' '}
-              <DocumentationLink page={DocsHelper.PAGES.ES_OPEN_FILE_LIMITS} text="the Elasticsearch setup documentation" />.
+              Elasticsearch 节点打开文件句柄有限制: (当前限制:{' '}
+              <em>{notification.details.max_file_descriptors}</em> 在 <em>{notification.details.hostname}</em>;
+              一般至少要 64000) 这样会导致分析困难.
             </span>
           ),
         };
       case 'es_unavailable':
         return {
-          title: 'Elasticsearch cluster unavailable',
+          title: 'Elasticsearch 集群不可达',
           description: (
             <span>
-              Graylog could not successfully connect to the Elasticsearch cluster. If you're using multicast, check that
-              it is working in your network and that Elasticsearch is accessible. Also check that the cluster name setting
-              is correct. Read how to fix this in {' '}
-              <DocumentationLink page={DocsHelper.PAGES.ES_CLUSTER_UNAVAILABLE}
-                                 text="the Elasticsearch setup documentation." />
+              无法连接Elasticsearch 集群. 如果您在使用广播, 请检查您的网络状态并且检查Elasticsearch是否可达.
+              并且检查集群名称是否正确.
             </span>
           ),
         };
       case 'gc_too_long':
         return {
-          title: 'Nodes with too long GC pauses',
+          title: '节点垃圾回收机制过长',
           description: (
             <span>
-              There are Graylog nodes on which the garbage collector runs too long.
-              Garbage collection runs should be as short as possible. Please check whether those nodes are healthy.
-              (Node: <em>{notification.node_id}</em>, GC duration: <em>{notification.details.gc_duration_ms} ms</em>,
-              GC threshold: <em>{notification.details.gc_threshold_ms} ms</em>)
+              节点垃圾回收时间过长. 垃圾回收时间应当很短, 请检查节点状态.
+              (节点: <em>{notification.node_id}</em>, 垃圾回收时间: <em>{notification.details.gc_duration_ms} ms</em>,
+              GC 临界值: <em>{notification.details.gc_threshold_ms} 毫秒</em>)
             </span>
           ),
         };
@@ -108,121 +94,111 @@ class NotificationsFactory {
         };
       case 'index_ranges_recalculation':
         return {
-          title: 'Index ranges recalculation required',
+          title: '需要重新计算索引范围',
           description: (
             <span>
-              The index ranges are out of sync. Please go to System/Indices and trigger a index range recalculation from
-              the Maintenance menu of {notification.details.index_sets ? (`the following index sets: ${notification.details.index_sets}`) : 'all index sets'}
+              索引范围未更新. 请前往 系统/分片 并且触发索引范围重新计算, 该操作可以在
+              维护目录操作, 请更新{notification.details.index_sets ? (`以下索引集: ${notification.details.index_sets}`) : '索引索引集'}
             </span>
           ),
         };
       case 'input_failed_to_start':
         return {
-          title: 'An input has failed to start',
+          title: '输入启动失败',
           description: (
             <span>
-              Input {notification.details.input_id} has failed to start on node {notification.node_id} for this reason:
-              »{notification.details.reason}«. This means that you are unable to receive any messages from this input.
-              This is mostly an indication for a misconfiguration or an error. You can click {' '}
-              <Link to={Routes.SYSTEM.INPUTS}>here</Link> to solve this.
+              输入 {notification.details.input_id} 启动失败, 在节点 {notification.node_id}. 可能原因:
+              »{notification.details.reason}«. 这意味着您将无法从该输入接收消息.
+              这通常意味着错误的配置或者服务器错误, 点击 {' '}
+              <Link to={Routes.SYSTEM.INPUTS}>这里</Link> 解决该问题.
             </span>
           ),
         };
       case 'journal_uncommitted_messages_deleted':
         return {
-          title: 'Uncommited messages deleted from journal',
+          title: '日志文件删除未提交的消息',
           description: (
             <span>
-              Some messages were deleted from the Graylog journal before they could be written to Elasticsearch. Please
-              verify that your Elasticsearch cluster is healthy and fast enough. You may also want to review your Graylog
-              journal settings and set a higher limit. (Node: <em>{notification.node_id}</em>)
+              一些消息被日志文件删除当他们还未被写入Elasticsearch. 请
+              验证您的Elasticsearch 集群 状态. 您也可以检查日志配置并且设定到一个更高的值. (节点: <em>{notification.node_id}</em>)
             </span>
           ),
         };
       case 'journal_utilization_too_high':
         return {
-          title: 'Journal utilization is too high',
+          title: '日志使用量过高',
           description: (
             <span>
-              Journal utilization is too high and may go over the limit soon. Please verify that your Elasticsearch cluster
-              is healthy and fast enough. You may also want to review your Graylog journal settings and set a higher limit.
-              (Node: <em>{notification.node_id}</em>)
+              日志使用量过高, 很快就会达到上限. 请检查您的Elasticsearch 集群
+              状态. 您也可以检查日志配置并且设定到一个更高的值.
+              (节点: <em>{notification.node_id}</em>)
             </span>
           ),
         };
       case 'multi_master':
         return {
-          title: 'Multiple Graylog server masters in the cluster',
+          title: '集群中有多个主节点',
           description: (
             <span>
-              There were multiple Graylog server instances configured as master in your Graylog cluster. The cluster handles
-              this automatically by launching new nodes as slaves if there already is a master but you should still fix this.
-              Check the graylog.conf of every node and make sure that only one instance has is_master set to true. Close this
-              notification if you think you resolved the problem. It will pop back up if you start a second master node again.
+              日志集群中有多个节点被配置为主节点. 集群会将新的节点指定为辅助节点如果已存在主节点. 您应当处理该情况,
+              检查每个节点的graylog.conf 并且确保只有一个节点是主节点. 处理后可关闭该通知.
             </span>
           ),
         };
       case 'no_input_running':
         return {
-          title: 'There is a node without any running inputs.',
+          title: '有节点没有运行输入',
           description: (
             <span>
-              There is a node without any running inputs. This means that you are not receiving any messages from this
-              node at this point in time. This is most probably an indication of an error or misconfiguration.
-              You can click <Link to={Routes.SYSTEM.INPUTS}>here</Link> to solve this.
+              有一个节点没有运行任何输入. 这意味着该节点没有在接收消息. 这通常是因为您还没有配置输入或者配置出错.
+              请参考<Link to={Routes.SYSTEM.INPUTS}>这里</Link>.
             </span>
           ),
         };
       case 'no_master':
         return {
-          title: 'There was no master Graylog server node detected in the cluster.',
+          title: '集群中没有服务器主节点.',
           description: (
             <span>
-              Certain operations of Graylog server require the presence of a master node, but no such master was started.
-              Please ensure that one of your Graylog server nodes contains the setting <code>is_master = true</code> in its
-              configuration and that it is running. Until this is resolved index cycling will not be able to run, which
-              means that the index retention mechanism is also not running, leading to increased index sizes. Certain
-              maintenance functions as well as a variety of web interface pages (e.g. Dashboards) are unavailable.
+              一些特定操作需要集群中存在主节点, 但是本系统中没有发现主节点.
+              请确保日志服务器系统配置文件中设置了 <code>is_master = true</code>. 除非该问题解决, 所有保留机制才会生效.
+              一些web接口页面(比如面板)可能无法使用.
             </span>
           ),
         };
       case 'outdated_version':
         return {
-          title: 'You are running an outdated Graylog version.',
+          title: '有新的xxxx 日志平台版本可用.',
           description: (
             <span>
-              The most recent stable Graylog version is <em>{notification.details.current_version}</em>.
-              Get it from <a href="https://www.graylog.org/" target="_blank">https://www.graylog.org/</a>.
+              最新的版本是 <em>{notification.details.current_version}</em>, 当前为稳定版.
             </span>
           ),
         };
       case 'output_disabled':
         return {
-          title: 'Output disabled',
+          title: '输出被禁用',
           description: (
             <span>
-              The output with the id {notification.details.outputId} in stream "{notification.details.streamTitle}"
-              (id: {notification.details.streamId}) has been disabled for {notification.details.faultPenaltySeconds}
-              seconds because there were {notification.details.faultCount} failures.
-              (Node: <em>{notification.node_id}</em>, Fault threshold: <em>{notification.details.faultCountThreshold}</em>)
+              输出 {notification.details.outputId} 在数据流 "{notification.details.streamTitle}"
+              (id: {notification.details.streamId}) 中被禁用了 {notification.details.faultPenaltySeconds}
+              秒, 因为存在 {notification.details.faultCount} 个失败.
+              (节点: <em>{notification.node_id}</em>, 错误阈值: <em>{notification.details.faultCountThreshold}</em>)
             </span>
           ),
         };
       case 'stream_processing_disabled':
         return {
-          title: 'Processing of a stream has been disabled due to excessive processing time.',
+          title: '数据流处理被禁用，原因是过长的处理时间.',
           description: (
             <span>
-              The processing of stream <em>{notification.details.stream_id}</em> has taken too long for{' '}
-              {notification.details.fault_count} times. To protect the stability of message processing,
-              this stream has been disabled. Please correct the stream rules and reenable the stream.
-              Check <DocumentationLink page={DocsHelper.PAGES.STREAM_PROCESSING_RUNTIME_LIMITS} text="the documentation" />{' '}
-              for more details.
+              数据流 <em>{notification.details.stream_id}</em> 处理花费了{' '}
+              {notification.details.fault_count} 时间. 为了维护消息处理的稳定性, 数据流处理被禁用.
             </span>
           ),
         };
       default:
-        return { title: `unknown (${notification.type})`, description: 'unknown' };
+        return { title: `未知 (${notification.type})`, description: '未知' };
     }
   }
 }

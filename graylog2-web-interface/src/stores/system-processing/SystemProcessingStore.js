@@ -11,11 +11,11 @@ const SystemProcessingStore = Reflux.createStore({
       .then(
         () => {
           this.trigger({});
-          UserNotification.success(`Message processing paused successfully in '${nodeId}'`);
+          UserNotification.success(`在节点 '${nodeId}'暂停消息处理程序成功`);
         },
         (error) => {
-          UserNotification.error(`Pausing message processing in '${nodeId}' failed: ${error}`,
-            `Could not pause message processing in node '${nodeId}'`);
+          UserNotification.error(`在节点 '${nodeId}' 暂停消息处理程序失败: ${error}`,
+            ` 无法在节点'${nodeId}'暂停消息处理程序`);
         },
       );
   },
@@ -25,11 +25,11 @@ const SystemProcessingStore = Reflux.createStore({
       .then(
         () => {
           this.trigger({});
-          UserNotification.success(`Message processing resumed successfully in '${nodeId}'`);
+          UserNotification.success(`在节点 '${nodeId}'恢复消息处理程序成功`);
         },
         (error) => {
-          UserNotification.error(`Resuming message processing in '${nodeId}' failed: ${error}`,
-            `Could not resume message processing in node '${nodeId}'`);
+          UserNotification.error(`在节点 '${nodeId}'恢复消息处理程序失败: ${error}`,
+            `无法在节点 '${nodeId}'恢复消息处理程序`);
         },
       );
   },

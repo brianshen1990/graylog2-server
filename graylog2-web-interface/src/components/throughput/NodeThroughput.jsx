@@ -42,14 +42,14 @@ const NodeThroughput = React.createClass({
     if (this.props.longFormat) {
       return (
         <span>
-          Processing <strong>{numeral(metrics.totalIn).format('0,0')}</strong> incoming and <strong>
-            {numeral(metrics.totalOut).format('0,0')}</strong> outgoing msg/s.
+          正在处理 <strong>{numeral(metrics.totalIn).format('0,0')}</strong> 条输入 和 <strong>
+            {numeral(metrics.totalOut).format('0,0')}</strong> 条输出 消息/s.
         </span>
       );
     }
     return (
       <span>
-          In {numeral(metrics.totalIn).format('0,0')} / Out {numeral(metrics.totalOut).format('0,0')} msg/s.
+          输入 {numeral(metrics.totalIn).format('0,0')} / 输出 {numeral(metrics.totalOut).format('0,0')} 条消息/s.
         </span>
     );
   },

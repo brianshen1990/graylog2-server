@@ -28,7 +28,7 @@ const Decorator = React.createClass({
   },
 
   _handleDeleteClick() {
-    if (window.confirm('Do you really want to delete this decorator?')) {
+    if (window.confirm('确定要删除该装饰器?')) {
       DecoratorsActions.remove(this.props.decorator.id);
     }
   },
@@ -72,10 +72,10 @@ const Decorator = React.createClass({
     const decorator = this.props.decorator;
     const editPermission = this.isPermitted(permissions, `decorators:edit:${decorator.stream}`);
     return (
-      <DropdownButton id={`decorator-${decorator.id}-actions`} bsStyle="default" bsSize="xsmall" title="Actions" pullRight>
-        <MenuItem onSelect={this._handleEditClick} disabled={!editPermission}>Edit</MenuItem>
+      <DropdownButton id={`decorator-${decorator.id}-actions`} bsStyle="default" bsSize="xsmall" title="操作" pullRight>
+        <MenuItem onSelect={this._handleEditClick} disabled={!editPermission}>编辑</MenuItem>
         <MenuItem divider />
-        <MenuItem onSelect={this._handleDeleteClick} disabled={!editPermission}>Delete</MenuItem>
+        <MenuItem onSelect={this._handleDeleteClick} disabled={!editPermission}>删除</MenuItem>
       </DropdownButton>
     );
   },
@@ -101,7 +101,7 @@ const Decorator = React.createClass({
         <ConfigurationForm ref="editForm"
                            key="configuration-form-decorator"
                            configFields={this.props.typeDefinition.requested_configuration}
-                           title={`Edit ${this.props.typeDefinition.name}`}
+                           title={`编辑 ${this.props.typeDefinition.name}`}
                            typeName={decorator.type}
                            includeTitleField={false}
                            submitAction={this._handleSubmit}

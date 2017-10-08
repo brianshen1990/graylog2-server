@@ -59,6 +59,11 @@ public class SearchResponseCsvWriter implements MessageBodyWriter<SearchResponse
     public void writeTo(SearchResponse searchResponse, Class<?> type, Type genericType, Annotation[] annotations,
             MediaType mediaType, MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream)
             throws IOException, WebApplicationException {
+
+        entityStream.write(0xEF);
+        entityStream.write(0xBB);
+        entityStream.write(0xBF);
+
         final CSVWriter csvWriter = new CSVWriter(new OutputStreamWriter(entityStream, StandardCharsets.UTF_8));
         final ImmutableSortedSet<String> sortedFields = ImmutableSortedSet.copyOf(
                 Iterables.concat(searchResponse.fields(), Lists.newArrayList(Message.FIELD_SOURCE, Message.FIELD_TIMESTAMP)));

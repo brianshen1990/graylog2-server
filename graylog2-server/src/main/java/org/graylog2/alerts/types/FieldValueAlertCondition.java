@@ -92,22 +92,22 @@ public class FieldValueAlertCondition extends AbstractAlertCondition {
         @Override
         public ConfigurationRequest getRequestedConfiguration() {
             final ConfigurationRequest configurationRequest = ConfigurationRequest.createWithFields(
-                    new TextField("field", "Field", "", "Field name that should be checked", ConfigurationField.Optional.NOT_OPTIONAL),
-                    new NumberField("time", "Time Range", 5, "Evaluate the condition for all messages received in the given number of minutes", ConfigurationField.Optional.NOT_OPTIONAL),
+                    new TextField("field", "字段", "", "字段名会被检测", ConfigurationField.Optional.NOT_OPTIONAL),
+                    new NumberField("time", "时间范围", 5, "对所有输入数据每分钟进行统计", ConfigurationField.Optional.NOT_OPTIONAL),
                     new DropdownField(
                             "threshold_type",
-                            "Threshold Type",
+                            "临界值类型",
                             ThresholdType.HIGHER.toString(),
                             DropdownField.ValueTemplates.valueMapFromEnum(ThresholdType.class, thresholdType -> thresholdType.name().toLowerCase(Locale.ENGLISH)),
-                            "Select condition to trigger alert: when value is higher or lower than the threshold",
+                            "选择触发条件：当值高于或者低于临界值",
                             ConfigurationField.Optional.NOT_OPTIONAL),
                     new NumberField("threshold", "Threshold", 0.0, "Value which triggers an alert if crossed", ConfigurationField.Optional.NOT_OPTIONAL),
                     new DropdownField(
                             "type",
-                            "Aggregation Type",
+                            "聚合类型",
                             CheckType.MAX.toString(),
                             Arrays.stream(CheckType.values()).collect(Collectors.toMap(Enum::toString, CheckType::getDescription)),
-                            "Select statistical function to use in the aggregation",
+                            "选择聚合统计类型",
                             ConfigurationField.Optional.NOT_OPTIONAL)
             );
             configurationRequest.addFields(AbstractAlertCondition.getDefaultConfigurationFields());
@@ -119,10 +119,9 @@ public class FieldValueAlertCondition extends AbstractAlertCondition {
     public static class Descriptor extends AlertCondition.Descriptor {
         public Descriptor() {
             super(
-                "Field Aggregation Alert Condition",
+                "字段聚合告警条件",
                 "https://www.graylog.org/",
-                "This condition is triggered when the aggregated value of a field is higher/lower than a defined "
-                        + "threshold for a given time range."
+                "高告警条件会在聚合值与临界区间相比较的情况下触发。"
             );
         }
     }

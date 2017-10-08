@@ -75,11 +75,11 @@ const TimeoutInput = React.createClass({
       <span>
         <Input ref="session_timeout_never" type="checkbox" id="session-timeout-never" name="session_timeout_never"
                labelClassName={`col-sm-${this.props.controlSize}`} wrapperClassName={`col-sm-offset-${this.props.labelSize} col-sm-${this.props.controlSize}`}
-               label="Sessions do not time out" help="When checked sessions never time out due to inactivity."
+               label="Sessions 不超时关闭" help="无操作的情况下 Session 不关闭."
                onChange={this._onClick} checked={this.state.sessionTimeoutNever} />
 
-        <Input label="Timeout"
-               help="Session automatically end after this amount of time, unless they are actively used."
+        <Input label="超时"
+               help="Session超时会自动关闭，除非用户一直有操作."
                labelClassName={`col-sm-${this.props.labelSize}`} wrapperClassName={`col-sm-${this.props.controlSize}`}>
           <Row>
             <Col sm={2}>

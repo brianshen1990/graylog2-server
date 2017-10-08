@@ -162,49 +162,48 @@ const SearchesConfig = React.createClass({
 
     return (
       <div>
-        <h2>Search Configuration</h2>
+        <h2>搜索配置</h2>
 
         <dl className="deflist">
-          <dt>Query time range limit</dt>
+          <dt>查找时间限制</dt>
           <dd>{limit}</dd>
-          <dd>The maximum time users can query data in the past. This prevents users from accidentally creating queries which
-            span a lot of data and would need a long time and many resources to complete (if at all).</dd>
+          <dd>用户可查找的最大时间。这样能避免用户查找时间区域过大导致的资源消耗。</dd>
         </dl>
 
         <Row>
           <Col md={6}>
-            <strong>Relative time range options</strong>
+            <strong>相对时间范围选项</strong>
             <TimeRangeOptionsSummary options={this.state.config.relative_timerange_options} />
           </Col>
           <Col md={6}>
-            <strong>Surrounding time range options</strong>
+            <strong>附近时间范围选项</strong>
             <TimeRangeOptionsSummary options={this.state.config.surrounding_timerange_options} />
 
-            <strong>Surrounding search filter fields</strong>
+            <strong>附近搜索筛选字段</strong>
             <ul>
               {filterFields}
             </ul>
           </Col>
         </Row>
         <IfPermitted permissions="clusterconfigentry:edit">
-          <Button bsStyle="info" bsSize="xs" onClick={this._openModal}>Update</Button>
+          <Button bsStyle="info" bsSize="xs" onClick={this._openModal}>更新</Button>
         </IfPermitted>
 
         <BootstrapModalForm ref="searchesConfigModal"
-                            title="Update Search Configuration"
+                            title="更新搜索配置"
                             onSubmitForm={this._saveConfig}
                             onModalClose={this._resetConfig}
-                            submitButtonText="Save">
+                            submitButtonText="保存">
           <fieldset>
-            <Input type="checkbox" label="Enable query limit"
+            <Input type="checkbox" label="开启搜索限制"
                    name="enabled"
                    checked={this._isEnabled()}
                    onChange={this._onChecked} />
             {this._isEnabled() &&
             <ISODurationInput duration={config.query_time_range_limit}
                               update={this._onUpdate('query_time_range_limit')}
-                              label="Query time range limit (ISO8601 Duration)"
-                              help={'The maximum time range for searches. (i.e. "P30D" for 30 days, "PT24H" for 24 hours)'}
+                              label="查找事件范围限制 (ISO8601 Duration)"
+                              help={'最大查找时间范围. (i.e. "P30D" 表示30天, "PT24H" 表示24 小时)'}
                               validator={this.queryTimeRangeLimitValidator}
                               required />
             }
@@ -212,20 +211,20 @@ const SearchesConfig = React.createClass({
             <TimeRangeOptionsForm options={this.state.relativeTimeRangeOptionsUpdate || this._buildTimeRangeOptions(this.state.config.relative_timerange_options)}
                                   update={this._onRelativeTimeRangeOptionsUpdate}
                                   validator={this.relativeTimeRangeValidator}
-                                  title="Relative Timerange Options"
-                                  help={<span>Configure the available options for the <strong>relative</strong> time range selector as <strong>ISO8601 duration</strong></span>} />
+                                  title="相对时间范围选项"
+                                  help={<span>为 <strong>相对</strong>时间范围配置选项，按照 <strong>ISO8601 duration</strong>标准</span>} />
 
             <TimeRangeOptionsForm options={this.state.surroundingTimeRangeOptionsUpdate || this._buildTimeRangeOptions(this.state.config.surrounding_timerange_options)}
                                   update={this._onSurroundingTimeRangeOptionsUpdate}
                                   validator={this.surroundingTimeRangeValidator}
-                                  title="Surrounding Timerange Options"
-                                  help={<span>Configure the available options for the <strong>surrounding</strong> time range selector as <strong>ISO8601 duration</strong></span>} />
+                                  title="附近时间范围选项"
+                                  help={<span>为 <strong>附近</strong> 时间范围配置选项，按照 <strong>ISO8601 duration</strong>标准</span>} />
 
             <Input type="text"
-                   label="Surrounding search filter fields"
+                   label="附近时间搜索字段"
                    onChange={this._onFilterFieldsUpdate}
                    value={this.state.surroundingFilterFields || filterFieldsString}
-                   help="A ',' separated list of message fields that will be used as filter for the surrounding messages query."
+                   help="分隔符 ','会用来分割一系列的搜索字段以便查询。"
                    required />
           </fieldset>
         </BootstrapModalForm>

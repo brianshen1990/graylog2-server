@@ -13,7 +13,7 @@ const LoadingPage = React.createClass({
 
   getDefaultProps() {
     return {
-      text: 'Loading, please wait...',
+      text: '加载中, 请稍等...',
     };
   },
 
@@ -29,11 +29,11 @@ const LoadingPage = React.createClass({
 
   render() {
     return (
-      <DocumentTitle title="Loading...">
+      <DocumentTitle title="加载中...">
         <div className="container" id="login-box">
           <Row>
             <Col md={4} mdOffset={4} className="well" id="login-box-content">
-              <legend><i className="fa fa-group" /> Welcome to Graylog</legend>
+              <legend>xxxx 日志平台</legend>
               <p className="loading-text">
                 <Spinner text={this.props.text} />
               </p>

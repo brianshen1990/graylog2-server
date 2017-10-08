@@ -96,12 +96,12 @@ const LUTDataAdaptersPage = React.createClass({
 
     if (isShowing || isEditing) {
       if (!this.state.dataAdapter) {
-        content = <Spinner text="Loading data adapter" />;
+        content = <Spinner text="导入数据转接器" />;
       } else if (isEditing) {
         content = (
           <Row className="content">
             <Col lg={12}>
-              <h2>Data Adapter</h2>
+              <h2>数据转接器</h2>
               <DataAdapterForm dataAdapter={this.state.dataAdapter}
                                type={this.state.dataAdapter.config.type}
                                create={false}
@@ -116,7 +116,7 @@ const LUTDataAdaptersPage = React.createClass({
       }
     } else if (this._isCreating(this.props)) {
       if (!this.state.types) {
-        content = <Spinner text="Loading data adapter types" />;
+        content = <Spinner text="导入数据转接器类型" />;
       } else {
         content = (<DataAdapterCreate history={this.props.history}
                                       types={this.state.types}
@@ -125,39 +125,39 @@ const LUTDataAdaptersPage = React.createClass({
                                       validationErrors={this.state.validationErrors} />);
       }
     } else if (!this.state.dataAdapters) {
-      content = <Spinner text="Loading data adapters" />;
+      content = <Spinner text="导入数据转接器" />;
     } else {
       content = (<DataAdaptersOverview dataAdapters={this.state.dataAdapters}
                                        pagination={this.state.pagination} errorStates={this.state.tableStore.errorStates} />);
     }
 
     return (
-      <DocumentTitle title="Lookup Tables - Data Adapters">
+      <DocumentTitle title="查找表 - 数据转接器">
         <span>
-          <PageHeader title="Data adapters for Lookup Tables">
-            <span>Data adapters provide the actual values for lookup tables</span>
+          <PageHeader title="查找表 - 数据转接器">
+            <span>数据转接器为查找表提供数据转换。</span>
             {null}
             <span>
               {isShowing && (
                 <LinkContainer to={Routes.SYSTEM.LOOKUPTABLES.DATA_ADAPTERS.edit(this.props.params.adapterName)}
                                onlyActiveOnIndex>
-                  <Button bsStyle="success">Edit</Button>
+                  <Button bsStyle="success">编辑</Button>
                 </LinkContainer>
               )}
               &nbsp;
               {(isShowing || isEditing) && (
                 <LinkContainer to={Routes.SYSTEM.LOOKUPTABLES.DATA_ADAPTERS.OVERVIEW}
                                onlyActiveOnIndex>
-                  <Button bsStyle="info">Data Adapters</Button>
+                  <Button bsStyle="info">数据转接器</Button>
                 </LinkContainer>
               )}
               &nbsp;
               <LinkContainer to={Routes.SYSTEM.LOOKUPTABLES.OVERVIEW} onlyActiveOnIndex>
-                <Button bsStyle="info">Lookup Tables</Button>
+                <Button bsStyle="info">查找表</Button>
               </LinkContainer>
               &nbsp;
               <LinkContainer to={Routes.SYSTEM.LOOKUPTABLES.CACHES.OVERVIEW} onlyActiveOnIndex>
-                <Button bsStyle="info">Caches</Button>
+                <Button bsStyle="info">缓存</Button>
               </LinkContainer>
             </span>
           </PageHeader>

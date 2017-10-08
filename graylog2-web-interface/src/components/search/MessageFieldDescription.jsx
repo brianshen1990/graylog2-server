@@ -81,7 +81,7 @@ const MessageFieldDescription = React.createClass({
         <div className="field-value">{this.props.possiblyHighlight(this.props.fieldName)}</div>
         {this._shouldShowTerms() &&
         <Alert bsStyle="info" onDismiss={() => this.setState({ messageTerms: Immutable.Map() })}>
-          Field terms: &nbsp;{this._getFormattedTerms()}
+          相关值: &nbsp;{this._getFormattedTerms()}
         </Alert>
         }
         {this.props.isDecorated && <DecoratedMessageFieldMarker />}

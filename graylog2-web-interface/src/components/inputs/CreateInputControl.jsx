@@ -31,7 +31,7 @@ const CreateInputControl = React.createClass({
       });
       options.sort((inputTypeA, inputTypeB) => inputTypeA.label.toLowerCase().localeCompare(inputTypeB.label.toLowerCase()));
     } else {
-      options.push({ value: 'none', label: 'No inputs available', disabled: true });
+      options.push({ value: 'none', label: '没有可用输入', disabled: true });
     }
 
     return options;
@@ -61,8 +61,8 @@ const CreateInputControl = React.createClass({
         <InputForm ref="configurationForm"
                    key="configuration-form-input"
                    configFields={this.state.selectedInputDefinition.requested_configuration}
-                   title={<span>Launch new <em>{inputTypeName}</em> input</span>}
-                   helpBlock={'Select a name of your new input that describes it.'}
+                   title={<span>开启新的<em>{inputTypeName}</em> 输入</span>}
+                   helpBlock={'为你的输入选择一个名称'}
                    typeName={this.state.selectedInput}
                    submitAction={this._createInput} />
       );
@@ -72,14 +72,11 @@ const CreateInputControl = React.createClass({
         <Col md={12}>
           <form className="form-inline" onSubmit={this._openModal}>
             <div className="form-group" style={{ width: 300 }}>
-              <Select placeholder="Select input" options={this._formatSelectOptions()} matchProp="label"
+              <Select placeholder="选择输入" options={this._formatSelectOptions()} matchProp="label"
                       onValueChange={this._onInputSelect} value={this.state.selectedInput} />
             </div>
             &nbsp;
-            <Button bsStyle="success" type="submit" disabled={!this.state.selectedInput}>Launch new input</Button>
-            <Button href="https://marketplace.graylog.org/" target="_blank" bsStyle="info" style={{ marginLeft: 10 }}>
-              <i className="fa fa-external-link" />&nbsp;Find more inputs
-            </Button>
+            <Button bsStyle="success" type="submit" disabled={!this.state.selectedInput}>设置新的输入</Button>
           </form>
           {inputModal}
         </Col>

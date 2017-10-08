@@ -29,7 +29,7 @@ const EditPatternModal = React.createClass({
     const name = event.target.value;
 
     if (!this.props.validPatternName(name)) {
-      this.setState({ name: name, error: true, error_message: 'Pattern with that name already exists!' });
+      this.setState({ name: name, error: true, error_message: '同名模式已存在！' });
     } else {
       this.setState({ name: name, error: false, error_message: '' });
     }
@@ -56,9 +56,9 @@ const EditPatternModal = React.createClass({
   render() {
     let triggerButtonContent;
     if (this.props.create) {
-      triggerButtonContent = 'Create pattern';
+      triggerButtonContent = '创建模式';
     } else {
-      triggerButtonContent = <span>Edit</span>;
+      triggerButtonContent = <span>编辑</span>;
     }
     return (
       <span>
@@ -66,13 +66,13 @@ const EditPatternModal = React.createClass({
           {triggerButtonContent}
         </button>
         <BootstrapModalForm ref="modal"
-                                    title={`${this.props.create ? 'Create' : 'Edit'} Grok Pattern ${this.state.name}`}
+                                    title={`${this.props.create ? '创建' : '编辑'} Grok 模式 ${this.state.name}`}
                                     onSubmitForm={this._save}
-                                    submitButtonText="Save">
+                                    submitButtonText="保存">
           <fieldset>
             <Input type="text"
                            id={this._getId('pattern-name')}
-                           label="Name"
+                           label="名称"
                            onChange={this._onNameChange}
                            value={this.state.name}
                            bsStyle={this.state.error ? 'error' : null}
@@ -81,7 +81,7 @@ const EditPatternModal = React.createClass({
                            required />
             <Input type="textarea"
                            id={this._getId('pattern')}
-                           label="Pattern"
+                           label="模式"
                            onChange={this._onPatternChange}
                            value={this.state.pattern}
                            required />

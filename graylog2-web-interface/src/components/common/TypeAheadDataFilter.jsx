@@ -114,14 +114,14 @@ const TypeAheadDataFilter = React.createClass({
         <form className="form-inline" onSubmit={this._onSearchTextChanged} style={{ display: 'inline' }}>
           <TypeAheadInput ref="typeAheadInput"
                           onSuggestionSelected={this._onFilterAdded}
-                          suggestionText={`Filter by ${this.props.filterBy}: `}
+                          suggestionText={`按照 ${this.props.filterBy}筛选: `}
                           suggestions={suggestions}
                           label={this.props.label}
                           displayKey={this.props.displayKey} />
-          <Button type="submit" style={{ marginLeft: 5 }}>Filter</Button>
+          <Button type="submit" style={{ marginLeft: 5 }}>筛选</Button>
           <Button type="button" style={{ marginLeft: 5 }} onClick={this._resetFilters}
                   disabled={this.state.filters.count() === 0 && this.state.filterText === ''}>
-            Reset
+            重置
           </Button>
         </form>
         <ul className="pill-list">

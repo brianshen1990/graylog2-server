@@ -64,6 +64,16 @@ const LegacyHistogram = React.createClass({
     return this.props.histogram.histogram_boundaries.from;
   },
   render() {
+    const RESOLUTIONS_mapping = {
+      'year': "年",
+      'quarter': "季度",
+      'month': "月份",
+      'week': "星期",
+      'day': "天",
+      'hour': "小时",
+      'minute':"分钟"
+    };
+
     if (SearchStore.resolution === undefined) {
       SearchStore.resolution = this.props.histogram.interval;
     }
@@ -77,7 +87,7 @@ const LegacyHistogram = React.createClass({
         <li key={resolution}>
           <a href="#" className={className} data-resolution={resolution}
              onClick={this._resolutionChanged(resolution)}>
-            {resolution}
+            {RESOLUTIONS_mapping[resolution] || resolution}
           </a>
           {suffix}
         </li>
@@ -93,14 +103,14 @@ const LegacyHistogram = React.createClass({
 
     return (<div className="content-col">
       <div className="pull-right">
-        <AddToDashboardMenu title="Add to dashboard"
+        <AddToDashboardMenu title="添加到面板"
                             widgetType={this.WIDGET_TYPE}
                             configuration={{ interval: this.props.histogram.interval }}
                             pullRight
                             permissions={this.props.permissions}
                             isStreamSearch={this.props.stream !== null} />
       </div>
-      <h1>Histogram</h1>
+      <h1>柱状图</h1>
 
       {resolutionSelector}
 

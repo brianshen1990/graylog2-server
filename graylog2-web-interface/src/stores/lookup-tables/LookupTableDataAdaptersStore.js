@@ -53,7 +53,7 @@ const LookupTableDataAdaptersStore = Reflux.createStore({
         query: response.query,
       };
       this.trigger({ pagination: this.pagination, dataAdapters: response.data_adapters });
-    }, this._errorHandler('Fetching lookup table data adapters failed', 'Could not retrieve the lookup dataAdapters'));
+    }, this._errorHandler('获取查找表 数据转接器失败', '无法获取查找表 数据转接器'));
 
     LookupTableDataAdaptersActions.searchPaginated.promise(promise);
     return promise;
@@ -65,7 +65,7 @@ const LookupTableDataAdaptersStore = Reflux.createStore({
 
     promise.then((response) => {
       this.trigger({ dataAdapter: response });
-    }, this._errorHandler(`Fetching lookup table data adapter ${idOrName} failed`, 'Could not retrieve lookup table data adapter'));
+    }, this._errorHandler(`获取查找表 数据转接器 ${idOrName} 失败`, '无法获取查找表 数据转接器'));
 
     LookupTableDataAdaptersActions.get.promise(promise);
     return promise;
@@ -77,7 +77,7 @@ const LookupTableDataAdaptersStore = Reflux.createStore({
 
     promise.then((response) => {
       this.trigger({ dataAdapter: response });
-    }, this._errorHandler('Creating lookup table data adapter failed', `Could not create lookup table data adapter "${dataAdapter.name}"`));
+    }, this._errorHandler('创建查找表 数据转接器失败', `无法创建查找表 数据转接器 "${dataAdapter.name}"`));
 
     LookupTableDataAdaptersActions.create.promise(promise);
     return promise;
@@ -89,7 +89,7 @@ const LookupTableDataAdaptersStore = Reflux.createStore({
 
     promise.then((response) => {
       this.trigger({ dataAdapter: response });
-    }, this._errorHandler('Updating lookup table data adapter failed', `Could not update lookup table data adapter "${dataAdapter.name}"`));
+    }, this._errorHandler('更新查找表 数据转接器失败', `无法更新查找表 数据转接器 "${dataAdapter.name}"`));
 
     LookupTableDataAdaptersActions.update.promise(promise);
     return promise;
@@ -101,7 +101,7 @@ const LookupTableDataAdaptersStore = Reflux.createStore({
 
     promise.then((response) => {
       this.trigger({ types: response });
-    }, this._errorHandler('Fetching available types failed', 'Could not fetch the available lookup table data adapter types'));
+    }, this._errorHandler('获取可用类型失败', '无法获取查找表 数据转接器可用类型'));
 
     LookupTableDataAdaptersActions.getTypes.promise(promise);
     return promise;
@@ -111,7 +111,7 @@ const LookupTableDataAdaptersStore = Reflux.createStore({
     const url = this._url(`adapters/${idOrName}`);
     const promise = fetch('DELETE', url);
 
-    promise.catch(this._errorHandler('Deleting lookup table data adapter failed', `Could not delete lookup table data adapter "${idOrName}"`));
+    promise.catch(this._errorHandler('删除查找表 数据转接器失败', `无法删除查找表 数据转接器 "${idOrName}"`));
 
     LookupTableDataAdaptersActions.delete.promise(promise);
     return promise;
@@ -124,7 +124,7 @@ const LookupTableDataAdaptersStore = Reflux.createStore({
       this.trigger({
         lookupResult: response,
       });
-    }, this._errorHandler('Lookup failed', `Could not lookup value for key "${key}" in lookup table data adapter "${adapterName}"`));
+    }, this._errorHandler('查找失败', `无法查找关键字"${key}" 的值，在查找表 数据转接器 "${adapterName}"`));
 
     LookupTableDataAdaptersActions.lookup.promise(promise);
 
@@ -139,7 +139,7 @@ const LookupTableDataAdaptersStore = Reflux.createStore({
       this.trigger({
         validationErrors: response.errors,
       });
-    }, this._errorHandler('Lookup table data adapter validation failed', `Could not validate lookup table data adapter "${adapter.name}"`));
+    }, this._errorHandler('查找表 数据转接器验证失败', `无法验证查找表 数据转接器 "${adapter.name}"`));
     LookupTableDataAdaptersActions.validate.promise(promise);
     return promise;
   },

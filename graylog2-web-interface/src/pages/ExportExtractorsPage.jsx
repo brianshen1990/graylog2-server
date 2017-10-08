@@ -32,12 +32,11 @@ const ExportExtractorsPage = React.createClass({
     }
 
     return (
-      <DocumentTitle title={`Export extractors of ${this.state.input.title}`}>
+      <DocumentTitle title={`导出提取器 ${this.state.input.title}`}>
         <div>
-          <PageHeader title={<span>Export extractors of <em>{this.state.input.title}</em></span>}>
+          <PageHeader title={<span>导出提取器 <em>{this.state.input.title}</em></span>}>
             <span>
-              The extractors of an input can be exported to JSON for importing into other setups
-              or sharing in <a href="https://marketplace.graylog.org/" target="_blank">the Graylog Marketplace</a>.
+              提取器可以被导出成JSON 并且被应用到其他的输入上。
             </span>
           </PageHeader>
           <ExportExtractors input={this.state.input} />

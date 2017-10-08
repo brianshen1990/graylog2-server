@@ -13,7 +13,7 @@ const UserPreferencesButton = React.createClass({
   render() {
     return (
       <span>
-        <Button onClick={this.onClick} bsStyle="success">User preferences</Button>
+        <Button onClick={this.onClick} bsStyle="success">用户偏好</Button>
         <UserPreferencesModal ref="userPreferencesModal" userName={this.props.userName} />
       </span>
     );

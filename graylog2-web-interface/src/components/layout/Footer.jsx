@@ -17,14 +17,14 @@ const Footer = React.createClass({
     if (this._isLoading()) {
       return (
         <div id="footer">
-          Graylog {Version.getFullVersion()}
+          xxxx 日志平台
         </div>
       );
     }
 
     return (
       <div id="footer">
-        Graylog {this.state.system.version} on {this.state.system.hostname} ({this.state.jvm.info})
+        xxxx 日志平台
       </div>
     );
   },

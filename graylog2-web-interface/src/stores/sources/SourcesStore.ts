@@ -37,8 +37,8 @@ const SourcesStore = {
                 callback(sources);
             })
             .catch((errorThrown) => {
-                UserNotification.error("Loading of sources data failed with status: " + errorThrown + ". Try reloading the page.",
-                    "Could not load sources data");
+                UserNotification.error("加载数据源失败s: " + errorThrown + ". 尝试重新加载.",
+                    "无法加载数据源");
             });
     }
 };

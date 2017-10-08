@@ -17,7 +17,7 @@ const IndexerClusterHealthSummary = React.createClass({
     }
   },
   _formatTextForHealth(health) {
-    const text = `Elasticsearch cluster is ${health.status}.`;
+    const text = `Elasticsearch 集群状态为 ${health.status}.`;
     switch (health.status) {
       case 'green': return text;
       case 'yellow':
@@ -43,7 +43,6 @@ const IndexerClusterHealthSummary = React.createClass({
         {health.shards.initializing} initializing,{' '}
         {health.shards.relocating} relocating,{' '}
         {health.shards.unassigned} unassigned,{' '}
-        <DocumentationLink page={DocsHelper.PAGES.CLUSTER_STATUS_EXPLAINED} text="What does this mean?" />
       </Alert>
     );
   },

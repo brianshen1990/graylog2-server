@@ -22,20 +22,20 @@ const SearchExecutionError = React.createClass({
           <Col md={12}>
 
             <h1>
-              Could not execute search
+              无法执行查询
             </h1>
 
             <div>
-              <p>There was an error executing your search. Please check your Graylog server logs for more information.</p>
+              <p>执行查询失败, 请查询日志..</p>
               <Panel bsStyle="danger">
                 <dl style={{ marginBottom: 0 }}>
-                  <dt>Error Message:</dt>
+                  <dt>错误消息:</dt>
                   <dd>{error.body.message ? error.body.message : ''}</dd>
-                  <dt>Details:</dt>
+                  <dt>详细信息:</dt>
                   <dd>{error.body.message ? this._getFormattedErrorDetails(error.body.details) : ''}</dd>
-                  <dt>Search status code:</dt>
+                  <dt>搜索状态错误码:</dt>
                   <dd>{error.status}</dd>
-                  <dt>Search response:</dt>
+                  <dt>搜索响应:</dt>
                   <dd>{error.message}</dd>
                 </dl>
               </Panel>

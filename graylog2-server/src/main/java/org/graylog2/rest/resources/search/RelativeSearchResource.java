@@ -157,7 +157,7 @@ public class RelativeSearchResource extends SearchResource {
             @ApiParam(name = "filter", value = "Filter", required = false) @QueryParam("filter") String filter,
             @ApiParam(name = "fields", value = "Comma separated list of fields to return", required = true) @QueryParam("fields") String fields) {
         checkSearchPermission(filter, RestPermissions.SEARCHES_RELATIVE);
-        final String filename = "graylog-search-result-relative-" + range + ".csv";
+        final String filename = "xxxx-result-relative-" + range + ".csv";
         return Response
             .ok(searchRelativeChunked(query, range, limit, offset, filter, fields))
             .header("Content-Disposition", "attachment; filename=" + filename)

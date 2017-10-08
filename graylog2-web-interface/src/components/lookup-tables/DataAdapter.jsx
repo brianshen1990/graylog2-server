@@ -42,7 +42,7 @@ const DataAdapter = React.createClass({
     const dataAdapter = this.props.dataAdapter;
     const plugin = plugins[dataAdapter.config.type];
     if (!plugin) {
-      return <p>Unknown data adapter type {dataAdapter.config.type}. Is the plugin missing?</p>;
+      return <p>不能确定的数据转接器类型： {dataAdapter.config.type}. 插件已被移除？</p>;
     }
 
     const summary = plugin.summaryComponent;
@@ -57,38 +57,38 @@ const DataAdapter = React.createClass({
           </h2>
           <div className={Styles.config}>
             <dl>
-              <dt>Description</dt>
-              <dd>{dataAdapter.description || <em>No description.</em>}</dd>
+              <dt>描述</dt>
+              <dd>{dataAdapter.description || <em>没有描述.</em>}</dd>
             </dl>
           </div>
-          <h4>Configuration</h4>
+          <h4>配置</h4>
           <div className={Styles.config}>
             {React.createElement(summary, { dataAdapter: dataAdapter })}
           </div>
         </Col>
         <Col md={6}>
-          <h3>Test lookup</h3>
-          <p>You can manually trigger the data adapter using this form. The data will be not cached.</p>
+          <h3>测试查找</h3>
+          <p> 您可以在此手动触发数据转接器，数据并不会被缓存。</p>
           <form onSubmit={this._lookupKey}>
             <fieldset>
               <Input type="text"
                      id="key"
                      name="key"
-                     label="Key"
+                     label="关键字"
                      required
                      onChange={this._onChange}
-                     help="Key to look up a value for."
+                     help="关键字被用来查找数据。"
                      value={this.state.lookupKey} />
             </fieldset>
             <fieldset>
               <Input>
-                <Button type="submit" bsStyle="success">Look up</Button>
+                <Button type="submit" bsStyle="success">查找</Button>
               </Input>
             </fieldset>
           </form>
           { this.state.lookupResult && (
             <div>
-              <h4>Lookup result</h4>
+              <h4>查找结果</h4>
               <pre>{JSON.stringify(this.state.lookupResult, null, 2)}</pre>
             </div>
           )}

@@ -144,25 +144,25 @@ const SearchSidebar = React.createClass({
 
   _getExportModal() {
     const infoText = (URLUtils.areCredentialsInURLSupported() ?
-      'Please right click the download link below and choose "Save Link As..." to download the CSV file.' :
-      'Please click the download link below. Your browser may ask for your username and password to ' +
-      'download the CSV file.');
+      '请右击下方的下载链接并选择 "链接另存为..." 以下载CSV文件.' :
+      '请点击下方的下载链接. 浏览器可能会询问您的用户名和密码 ' +
+      '以下载CSV文件.');
     return (
       <BootstrapModalWrapper ref={(ref) => { this.exportModal = ref; }}>
         <Modal.Header closeButton>
-          <Modal.Title>Export search results as CSV</Modal.Title>
+          <Modal.Title>将搜索结果导出到CSV</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <p>{infoText}</p>
           <p>
             <a href={this._getURLForExportAsCSV()} target="_blank">
               <i className="fa fa-cloud-download" />&nbsp;
-              Download
+              下载
             </a>
           </p>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={this._closeModal(this.exportModal)}>Close</Button>
+          <Button onClick={this._closeModal(this.exportModal)}>关闭</Button>
         </Modal.Footer>
       </BootstrapModalWrapper>
     );
@@ -176,38 +176,36 @@ const SearchSidebar = React.createClass({
     const indicesModal = (
       <BootstrapModalWrapper ref={(ref) => { this.indicesModal = ref; }}>
         <Modal.Header closeButton>
-          <Modal.Title>Used indices</Modal.Title>
+          <Modal.Title>使用原型</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>Graylog is intelligently selecting the indices it needs to search upon based on the time frame
-            you selected.
-            This list of indices is mainly useful for debugging purposes.</p>
-          <h4>Indices used for this search:</h4>
+          <p>系统根据时间段智能地选择需要搜索的索引.你选择的索引列表主要用于调试目的.</p>
+          <h4>此次搜索使用的原型:</h4>
 
           <ul className="index-list">
             {formattedIndices}
           </ul>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={this._closeModal(this.indicesModal)}>Close</Button>
+          <Button onClick={this._closeModal(this.indicesModal)}>关闭</Button>
         </Modal.Footer>
       </BootstrapModalWrapper>
     );
 
     let searchTitle = null;
     const moreActions = [
-      <MenuItem key="export" onSelect={this._openModal(this.exportModal)}>Export as CSV</MenuItem>,
+      <MenuItem key="export" onSelect={this._openModal(this.exportModal)}>导出为 CSV</MenuItem>,
     ];
     if (this.props.searchInStream) {
       searchTitle = <span>{this.props.searchInStream.title}</span>;
       // TODO: add stream actions to dropdown
     } else {
-      searchTitle = <span>Search result</span>;
+      searchTitle = <span>搜索结果</span>;
     }
 
     // always add the debug query link as last elem
     moreActions.push(<MenuItem divider key="div2" />);
-    moreActions.push(<MenuItem key="showQuery" onSelect={this._openModal(this.showQueryModal)}>Show query</MenuItem>);
+    moreActions.push(<MenuItem key="showQuery" onSelect={this._openModal(this.showQueryModal)}>显示查询</MenuItem>);
 
     return (
       <AutoAffix affixClassName="affix">
@@ -218,14 +216,14 @@ const SearchSidebar = React.createClass({
             </h2>
 
             <p style={{ marginTop: 3 }}>
-              Found <strong>{numeral(this.props.result.total_results).format('0,0')} messages</strong>{' '}
-              in {numeral(this.props.result.time).format('0,0')} ms, searched in&nbsp;
+              在 {numeral(this.props.result.time).format('0,0')} 毫秒中
+              共找到 <strong>{numeral(this.props.result.total_results).format('0,0')} 条信息</strong>{' '}, 查找节点&nbsp;
               <a href="#" onClick={this._openModal(this.indicesModal)}>
                 {this.props.result.used_indices.length}&nbsp;{this.props.result.used_indices.length === 1 ? 'index' : 'indices'}
               </a>.
               {indicesModal}
               <br />
-              Results retrieved at <Timestamp dateTime={this.state.lastResultsUpdate} format={DateTime.Formats.DATETIME} />.
+              结果获取时间 <Timestamp dateTime={this.state.lastResultsUpdate} format={DateTime.Formats.DATETIME} />.
             </p>
 
             <div className="actions">
@@ -234,7 +232,7 @@ const SearchSidebar = React.createClass({
               <SavedSearchControls currentSavedSearch={this.props.currentSavedSearch} />
 
               <div style={{ display: 'inline-block' }}>
-                <DropdownButton bsSize="small" title="More actions" id="search-more-actions-dropdown">
+                <DropdownButton bsSize="small" title="更多操作" id="search-more-actions-dropdown">
                   {moreActions}
                 </DropdownButton>
                 <ShowQueryModal key="debugQuery" ref={(ref) => { this.showQueryModal = ref; }} builtQuery={this.props.builtQuery} />
@@ -246,7 +244,7 @@ const SearchSidebar = React.createClass({
             <hr />
           </div>
           <Tabs id="searchSidebarTabs" animation={false}>
-            <Tab eventKey={1} title={<h4>Fields</h4>}>
+            <Tab eventKey={1} title={<h4>字段</h4>}>
               <FieldAnalyzersSidebar fields={this.props.fields}
                                      fieldAnalyzers={this.props.fieldAnalyzers}
                                      onFieldAnalyzer={this.props.onFieldAnalyzer}
@@ -262,7 +260,7 @@ const SearchSidebar = React.createClass({
                                      toggleShouldHighlight={this.props.toggleShouldHighlight} />
             </Tab>
 
-            <Tab eventKey={2} title={<h4>Decorators</h4>}>
+            <Tab eventKey={2} title={<h4>装饰器</h4>}>
               <DecoratorSidebar stream={this.props.searchInStream ? this.props.searchInStream.id : undefined}
                                 maximumHeight={this.state.availableHeight} />
             </Tab>

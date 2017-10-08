@@ -51,8 +51,8 @@ const HistogramDataStore = Reflux.createStore({
           return response;
         },
         (error) => {
-          UserNotification.warning(`Loading of histogram data failed with status: ${error}`,
-            'Could not load histogram data');
+          UserNotification.warning(`加载柱状图失败: ${error}`,
+            '无法获取柱状图');
         },
       );
 

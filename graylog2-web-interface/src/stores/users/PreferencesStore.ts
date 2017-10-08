@@ -44,11 +44,11 @@ var PreferencesStore = {
     var preferencesAsMap = this.convertPreferenceArrayToMap(preferences);
     var url = this.URL + this._userName + "/preferences";
     fetch('PUT', url, {preferences: preferencesAsMap}).then(() => {
-      UserNotification.success("User preferences successfully saved");
+      UserNotification.success("用户偏好保存成功");
       callback(preferences);
     }, (errorThrown) => {
-      UserNotification.error("Saving of preferences for \"" + this._userName + "\" failed with status: " + errorThrown,
-        "Could not save user preferences");
+      UserNotification.error("用户 \"" + this._userName + "\" 偏好保存失败: " + errorThrown,
+        "无法保存用户偏好");
     });
   },
   loadUserPreferences(userName: string, callback: (preferences: Array<any>) => void): void {
@@ -61,8 +61,8 @@ var PreferencesStore = {
     };
     var failCallback = (errorThrown) => {
       UserNotification.error(
-        "Loading of user preferences for \"" + userName + "\" failed with status: " + errorThrown + ". Try reloading the page",
-        "Could not retrieve user preferences from server");
+        "导入用户 \"" + userName + "\" 偏好失败: " + errorThrown + ". 尝试重新导入该页面",
+        "无法获取用户偏好");
     };
     fetch('GET', url).then(successCallback, failCallback);
   }

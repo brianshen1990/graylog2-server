@@ -71,10 +71,9 @@ public abstract class AbstractCodec implements Codec {
             // TODO implement universal override (in raw message maybe?)
             configurationRequest.addField(new TextField(
                     CK_OVERRIDE_SOURCE,
-                    "Override source",
+                    "覆盖输入源",
                     null,
-                    "The source is a hostname derived from the received packet by default. Set this if you want to override " +
-                            "it with a custom string.",
+                    "输入源是默认从接收到的数据包提取。如果您需要，可以重写。",
                     ConfigurationField.Optional.OPTIONAL
             ));
 

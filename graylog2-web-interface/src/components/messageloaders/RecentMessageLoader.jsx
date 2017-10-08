@@ -20,8 +20,8 @@ const RecentMessageLoader = React.createClass({
   onClick(inputId) {
     const input = this.props.inputs.get(inputId);
     if (!input) {
-      UserNotification.error(`Invalid input selected: ${inputId}`,
-        `Could not load message from invalid Input ${inputId}`);
+      UserNotification.error(`无效的输入: ${inputId}`,
+        `无法从输入 ${inputId}导入信息`);
     }
     this.setState({ loading: true });
     const promise = UniversalSearchStore.search('relative', `gl2_source_input:${inputId} OR gl2_source_radio_input:${inputId}`,
@@ -30,7 +30,7 @@ const RecentMessageLoader = React.createClass({
       if (response.total_results > 0) {
         this.props.onMessageLoaded(response.messages[0]);
       } else {
-        UserNotification.error('Input did not return a recent message.');
+        UserNotification.error('I输入没有返回一条信息.');
         this.props.onMessageLoaded(undefined);
       }
     });
@@ -39,15 +39,15 @@ const RecentMessageLoader = React.createClass({
   render() {
     let helpMessage;
     if (this.props.selectedInputId) {
-      helpMessage = 'Click on "Load Message" to load the most recent message received by this input within the last hour.';
+      helpMessage = '点击 "导入信息" 导入一条最新的消息。.';
     } else {
-      helpMessage = 'Select an Input from the list below and click "Load Message" to load the most recent message received by this input within the last hour.';
+      helpMessage = '从以下列表中选择输入， 点击 "导入信息" 导入一条最新的消息.';
     }
     return (
       <div style={{ marginTop: 5 }}>
         {helpMessage}
         <InputDropdown inputs={this.props.inputs} preselectedInputId={this.props.selectedInputId}
-                       onLoadMessage={this.onClick} title={this.state.loading ? 'Loading message...' : 'Load Message'}
+                       onLoadMessage={this.onClick} title={this.state.loading ? '导入消息中...' : '导入消息'}
                        disabled={this.state.loading} />
       </div>
     );

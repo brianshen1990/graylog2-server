@@ -101,11 +101,79 @@ const FieldAnalyzersSidebar = React.createClass({
   },
 
   render() {
+    var _get_show_list_in_order = function(){
+      return ["host_name", "source_address", "destination_address", "destination_port", "action",
+          "ips_rule", "application_id", "type", "malware_name", "source_port"]
+    };
+
+    let pattern_mappings = {
+      "action" : "措施",
+      "ips_rule" : "入侵防御规则",
+      "url_category1": "URL类别",
+      "host_name": "主机名",
+      "source_address" : "客户端地址",
+      "destination_address": "服务器地址",
+      "destination_port": "服务器端口",
+      "protocol": "协议类型",
+      "application_id": "应用",
+      "rule_name": "规则名称",
+      "type": "日志类别",
+      "malware_name": "恶意软件名称",
+      "source_port":"客户端端口",
+      "log_time": "日志时间",
+      "source_user": "用户",
+      "application_attribute_id": "应用属性",
+      "file_name": "文件名",
+      "wrs_score": "WRS 评分",
+      "host": "主机",
+      "url": "URL",
+      "url_category2": "URL类别2",
+      "url_category3": "URL类别3",
+      "url_category4": "URL类别4",
+      "direction": "方向",
+      "mail_sender":"发件人",
+      "mail_recipient":"收件人",
+      "mail_subject": "邮件主题"
+    };
     const decorationStats = this.props.result.decoration_stats;
     const decoratedFields = decorationStats ? [].concat(decorationStats.added_fields || [], decorationStats.changed_fields || []) : [];
-    const messageFields = this.props.fields
-      .filter(field => field.name.indexOf(this.state.fieldFilter) !== -1)
-      .sort((a, b) => a.name.localeCompare(b.name))
+    var messageFields = this.props.fields
+      .filter(field => {
+        if( field.name.indexOf(this.state.fieldFilter) !== -1 ){
+          return true;
+        }
+        if( pattern_mappings[field.name] && pattern_mappings[field.name].indexOf(this.state.fieldFilter) !== -1 ){
+          return true;
+        }
+        return false;
+      })
+      .filter(field => {
+        return field.name.indexOf("z_") != 0;
+      })
+      .sort((a, b) => {
+        var field1 = a.name.toLowerCase();
+        var field2 = b.name.toLowerCase();
+        try {
+          if (_get_show_list_in_order().indexOf(field1)>=0 && _get_show_list_in_order().indexOf(field2)<0) {
+            return -1;
+          }
+          if (_get_show_list_in_order().indexOf(field1)<0 && _get_show_list_in_order().indexOf(field2)>=0) {
+            return 1;
+          }
+          if (_get_show_list_in_order().indexOf(field1)<0 && _get_show_list_in_order().indexOf(field2)<0) {
+            var ret =  field1.toLowerCase().localeCompare(field2.toLowerCase());
+            return ret;
+          }
+          if (_get_show_list_in_order().indexOf(field1)>=0 && _get_show_list_in_order().indexOf(field2)>=0) {
+            var ret =( ( _get_show_list_in_order().indexOf(field1) > _get_show_list_in_order().indexOf(field2) ) ? 1:-1 );
+            return ret;
+          }
+        }catch(e){
+          console.log("error 1" + e);
+          return field1.localeCompare(field2)
+        }
+      });
+    messageFields = messageFields
       .map((field) => {
         let messageField;
         if (decoratedFields.includes(field.name)) {
@@ -132,7 +200,7 @@ const FieldAnalyzersSidebar = React.createClass({
     if (this.props.showHighlightToggle) {
       shouldHighlightToggle = (
         <Input ref="highlightToggle" type="checkbox" bsSize="small" checked={this.props.shouldHighlight}
-               onChange={this.props.toggleShouldHighlight} label="Highlight results"
+               onChange={this.props.toggleShouldHighlight} label="高亮结果"
                groupClassName="result-highlight-control" />
       );
     }
@@ -142,16 +210,16 @@ const FieldAnalyzersSidebar = React.createClass({
         <div ref="fieldsFilter" className="input-group input-group-sm" style={{ marginTop: 5, marginBottom: 5 }}>
           <span className="input-group-btn">
             <button type="button" className="btn btn-default"
-                    onClick={this._updateFieldSelectionToDefault}>Default
+                    onClick={this._updateFieldSelectionToDefault}>默认
             </button>
             <button type="button" className="btn btn-default"
-                    onClick={this._updateFieldSelectionToAll}>All
+                    onClick={this._updateFieldSelectionToAll}>全部
             </button>
             <button type="button" className="btn btn-default"
-                    onClick={this._updateFieldSelectionToNone}>None
+                    onClick={this._updateFieldSelectionToNone}>无
             </button>
           </span>
-          <input type="text" className="form-control" placeholder="Filter fields"
+          <input type="text" className="form-control" placeholder="筛选字段"
                  onChange={this._filterFields}
                  value={this.state.fieldFilter} />
         </div>
@@ -161,12 +229,12 @@ const FieldAnalyzersSidebar = React.createClass({
           </ul>
         </div>
         <div ref="footer" style={{ marginTop: 13, marginBottom: 0 }}>
-          List{' '}
-          <span className="message-result-fields-range"> fields of&nbsp;
+          列出{' '}
+          <span className="message-result-fields-range"> &nbsp;
             <a href="#" style={{ fontWeight: this.props.showAllFields ? 'normal' : 'bold' }}
-               onClick={this._showPageFields}>current page</a> or{' '}
+               onClick={this._showPageFields}>本页</a> 字段 或者{' '}
             <a href="#" style={{ fontWeight: this.props.showAllFields ? 'bold' : 'normal' }}
-               onClick={this._showAllFields}>all fields</a>.
+               onClick={this._showAllFields}>全部字段</a>.
           </span>
           <br />
           {shouldHighlightToggle}

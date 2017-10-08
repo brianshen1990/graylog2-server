@@ -25,10 +25,9 @@ const AuthenticationPage = React.createClass({
   render() {
     return (
       <span>
-        <PageHeader title="Authentication Management">
-          <span>Configure Graylog's authentication providers and manage the active users of this Graylog cluster.</span>
-          <span>Read more authentication in the <DocumentationLink page={DocsHelper.PAGES.USERS_ROLES}
-                                                                   text="documentation" />.</span>
+        <PageHeader title="认证管理">
+          <span>配置 xxxx 日志平台的用户认证</span>
+
         </PageHeader>
 
         <Row className="content">

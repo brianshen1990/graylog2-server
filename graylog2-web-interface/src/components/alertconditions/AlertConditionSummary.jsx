@@ -26,11 +26,11 @@ const AlertConditionSummary = React.createClass({
     const SummaryComponent = conditionType.summaryComponent || GenericAlertConditionSummary;
 
     const description = (stream ?
-      <span>Alerting on stream <em>{stream.title}</em></span> : 'Not alerting on any stream');
+      <span>告警在数据流 <em>{stream.title}</em></span> : '没有在任何数据流上告警');
 
     const content = (
       <Col md={12}>
-        <strong>Configuration:</strong> <SummaryComponent alertCondition={condition} />
+        <strong>配置:</strong> <SummaryComponent alertCondition={condition} />
       </Col>
     );
 
@@ -38,11 +38,11 @@ const AlertConditionSummary = React.createClass({
     if (this.props.linkToDetails) {
       title = (
         <LinkContainer to={Routes.show_alert_condition(stream.id, condition.id)}>
-          <a>{condition.title ? condition.title : 'Untitled'}</a>
+          <a>{condition.title ? condition.title : '未命名'}</a>
         </LinkContainer>
       );
     } else {
-      title = (condition.title ? condition.title : 'Untitled');
+      title = (condition.title ? condition.title : '未命名');
     }
 
     return (

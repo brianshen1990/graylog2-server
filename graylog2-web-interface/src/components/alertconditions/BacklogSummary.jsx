@@ -6,19 +6,19 @@ const BacklogSummary = React.createClass({
   },
   _formatMessageCount(count) {
     if (count === 0) {
-      return 'Not including any messages';
+      return '不包括任何消息';
     }
 
     if (count === 1) {
-      return 'Including last message';
+      return '包括最后 1 条消息';
     }
 
-    return `Including last ${count} messages`;
+    return `包括最后 ${count} 条消息`;
   },
   render() {
     const backlog = this.props.alertCondition.parameters.backlog;
     return (
-      <span>{this._formatMessageCount(backlog)} in alert notification.</span>
+      <span>{this._formatMessageCount(backlog)} 在告警通知中.</span>
     );
   },
 });

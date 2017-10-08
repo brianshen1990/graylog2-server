@@ -83,10 +83,10 @@ const LUTTableEntry = React.createClass({
           </td>
           <td>
             <LinkContainer to={Routes.SYSTEM.LOOKUPTABLES.CACHES.edit(this.props.cache.name)}>
-              <Button bsSize="xsmall" bsStyle="info">Edit</Button>
+              <Button bsSize="xsmall" bsStyle="info">编辑</Button>
             </LinkContainer>
             &nbsp;
-            <Button bsSize="xsmall" bsStyle="primary" onClick={this._onDelete}>Delete</Button>
+            <Button bsSize="xsmall" bsStyle="primary" onClick={this._onDelete}>删除</Button>
           </td>
         </tr>
       </tbody>

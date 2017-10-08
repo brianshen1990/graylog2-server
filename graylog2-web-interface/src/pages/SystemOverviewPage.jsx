@@ -12,7 +12,7 @@ import { GraylogClusterOverview } from 'components/cluster';
 const SystemOverviewPage = React.createClass({
   render() {
     return (
-      <DocumentTitle title="System overview">
+      <DocumentTitle title="系统概览">
         <span>
           <IfPermitted permissions="notifications:read">
             <NotificationsList />

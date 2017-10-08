@@ -6,7 +6,7 @@ import { DocumentTitle } from 'components/common';
 const GrokPatternsPage = React.createClass({
   render() {
     return (
-      <DocumentTitle title="Grok patterns">
+      <DocumentTitle title="Grok 模式">
         <GrokPatterns />
       </DocumentTitle>
     );

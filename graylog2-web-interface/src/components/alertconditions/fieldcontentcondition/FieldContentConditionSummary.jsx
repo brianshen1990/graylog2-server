@@ -18,7 +18,7 @@ const FieldContentConditionSummary = React.createClass({
 
     return (
       <span>
-        Alert is triggered when messages matching {this._formatMatcher(field, value)} are received.
+        告警被触发, 原因是接收到了匹配 {this._formatMatcher(field, value)} 的消息.
         {' '}
         <GracePeriodSummary alertCondition={alertCondition} />
         {' '}

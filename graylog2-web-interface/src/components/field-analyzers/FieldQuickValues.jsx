@@ -80,7 +80,35 @@ const FieldQuickValues = React.createClass({
   },
   render() {
     let content;
-
+    let pattern_mappings = {
+      "action" : "措施",
+      "ips_rule" : "入侵防御规则",
+      "url_category1": "URL类别",
+      "host_name": "主机名",
+      "source_address" : "客户端地址",
+      "destination_address": "服务器地址",
+      "destination_port": "服务器端口",
+      "protocol": "协议类型",
+      "application_id": "应用",
+      "rule_name": "规则名称",
+      "type": "日志类别",
+      "malware_name": "恶意软件名称",
+      "source_port":"客户端端口",
+      "log_time": "日志时间",
+      "source_user": "用户",
+      "application_attribute_id": "应用属性",
+      "file_name": "文件名",
+      "wrs_score": "WRS 评分",
+      "host": "主机",
+      "url": "URL",
+      "url_category2": "URL类别2",
+      "url_category3": "URL类别3",
+      "url_category4": "URL类别4",
+      "direction": "方向",
+      "mail_sender":"发件人",
+      "mail_recipient":"收件人",
+      "mail_subject": "邮件主题"
+    };
     let inner;
     if (this.state.data.length === 0) {
       inner = <Spinner />;
@@ -99,16 +127,16 @@ const FieldQuickValues = React.createClass({
       content = (
         <div className="content-col">
           <div className="pull-right">
-            <AddToDashboardMenu title="Add to dashboard"
+            <AddToDashboardMenu title="添加到面板"
                                 widgetType={this.WIDGET_TYPE}
                                 configuration={{ field: this.state.field }}
                                 bsStyle="default"
                                 pullRight
                                 permissions={this.props.permissions}>
-              <Button bsSize="small" onClick={() => this._resetStatus()}>Dismiss</Button>
+              <Button bsSize="small" onClick={() => this._resetStatus()}>删除</Button>
             </AddToDashboardMenu>
           </div>
-          <h1>Quick Values for {this.state.field} {this.state.loadPending && <i
+          <h1>快速统计值 - {pattern_mappings[this.state.field] || this.state.field} {this.state.loadPending && <i
             className="fa fa-spin fa-spinner" />}</h1>
 
           <div style={{ maxHeight: 400, overflow: 'auto', marginTop: 10 }}>{inner}</div>

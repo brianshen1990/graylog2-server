@@ -18,10 +18,10 @@ const FieldChartWidgetConfiguration = React.createClass({
                id="chart-statistical-function"
                name="valuetype"
                type="select"
-               label="Statistical function"
+               label="统计功能"
                defaultValue={this.props.config.valuetype}
                onChange={this.props.onChange}
-               help="Statistical function applied to the data.">
+               help="应用在数据的统计功能.">
           {FieldGraphsStore.constructor.FUNCTIONS.keySeq().map((statFunction) => {
             return (
               <option key={statFunction} value={statFunction}>

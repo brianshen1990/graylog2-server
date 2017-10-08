@@ -21,20 +21,20 @@ const CountWidgetCreateConfiguration = React.createClass({
                type="checkbox"
                id="count-trend"
                name="trend"
-               label="Display trend"
+               label="显示趋势"
                checked={this.props.config.trend}
                onChange={this.props.onChange}
-               help="Show trend information for this number." />
+               help="用数字显示趋势信息" />
 
         <Input key="lowerIsBetter"
                type="checkbox"
                id="count-lower-is-better"
                name="lower_is_better"
-               label="Lower is better"
+               label="数字越小越好"
                disabled={this.props.config.trend === false}
                checked={this.props.config.lower_is_better}
                onChange={this.props.onChange}
-               help="Use green colour when trend goes down." />
+               help="当趋势减小，使用绿色表示" />
       </fieldset>
     );
   },

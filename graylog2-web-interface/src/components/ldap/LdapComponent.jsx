@@ -451,8 +451,8 @@ const LdapComponent = React.createClass({
               </Row>
               <div className="form-group">
                 <Col sm={9} smOffset={3}>
-                  <Button type="submit" bsStyle="primary" className="save-button-margin">Save LDAP settings</Button>
-                  <Button onClick={this.props.onCancel}>Cancel</Button>
+                  <Button type="submit" bsStyle="primary" className="save-button-margin">保存 LDAP 设置</Button>
+                  <Button onClick={this.props.onCancel}>取消</Button>
                 </Col>
               </div>
             </fieldset>

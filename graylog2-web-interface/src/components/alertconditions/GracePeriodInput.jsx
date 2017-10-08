@@ -23,18 +23,18 @@ const GracePeriodInput = React.createClass({
   render() {
     return (
       <span>
-        and <br /> then wait at least{' '}
+        并且 <br /> 等待至少{' '}
         <input ref="grace" name="grace" type="number" min="0" className="form-control"
                value={this.state.grace} onChange={this._onChange} required />
         {' '}
-        <Pluralize singular="minute" plural="minutes" value={this.state.grace} /> until triggering a new alert. (grace period)
+        <Pluralize singular="分钟" plural="分钟" value={this.state.grace} /> 直到触发一条新的告警. (宽限期)
         <br />
 
-        When sending an alert, include the last{' '}
+        当发送一条告警时, 包括数据流中最近的{' '}
         <input ref="backlog" name="backlog" type="number" min="0" className="form-control"
                value={this.state.backlog} onChange={this._onChange} required />
         {' '}
-        <Pluralize singular="message" plural="messages" value={this.state.backlog} /> of the stream evaluated for this alert condition.
+        <Pluralize singular="条消息" plural="条消息" value={this.state.backlog} />.
       </span>
     );
   },

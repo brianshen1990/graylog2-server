@@ -51,7 +51,7 @@ const AuthenticationComponent = React.createClass({
         history: this.props.history,
       });
     }
-    return (<Alert bsStyle="danger">Plugin component missing for authenticator <code>{name}</code>, this is an error.</Alert>);
+    return (<Alert bsStyle="danger">插件元素丢失 <code>{name}</code>,这是一个错误.</Alert>);
   },
 
   _onUpdateProviders(config) {
@@ -87,30 +87,30 @@ const AuthenticationComponent = React.createClass({
         });
 
         authenticators.unshift(
-          <NavItem key="divider" disabled title="Provider Settings" className={AuthenticationComponentStyle.divider}>Provider Settings</NavItem>,
+          <NavItem key="divider" disabled title="供应设置" className={AuthenticationComponentStyle.divider}>供应设置</NavItem>,
         );
         authenticators.unshift(
           <LinkContainer key="container-settings" to={Routes.SYSTEM.AUTHENTICATION.PROVIDERS.CONFIG}>
-            <NavItem key="settings" title="Configure Provider Order">Configure Provider Order</NavItem>
+            <NavItem key="settings" title="Configure Provider Order">配置供应顺序</NavItem>
           </LinkContainer>,
         );
       }
     } else {
-      authenticators = [<NavItem key={'loading'} disabled title="Loading...">Loading...</NavItem>];
+      authenticators = [<NavItem key={'loading'} disabled title="加载中...">加载中...</NavItem>];
     }
 
     // add submenu items based on permissions
     if (this.isPermitted(this.state.currentUser.permissions, ['roles:read'])) {
       authenticators.unshift(
         <LinkContainer key="roles" to={Routes.SYSTEM.AUTHENTICATION.ROLES}>
-          <NavItem title="Roles">Roles</NavItem>
+          <NavItem title="角色">角色</NavItem>
         </LinkContainer>,
       );
     }
     if (this.isPermitted(this.state.currentUser.permissions, ['users:list'])) {
       authenticators.unshift(
         <LinkContainer key="users" to={Routes.SYSTEM.AUTHENTICATION.USERS.LIST}>
-          <NavItem title="Users">Users</NavItem>
+          <NavItem title="用户">用户</NavItem>
         </LinkContainer>,
       );
     }
@@ -118,7 +118,7 @@ const AuthenticationComponent = React.createClass({
     if (authenticators.length === 0) {
       // special case, this is a user editing their own profile
       authenticators = [<LinkContainer key="profile-edit" to={Routes.SYSTEM.AUTHENTICATION.USERS.edit(encodeURIComponent(this.state.currentUser.username))}>
-        <NavItem title="Edit User">Edit User</NavItem>
+        <NavItem title="Edit User">编辑用户</NavItem>
       </LinkContainer>];
     }
     const subnavigation = (

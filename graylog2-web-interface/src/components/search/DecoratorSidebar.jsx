@@ -80,14 +80,10 @@ const DecoratorSidebar = React.createClass({
     const popoverHelp = (
       <Popover id="decorators-help" className={DecoratorStyles.helpPopover}>
         <p className="description">
-          Decorators can modify messages shown in the search results on the fly. These changes are not stored, but only
-          shown in the search results. Decorator config is stored <strong>per stream</strong>.
+          装饰器可以修改搜索结果. 这些改变不会被存储, 只会在搜索结果中应用. 装饰器配置单位是 <strong>每个数据流</strong>.
         </p>
         <p className="description">
-          Use drag and drop to modify the order in which decorators are processed.
-        </p>
-        <p>
-          Read more about message decorators in the <DocumentationLink page={DocsHelper.PAGES.DECORATORS} text="documentation" />.
+          使用拖放的方式去选择哪些装饰器需要被执行.
         </p>
       </Popover>
     );
@@ -96,11 +92,6 @@ const DecoratorSidebar = React.createClass({
     return (
       <div>
         <AddDecoratorButton stream={this.props.stream} nextOrder={nextDecoratorOrder} disabled={!editPermissions} />
-        <div className={DecoratorStyles.helpLinkContainer}>
-          <OverlayTrigger trigger="click" rootClose placement="right" overlay={popoverHelp}>
-            <Button bsStyle="link" className={DecoratorStyles.helpLink}>What are message decorators?</Button>
-          </OverlayTrigger>
-        </div>
         <div ref="decoratorsContainer" className={DecoratorStyles.decoratorListContainer} style={{ maxHeight: this.state.maxDecoratorsHeight }}>
           <DecoratorList decorators={decoratorItems} onReorder={this._updateOrder} disableDragging={!editPermissions} />
         </div>

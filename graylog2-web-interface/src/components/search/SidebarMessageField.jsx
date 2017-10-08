@@ -57,6 +57,35 @@ const SidebarMessageField = React.createClass({
   },
 
   render() {
+    let pattern_mappings = {
+      "action" : "措施",
+      "ips_rule" : "入侵防御规则",
+      "url_category1": "URL类别",
+      "host_name": "主机名",
+      "source_address" : "客户端地址",
+      "destination_address": "服务器地址",
+      "destination_port": "服务器端口",
+      "protocol": "协议类型",
+      "application_id": "应用",
+      "rule_name": "规则名称",
+      "type": "日志类别",
+      "malware_name": "恶意软件名称",
+      "source_port":"客户端端口",
+      "log_time": "日志时间",
+      "source_user": "用户",
+      "application_attribute_id": "应用属性",
+      "file_name": "文件名",
+      "wrs_score": "WRS 评分",
+      "host": "主机",
+      "url": "URL",
+      "url_category2": "URL类别2",
+      "url_category3": "URL类别3",
+      "url_category4": "URL类别4",
+      "direction": "方向",
+      "mail_sender":"发件人",
+      "mail_recipient":"收件人",
+      "mail_subject": "邮件主题"
+    };
     let toggleClassName = 'fa fa-fw open-analyze-field ';
     toggleClassName += this.state.showActions ? 'open-analyze-field-active fa-caret-down' : 'fa-caret-right';
 
@@ -72,7 +101,7 @@ const SidebarMessageField = React.createClass({
         </div>
         <div className="field-selector">
           <Input type="checkbox"
-                 label={this.props.field.name}
+                 label={ pattern_mappings[this.props.field.name] || this.props.field.name}
                  checked={this.props.selected}
                  onChange={() => this.props.onToggled(this.props.field.name)} />
 

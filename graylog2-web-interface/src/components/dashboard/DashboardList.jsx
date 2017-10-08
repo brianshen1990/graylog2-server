@@ -27,7 +27,7 @@ const DashboardList = React.createClass({
           <span>
             <EditDashboardModalTrigger action="create" buttonClass="btn-link btn-text"
                                        onSaved={this.props.onDashboardAdd}>
-              Create one now
+              创建新的面板
             </EditDashboardModalTrigger>
             .
           </span>
@@ -36,7 +36,7 @@ const DashboardList = React.createClass({
       return (
         <Alert bsStyle="warning">
           <i className="fa fa-info-circle" />&nbsp;
-          No dashboards configured. {createDashboardButton}
+          没有配置好的面板. {createDashboardButton}
         </Alert>
       );
     }

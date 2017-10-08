@@ -19,10 +19,10 @@ const FieldValueConditionSummary = React.createClass({
 
     return (
       <span>
-        Alert is triggered when the field {field} has a {thresholdType}
-        {' '}{type} value than {threshold} in the
+        告警被触发, 字段{field} 有阈值 {thresholdType}
+        {' '}{type} , {threshold} 条信息在
         {' '}
-        <Pluralize value={time} singular="last minute" plural={`last ${time} minutes`} />.
+        <Pluralize value={time} singular="最近 1 分钟" plural={`最近 ${time} 分钟`} />.
         {' '}
         <GracePeriodSummary alertCondition={alertCondition} />
         {' '}

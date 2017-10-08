@@ -78,22 +78,22 @@ const LoginPage = React.createClass({
 
     const alert = this.formatLastError(this.state.lastError);
     return (
-      <DocumentTitle title="Sign in">
+      <DocumentTitle title="登录">
         <div>
           <div className="container" id="login-box">
             <Row>
               <form className="col-md-4 col-md-offset-4 well" id="login-box-content" onSubmit={this.onSignInClicked}>
-                <legend><i className="fa fa-group" /> Welcome to Graylog</legend>
+                <legend>xxxx 日志平台</legend>
 
                 {alert}
 
-                <Input ref="username" type="text" placeholder="Username" autoFocus />
+                <Input ref="username" type="text" placeholder="用户名" autoFocus />
 
-                <Input ref="password" type="password" placeholder="Password" />
+                <Input ref="password" type="password" placeholder="密码" />
 
                 <FormGroup>
                   <Button type="submit" bsStyle="info" disabled={this.state.loading}>
-                    {this.state.loading ? 'Signing in...' : 'Sign in'}
+                    {this.state.loading ? '正在登录...' : '登录'}
                   </Button>
                 </FormGroup>
 

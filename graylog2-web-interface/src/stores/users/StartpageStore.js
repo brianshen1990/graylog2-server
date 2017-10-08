@@ -18,10 +18,10 @@ const StartpageStore = Reflux.createStore({
       .then(
         (response) => {
           this.trigger();
-          UserNotification.success('Your start page was changed successfully');
+          UserNotification.success('起始页修改成功');
           return response;
         },
-        error => UserNotification.error(`Changing your start page failed with error: ${error}`, 'Could not change your start page'),
+        error => UserNotification.error(`修改起始页失败: ${error}`, '无法修改起始页'),
       );
   },
 });

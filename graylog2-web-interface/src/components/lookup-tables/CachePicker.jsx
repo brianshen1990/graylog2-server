@@ -34,13 +34,13 @@ const CachePicker = React.createClass({
 
     return (
       <fieldset>
-        <Input label="Cache"
+        <Input label="缓存"
                required
                autoFocus
-               help="Select an existing cache"
+               help="请选择已存在缓存"
                labelClassName="col-sm-3"
                wrapperClassName="col-sm-9">
-          <Select placeholder="Select a cache"
+          <Select placeholder="选择缓存"
                   clearable={false}
                   options={sortedCaches}
                   matchProp="value"

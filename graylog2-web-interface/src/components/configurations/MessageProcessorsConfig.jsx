@@ -130,15 +130,15 @@ const MessageProcessorsConfig = React.createClass({
   render() {
     return (
       <div>
-        <h2>Message Processors Configuration</h2>
-        <p>The following message processors are executed in order. Disabled processors will be skipped.</p>
+        <h2>消息处理程序配置</h2>
+        <p>以下消息处理程序会按顺序执行。失效的将被江北跳过。</p>
 
         <Table striped bordered condensed className="top-margin">
           <thead>
             <tr>
               <th>#</th>
-              <th>Processor</th>
-              <th>Status</th>
+              <th>处理程序</th>
+              <th>状态</th>
             </tr>
           </thead>
           <tbody>
@@ -147,7 +147,7 @@ const MessageProcessorsConfig = React.createClass({
         </Table>
 
         <IfPermitted permissions="clusterconfigentry:edit">
-          <Button bsStyle="info" bsSize="xs" onClick={this._openModal}>Update</Button>
+          <Button bsStyle="info" bsSize="xs" onClick={this._openModal}>更新</Button>
         </IfPermitted>
 
         <BootstrapModalForm ref="configModal"

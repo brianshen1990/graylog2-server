@@ -62,8 +62,8 @@ const AlertMessages = React.createClass({
         }
       },
       (error) => {
-        UserNotification.error(`Fetching messages during alert failed with error: ${error}`,
-          'Could not get messages during alert');
+        UserNotification.error(`告警获取消息失败: ${error}`,
+          '无法获取告警消息');
       },
     );
   },
@@ -110,13 +110,13 @@ const AlertMessages = React.createClass({
       <div>
         <div className="pull-right">
           <LinkContainer to={Routes.stream_search(this.props.stream.id, '*', timeRange)}>
-            <Button bsStyle="info">Open in search page</Button>
+            <Button bsStyle="info">打开搜索页面</Button>
           </LinkContainer>
         </div>
-        <h2>Messages evaluated</h2>
+        <h2>消息评估</h2>
         <p>
-          These are the messages evaluated around the time of the alert {this._formatAlertTimeRange()} in stream{' '}
-          <em>{this.props.stream.title}</em>.
+          可查看在告警周围的评估消息 {this._formatAlertTimeRange()}, 在数据流{' '}
+          <em>{this.props.stream.title}</em>中.
         </p>
       </div>
     );
@@ -136,7 +136,7 @@ const AlertMessages = React.createClass({
       return (
         <div>
           {title}
-          <Alert bsStyle="info">No search results found during the time of the alert.</Alert>
+          <Alert bsStyle="info">在告警期间, 没有搜索结果.</Alert>
         </div>
       );
     }
@@ -150,8 +150,8 @@ const AlertMessages = React.createClass({
             <table className="table table-striped table-hover table-condensed">
               <thead>
                 <tr>
-                  <th>Timestamp</th>
-                  <th>Message</th>
+                  <th>时间戳</th>
+                  <th>消息</th>
                 </tr>
               </thead>
               <tbody>

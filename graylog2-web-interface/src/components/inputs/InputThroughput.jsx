@@ -109,8 +109,8 @@ const InputThroughput = React.createClass({
   _formatConnections(openConnections, totalConnections) {
     return (
       <span>
-        Active connections: <span className="active">{this._formatCount(openConnections)} </span>
-        (<span className="total">{this._formatCount(totalConnections)}</span> total)
+        活跃连接: <span className="active">{this._formatCount(openConnections)} </span>
+        (共<span className="total">{this._formatCount(totalConnections)}</span> )
         <br />
       </span>
     );
@@ -164,14 +164,14 @@ const InputThroughput = React.createClass({
     const readBytesTotal = metrics[this._prefix('read_bytes_total')];
     return (
       <div className="graylog-input-metrics">
-        <h3>Throughput / Metrics</h3>
+        <h3>生产力 / 度量</h3>
         <span>
-          {isNaN(incomingMessages) && isNaN(writtenBytes1Sec) && isNaN(openConnections) && <i>No metrics available for this input</i>}
-          {!isNaN(incomingMessages) && <span>1 minute average rate: {this._formatCount(incomingMessages)} msg/s<br /></span>}
+          {isNaN(incomingMessages) && isNaN(writtenBytes1Sec) && isNaN(openConnections) && <i> 该输入没有度量值</i>}
+          {!isNaN(incomingMessages) && <span>1 分钟平均速率: {this._formatCount(incomingMessages)} 条消息每秒<br /></span>}
           {!isNaN(writtenBytes1Sec) && this._formatNetworkStats(writtenBytes1Sec, writtenBytesTotal, readBytes1Sec, readBytesTotal)}
           {!isNaN(openConnections) && this._formatConnections(openConnections, totalConnections)}
-          {!isNaN(emptyMessages) && <span>Empty messages discarded: {this._formatCount(emptyMessages)}<br /></span>}
-          {!isNaN(writtenBytes1Sec) && this.props.input.global && <a href="" onClick={this._toggleShowDetails}>{this.state.showDetails ? 'Hide' : 'Show'} details</a>}
+          {!isNaN(emptyMessages) && <span>空消息丢弃数量: {this._formatCount(emptyMessages)}<br /></span>}
+          {!isNaN(writtenBytes1Sec) && this.props.input.global && <a href="" onClick={this._toggleShowDetails}>{this.state.showDetails ? 'Hide' : 'Show'} 详情</a>}
           {!isNaN(writtenBytes1Sec) && this.state.showDetails && this._formatAllNodeDetails(this.state.metrics)}
         </span>
       </div>

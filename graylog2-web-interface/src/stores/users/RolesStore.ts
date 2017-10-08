@@ -27,8 +27,8 @@ const RolesStore = {
         response => response.roles,
         error => {
           if (error.additional.status !== 404) {
-            UserNotification.error("Loading role list failed with status: " + error,
-              "Could not load role list");
+            UserNotification.error("导入角色列表失败: " + error,
+              "无法导入角色列表");
           }
         }
       );
@@ -41,10 +41,10 @@ const RolesStore = {
     const promise = fetch('POST', url, role);
 
     promise.then((newRole) => {
-      UserNotification.success("Role \"" + newRole.name + "\" was created successfully");
+      UserNotification.success("角色 \"" + newRole.name + "\" 创建成功");
     }, (error) => {
-      UserNotification.error("Creating role \"" + role.name + "\" failed with status: " + error,
-        "Could not create role");
+      UserNotification.error("角色 \"" + role.name + "\" 创建失败: " + error,
+        "无法创建角色");
     });
 
     return promise;
@@ -54,11 +54,11 @@ const RolesStore = {
     const promise = fetch('PUT', URLUtils.qualifyUrl(ApiRoutes.RolesApiController.updateRole(encodeURIComponent(rolename)).url), role);
 
     promise.then((newRole) => {
-      UserNotification.success("Role \"" + newRole.name + "\" was updated successfully");
+      UserNotification.success("角色 \"" + newRole.name + "\" 更新成功");
     }, (error) => {
       if (error.additional.status !== 404) {
-        UserNotification.error("Updating role failed with status: " + error,
-          "Could not update role");
+        UserNotification.error("更新角色失败: " + error,
+          "无法更新角色");
       }
     });
 
@@ -70,11 +70,11 @@ const RolesStore = {
     const promise = fetch('DELETE', url);
 
     promise.then(() => {
-      UserNotification.success("Role \"" + rolename + "\" was deleted successfully");
+      UserNotification.success("角色 \"" + rolename + "\" 删除成功");
     }, (error) => {
       if (error.additional.status !== 404) {
-        UserNotification.error("Deleting role failed with status: " + error,
-          "Could not delete role");
+        UserNotification.error("角色删除失败: " + error,
+          "无法删除角色");
       }
     });
     return promise;
@@ -84,8 +84,8 @@ const RolesStore = {
     const promise = fetch('GET', url);
     promise.catch((error) => {
       if (error.additional.status !== 404) {
-        UserNotification.error("Could not load role's members with status: " + error,
-          "Could not load role members");
+        UserNotification.error("无法导入角色成员: " + error,
+          "角色成员导入失败");
       }
     });
     return promise;

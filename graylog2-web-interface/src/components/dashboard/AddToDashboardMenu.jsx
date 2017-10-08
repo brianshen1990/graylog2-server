@@ -71,6 +71,25 @@ const AddToDashboardMenu = React.createClass({
     this.setState({ selectedDashboard: dashboardId });
     this.refs.widgetModal.open();
   },
+  _transfer_log_type(query){
+      try {
+        const add_query = "log_type:\"Violation log\"";
+        if(!query || query === ""){
+          // all
+          query = add_query;
+        }else{
+          // No type
+          var index_count = query.indexOf("log_type:");
+          if(index_count < 0){
+            query = "( " + query + " ) AND " + add_query;
+          }
+        }
+        return query;
+      }catch(e){
+        console.log("error" + e);
+        return query;
+      }
+  },
   _saveWidget(title, configuration) {
     let widgetConfig = Immutable.Map(this.props.configuration);
     let searchParams = Immutable.Map(SearchStore.getOriginalSearchParams());
@@ -117,8 +136,13 @@ const AddToDashboardMenu = React.createClass({
       searchParams = searchParams.set('stream_id', searchParams.get('streamId')).delete('streamId');
     }
     widgetConfig = searchParams.merge(widgetConfig).merge(configuration);
-
-    const promise = WidgetsStore.addWidget(this.state.selectedDashboard, this.props.widgetType, title, widgetConfig.toJS());
+    var js_config = widgetConfig.toJS();
+    try{
+      js_config.query = this._transfer_log_type(js_config.query);
+    }catch(e){
+      console.log("error" + e)
+    }
+    const promise = WidgetsStore.addWidget(this.state.selectedDashboard, this.props.widgetType, title, js_config);
     promise.done(() => this.refs.widgetModal.saved());
   },
   _createNewDashboard() {
@@ -131,7 +155,7 @@ const AddToDashboardMenu = React.createClass({
                       title={this.props.title}
                       pullRight={this.props.pullRight}
                       id="dashboard-selector-dropdown">
-        <MenuItem disabled>Loading dashboards...</MenuItem>
+        <MenuItem disabled>面板加载中...</MenuItem>
       </DropdownButton>
     );
   },
@@ -163,9 +187,9 @@ const AddToDashboardMenu = React.createClass({
     const canCreateDashboard = this.isPermitted(this.props.permissions, ['dashboards:create']);
     let option;
     if (canCreateDashboard) {
-      option = <MenuItem key="createDashboard">No dashboards, create one?</MenuItem>;
+      option = <MenuItem key="createDashboard">没有面板, 创建一个?</MenuItem>;
     } else {
-      option = <MenuItem key="noDashboards">No dashboards available</MenuItem>;
+      option = <MenuItem key="noDashboards">没有可用面板</MenuItem>;
     }
 
     return (

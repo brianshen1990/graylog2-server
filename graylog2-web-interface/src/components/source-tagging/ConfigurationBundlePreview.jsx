@@ -15,31 +15,31 @@ const ConfigurationBundlePreview = React.createClass({
   },
 
   _confirmDeletion() {
-    if (window.confirm('You are about to delete this content pack, are you sure?')) {
+    if (window.confirm('即将删除内容包，确定?')) {
       ConfigurationBundlesActions.delete(this.props.sourceTypeId).then(() => {
-        UserNotification.success('Bundle deleted successfully.', 'Success');
+        UserNotification.success('绑定删除成功.', '成功');
         this.props.onDelete();
       }, () => {
-        UserNotification.error('Deleting bundle failed, please check your logs for more information.', 'Error');
+        UserNotification.error('删除绑定失败.', '错误');
       });
     }
   },
   _onApply() {
     ConfigurationBundlesActions.apply(this.props.sourceTypeId).then(() => {
-      UserNotification.success('Bundle applied successfully.', 'Success');
+      UserNotification.success('绑定应用成功.', '成功');
     }, () => {
-      UserNotification.error('Applying bundle failed, please check your logs for more information.', 'Error');
+      UserNotification.error('绑定应用失败.', '错误');
     });
   },
   render() {
-    let preview = 'Select a content pack from the list to see its preview.';
+    let preview = '选择一个内容包进行预览。';
     let applyAction = '';
     let deleteAction = '';
 
     if (this.props.sourceTypeDescription) {
       preview = this.props.sourceTypeDescription;
       applyAction = <Button bsStyle="success" onClick={this._onApply}>Apply content</Button>;
-      deleteAction = <Button className="pull-right" bsStyle="warning" bsSize="xsmall" onClick={this._confirmDeletion}>Remove pack</Button>;
+      deleteAction = <Button className="pull-right" bsStyle="warning" bsSize="xsmall" onClick={this._confirmDeletion}>移除内容包</Button>;
     }
 
     const markdownPreview = markdown.toHTML(preview);
@@ -48,7 +48,7 @@ const ConfigurationBundlePreview = React.createClass({
       <div className="bundle-preview">
         <div style={{ marginBottom: 5 }}>
           {deleteAction}
-          <h2>Content pack description:</h2>
+          <h2>内容包描述:</h2>
         </div>
         <div dangerouslySetInnerHTML={{ __html: markdownPreview }} />
         <div className="preview-actions">

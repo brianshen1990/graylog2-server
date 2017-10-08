@@ -20,14 +20,13 @@ const StaticFieldForm = React.createClass({
   },
   render() {
     return (
-      <BootstrapModalForm ref="modal" title="Add static field" submitButtonText="Add field"
+      <BootstrapModalForm ref="modal" title="添加静态字段" submitButtonText="添加字段"
                           onSubmitForm={this._addStaticField}>
-        <p>Define a static field that is added to every message that comes in via this input. The field is not
-          overwritten If the message already has that key. Key must only contain alphanumeric characters or
-          underscores and not be a reserved field.</p>
-        <Input ref="fieldName" type="text" id="field-name" label="Field name" className="validatable"
+        <p>定义静态字段, 在每一个输入消息中都会加上它. 如说输入消息中已有该字段,
+          则不会覆盖. 请确保只能使用阿拉伯数字和字符以及下划线.</p>
+        <Input ref="fieldName" type="text" id="field-name" label="字段名称" className="validatable"
                data-validate="alphanum_underscore" required autoFocus />
-        <Input ref="fieldValue" type="text" id="field-value" label="Field value" required />
+        <Input ref="fieldValue" type="text" id="field-value" label="字段值" required />
       </BootstrapModalForm>
     );
   },

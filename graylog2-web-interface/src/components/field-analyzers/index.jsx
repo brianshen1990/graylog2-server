@@ -12,19 +12,19 @@ const pluginManifest = new PluginManifest({}, {
   fieldAnalyzers: [
     {
       refId: 'fieldStatisticsComponent',
-      displayName: 'Statistics',
+      displayName: '统计',
       component: FieldStatistics,
       displayPriority: 2,
     },
     {
       refId: 'fieldQuickValuesComponent',
-      displayName: 'Quick values',
+      displayName: '快速统计值',
       component: FieldQuickValues,
       displayPriority: 1,
     },
     {
       refId: 'fieldGraphsComponent',
-      displayName: 'Generate chart',
+      displayName: '产生图表',
       component: FieldGraphs,
       displayPriority: 0,
     },

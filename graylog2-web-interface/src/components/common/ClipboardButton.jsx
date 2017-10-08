@@ -36,7 +36,7 @@ const ClipboardButton = React.createClass({
     }
   },
   _onSuccess(event) {
-    this.setState({ tooltipMessage: 'Copied!' });
+    this.setState({ tooltipMessage: '已复制!' });
 
     if (this.props.onSuccess) {
       this.props.onSuccess(event);
@@ -46,7 +46,7 @@ const ClipboardButton = React.createClass({
   },
   _onError(event) {
     const key = event.action === 'cut' ? 'K' : 'C';
-    this.setState({ tooltipMessage: `Press Ctrl+${key} to ${event.action}` });
+    this.setState({ tooltipMessage: `请按下+${key} 来执行 ${event.action}操作` });
   },
   _getFilteredProps() {
     const { className, style, bsStyle, bsSize } = this.props;

@@ -56,18 +56,18 @@ const MessageLoader = React.createClass({
     if (!this.props.hideText) {
       explanatoryText = (
         <p>
-          Wrong example? You can{' '}
-          <button className="btn btn-link btn-small btn-text" onClick={this.toggleMessageForm}>load another message</button>.
+          错误的示例? 你可以{' '}
+          <button className="btn btn-link btn-small btn-text" onClick={this.toggleMessageForm}>导入另一条消息</button>.
         </p>
       );
     }
     const loadMessageForm = (
       <div>
         <form className="form-inline message-loader-form" onSubmit={this.loadMessage}>
-          <input type="text" ref="messageId" className="form-control message-id-input" placeholder="Message ID" required />
+          <input type="text" ref="messageId" className="form-control message-id-input" placeholder="消息 ID" required />
           <input type="text" ref="index" className="form-control" placeholder="Index" required />
           <button ref="submitButton" type="submit" className="btn btn-info" disabled={this.state.loading}>
-            {this.state.loading ? 'Loading message...' : 'Load message'}
+            {this.state.loading ? '消息导入中...' : '导入消息'}
           </button>
         </form>
       </div>

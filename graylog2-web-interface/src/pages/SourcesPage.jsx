@@ -6,7 +6,7 @@ import { DocumentTitle } from 'components/common';
 const SourcesPage = React.createClass({
   render() {
     return (
-      <DocumentTitle title="Sources">
+      <DocumentTitle title="数据源">
         <SourceOverview />
       </DocumentTitle>
     );

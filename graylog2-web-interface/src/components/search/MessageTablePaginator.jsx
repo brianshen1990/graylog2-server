@@ -74,9 +74,9 @@ const MessageTablePaginator = React.createClass({
   _onPageChanged(page) {
     let newPage;
 
-    if (page === 'Previous') {
+    if (page === '<<') {
       newPage = this.props.currentPage - 1;
-    } else if (page === 'Next') {
+    } else if (page === '>>') {
       newPage = this.props.currentPage + 1;
     } else {
       newPage = Number(page);
@@ -87,13 +87,13 @@ const MessageTablePaginator = React.createClass({
   render() {
     const pages = [];
 
-    pages.push(<Page key="previous" href="#" page="Previous" isDisabled={this.props.currentPage === 1}
+    pages.push(<Page key="previous" href="#" page="<<" isDisabled={this.props.currentPage === 1}
                      onPageChanged={this._onPageChanged} />);
     for (let i = this._minPage(); i <= this._maxPage(); i++) {
       pages.push(<Page key={`page${i}`} href="#" page={i} isActive={i === this.props.currentPage}
                        onPageChanged={this._onPageChanged} />);
     }
-    pages.push(<Page key="next" href="#" page="Next" isDisabled={this.props.currentPage >= this._maxPage()}
+    pages.push(<Page key="next" href="#" page=">>" isDisabled={this.props.currentPage >= this._maxPage()}
                      onPageChanged={this._onPageChanged} />);
 
     const pagination = (

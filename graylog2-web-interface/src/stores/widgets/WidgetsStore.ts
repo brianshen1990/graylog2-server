@@ -39,13 +39,13 @@ const WidgetsStore = Reflux.createStore({
 
         promise.then(
           response => {
-              UserNotification.success("Widget created successfully");
+              UserNotification.success("组件创建成功");
               return response;
           },
           error => {
               if (error.additional.status !== 404) {
-                  UserNotification.error("Creating widget failed with status: " + error,
-                    "Could not create widget");
+                  UserNotification.error("创建组件失败: " + error,
+                    "无法创建组件");
               }
           });
 
@@ -58,8 +58,8 @@ const WidgetsStore = Reflux.createStore({
 
         promise.catch((error) => {
             if (error.additional.status !== 404) {
-                UserNotification.error("Loading widget information failed with status: " + error,
-                    "Could not load widget information");
+                UserNotification.error("加载组件信息失败: " + error,
+                    "无法加载组件信息");
             }
         });
         return promise;
@@ -71,12 +71,12 @@ const WidgetsStore = Reflux.createStore({
 
         promise.then(
           response => {
-              UserNotification.success("Widget updated successfully");
+              UserNotification.success("组件更新成功");
               return response;
           },
           error => {
-              UserNotification.error("Updating widget \"" + widget.description + "\" failed with status: " + error.message,
-                "Could not update widget");
+              UserNotification.error("更新组件 \"" + widget.description + "\" 失败: " + error.message,
+                "无法更新组件");
           }
         );
 

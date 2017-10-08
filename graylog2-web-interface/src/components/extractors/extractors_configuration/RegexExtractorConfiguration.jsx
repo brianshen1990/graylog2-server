@@ -37,12 +37,12 @@ const RegexExtractorConfiguration = React.createClass({
     const promise = ToolsStore.testRegex(this.props.configuration.regex_value, this.props.exampleMessage);
     promise.then((result) => {
       if (!result.matched) {
-        UserNotification.warning('Regular expression did not match.');
+        UserNotification.warning('正则不匹配.');
         return;
       }
 
       if (!result.match) {
-        UserNotification.warning('Regular expression does not contain any matcher group to extract.');
+        UserNotification.warning('正则不匹配任意提取器的内容.');
         return;
       }
 
@@ -58,14 +58,13 @@ const RegexExtractorConfiguration = React.createClass({
   render() {
     const helpMessage = (
       <span>
-        The regular expression used for extraction. First matcher group is used.{' '}
-        Learn more in the <DocumentationLink page={DocsHelper.PAGES.EXTRACTORS} text="documentation" />.
+        正则表达式会被应用于提取器.
       </span>
     );
 
     return (
       <div>
-        <Input label="Regular expression"
+        <Input label="正则表达式"
                labelClassName="col-md-2"
                wrapperClassName="col-md-10"
                help={helpMessage}>
@@ -79,7 +78,7 @@ const RegexExtractorConfiguration = React.createClass({
             </Col>
             <Col md={1} className="text-right">
               <Button bsStyle="info" onClick={this._onTryClick} disabled={this._isTryButtonDisabled()}>
-                {this.state.trying ? <i className="fa fa-spin fa-spinner" /> : 'Try'}
+                {this.state.trying ? <i className="fa fa-spin fa-spinner" /> : '试一试'}
               </Button>
             </Col>
           </Row>

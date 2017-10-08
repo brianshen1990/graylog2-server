@@ -77,7 +77,7 @@ const ShowDashboardPage = React.createClass({
         }
       }, (response) => {
         if (response.additional && response.additional.status === 404) {
-          UserNotification.error(`Unable to find a dashboard with the id <${dashboardId}>. Maybe it was deleted in the meantime.`);
+          UserNotification.error(`无法找到ID号为 <${dashboardId}> 的显示面板, 可能已经被同时删除掉了。`);
           this.props.history.pushState(null, Routes.DASHBOARDS);
         }
       });
@@ -95,8 +95,7 @@ const ShowDashboardPage = React.createClass({
       <Row className="content">
         <Col md={12}>
           <Alert className="no-widgets">
-            This dashboard has no widgets yet. Learn how to add widgets in the <DocumentationLink
-            page={DocsHelper.PAGES.DASHBOARDS} text="documentation" />.
+            当前显示面板还没有组件.
           </Alert>
         </Col>
       </Row>
@@ -193,7 +192,7 @@ const ShowDashboardPage = React.createClass({
   _toggleUpdateInBackground() {
     const forceUpdate = !this.state.forceUpdateInBackground;
     this.setState({ forceUpdateInBackground: forceUpdate });
-    UserNotification.success(`Graphs will be updated ${forceUpdate ? 'even' : 'only'} when the browser is in the ${forceUpdate ? 'background' : 'foreground'}`, '');
+    UserNotification.success(`图表将要被更新 ${forceUpdate ? '即使' : '只有'} 当浏览器在 ${forceUpdate ? '后端' : '前端'}`, '');
   },
   render() {
     if (!this.state.dashboard) {
@@ -207,13 +206,13 @@ const ShowDashboardPage = React.createClass({
       actions = (
         <div>
           <Button id="update-unfocussed" bsStyle="info" onClick={this._toggleUpdateInBackground}>
-            Update in {this.state.forceUpdateInBackground ? 'foreground' : 'background'}
+            更新在 {this.state.forceUpdateInBackground ? '前端' : '后端'}
           </Button>
           {' '}
-          <Button className="toggle-fullscreen" bsStyle="info" onClick={this._toggleFullscreen}>Fullscreen</Button>
+          <Button className="toggle-fullscreen" bsStyle="info" onClick={this._toggleFullscreen}>全屏</Button>
           <IfPermitted permissions={`${this.DASHBOARDS_EDIT}:${dashboard.id}`}>
             {' '}
-            <Button bsStyle="success" onClick={this._toggleUnlock}>{this.state.locked ? 'Unlock / Edit' : 'Lock'}</Button>
+            <Button bsStyle="success" onClick={this._toggleUnlock}>{this.state.locked ? '解锁 / 编辑' : '锁定'}</Button>
           </IfPermitted>
         </div>
       );
@@ -224,8 +223,8 @@ const ShowDashboardPage = React.createClass({
       supportText = (
         <IfPermitted permissions={`${this.DASHBOARDS_EDIT}:${dashboard.id}`}>
           <div id="drag-widgets-description">
-            Drag widgets to any position you like in <a href="#" role="button" onClick={this._unlockDashboard}>
-            unlock / edit</a> mode.
+            拖拽组件到你喜欢的地方在 <a href="#" role="button" onClick={this._unlockDashboard}>
+            解锁 / 编辑</a> 模式.
           </div>
         </IfPermitted>
       );
@@ -244,7 +243,7 @@ const ShowDashboardPage = React.createClass({
       </span>
     );
     return (
-      <DocumentTitle title={`Dashboard ${dashboard.title}`}>
+      <DocumentTitle title={`组件 ${dashboard.title}`}>
         <span>
           <PageHeader title={dashboardTitle}>
             <span data-dashboard-id={dashboard.id} className="dashboard-description">{dashboard.description}</span>

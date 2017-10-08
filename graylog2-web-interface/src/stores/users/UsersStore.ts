@@ -50,8 +50,8 @@ export const UsersStore = {
         response => response.users,
         (error) => {
           if (error.additional.status !== 404) {
-            UserNotification.error("Loading user list failed with status: " + error,
-              "Could not load user list");
+            UserNotification.error("加载用户列表失败: " + error,
+              "无法加载用户列表");
           }
         });
     return promise;
@@ -61,8 +61,8 @@ export const UsersStore = {
     const url = URLUtils.qualifyUrl(ApiRoutes.UsersApiController.load(encodeURIComponent(username)).url);
     const promise = fetch('GET', url);
     promise.catch((error) => {
-      UserNotification.error("Loading user failed with status: " + error,
-        "Could not load user " + username);
+      UserNotification.error("加载用户失败: " + error,
+        "无法加载用户 " + username);
     });
 
     return promise;
@@ -73,11 +73,11 @@ export const UsersStore = {
     const  promise = fetch('DELETE', url);
 
     promise.then(() => {
-      UserNotification.success("User \"" + username + "\" was deleted successfully");
+      UserNotification.success("用户 \"" + username + "\" 删除成功");
     }, (error) => {
       if (error.additional.status !== 404) {
-        UserNotification.error("Delete user failed with status: " + error,
-          "Could not delete user");
+        UserNotification.error("删除用户出错: " + error,
+          "无法删除用户");
       }
     });
 

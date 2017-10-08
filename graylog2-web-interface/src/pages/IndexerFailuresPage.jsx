@@ -36,18 +36,17 @@ const IndexerFailuresPage = React.createClass({
       return <Spinner />;
     }
     return (
-      <DocumentTitle title="Indexer failures">
+      <DocumentTitle title="Indexer 失败">
         <span>
-          <PageHeader title="Indexer failures">
+          <PageHeader title="Indexer 失败">
             <span>
-              This is a list of message index attempts that failed. A failure means that a message you sent to Graylog was{' '}
-              properly processed but writing it to the Elasticsearch cluster failed. Note that the list is capped to a size{' '}
-              of 50 MB so it will contain a lot of failure logs but not necessarily all that ever occurred.
+              该页显示索引尝试失败。失败意味着消息已被处理，{' '}
+              但是没有被正确写入Elasticsearch 集群.最多保存{' '}
+              50 MB 失败数据，这意味着不是所有的失败数目都能看见. .
             </span>
 
             <span>
-              Collection containing a total of {numeral(this.state.total).format('0,0')} indexer failures. Read more about
-              this topic in the <DocumentationLink page={DocsHelper.PAGES.INDEXER_FAILURES} text="documentation" />.
+              共包含 {numeral(this.state.total).format('0,0')} 条indexer 失败.
             </span>
           </PageHeader>
           <Row className="content">

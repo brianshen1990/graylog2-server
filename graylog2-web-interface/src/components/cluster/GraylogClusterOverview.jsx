@@ -20,9 +20,9 @@ const GraylogClusterOverview = React.createClass({
     if (!this._isLoading()) {
       content = (
         <dl className="system-dl" style={{ marginBottom: 0 }}>
-          <dt>Cluster ID:</dt>
-          <dd>{this.state.clusterId || 'Not available'}</dd>
-          <dt>Number of nodes:</dt>
+          <dt>集群 ID:</dt>
+          <dd>{this.state.clusterId || '无可用'}</dd>
+          <dt>Nodes数目:</dt>
           <dd>{this.state.nodeCount}</dd>
         </dl>
       );
@@ -31,7 +31,7 @@ const GraylogClusterOverview = React.createClass({
     return (
       <Row className="content">
         <Col md={12}>
-          <h2 style={{ marginBottom: 10 }}>Graylog cluster</h2>
+          <h2 style={{ marginBottom: 10 }}>xxxx 日志平台 集群</h2>
           {content}
         </Col>
       </Row>

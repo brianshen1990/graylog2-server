@@ -17,12 +17,12 @@ const MessageCountConditionSummary = React.createClass({
 
     return (
       <span>
-        Alert is triggered when there
+        告警触发的情况是
         {' '}
-        <Pluralize value={threshold} singular={`is ${thresholdType} than one message`}
-                   plural={`are ${thresholdType} than ${threshold} messages`} />
+        <Pluralize value={threshold} singular={`收到 ${thresholdType} 于一条信息`}
+                   plural={`收到 ${thresholdType} 于 ${threshold} 条信息`} />
         {' '}in the{' '}
-        <Pluralize value={time} singular="last minute" plural={`last ${time} minutes`} />.
+        <Pluralize value={time} singular="最近 1 分钟" plural={`最近 ${time} 分钟`} />.
         {' '}
         <GracePeriodSummary alertCondition={alertCondition} />
         {' '}

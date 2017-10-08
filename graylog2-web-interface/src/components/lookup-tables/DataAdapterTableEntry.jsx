@@ -27,7 +27,7 @@ const DataAdapterTableEntry = React.createClass({
 
   _onDelete() {
 // eslint-disable-next-line no-alert
-    if (window.confirm(`Are you sure you want to delete data adapter "${this.props.adapter.title}"?`)) {
+    if (window.confirm(`确定要删除数据转接器 "${this.props.adapter.title}"?`)) {
       LookupTableDataAdaptersActions.delete(this.props.adapter.id).then(() => LookupTableDataAdaptersActions.reloadPage());
     }
   },
@@ -37,7 +37,7 @@ const DataAdapterTableEntry = React.createClass({
       <tbody>
         <tr>
           <td>
-            {this.props.error && <ErrorPopover errorText={this.props.error} title="Lookup table problem" placement="right" />}
+            {this.props.error && <ErrorPopover errorText={this.props.error} title="数据转接器问题" placement="right" />}
             <LinkContainer to={Routes.SYSTEM.LOOKUPTABLES.DATA_ADAPTERS.show(this.props.adapter.name)}><a>{this.props.adapter.title}</a></LinkContainer>
             <ContentPackMarker contentPack={this.props.adapter.content_pack} marginLeft={5} />
           </td>
@@ -50,10 +50,10 @@ const DataAdapterTableEntry = React.createClass({
           </td>
           <td>
             <LinkContainer to={Routes.SYSTEM.LOOKUPTABLES.DATA_ADAPTERS.edit(this.props.adapter.name)}>
-              <Button bsSize="xsmall" bsStyle="info">Edit</Button>
+              <Button bsSize="xsmall" bsStyle="info">编辑</Button>
             </LinkContainer>
             &nbsp;
-            <Button bsSize="xsmall" bsStyle="primary" onClick={this._onDelete}>Delete</Button>
+            <Button bsSize="xsmall" bsStyle="primary" onClick={this._onDelete}>删除</Button>
           </td>
         </tr>
       </tbody>

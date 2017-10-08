@@ -45,7 +45,7 @@ const TableList = React.createClass({
     const header = (
       <div>
         {bulkHeaderActions}
-        <Input type="checkbox" label="Select all" checked={this.state.allSelected} onChange={this._toggleSelectAll}
+        <Input type="checkbox" label="选取全部" checked={this.state.allSelected} onChange={this._toggleSelectAll}
                groupClassName="form-group-inline" />
       </div>
     );
@@ -86,7 +86,7 @@ const TableList = React.createClass({
       return (
         <Row>
           <Col md={12}>
-            <div>No items to display.</div>
+            <div>无可显示条目.</div>
           </Col>
         </Row>
       );
@@ -114,7 +114,7 @@ const TableList = React.createClass({
       return (
         <div>
           {filter}
-          <div>No items match your filter criteria</div>
+          <div>没有匹配筛选规则的条目</div>
         </div>
       );
     }

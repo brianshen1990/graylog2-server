@@ -24,8 +24,8 @@ const MessagesStore = Reflux.createStore({
       .then(
         response => MessageFormatter.formatResultMessage(response),
         (errorThrown) => {
-          UserNotification.error(`Loading message information failed with status: ${errorThrown}`,
-            'Could not load message information');
+          UserNotification.error(`导入消息信息失败: ${errorThrown}`,
+            '无法导入消息信息');
         });
 
     MessagesActions.loadMessage.promise(promise);
@@ -37,8 +37,8 @@ const MessagesStore = Reflux.createStore({
       .then(
         response => response.tokens,
         (error) => {
-          UserNotification.error(`Loading field terms failed with status: ${error}`,
-            'Could not load field terms.');
+          UserNotification.error(`导入字段出错: ${error}`,
+            '无法导入字段.');
         });
 
     MessagesActions.fieldTerms.promise(promise);
@@ -58,12 +58,12 @@ const MessagesStore = Reflux.createStore({
         response => MessageFormatter.formatResultMessage(response),
         (error) => {
           if (error.additional && error.additional.status === 400) {
-            UserNotification.error('Please ensure the selected codec and its configuration are right. ' +
-              'Check your server logs for more information.', 'Could not load raw message');
+            UserNotification.error('请确保选择的解码器和配置正确. ' +
+              '检查服务器日志以获取更多信息.', '无法导入原始消息');
             return;
           }
-          UserNotification.error(`Loading raw message failed with status: ${error}`,
-            'Could not load raw message');
+          UserNotification.error(`导入原始信息失败: ${error}`,
+            '无法导入原始信息');
         });
 
     MessagesActions.loadRawMessage.promise(promise);

@@ -13,7 +13,7 @@ const AddSearchCountToDashboard = React.createClass({
 
   render() {
     return (
-      <AddToDashboardMenu title="Add count to dashboard"
+      <AddToDashboardMenu title="将统计添加到面板"
                           pullRight={this.props.pullRight}
                           widgetType={this.props.searchInStream ? this.STREAM_SEARCH_COUNT_WIDGET_TYPE : this.SEARCH_COUNT_WIDGET_TYPE}
                           permissions={this.props.permissions} />

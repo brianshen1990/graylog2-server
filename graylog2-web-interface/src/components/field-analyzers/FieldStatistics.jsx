@@ -83,8 +83,8 @@ const FieldStatistics = React.createClass({
             statsLoadPending: this.state.statsLoadPending.delete(field),
           });
         } else {
-          UserNotification.error(`Loading field statistics failed with status: ${error}`,
-            'Could not load field statistics');
+          UserNotification.error(`导入字段统计失败: ${error}`,
+            '无法导入字段统计');
         }
       });
     }
@@ -161,17 +161,17 @@ const FieldStatistics = React.createClass({
       content = (
         <div className="content-col">
           <div className="pull-right">
-            <AddToDashboardMenu title="Add to dashboard"
+            <AddToDashboardMenu title="添加到面板"
                                 widgetType={this.WIDGET_TYPE}
                                 bsStyle="default"
                                 fields={this.state.fieldStatistics.keySeq().toJS()}
                                 pullRight
                                 permissions={this.props.permissions}>
 
-              <Button bsSize="small" onClick={() => this._resetStatus()}>Dismiss</Button>
+              <Button bsSize="small" onClick={() => this._resetStatus()}>删除</Button>
             </AddToDashboardMenu>
           </div>
-          <h1>Field Statistics</h1>
+          <h1>字段统计</h1>
 
           <div className="table-responsive">
             <table className="table table-striped table-bordered table-hover table-condensed">
@@ -179,7 +179,7 @@ const FieldStatistics = React.createClass({
                 <tr>
                   <th style={{ width: 24 }} />
                   <th onClick={() => this._changeSortOrder('field')}>
-                  Field {this._getHeaderCaret('field')}
+                  字段 {this._getHeaderCaret('field')}
                   </th>
                   {this._renderStatisticalFunctionsHeaders()}
                 </tr>
@@ -193,7 +193,7 @@ const FieldStatistics = React.createClass({
       );
     } else if (!this.state.statsLoadPending.isEmpty()) {
       content = (<div className="content-col">
-        <h1>Field Statistics <i className="fa fa-spin fa-spinner" /></h1>
+        <h1>字段统计 <i className="fa fa-spin fa-spinner" /></h1>
       </div>);
     }
 

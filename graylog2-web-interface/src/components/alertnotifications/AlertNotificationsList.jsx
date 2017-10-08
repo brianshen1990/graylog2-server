@@ -43,7 +43,7 @@ const AlertNotificationsList = React.createClass({
       <PaginatedList totalItems={notifications.length} onChange={this._onChangePaginatedList}
                      showPageSizeSelect={false} pageSize={this.PAGE_SIZE}>
         <EntityList bsNoItemsStyle="info"
-                    noItemsText="There are no configured notifications."
+                    noItemsText="没有配置好的告警通知。"
                     items={this._paginatedNotifications().map(notification => this._formatNotification(notification))} />
       </PaginatedList>
     );

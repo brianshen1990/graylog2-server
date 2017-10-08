@@ -34,7 +34,7 @@ const StreamsPage = React.createClass({
   },
   _onSave(_, stream) {
     StreamsStore.save(stream, () => {
-      UserNotification.success('Stream has been successfully created.', 'Success');
+      UserNotification.success('数据流被成功创建.', '成功');
     });
   },
   render() {
@@ -43,17 +43,13 @@ const StreamsPage = React.createClass({
     }
 
     return (
-      <DocumentTitle title="Streams">
+      <DocumentTitle title="数据流">
         <div>
-          <PageHeader title="Streams">
+          <PageHeader title="数据流">
             <span>
-              You can route incoming messages into streams by applying rules against them. Messages matching
-              the rules of a stream are routed into it. A message can also be routed into multiple streams.
+              你正在对输入消息进行分流。消息匹配一定的规则将会被分配到指定的数据流当中。一条消息可被指定给多个消息流。
             </span>
 
-            <span>
-              Read more about streams in the <DocumentationLink page={DocsHelper.PAGES.STREAMS} text="documentation" />.
-            </span>
 
             <IfPermitted permissions="streams:create">
               <CreateStreamButton ref="createStreamButton" bsSize="large" bsStyle="success" onSave={this._onSave}

@@ -115,20 +115,20 @@ const WidgetCreationModal = React.createClass({
   render() {
     return (
       <BootstrapModalForm ref="createModal"
-                          title="Create Dashboard Widget"
+                          title="创建面板组件"
                           onModalOpen={this._getInitialConfiguration}
                           onModalClose={this.props.onModalHidden}
                           onSubmitForm={this.save}
-                          submitButtonText="Create">
+                          submitButtonText="创建">
         <fieldset>
           <Input type="text"
-                 label="Title"
+                 label="标题"
                  name="title"
                  id="widget-title"
                  required
                  defaultValue={this.state.title}
                  onChange={this._bindValue}
-                 help="Type a name that describes your widget."
+                 help="为您的组件创建标题"
                  autoFocus />
           {this._getSpecificWidgetInputs()}
         </fieldset>

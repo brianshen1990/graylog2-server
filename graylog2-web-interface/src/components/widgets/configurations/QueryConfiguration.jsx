@@ -12,10 +12,10 @@ const QueryConfiguration = React.createClass({
              key="query"
              id="query"
              name="query"
-             label="Search query"
+             label="搜索语句"
              defaultValue={this.props.config.query}
              onChange={this.props.onChange}
-             help="Search query that will be executed to get the widget value." />
+             help="获取组件值的搜索语句." />
     );
   },
 });

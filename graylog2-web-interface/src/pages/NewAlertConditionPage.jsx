@@ -17,26 +17,20 @@ const NewAlertConditionPage = React.createClass({
   mixins: [Reflux.connect(CurrentUserStore)],
   render() {
     return (
-      <DocumentTitle title="New alert condition">
+      <DocumentTitle title="创建新的告警条件">
         <div>
-          <PageHeader title="New alert condition">
+          <PageHeader title="创建新的告警条件">
             <span>
-              Define an alert condition and configure the way Graylog will notify you when that condition is satisfied.
-            </span>
-
-            <span>
-              Are the default conditions not flexible enough? You can write your own! Read more about alerting in
-              the{' '}
-              <DocumentationLink page={DocsHelper.PAGES.ALERTS} text="documentation" />.
+              在此定义您的告警条件。
             </span>
 
             <span>
               <LinkContainer to={Routes.ALERTS.CONDITIONS}>
-                <Button bsStyle="info">Manage conditions</Button>
+                <Button bsStyle="info">管理告警条件</Button>
               </LinkContainer>
               &nbsp;
               <LinkContainer to={Routes.ALERTS.NOTIFICATIONS}>
-                <Button bsStyle="info">Manage notifications</Button>
+                <Button bsStyle="info">管理告警通知</Button>
               </LinkContainer>
             </span>
           </PageHeader>

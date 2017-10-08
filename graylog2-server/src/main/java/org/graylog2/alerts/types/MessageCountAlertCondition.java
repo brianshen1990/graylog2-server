@@ -91,7 +91,7 @@ public class MessageCountAlertCondition extends AbstractAlertCondition {
         @Override
         public ConfigurationRequest getRequestedConfiguration() {
             final ConfigurationRequest configurationRequest = ConfigurationRequest.createWithFields(
-                    new NumberField("time", "Time Range", 5, "Evaluate the condition for all messages received in the given number of minutes", ConfigurationField.Optional.NOT_OPTIONAL),
+                    new NumberField("time", "时间区间", 5, "在给定的分钟范围内为所有消息计算条件。", ConfigurationField.Optional.NOT_OPTIONAL),
                     new DropdownField(
                             "threshold_type",
                             "Threshold Type",
@@ -110,9 +110,9 @@ public class MessageCountAlertCondition extends AbstractAlertCondition {
     public static class Descriptor extends AlertCondition.Descriptor {
         public Descriptor() {
             super(
-                "Message Count Alert Condition",
+                "消息数告警条件",
                 "https://www.graylog.org/",
-                "This condition is triggered when the number of messages is higher/lower than a defined threshold in a given time range."
+                "该告警条件会在所有的输入消息高于或者低于规定值时触发。"
             );
         }
     }

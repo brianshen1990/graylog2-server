@@ -36,19 +36,18 @@ const ShowMetricsPage = React.createClass({
     }
 
     const node = this.state.nodes[nodeId];
-    const title = <span>Metrics of node {node.short_node_id} / {node.hostname}</span>;
+    const title = <span>节点 {node.short_node_id} / {node.hostname} 度量</span>;
     const namespace = MetricsStore.namespace;
     const names = this.state.metricsNames[nodeId];
     const filter = this.props.location.query.filter;
     return (
-      <DocumentTitle title={`Metrics of node ${node.short_node_id} / ${node.hostname}`}>
+      <DocumentTitle title={`节点 ${node.short_node_id} / ${node.hostname} 度量`}>
         <span>
           <PageHeader title={title}>
             <span>
-              All Graylog nodes provide a set of internal metrics for diagnosis, debugging and monitoring. Note that you can access
-              all metrics via JMX, too.
+              所有的节点都会提供内部的度量，以便您分析、调试和监控。您也可以通过JMX去获取这些度量值。
             </span>
-            <span>This node is reporting a total of {names.length} metrics.</span>
+            <span>本节点正在报告{names.length} 个度量.</span>
           </PageHeader>
 
           <MetricsComponent names={names} namespace={namespace} nodeId={nodeId} filter={filter} />

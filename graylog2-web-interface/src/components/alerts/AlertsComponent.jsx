@@ -78,23 +78,23 @@ const AlertsComponent = React.createClass({
       <div>
         <div className="pull-right">
           <Button bsStyle="info" onClick={this._refreshData} disabled={this.state.loading}>
-            {this.state.loading ? 'Refreshing...' : 'Refresh'}
+            {this.state.loading ? '刷新中...' : '刷新'}
           </Button>
           &nbsp;
           <Button bsStyle="info" onClick={this._onToggleAllAlerts}>
-            Show {this.state.displayAllAlerts ? 'unresolved' : 'all'} alerts
+            呈现 {this.state.displayAllAlerts ? '未解决' : '全部'} 告警
           </Button>
         </div>
-        <h2>{this.state.displayAllAlerts ? 'Alerts' : 'Unresolved alerts'}</h2>
+        <h2>{this.state.displayAllAlerts ? '告警' : '未解决告警'}</h2>
         <p className="description">
-          Check your alerts status from here. Currently displaying{' '}
-          {this.state.displayAllAlerts ? 'all' : 'unresolved'} alerts.
+          在此处检查您的告警状态。 当前显示了{' '}
+          {this.state.displayAllAlerts ? '全部' : '未解决'} 告警。.
         </p>
 
         <PaginatedList totalItems={this.state.alerts.total} pageSize={this.pageSize} onChange={this._onChangePaginatedList}
                        showPageSizeSelect={false}>
           <EntityList bsNoItemsStyle={this.state.displayAllAlerts ? 'info' : 'success'}
-                      noItemsText={this.state.displayAllAlerts ? 'There are no alerts to display' : 'Good news! Currently there are no unresolved alerts.'}
+                      noItemsText={this.state.displayAllAlerts ? '没有告警' : '好消息! 当前没有未解决的告警.'}
                       items={this.state.alerts.alerts.map(alert => this._formatAlert(alert))} />
         </PaginatedList>
       </div>

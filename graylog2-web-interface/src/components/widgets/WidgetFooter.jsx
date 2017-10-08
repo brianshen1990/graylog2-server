@@ -24,7 +24,7 @@ const WidgetFooter = React.createClass({
   },
   render() {
     // if we have a tooltip, we disable the button link and instead show a tooltip on hover
-    const title = this.props.replayToolTip ? null : 'Replay search';
+    const title = this.props.replayToolTip ? null : '重现搜索';
     const href = this.props.replayToolTip ? null : this.props.replayHref;
     let replay = (
       <Button bsStyle="link" className="btn-text" title={title} href={href}>
@@ -44,7 +44,7 @@ const WidgetFooter = React.createClass({
           {replay}
         </div>
         <div className="widget-info">
-          <Button bsStyle="link" className="btn-text" title="Show widget configuration" onClick={this._showConfig}>
+          <Button bsStyle="link" className="btn-text" title="产看组件配置" onClick={this._showConfig}>
             <i className="fa fa-info-circle" />
           </Button>
         </div>
@@ -54,12 +54,12 @@ const WidgetFooter = React.createClass({
     const unlockedActions = (
       <div className="actions">
         <div className="widget-delete">
-          <Button bsStyle="link" className="btn-text" title="Delete widget" onClick={this._delete}>
+          <Button bsStyle="link" className="btn-text" title="删除组件" onClick={this._delete}>
             <i className="fa fa-trash" />
           </Button>
         </div>
         <div className="widget-edit">
-          <Button bsStyle="link" className="btn-text" title="Edit widget" onClick={this._editConfig}>
+          <Button bsStyle="link" className="btn-text" title="编辑组件" onClick={this._editConfig}>
             <i className="fa fa-pencil" />
           </Button>
         </div>

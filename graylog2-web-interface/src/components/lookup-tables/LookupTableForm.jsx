@@ -213,11 +213,11 @@ const LookupTableForm = React.createClass({
           <Input type="text"
                  id="title"
                  name="title"
-                 label="Title"
+                 label="标题"
                  autoFocus
                  required
                  onChange={this._onChange}
-                 help="A short title for this lookup table."
+                 help="为查找表定制简短的标题"
                  value={table.title}
                  labelClassName="col-sm-3"
                  wrapperClassName="col-sm-9" />
@@ -225,9 +225,9 @@ const LookupTableForm = React.createClass({
           <Input type="text"
                  id="description"
                  name="description"
-                 label="Description"
+                 label="描述"
                  onChange={this._onChange}
-                 help="Description of the lookup table."
+                 help="该查找表的描述"
                  value={table.description}
                  labelClassName="col-sm-3"
                  wrapperClassName="col-sm-9" />
@@ -235,26 +235,26 @@ const LookupTableForm = React.createClass({
           <Input type="text"
                  id="name"
                  name="name"
-                 label="Name"
+                 label="名称"
                  required
                  onChange={this._onChange}
-                 help={this._validationMessage('name', 'The name that is being used to refer to this lookup table. Must be unique.')}
+                 help={this._validationMessage('name', '请确保名称的唯一性。.')}
                  bsStyle={this._validationState('name')}
                  value={table.name}
                  labelClassName="col-sm-3"
                  wrapperClassName="col-sm-9" />
 
           <Input type="checkbox"
-                 label="Enable single default value"
+                 label="开启单个默认值"
                  checked={this.state.enable_default_single}
                  onChange={this._onCheckEnableSingleDefault}
-                 help="Enable if the lookup table should provide a default for the single value."
+                 help="如果查找表需要提供一个默认值，请开启。"
                  wrapperClassName="col-md-offset-3 col-md-9"
                  />
 
           {this.state.enable_default_single &&
-          <JSONValueInput label="Default single value"
-                          help={this._validationMessage('default_single_value', 'The single value that is being used as lookup result if the data adapter or cache does not find a value.')}
+          <JSONValueInput label="单个默认值"
+                          help={this._validationMessage('default_single_value', '单个默认值会在数据转接器或者缓存失效的情况下被使用。')}
                           validationState={this._validationState('default_single_value')}
                           update={this._onDefaultSingleValueUpdate}
                           required
@@ -266,15 +266,15 @@ const LookupTableForm = React.createClass({
           }
 
           <Input type="checkbox"
-                 label="Enable multi default value"
+                 label="开启多个默认值"
                  checked={this.state.enable_default_multi}
                  onChange={this._onCheckEnableMultiDefault}
-                 help="Enable if the lookup table should provide a default for the multi value."
+                 help="如果查找表需要提供多个默认值，请开启。"
                  wrapperClassName="col-md-offset-3 col-md-9" />
 
           {this.state.enable_default_multi &&
           <JSONValueInput label="Default multi value"
-                          help={this._validationMessage('default_multi_value', 'The multi value that is being used as lookup result if the data adapter or cache does not find a value.')}
+                          help={this._validationMessage('default_multi_value', '多个默认值会在数据转接器或者缓存失效的情况下被使用。')}
                           validationState={this._validationState('default_multi_value')}
                           update={this._onDefaultMultiValueUpdate}
                           value={table.default_multi_value}
@@ -295,7 +295,7 @@ const LookupTableForm = React.createClass({
 
         <fieldset>
           <Input wrapperClassName="col-sm-offset-3 col-sm-9">
-            <Button type="submit" bsStyle="success">{this.props.create ? 'Create Lookup Table' : 'Update Lookup Table'}</Button>
+            <Button type="submit" bsStyle="success">{this.props.create ? '创建查找表' : '更新查找表'}</Button>
           </Input>
         </fieldset>
       </form>

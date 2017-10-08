@@ -32,14 +32,14 @@ const OutputsStore = {
   remove(outputId: string, callback: (error) => void) {
     const url = URLUtils.qualifyUrl(ApiRoutes.OutputsApiController.delete(outputId).url);
     fetch('DELETE', url).then(callback, (error) => {
-      UserNotification.error("Terminating output failed with status: " + error,
-        "Could not terminate output");
+      UserNotification.error("停止输出失败: " + error,
+        "无法停止输出");
     });
   },
   save(output: any, callback: (output: Output) => void) {
     const failCallback = (error) => {
-      UserNotification.error("Saving Output \"" + output.title + "\" failed with status: " + error,
-        "Could not save Output");
+      UserNotification.error("保存输出 \"" + output.title + "\" 错误: " + error,
+        "保存输出");
     };
 
     const url = URLUtils.qualifyUrl(ApiRoutes.OutputsApiController.create().url);
@@ -48,8 +48,8 @@ const OutputsStore = {
   },
   update(output: Output, deltas: any, callback: (output: Output) => void) {
     const failCallback = (error) => {
-      UserNotification.error("Updating Output \"" + output.title + "\" failed with status: " + error,
-        "Could not update Output");
+      UserNotification.error("更新输出 \"" + output.title + "\" 失败: " + error,
+        "无法更新输出");
     };
 
     const url = URLUtils.qualifyUrl(ApiRoutes.OutputsApiController.update(output.id).url);
@@ -57,8 +57,8 @@ const OutputsStore = {
     fetch('PUT', url, deltas).then(callback, failCallback);
   },
   _failCallback(error: string) {
-    UserNotification.error("Loading outputs failed with status: " + error,
-      "Could not load outputs");
+    UserNotification.error("导入输出失败: " + error,
+      "无法导入输出");
   }
 };
 

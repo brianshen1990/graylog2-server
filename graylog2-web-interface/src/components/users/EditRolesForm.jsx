@@ -32,15 +32,15 @@ const EditRolesForm = React.createClass({
   },
   _updateRoles(evt) {
     evt.preventDefault();
-    if (confirm(`Really update roles for "${this.props.user.username}"?`)) {
+    if (confirm(`确定为 "${this.props.user.username}" 更新角色?`)) {
       const roles = this.refs.roles.getValue().filter(value => value !== '');
       const user = ObjectUtils.clone(this.props.user);
       user.roles = roles;
       UsersStore.update(this.props.user.username, user).then(() => {
-        UserNotification.success('Roles updated successfully.', 'Success!');
+        UserNotification.success('角色更新成功.', '成功!');
         this.props.history.replaceState(null, Routes.SYSTEM.AUTHENTICATION.USERS.LIST);
       }, () => {
-        UserNotification.error('Updating roles failed.', 'Error!');
+        UserNotification.error('更新角色失败.', '错误!');
       });
     }
   },
@@ -60,29 +60,28 @@ const EditRolesForm = React.createClass({
     const roles = this.state.newRoles;
     if (roles != null && !(roles.includes('Reader') || roles.includes('Admin'))) {
       rolesAlert = (<Alert bsStyle="danger" role="alert" className={EditRolesFormStyle.rolesMissingAlert}>
-        You need to select at least one of the <em>Reader</em> or <em>Admin</em> roles.
+        至少选择一个 <em>Reader</em> 或者 <em>Admin</em> 角色.
       </Alert>);
     }
     const externalUser = user.external ?
       (
         <Col smOffset={3} sm={9} style={{ marginBottom: 15 }}>
           <Alert bsStyle="warning" role="alert">
-            This user was created from an external LDAP system, please consider mapping LDAP groups instead of manually editing roles here.
-            Please update the LDAP group mapping to make changes or contact an administrator for more information.
+            用户通过外部LDAP 系统创建, 无法修改.
           </Alert>
         </Col>
       ) : null;
     const editUserForm = user.read_only ? (
       <Col smOffset={3} sm={9}>
         <Alert bsStyle="warning" role="alert">
-          You cannot edit the admin's user role.
+          无法编辑管理员用户角色
         </Alert>
       </Col>
     ) : (
       <span>
         {externalUser}
         <form className="form-horizontal" style={{ marginTop: '10px' }} onSubmit={this._updateRoles}>
-          <Input label="Roles" help="Choose the roles the user should be a member of. All the granted permissions will be combined."
+          <Input label="权限" help="所有用户拥有角色会被集合在一起."
                  labelClassName="col-sm-3" wrapperClassName="col-sm-9">
             <RolesSelect ref="roles" userRoles={user.roles} availableRoles={this.state.roles} onValueChange={this._onValueChange} />
           </Input>
@@ -90,9 +89,9 @@ const EditRolesForm = React.createClass({
             <Col smOffset={3} sm={9}>
               {rolesAlert}
               <Button bsStyle="primary" type="submit" className="save-button-margin" disabled={!!rolesAlert}>
-                Update role
+                修改权限
               </Button>
-              <Button onClick={this._onCancel}>Cancel</Button>
+              <Button onClick={this._onCancel}>取消</Button>
             </Col>
           </div>
         </form>
@@ -101,7 +100,7 @@ const EditRolesForm = React.createClass({
     return (
       <Row>
         <Col md={8}>
-          <h2>Change user role</h2>
+          <h2>修改用户权限</h2>
           {editUserForm}
         </Col>
       </Row>

@@ -55,8 +55,8 @@ const AlertsAnnotator = {
     if (this.streams) {
       stream = this.streams.filter(s => s.id === alert.stream_id)[0];
     }
-    stream = stream || { title: 'Undefined' };
-    return `<i class='fa fa-warning'></i> Stream "${stream.title}" triggered an alert: ${alert.description}`;
+    stream = stream || { title: '未定义' };
+    return `<i class='fa fa-warning'></i> 数据流 "${stream.title}" 触发了告警: ${alert.description}`;
   },
 };
 

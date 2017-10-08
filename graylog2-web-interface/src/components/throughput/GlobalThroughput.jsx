@@ -15,8 +15,8 @@ const GlobalThroughput = React.createClass({
     }
     return (
       <span>
-        In <strong className="total-throughput">{numeral(this.state.throughput.input).format('0,0')}</strong>{' '}
-        / Out <strong className="total-throughput">{numeral(this.state.throughput.output).format('0,0')}</strong> msg/s
+        输入 <strong className="total-throughput">{numeral(this.state.throughput.input).format('0,0')}</strong>{' '}
+        / 输出 <strong className="total-throughput">{numeral(this.state.throughput.output).format('0,0')}</strong> 条消息/s
       </span>
     );
   },

@@ -25,13 +25,13 @@ const ShowQueryModal = React.createClass({
     return (
       <BootstrapModalWrapper ref="modal">
         <Modal.Header closeButton>
-          <Modal.Title>Elasticsearch Query</Modal.Title>
+          <Modal.Title>Elasticsearch 搜索语句</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <pre>{queryText}</pre>
         </Modal.Body>
         <Modal.Footer>
-          <ClipboardButton title="Copy query" target=".modal-body pre" />
+          <ClipboardButton title="拷贝搜索" target=".modal-body pre" />
         </Modal.Footer>
       </BootstrapModalWrapper>
     );

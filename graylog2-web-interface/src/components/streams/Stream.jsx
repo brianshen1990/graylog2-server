@@ -38,10 +38,10 @@ const Stream = React.createClass({
 
   _formatNumberOfStreamRules(stream) {
     if (stream.is_default) {
-      return 'The default stream contains all messages.';
+      return '默认数据流包括全部消息.';
     }
     if (stream.rules.length === 0) {
-      return 'No configured rules.';
+      return '没有配置规则.';
     }
 
     let verbalMatchingType;
@@ -59,9 +59,9 @@ const Stream = React.createClass({
     );
   },
   _onDelete(stream) {
-    if (window.confirm('Do you really want to remove this stream?')) {
+    if (window.confirm('确定要删除数据流?')) {
       StreamsStore.remove(stream.id, (response) => {
-        UserNotification.success(`Stream '${stream.title}' was deleted successfully.`, 'Success');
+        UserNotification.success(`数据流 '${stream.title}' 删除成功.`, '成功');
         return response;
       });
     }
@@ -73,18 +73,18 @@ const Stream = React.createClass({
   },
   _onUpdate(streamId, stream) {
     StreamsStore.update(streamId, stream, (response) => {
-      UserNotification.success(`Stream '${stream.title}' was updated successfully.`, 'Success');
+      UserNotification.success(`数据流 '${stream.title}' 更新成功.`, '成功');
       return response;
     });
   },
   _onClone(streamId, stream) {
     StreamsStore.cloneStream(streamId, stream, (response) => {
-      UserNotification.success(`Stream was successfully cloned as '${stream.title}'.`, 'Success');
+      UserNotification.success(`数据流被成功的复制到 '${stream.title}'.`, '成功');
       return response;
     });
   },
   _onPause() {
-    if (window.confirm(`Do you really want to pause stream '${this.props.stream.title}'?`)) {
+    if (window.confirm(`确定要暂停数据流 '${this.props.stream.title}'?`)) {
       this.setState({ loading: true });
       StreamsStore.pause(this.props.stream.id, response => response)
         .finally(() => this.setState({ loading: false }));
@@ -94,7 +94,7 @@ const Stream = React.createClass({
     this.refs.quickAddStreamRuleForm.open();
   },
   _onSaveStreamRule(streamRuleId, streamRule) {
-    StreamRulesStore.create(this.props.stream.id, streamRule, () => UserNotification.success('Stream rule was created successfully.', 'Success'));
+    StreamRulesStore.create(this.props.stream.id, streamRule, () => UserNotification.success('数据流创建成功.', '成功'));
   },
   render() {
     const stream = this.props.stream;
@@ -102,7 +102,7 @@ const Stream = React.createClass({
 
     const isDefaultStream = stream.is_default;
     const defaultStreamTooltip = isDefaultStream ?
-      <Tooltip id="default-stream-tooltip">Action not available for the default stream</Tooltip> : null;
+      <Tooltip id="default-stream-tooltip">默认数据流不可操作。</Tooltip> : null;
 
     let editRulesLink;
     let manageOutputsLink;
@@ -111,7 +111,7 @@ const Stream = React.createClass({
       editRulesLink = (
         <OverlayElement overlay={defaultStreamTooltip} placement="top" useOverlay={isDefaultStream}>
           <LinkContainer disabled={isDefaultStream} to={Routes.stream_edit(stream.id)}>
-            <Button bsStyle="info">Manage Rules</Button>
+            <Button bsStyle="info">管理规则</Button>
           </LinkContainer>
         </OverlayElement>
       );
@@ -119,7 +119,7 @@ const Stream = React.createClass({
       if (this.isPermitted(permissions, ['stream_outputs:read'])) {
         manageOutputsLink = (
           <LinkContainer to={Routes.stream_outputs(stream.id)}>
-            <Button bsStyle="info">Manage Outputs</Button>
+            <Button bsStyle="info">管理输出</Button>
           </LinkContainer>
         );
       }
@@ -132,7 +132,7 @@ const Stream = React.createClass({
           <OverlayElement overlay={defaultStreamTooltip} placement="top" useOverlay={isDefaultStream}>
             <Button bsStyle="success" className="toggle-stream-button" onClick={this._onResume}
                     disabled={isDefaultStream || this.state.loading}>
-              {this.state.loading ? 'Starting...' : 'Start Stream'}
+              {this.state.loading ? '正在开启...' : '开启数据流'}
             </Button>
           </OverlayElement>
         );
@@ -141,7 +141,7 @@ const Stream = React.createClass({
           <OverlayElement overlay={defaultStreamTooltip} placement="top" useOverlay={isDefaultStream}>
             <Button bsStyle="primary" className="toggle-stream-button" onClick={this._onPause}
                     disabled={isDefaultStream || this.state.loading}>
-              {this.state.loading ? 'Pausing...' : 'Pause Stream'}
+              {this.state.loading ? '暂停中...' : '暂停数据流'}
             </Button>
           </OverlayElement>
         );
@@ -149,7 +149,7 @@ const Stream = React.createClass({
     }
 
     const createdFromContentPack = (stream.content_pack ?
-      <i className="fa fa-cube" title="Created from content pack" /> : null);
+      <i className="fa fa-cube" title="从内容包中创建新的数据流" /> : null);
 
     const streamRuleList = isDefaultStream ? null :
                            (<CollapsibleStreamRuleList key={`streamRules-${stream.id}`}
@@ -201,7 +201,7 @@ const Stream = React.createClass({
             {streamRuleList}
           </div>
         </div>
-        <StreamRuleForm ref="quickAddStreamRuleForm" title="New Stream Rule"
+        <StreamRuleForm ref="quickAddStreamRuleForm" title="新建数据流规则"
                         onSubmit={this._onSaveStreamRule}
                         streamRuleTypes={this.props.streamRuleTypes} />
       </li>

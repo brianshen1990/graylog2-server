@@ -14,26 +14,21 @@ const AlertNotificationsPage = React.createClass({
   mixins: [Reflux.connect(CurrentUserStore)],
   render() {
     return (
-      <DocumentTitle title="Alert notifications">
+      <DocumentTitle title="告警通知">
         <div>
-          <PageHeader title="Manage alert notifications">
+          <PageHeader title="管理告警通知">
             <span>
-              Notifications let you be aware of changes in your alert conditions status any time. Graylog can send
-              notifications directly to you or to other systems you use for that purpose.
+              告警会时刻让您知晓告警条件的状态。xxxx 日志平台会直接发给您。
             </span>
 
             <span>
-              Remember to assign the notifications to use in the alert conditions page.
+              别忘记将告警通知制定给告警条件。
             </span>
 
             <span>
               <LinkContainer to={Routes.ALERTS.CONDITIONS}>
-                <Button bsStyle="info">Manage conditions</Button>
+                <Button bsStyle="info">管理告警条件</Button>
               </LinkContainer>
-              &nbsp;
-              <Button bsStyle="info" href="https://marketplace.graylog.org/" target="_blank">
-                <i className="fa fa-external-link" />&nbsp; Find more notifications
-              </Button>
             </span>
           </PageHeader>
 

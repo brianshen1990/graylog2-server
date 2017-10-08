@@ -11,15 +11,14 @@ const NodesPage = React.createClass({
   mixins: [Reflux.connect(CurrentUserStore)],
   render() {
     return (
-      <DocumentTitle title="Nodes">
+      <DocumentTitle title="节点">
         <div>
-          <PageHeader title="Nodes">
-            <span>This page provides a real-time overview of the nodes in your Graylog cluster.</span>
+          <PageHeader title="节点">
+            <span>本页为你展现 xxxx 日志平台集群的节点信息。 </span>
 
             <span>
-              You can pause message processing at any time. The process buffers will not accept any new messages until
-              you resume it. If the message journal is enabled for a node, which it is by default, incoming messages
-              will be persisted to disk, even when processing is disabled.
+              你可以在任意时候停止消息处理程序。消息处理程的缓存不会再接收任何的消息，直到您恢复该程序。
+              如果消息日志被打开，消息会被持久化到硬盘，即使消息处理程序被禁用。
             </span>
           </PageHeader>
           <NodesList permissions={this.state.currentUser.permissions} />

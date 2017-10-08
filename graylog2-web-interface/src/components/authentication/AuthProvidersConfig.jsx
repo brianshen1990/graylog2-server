@@ -140,12 +140,10 @@ const AuthProvidersConfig = React.createClass({
 
   render() {
     return (
-      <DocumentTitle title="Authentication Providers">
+      <DocumentTitle title="认证供应提供">
         <span>
-          <PageHeader title="Authentication Providers" subpage>
-            <span>The following authentication providers executed in order during login. Disabled providers will be
-              skipped.<br />A user is authenticated by the first matching provider, a successful match can cause a Graylog account for
-              this user to be created.
+          <PageHeader title="认证供应提供" subpage>
+            <span>以下验证方式在登陆后会执行。关闭后相应会被跳过.<br />一个用户会被自动的执行第一个匹配的验证提供。
             </span>
           </PageHeader>
           <Row>
@@ -154,9 +152,9 @@ const AuthProvidersConfig = React.createClass({
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>Provider</th>
-                    <th>Description</th>
-                    <th>Status</th>
+                    <th>供应</th>
+                    <th>描述</th>
+                    <th>状态</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -165,15 +163,15 @@ const AuthProvidersConfig = React.createClass({
               </Table>
 
               <IfPermitted permissions="clusterconfigentry:edit">
-                <Button bsStyle="primary" onClick={this._openModal} className="save-button-margin">Update</Button>
-                <Button onClick={this._onCancel}>Cancel</Button>
+                <Button bsStyle="primary" onClick={this._openModal} className="save-button-margin">更新</Button>
+                <Button onClick={this._onCancel}>取消</Button>
               </IfPermitted>
 
               <BootstrapModalForm ref="configModal"
-                                  title="Update Authentication Provider Configuration"
+                                  title="更新验证配置"
                                   onSubmitForm={this._saveConfig}
                                   onModalClose={this._resetConfig}
-                                  submitButtonText="Save">
+                                  submitButtonText="保存">
                 <h3>Order</h3>
                 <p>Use drag and drop to change the execution order of the authentication providers.</p>
                 <SortableList items={this._sortableItems()} onMoveItem={this._updateSorting} />

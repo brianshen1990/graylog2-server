@@ -31,8 +31,8 @@ const AlertNotificationsStore = Reflux.createStore({
           return this.availableNotifications;
         },
         (error) => {
-          UserNotification.error(`Fetching available alert notification types failed with status: ${error.message}`,
-            'Could not retrieve available alert notifications');
+          UserNotification.error(`获取可用告警通知失败: ${error.message}`,
+            '无法获取可用告警通知');
         });
 
     AlertNotificationsActions.available.promise(promise);
@@ -48,8 +48,8 @@ const AlertNotificationsStore = Reflux.createStore({
         return this.allNotifications;
       },
       (error) => {
-        UserNotification.error(`Fetching alert notifications failed with status: ${error.message}`,
-          'Could not retrieve alert notifications');
+        UserNotification.error(`获取告警通知失败: ${error.message}`,
+          '无法获取告警通知');
       });
 
     AlertNotificationsActions.listAll.promise(promise);
@@ -60,11 +60,11 @@ const AlertNotificationsStore = Reflux.createStore({
 
     const promise = fetch('POST', url);
     promise.then(
-      () => UserNotification.success('Test notification was sent successfully'),
+      () => UserNotification.success('测试通知发送成功'),
       (error) => {
         const message = (error.additional && error.additional.body && error.additional.body.message ? error.additional.body.message : error.message);
-        UserNotification.error(`Sending test alert notification failed with message: ${message}`,
-          'Could not send test alert notification');
+        UserNotification.error(`发送测试告警通知失败: ${message}`,
+          '无法发送测试告警通知');
       },
     );
 

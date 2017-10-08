@@ -36,7 +36,7 @@ const EditUsersPage = React.createClass({
     });
   },
   _resetStartpage() {
-    if (window.confirm('Are you sure you want to reset the start page?')) {
+    if (window.confirm('确定重置起始页?')) {
       const username = this.props.params.username;
       StartpageStore.set(username).then(() => this._loadUser(username));
     }
@@ -49,7 +49,7 @@ const EditUsersPage = React.createClass({
     const user = this.state.user;
     let resetStartpageButton;
     if (!user.read_only && user.startpage !== null && Object.keys(user.startpage).length > 0) {
-      resetStartpageButton = <Button bsStyle="info" onClick={this._resetStartpage}>Reset custom startpage</Button>;
+      resetStartpageButton = <Button bsStyle="info" onClick={this._resetStartpage}> 重置定制起始页</Button>;
     }
 
     const userPreferencesButton = !user.read_only ?
@@ -59,10 +59,10 @@ const EditUsersPage = React.createClass({
       : null;
 
     return (
-      <DocumentTitle title={`Edit user ${this.props.params.username}`}>
+      <DocumentTitle title={`编辑用户 ${this.props.params.username}`}>
         <span>
-          <PageHeader title={<span>Edit user <em>{this.props.params.username}</em></span>} subpage>
-            <span>You can either change the details of a user here or set a new password.</span>
+          <PageHeader title={<span>编辑用户 <em>{this.props.params.username}</em></span>} subpage>
+            <span>你可以编辑用户资料或者更新用户密码 .</span>
             {null}
             <div>
               {resetStartpageButton}{' '}

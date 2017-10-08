@@ -44,14 +44,14 @@ const InputStatesStore = Reflux.createStore({
     const failedNodes = nodes.filter(nodeId => response[nodeId] === null);
 
     if (failedNodes.length === 0) {
-      UserNotification.success(`Request to ${action.toLowerCase()} input '${input.title}' was sent successfully.`,
-        `Input '${input.title}' will be ${action === 'START' ? 'started' : 'stopped'} shortly`);
+      UserNotification.success(`请求 ${action.toLowerCase()} 至输入 '${input.title}' 发送成功.`,
+        `输入 '${input.title}' 即将 ${action === 'START' ? '开始' : '停止'} `);
     } else if (failedNodes.length === nodes.length) {
-      UserNotification.error(`Request to ${action.toLowerCase()} input '${input.title}' failed. Check your Graylog logs for more information.`,
-        `Input '${input.title}' could not be ${action === 'START' ? 'started' : 'stopped'}`);
+      UserNotification.error(`请求 ${action.toLowerCase()} 至输入 '${input.title}' 失败.`,
+        `输入 '${input.title}' 无法 ${action === 'START' ? '开始' : '停止'}`);
     } else {
-      UserNotification.warning(`Request to ${action.toLowerCase()} input '${input.title}' failed in some nodes. Check your Graylog logs for more information.`,
-        `Input '${input.title}' could not be ${action === 'START' ? 'started' : 'stopped'} in all nodes`);
+      UserNotification.warning(`请求 ${action.toLowerCase()} 至输入 '${input.title}' 失败.`,
+        `输入 '${input.title}' 无法 ${action === 'START' ? '开始' : '停止'}`);
     }
   },
 
@@ -65,7 +65,7 @@ const InputStatesStore = Reflux.createStore({
           return response;
         },
         (error) => {
-          UserNotification.error(`Error starting input '${input.title}': ${error}`, `Input '${input.title}' could not be started`);
+          UserNotification.error(`启动输入 '${input.title}'失败: ${error}`, `输入 '${input.title}' 无法启动`);
         });
   },
 
@@ -79,7 +79,7 @@ const InputStatesStore = Reflux.createStore({
           return response;
         },
         (error) => {
-          UserNotification.error(`Error stopping input '${input.title}': ${error}`, `Input '${input.title}' could not be stopped`);
+          UserNotification.error(`停止输入 '${input.title}'失败: ${error}`, `输入 '${input.title}' 无法停止`);
         });
   },
 });

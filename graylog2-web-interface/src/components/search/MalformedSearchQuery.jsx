@@ -23,9 +23,9 @@ const MalformedSearchQuery = React.createClass({
     return (
       <Panel bsStyle="danger">
         <dl style={{ marginBottom: 0 }}>
-          <dt>Error Message:</dt>
+          <dt>错误消息:</dt>
           <dd>{error.message}</dd>
-          <dt>Details:</dt>
+          <dt>详细信息:</dt>
           <dd>{this._getFormattedErrorDetails(error.details)}</dd>
         </dl>
       </Panel>
@@ -39,7 +39,7 @@ const MalformedSearchQuery = React.createClass({
     if (this._isGenericError(error)) {
       explanation = (
         <div>
-          <p>The given query was malformed, and executing it caused the following error:</p>
+          <p>搜索语句错在错误, 执行出错:</p>
           {this._getFormattedErrorDescription(error)}
         </div>
       );
@@ -61,12 +61,7 @@ const MalformedSearchQuery = React.createClass({
             </h1>
 
             <p className="description">
-              The search query could not be executed, please correct it and try again.{' '}
-              <strong>
-                Take a look at the{' '}
-                <DocumentationLink page={DocsHelper.PAGES.SEARCH_QUERY_LANGUAGE} text="documentation" />{' '}
-                if you need help with the search syntax.
-              </strong>
+              搜索语句无法执行, 请更正并重新尝试.
             </p>
           </Col>
         </Row>

@@ -91,7 +91,7 @@ const QuickValuesVisualization = React.createClass({
   _getAddToSearchButton(term) {
     const addToSearchButton = document.createElement('button');
     addToSearchButton.className = 'btn btn-xs btn-default';
-    addToSearchButton.title = 'Add to search query';
+    addToSearchButton.title = '添加到查找条件';
     addToSearchButton.setAttribute('data-term', StringUtils.unescapeHTML(term));
     addToSearchButton.innerHTML = "<i class='fa fa-search-plus'></i>";
 
@@ -130,7 +130,7 @@ const QuickValuesVisualization = React.createClass({
       .group((d) => {
         const topValues = this.group.top(this.NUMBER_OF_TOP_VALUES);
         const dInTopValues = topValues.some(value => d.term.localeCompare(value.key) === 0);
-        return dInTopValues ? 'Top values' : 'Others';
+        return dInTopValues ? '最多值' : '其它';
       })
       .size(50)
       .columns(this._getDataTableColumns())
@@ -249,15 +249,15 @@ const QuickValuesVisualization = React.createClass({
     return this.state.total - this.state.missing;
   },
   _getAnalysisInformation() {
-    const analysisInformation = [`Found <em>${NumberUtils.formatNumber(this._getTotalMessagesWithField())}</em> messages with this field`];
+    const analysisInformation = [`共找到 <em>${NumberUtils.formatNumber(this._getTotalMessagesWithField())}</em> 条消息包含该字段`];
 
     if (this.state.missing !== 0) {
-      let missingMessage = this.state.others === 0 ? ' and' : '';
-      missingMessage += ` <em>${NumberUtils.formatNumber(this.state.missing)}</em> messages without it`;
+      let missingMessage = this.state.others === 0 ? ' 和' : '';
+      missingMessage += ` <em>${NumberUtils.formatNumber(this.state.missing)}</em> 条消息不包含该字段`;
       analysisInformation.push(missingMessage);
     }
     if (this.state.others !== 0) {
-      analysisInformation.push(` and <em>${NumberUtils.formatNumber(this.state.others)}</em> other values`);
+      analysisInformation.push(` 和 <em>${NumberUtils.formatNumber(this.state.others)}</em> 条其他消息`);
     }
 
     return <span dangerouslySetInnerHTML={{ __html: `${analysisInformation.join(',')}.` }} />;
@@ -320,9 +320,9 @@ const QuickValuesVisualization = React.createClass({
                 <table ref="table" className="table table-condensed table-hover">
                   <thead>
                     <tr>
-                      <th style={{ width: '60%' }}>Value</th>
-                      <th>%</th>
-                      <th>Count</th>
+                      <th style={{ width: '60%' }}>值</th>
+                      <th>百分比</th>
+                      <th>数量</th>
                       {this.props.displayAddToSearchButton &&
                       <th style={{ width: 30 }}>&nbsp;</th>
                       }

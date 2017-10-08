@@ -9,7 +9,7 @@ const DashboardsPage = React.createClass({
   mixins: [Reflux.connect(CurrentUserStore)],
   render() {
     return (
-      <DocumentTitle title="Dashboards">
+      <DocumentTitle title="显示面板">
         <DashboardListPage permissions={this.state.currentUser.permissions} />
       </DocumentTitle>
     );

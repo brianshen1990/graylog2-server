@@ -72,18 +72,18 @@ const AlertNotification = React.createClass({
     }
 
     const description = (stream ?
-      <span>Executed once per triggered alert condition in stream <em>{stream.title}</em></span>
-      : 'Not executed, as it is not connected to a stream');
+      <span>在数据流<em>{stream.title}</em>中，每次告警条件出发都执行。</span>
+      : '未执行， 因为没有关联数据流。');
 
     const actions = this.isPermitted(this.state.currentUser.permissions, [`streams:edit:${stream.id}`]) && [
       <Button key="test-button" bsStyle="info" disabled={this.state.isTestingAlert} onClick={this._onTestNotification}>
-        {this.state.isTestingAlert ? 'Testing...' : 'Test'}
+        {this.state.isTestingAlert ? '测试中' : '测试'}
       </Button>,
-      <DropdownButton key="more-actions-button" title="More actions" pullRight
+      <DropdownButton key="more-actions-button" title="更多操作" pullRight
                       id={`more-actions-dropdown-${notification.id}`}>
-        <MenuItem onSelect={this._onEdit}>Edit</MenuItem>
+        <MenuItem onSelect={this._onEdit}>修改</MenuItem>
         <MenuItem divider />
-        <MenuItem onSelect={this._onDelete}>Delete</MenuItem>
+        <MenuItem onSelect={this._onDelete}>删除</MenuItem>
       </DropdownButton>,
     ];
 
@@ -93,7 +93,7 @@ const AlertNotification = React.createClass({
           <ConfigurationForm ref="configurationForm"
                              key={`configuration-form-notification-${notification.id}`}
                              configFields={typeDefinition.requested_configuration}
-                             title={'Editing alert configuration '}
+                             title={'正在编辑告警配置'}
                              typeName={notification.type}
                              titleValue={notification.title}
                              submitAction={this._onSubmit}
@@ -105,7 +105,7 @@ const AlertNotification = React.createClass({
 
     return (
       <EntityListItem key={`entry-list-${notification.id}`}
-                      title={notification.title ? notification.title : 'Untitled'}
+                      title={notification.title ? notification.title : '无标题'}
                       titleSuffix={`(${typeDefinition.name})`}
                       description={description}
                       actions={actions}

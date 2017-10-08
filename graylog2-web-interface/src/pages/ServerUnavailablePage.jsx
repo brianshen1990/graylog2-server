@@ -89,25 +89,21 @@ const ServerUnavailablePage = React.createClass({
 
   render() {
     return (
-      <DocumentTitle title="Server unavailable">
+      <DocumentTitle title="服务器不可达">
         <Modal show>
           <Modal.Header>
-            <Modal.Title><i className="fa fa-exclamation-triangle" /> Server currently unavailable</Modal.Title>
+            <Modal.Title><i className="fa fa-exclamation-triangle" /> 服务器暂时不可达</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <div>
               <p>
-                We are experiencing problems connecting to the Graylog server running on <i>{URLUtils.qualifyUrl('')}</i>.
-                Please verify that the server is healthy and working correctly.
+                目前服务器连接存在问题： <i>{URLUtils.qualifyUrl('')}</i>。
+                请检查服务器是否正常工作。
               </p>
-              <p>You will be automatically redirected to the previous page once we can connect to the server.</p>
-              <p>
-                Do you need a hand?{' '}
-                <a href="https://www.graylog.org/community-support" target="_blank">We can help you</a>.
-              </p>
+              <p>服务器恢复后，会自动跳转到先前页面。</p>
               <div>
                 <a href="#" onClick={this._toggleDetails}>
-                  {this.state.showDetails ? 'Less details' : 'More details'}
+                  {this.state.showDetails ? '简短信息' : '更多细节'}
                 </a>
                 {this._formatErrorMessage()}
               </div>

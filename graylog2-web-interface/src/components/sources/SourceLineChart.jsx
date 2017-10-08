@@ -109,7 +109,7 @@ const SourceLineChart = React.createClass({
     return (
       <div id="dc-sources-line-chart" className="col-md-12">
         <SourceTitle className="reset" resetFilters={this.props.resetFilters}>
-          Messages per {this.props.resolution}
+           每{this.props.resolution}消息数
         </SourceTitle>
         {loadingSpinner}
         {noDataOverlay}

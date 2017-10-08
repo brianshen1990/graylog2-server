@@ -27,26 +27,24 @@ const StreamOutputsPage = React.createClass({
       return <Spinner />;
     }
     return (
-      <DocumentTitle title={`Outputs for Stream ${this.state.stream.title}`}>
+      <DocumentTitle title={`数据流 ${this.state.stream.title}输出`}>
         <div>
           <Row className="content content-head">
             <Col md={10}>
               <h1>
-                Outputs for Stream &raquo;{this.state.stream.title}&laquo;
+                数据流 &raquo;{this.state.stream.title}&laquo输出;
               </h1>
 
               <p className="description">
-                Graylog nodes can forward messages of streams via outputs. Launch or terminate as many outputs as you want here.
-                You can also reuse outputs that are already running for other streams.
+                节点可以转发数据流消息到输出。在这里，可以开启或者结束任意的输出流。你可以为其他的应用再次使用这些数据流。
 
-                A global view of all configured outputs is available <a href="@routes.OutputsController.index()">here</a>.
-                You can find output plugins on <a href="https://marketplace.graylog.org/" target="_blank">the Graylog Marketplace</a>.
+                所有配置的输出的全局概览在 <a href="@routes.OutputsController.index()">这里</a>可以查看.
               </p>
 
               <SupportLink>
-                <i>Removing</i> an output removes it from this stream but it will still be in the list of available outputs.
-                Deleting an output <i>globally</i> will remove it from this and all other streams and terminate it.
-                You can see all defined outputs in details at the {' '} <LinkContainer to={Routes.SYSTEM.OUTPUTS}><a>global output list</a></LinkContainer>.
+                <i>删除</i> 输出会从数据流中删除该输出，但是它任然在输出列表中。
+                删除一个全局的输出将会从全部的数据流中删除该输出并且停止。
+                你可以查看所有的输出细节，在 {' '} <LinkContainer to={Routes.SYSTEM.OUTPUTS}><a>全局输出列表</a></LinkContainer>.
               </SupportLink>
             </Col>
           </Row>

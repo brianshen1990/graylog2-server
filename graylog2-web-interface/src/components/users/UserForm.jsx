@@ -95,12 +95,12 @@ const UserForm = React.createClass({
     request.password = this.refs.password.getValue();
 
     UsersStore.changePassword(this.props.user.username, request).then(() => {
-      UserNotification.success('Password updated successfully.', 'Success');
+      UserNotification.success('密码更新成功.', '成功');
       if (this.isPermitted(this.state.currentUser.permissions, ['users:list'])) {
         this.props.history.replaceState(null, Routes.SYSTEM.AUTHENTICATION.USERS.LIST);
       }
     }, () => {
-      UserNotification.error('Could not update password. Please verify that your current password is correct.', 'Updating password failed');
+      UserNotification.error('无法更新密码，请验证密码是否正确.', '更新密码失败');
     });
   },
 
@@ -108,7 +108,7 @@ const UserForm = React.createClass({
     evt.preventDefault();
 
     UsersStore.update(this.props.user.username, this.state.user).then(() => {
-      UserNotification.success('User updated successfully.', 'Success');
+      UserNotification.success('用户信息更新成功.', '成功');
       if (this.isPermitted(this.state.currentUser.permissions, ['users:list'])) {
         this.props.history.replaceState(null, Routes.SYSTEM.AUTHENTICATION.USERS.LIST);
       }
@@ -116,7 +116,7 @@ const UserForm = React.createClass({
         CurrentUserStore.reload();
       }
     }, () => {
-      UserNotification.error('Could not update the user. Please check your logs for more information.', 'Updating user failed');
+      UserNotification.error('无法更新用户信息。请检查服务器日志以获取更多信息.', '更新用户失败');
     });
   },
 
@@ -204,13 +204,13 @@ const UserForm = React.createClass({
       <div>
         <Row>
           <Col lg={8}>
-            <h2>User information</h2>
+            <h2>用户信息</h2>
             <form className="form-horizontal user-form" id="edit-user-form" onSubmit={this._updateUser}>
               {user.read_only &&
                 <span>
                   <Col smOffset={3} sm={9}>
                     <Alert bsStyle="warning" role="alert">
-                      The admin user can only be modified in your Graylog server configuration file.
+                     管理员用户只能在配置文件中修改.
                     </Alert>
                   </Col>
                   <div className="clearfix" />
@@ -220,53 +220,52 @@ const UserForm = React.createClass({
               <fieldset disabled={user.read_only}>
                 <Input name="full_name" id="full_name" type="text" maxLength={200} value={user.full_name}
                        onChange={this._bindValue} labelClassName="col-sm-3" wrapperClassName="col-sm-9"
-                       label="Full Name" help="Give a descriptive name for this account, e.g. the full name."
+                       label="全名" help="为账户提供描述性的名称."
                        required />
 
                 <Input ref="email" name="email" id="email" type="email" maxLength={254} value={user.email}
                        onChange={this._bindValue} labelClassName="col-sm-3" wrapperClassName="col-sm-9"
-                       label="Email Address" help="Give the contact email address." required />
+                       label="Email" help="联系Email地址." required />
 
                 <IfPermitted permissions="users:edit">
                   <span>
                     <div className="form-group">
                       <Col sm={9} smOffset={3}>
-                        <Panel bsStyle="danger" header="Setting individual permissions is deprecated, please consider migrating to roles instead.">
-                          The permissions listed here are the result of combining all granted permissions by the roles assigned to a user,
-                          which you can edit at the bottom of this page, as well as legacy, individual permissions which were assigned to the user before.
+                        <Panel bsStyle="danger" header="设定单个权限不被推荐，请使用角色来替代.">
+                          以下权限是一些权限是所有角色综合的权限集，您可在页面底端修改.
                         </Panel>
                       </Col>
-                      <label className="col-sm-3 control-label" htmlFor="streampermissions">Streams Permissions</label>
+                      <label className="col-sm-3 control-label" htmlFor="streampermissions">数据流权限</label>
                       <Col sm={9}>
-                        <MultiSelect ref="streamReadOptions" placeholder="Choose streams read permissions..."
+                        <MultiSelect ref="streamReadOptions" placeholder="选取数据流读权限..."
                                      options={this.formatMultiselectOptions(this.state.streams)}
                                      value={streamReadOptions}
                                      onChange={this._onPermissionsChange('streams', 'read')} />
-                        <span className="help-block">Choose streams the user can <strong>view</strong>
-                          . Removing read access will remove edit access, too.</span>
-                        <MultiSelect ref="streamEditOptions" placeholder="Choose streams edit permissions..."
+                        <span className="help-block">选择用户可 <strong>查看</strong>权限
+                          . 移除读权限也会将修改权限删除.</span>
+                        <MultiSelect ref="streamEditOptions" placeholder="选择数据流修改权限..."
                                      options={this.formatMultiselectOptions(this.state.streams)}
                                      value={streamEditOptions}
                                      onChange={this._onPermissionsChange('streams', 'edit')} />
-                        <span className="help-block">Choose the streams the user can <strong>edit</strong>
-                          . Values chosen here will enable read access, too.</span>
+                        <span className="help-block">选择用户可<strong>修改</strong>数据流
+                          . 修改权限会开启读权限.</span>
                       </Col>
                     </div>
                     <div className="form-group">
-                      <label className="col-sm-3 control-label" htmlFor="dashboardpermissions">Dashboard Permissions</label>
+                      <label className="col-sm-3 control-label" htmlFor="dashboardpermissions">面板权限</label>
                       <Col sm={9}>
-                        <MultiSelect ref="dashboardReadOptions" placeholder="Choose dashboards read permissions..."
+                        <MultiSelect ref="dashboardReadOptions" placeholder="选择面板读权限..."
                                      options={this.formatMultiselectOptions(this.state.dashboards)}
                                      value={dashboardReadOptions}
                                      onChange={this._onPermissionsChange('dashboards', 'read')} />
-                        <span className="help-block">Choose dashboards the user can <strong>view</strong>
-                          . Removing read access will remove edit access, too.</span>
-                        <MultiSelect ref="dashboardEditOptions" placeholder="Choose dashboards edit permissions..."
+                        <span className="help-block">选择 <strong>读</strong>权限
+                          .  移除读权限也会将修改权限删除.</span>
+                        <MultiSelect ref="dashboardEditOptions" placeholder="选择面板修改权限..."
                                      options={this.formatMultiselectOptions(this.state.dashboards)}
                                      value={dashboardEditOptions}
                                      onChange={this._onPermissionsChange('dashboards', 'edit')} />
-                        <span className="help-block">Choose dashboards the user can <strong>edit</strong>
-                          . Values chosen here will enable read access, too.</span>
+                        <span className="help-block">选择用户可以<strong>编辑</strong>的面板
+                          .  改权限会开启读权限.</span>
                       </Col>
                     </div>
                   </span>
@@ -276,8 +275,8 @@ const UserForm = React.createClass({
                                 onChange={this._onFieldChange('session_timeout_ms')} />
                 </IfPermitted>
 
-                <Input label="Time Zone"
-                       help="Choose your local time zone or leave it as it is to use the system's default."
+                <Input label="时间区域"
+                       help="选择本地时间区域，或者使用系统默认时区."
                        labelClassName="col-sm-3" wrapperClassName="col-sm-9">
                   <TimezoneSelect ref="timezone" className="timezone-select" value={user.timezone}
                                   onChange={this._onFieldChange('timezone')} />
@@ -286,9 +285,9 @@ const UserForm = React.createClass({
                 <div className="form-group">
                   <Col smOffset={3} sm={9}>
                     <Button type="submit" bsStyle="primary" className="create-user save-button-margin">
-                      Update User
+                      更新用户信息
                     </Button>
-                    <Button onClick={this._onCancel}>Cancel</Button>
+                    <Button onClick={this._onCancel}>取消</Button>
                   </Col>
                 </div>
               </fieldset>
@@ -297,19 +296,18 @@ const UserForm = React.createClass({
         </Row>
         <Row>
           <Col lg={8}>
-            <h2>Change password</h2>
+            <h2>修改密码</h2>
             {user.read_only ?
               <Col smOffset={3} sm={9}>
                 <Alert bsStyle="warning" role="alert">
-                Please edit your Graylog server configuration file to change the admin password.
+                管理员密码请在配置文件中修改.
               </Alert>
               </Col>
             :
               user.external ?
                 <Col smOffset={3} sm={9}>
                   <Alert bsStyle="warning" role="alert">
-                  This user was created from an external system and you can't change the password here.
-                  Please contact an administrator for more information.
+                 用户从系统外创建，无法修改密码.
                 </Alert>
                 </Col>
               :
@@ -317,24 +315,24 @@ const UserForm = React.createClass({
                   {requiresOldPassword &&
                   <Input ref="old_password" name="old_password" id="old_password" type="password" maxLength={100}
                          labelClassName="col-sm-3" wrapperClassName="col-sm-9"
-                         label="Old Password" required />
+                         label="旧密码" required />
                 }
                   <Input ref="password" name="password" id="password" type="password" maxLength={100}
                        labelClassName="col-sm-3" wrapperClassName="col-sm-9"
-                       label="New Password" required minLength="6"
-                       help="Passwords must be at least 6 characters long. We recommend using a strong password."
+                       label="新密码" required minLength="6"
+                       help="密码必须多于6位，推荐强密码."
                        onChange={this._onPasswordChange} />
 
                   <Input ref="password_repeat" name="password_repeat" id="password_repeat" type="password" maxLength={100}
                        labelClassName="col-sm-3" wrapperClassName="col-sm-9"
-                       label="Repeat Password" required minLength="6" onChange={this._onPasswordChange} />
+                       label="再次输入密码" required minLength="6" onChange={this._onPasswordChange} />
 
                   <div className="form-group">
                     <Col smOffset={3} sm={9}>
                       <Button bsStyle="primary" type="submit" className="save-button-margin">
-                      Update Password
+                      修改密码
                     </Button>
-                      <Button onClick={this._onCancel}>Cancel</Button>
+                      <Button onClick={this._onCancel}>取消</Button>
                     </Col>
                   </div>
                 </form>

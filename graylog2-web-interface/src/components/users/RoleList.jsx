@@ -12,16 +12,16 @@ const RoleList = React.createClass({
   },
 
   _headerCellFormatter(header) {
-    const className = (header === 'Actions' ? 'actions' : '');
+    const className = (header === '操作' ? 'actions' : '');
     return <th className={className}>{header}</th>;
   },
   _roleInfoFormatter(role) {
     const actions = [
       <Button key="delete" bsSize="xsmall" bsStyle="primary" onClick={() => this.props.deleteRole(role)}
-              title="Delete role">Delete</Button>,
+              title="删除角色">删除</Button>,
       <span key="space">&nbsp;</span>,
       <Button key="edit" bsSize="xsmall" bsStyle="info" onClick={() => this.props.showEditRole(role)}
-              title="Edit role">Edit</Button>,
+              title="编辑角色">编辑</Button>,
     ];
 
     return (
@@ -36,7 +36,7 @@ const RoleList = React.createClass({
   },
   render() {
     const filterKeys = ['name', 'description'];
-    const headers = ['Name', 'Description', 'Actions'];
+    const headers = ['名称', '描述', '执行'];
 
     return (
       <div>
@@ -48,7 +48,7 @@ const RoleList = React.createClass({
                    rows={this.props.roles.toJS()}
                    filterBy="Name"
                    dataRowFormatter={this._roleInfoFormatter}
-                   filterLabel="Filter Roles"
+                   filterLabel="筛选角色"
                    filterKeys={filterKeys} />
       </div>
     );

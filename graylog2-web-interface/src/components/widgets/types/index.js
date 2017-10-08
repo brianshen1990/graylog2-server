@@ -19,7 +19,7 @@ PluginStore.register(new PluginManifest({}, {
   widgets: [
     {
       type: 'SEARCH_RESULT_COUNT',
-      displayName: 'Search result count',
+      displayName: '查找结果数',
       defaultHeight: 1,
       defaultWidth: 1,
       visualizationComponent: NumericVisualization,
@@ -28,7 +28,7 @@ PluginStore.register(new PluginManifest({}, {
     },
     {
       type: 'STREAM_SEARCH_RESULT_COUNT',
-      displayName: 'Stream search result count',
+      displayName: '数据流搜索结果统计',
       defaultHeight: 1,
       defaultWidth: 1,
       visualizationComponent: NumericVisualization,
@@ -37,7 +37,7 @@ PluginStore.register(new PluginManifest({}, {
     },
     {
       type: 'STATS_COUNT',
-      displayName: 'Statistical value',
+      displayName: '统计值',
       defaultHeight: 1,
       defaultWidth: 1,
       visualizationComponent: NumericVisualization,
@@ -46,14 +46,14 @@ PluginStore.register(new PluginManifest({}, {
     },
     {
       type: 'SEARCH_RESULT_CHART',
-      displayName: 'Search result graph',
+      displayName: '搜索结果图',
       defaultHeight: 1,
       defaultWidth: 2,
       visualizationComponent: HistogramVisualization,
     },
     {
       type: 'QUICKVALUES',
-      displayName: 'Quick values',
+      displayName: '快速统计值',
       defaultHeight: 3,
       defaultWidth: 1,
       visualizationComponent: QuickValuesVisualization,
@@ -62,7 +62,7 @@ PluginStore.register(new PluginManifest({}, {
     },
     {
       type: 'FIELD_CHART',
-      displayName: 'Field graph',
+      displayName: '字段图',
       defaultHeight: 1,
       defaultWidth: 2,
       visualizationComponent: GraphVisualization,
@@ -70,7 +70,7 @@ PluginStore.register(new PluginManifest({}, {
     },
     {
       type: 'STACKED_CHART',
-      displayName: 'Stacked graph',
+      displayName: '堆积图',
       defaultHeight: 1,
       defaultWidth: 2,
       visualizationComponent: StackedGraphVisualization,

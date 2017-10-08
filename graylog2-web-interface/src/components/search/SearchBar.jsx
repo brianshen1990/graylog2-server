@@ -263,7 +263,7 @@ const SearchBar = React.createClass({
             options.push(all);
           }
         } else {
-          options = (<option value="300">Loading...</option>);
+          options = (<option value="3600">加载中...</option>);
         }
 
         selector = (
@@ -289,7 +289,7 @@ const SearchBar = React.createClass({
               <div className="col-md-5" style={{ padding: 0 }}>
                 <input type="hidden" name="from" ref={(ref) => { this.from = ref; }} />
                 <DatePicker id="searchFromDatePicker"
-                            title="Search start date"
+                            title="开始时间"
                             date={this.state.rangeParams.get('from')}
                             onChange={this._onDateSelected('from')}>
                   <Input type="text"
@@ -310,7 +310,7 @@ const SearchBar = React.createClass({
               <div className="col-md-5" style={{ padding: 0 }}>
                 <input type="hidden" name="to" ref={(ref) => { this.to = ref; }} />
                 <DatePicker id="searchToDatePicker"
-                            title="Search end date"
+                            title="搜索结束时间"
                             date={this.state.rangeParams.get('to')}
                             onChange={this._onDateSelected('to')}>
                   <Input type="text"
@@ -346,7 +346,7 @@ const SearchBar = React.createClass({
               <div className="col-md-7" style={{ paddingRight: 0 }}>
                 {this.state.keywordPreview.size > 0 &&
                 <Alert bsStyle="info" style={{ height: 30, paddingTop: 5, paddingBottom: 5, marginTop: 0 }}>
-                  <strong style={{ marginRight: 8 }}>Preview:</strong>
+                  <strong style={{ marginRight: 8 }}>预览:</strong>
                   {this.state.keywordPreview.get('from')} to {this.state.keywordPreview.get('to')}
                 </Alert>
                 }
@@ -357,7 +357,7 @@ const SearchBar = React.createClass({
         break;
       }
       default:
-        throw new Error(`Unsupported range type ${this.state.rangeType}`);
+        throw new Error(`不支持的范围类型 ${this.state.rangeType}`);
     }
 
     return selector;
@@ -371,7 +371,7 @@ const SearchBar = React.createClass({
       });
 
     return (
-      <Select placeholder="Saved searches" options={formattedSavedSearches} value={this.state.savedSearch}
+      <Select placeholder="已保存的搜索条件" options={formattedSavedSearches} value={this.state.savedSearch}
               onValueChange={this._onSavedSearchSelect} size="small" />
     );
   },
@@ -402,15 +402,15 @@ const SearchBar = React.createClass({
                                         id="dropdown-timerange-selector">
                           <MenuItem eventKey="relative"
                                     className={this.state.rangeType === 'relative' ? 'selected' : null}>
-                            Relative
+                            相对区间
                           </MenuItem>
                           <MenuItem eventKey="absolute"
                                     className={this.state.rangeType === 'absolute' ? 'selected' : null}>
-                            Absolute
+                            绝对区间
                           </MenuItem>
                           <MenuItem eventKey="keyword"
                                     className={this.state.rangeType === 'keyword' ? 'selected' : null}>
-                            Keyword
+                            关键字
                           </MenuItem>
                         </DropdownButton>
                       </ButtonToolbar>
@@ -434,12 +434,6 @@ const SearchBar = React.createClass({
                 </div>
 
                 <div id="search-container">
-                  <div className="pull-right search-help">
-                    <DocumentationLink page={DocsHelper.PAGES.SEARCH_QUERY_LANGUAGE}
-                                       title="Search query syntax documentation"
-                                       text={<i className="fa fa-lightbulb-o" />} />
-                  </div>
-
                   <Button type="submit" bsStyle="success" className="pull-left">
                     <i className="fa fa-search" />
                   </Button>
@@ -450,7 +444,7 @@ const SearchBar = React.createClass({
                            name="q"
                            value={this.state.query}
                            onChange={this._queryChanged}
-                           placeholder="Type your search query here and press enter. (&quot;not found&quot; AND http) OR http_response_code:[400 TO 404]" />
+                           placeholder="输入搜索条件并且按下enter键. (&quot;not found&quot; AND http) OR http_response_code:[400 TO 404]" />
                   </div>
                 </div>
               </form>

@@ -11,17 +11,14 @@ const SystemOutputsPage = React.createClass({
   mixins: [Reflux.connect(CurrentUserStore)],
   render() {
     return (
-      <DocumentTitle title="Outputs">
+      <DocumentTitle title="输出">
         <span>
-          <PageHeader title="Outputs in Cluster">
+          <PageHeader title="集群输出">
             <span>
-              Graylog nodes can forward messages via outputs. Launch or terminate as many outputs as you want here{' '}
-              <strong>and then assign them to streams to forward all messages of a stream in real-time.</strong>
+              xxxx 日志平台 节点可以转发消息到输出。您可以随时开始或者结束任意的输出{' '}
+              <strong>以指定它们实时转发消息。.</strong>
             </span>
 
-            <span>
-              You can find output plugins in <a href="https://marketplace.graylog.org/" target="_blank">the Graylog Marketplace</a>.
-            </span>
           </PageHeader>
 
           <OutputsComponent permissions={this.state.currentUser.permissions} />

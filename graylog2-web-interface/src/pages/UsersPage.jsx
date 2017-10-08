@@ -16,15 +16,15 @@ const UsersPage = React.createClass({
   mixins: [Reflux.connect(CurrentUserStore), PermissionsMixin],
   render() {
     return (
-      <DocumentTitle title="Users">
+      <DocumentTitle title="认证">
         <span>
-          <PageHeader title="User accounts" subpage>
-            <span>Create as many users as you want next to the default administrator user here. You can also make changes to already existing users.</span>
+          <PageHeader title="用户账户" subpage>
+            <span>创建任意多的用户.你也可以对现有用户进行修改.</span>
             {null}
             <span>
               <IfPermitted permissions="users:edit">
                 <LinkContainer to={Routes.SYSTEM.AUTHENTICATION.USERS.CREATE}>
-                  <Button bsStyle="success">Add new user</Button>
+                  <Button bsStyle="success">添加新用户</Button>
                 </LinkContainer>
               </IfPermitted>
             </span>

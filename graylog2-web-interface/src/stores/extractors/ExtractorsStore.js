@@ -56,7 +56,7 @@ const ExtractorsStore = Reflux.createStore({
   // Creates an basic extractor object that we can use to create new extractors.
   new(type, field) {
     if (ExtractorUtils.EXTRACTOR_TYPES.indexOf(type) === -1) {
-      throw new Error(`Invalid extractor type provided: ${type}`);
+      throw new Error(`无效的提取器类别: ${type}`);
     }
 
     return {
@@ -99,14 +99,14 @@ const ExtractorsStore = Reflux.createStore({
     const promise = this._silentExtractorCreate(inputId, extractor);
     promise
       .then(() => {
-        UserNotification.success(`Extractor ${extractor.title} created successfully`);
+        UserNotification.success(`提取器 ${extractor.title} 创建成功`);
         if (this.extractor) {
           ExtractorsActions.get.triggerPromise(inputId, extractor.id);
         }
       })
       .catch((error) => {
-        UserNotification.error(`Creating extractor failed: ${error}`,
-          'Could not create extractor');
+        UserNotification.error(`创建提取器失败: ${error}`,
+          '无法创建提取器');
       });
 
     if (!calledFromMethod) {
@@ -121,14 +121,14 @@ const ExtractorsStore = Reflux.createStore({
     const promise = fetch('PUT', url, getExtractorDTO(extractor));
     promise
       .then(() => {
-        UserNotification.success(`Extractor "${extractor.title}" updated successfully`);
+        UserNotification.success(`提取器 "${extractor.title}" 更新成功`);
         if (this.extractor) {
           ExtractorsActions.get.triggerPromise(inputId, extractor.id);
         }
       })
       .catch((error) => {
-        UserNotification.error(`Updating extractor failed: ${error}`,
-          'Could not update extractor');
+        UserNotification.error(`更新提取器失败: ${error}`,
+          '无法更新提取器');
       });
 
     if (!calledFromMethod) {
@@ -143,14 +143,14 @@ const ExtractorsStore = Reflux.createStore({
     const promise = fetch('DELETE', url);
     promise
       .then(() => {
-        UserNotification.success(`Extractor "${extractor.title}" deleted successfully`);
+        UserNotification.success(`提取器 "${extractor.title}" 删除成功`);
         if (this.extractors) {
           ExtractorsActions.list.triggerPromise(inputId);
         }
       })
       .catch((error) => {
-        UserNotification.error(`Deleting extractor failed: ${error}`,
-          `Could not delete extractor ${extractor.title}`);
+        UserNotification.error(`删除提取器失败: ${error}`,
+          `无法删除提取器 ${extractor.title}`);
       });
 
     ExtractorsActions.delete.promise(promise);
@@ -163,14 +163,14 @@ const ExtractorsStore = Reflux.createStore({
 
     const promise = fetch('POST', url, { order: orderedExtractorsMap });
     promise.then(() => {
-      UserNotification.success('Extractor positions updated successfully');
+      UserNotification.success('提取器位置更新成功');
       if (this.extractors) {
         ExtractorsActions.list.triggerPromise(inputId);
       }
     });
     promise.catch((error) => {
-      UserNotification.error(`Changing extractor positions failed: ${error}`,
-        'Could not update extractor positions');
+      UserNotification.error(`修改提取器位置失败: ${error}`,
+        '无法修改提取器位置');
     });
 
     ExtractorsActions.order.promise(promise);
@@ -191,11 +191,11 @@ const ExtractorsStore = Reflux.createStore({
 
     Promise.settle(promises).then(() => {
       if (failedImports === 0) {
-        UserNotification.success(`Import results: ${successfulImports} extractor(s) imported.`,
-          'Import operation successful');
+        UserNotification.success(`导入结果: ${successfulImports} 个提取器被导入.`,
+          '导入操作成功');
       } else {
-        UserNotification.warning(`Import results: ${successfulImports} extractor(s) imported, ${failedImports} error(s).`,
-          'Import operation completed');
+        UserNotification.warning(`导入结果: ${successfulImports} 个提取器被导入, ${failedImports} 个错误.`,
+          '导入操作完成');
       }
     });
   },

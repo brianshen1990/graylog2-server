@@ -73,7 +73,7 @@ const SubstringExtractorConfiguration = React.createClass({
 
       promise.then((result) => {
         if (!result.successful) {
-          UserNotification.warning('We were not able to run the substring extraction. Please check index boundaries.');
+          UserNotification.warning('无法运行子字符串提取. 请检查范围.');
           return;
         }
         this.props.onExtractorPreviewLoad(<samp>{result.cut}</samp>);
@@ -98,19 +98,19 @@ const SubstringExtractorConfiguration = React.createClass({
         <Input type="number"
                ref="beginIndex"
                id="begin_index"
-               label="Begin index"
+               label="开始位置"
                labelClassName="col-md-2"
                wrapperClassName="col-md-10"
                defaultValue={this.state.configuration.begin_index}
                onChange={this._onChange('begin_index')}
                min="0"
                required
-               help="Character position from where to start extracting. (Inclusive)" />
+               help="开始提取的位置. (包含)" />
 
         <Input type="number"
                ref="endIndex"
                id="end_index"
-               label="End index"
+               label="结束位置"
                labelClassName="col-md-2"
                wrapperClassName="col-md-10"
                defaultValue={this.state.configuration.end_index}
@@ -121,7 +121,7 @@ const SubstringExtractorConfiguration = React.createClass({
 
         <Input wrapperClassName="col-md-offset-2 col-md-10">
           <Button bsStyle="info" onClick={this._onTryClick} disabled={this._isTryButtonDisabled()}>
-            {this.state.trying ? <i className="fa fa-spin fa-spinner" /> : 'Try'}
+            {this.state.trying ? <i className="fa fa-spin fa-spinner" /> : '试一试'}
           </Button>
         </Input>
       </div>

@@ -32,13 +32,11 @@ const ImportExtractorsPage = React.createClass({
     }
 
     return (
-      <DocumentTitle title={`Import extractors to ${this.state.input.title}`}>
+      <DocumentTitle title={`导提取器到 ${this.state.input.title}`}>
         <div>
-          <PageHeader title={<span>Import extractors to <em>{this.state.input.title}</em></span>}>
+          <PageHeader title={<span>导入提取器到 <em>{this.state.input.title}</em></span>}>
             <span>
-              Exported extractors can be imported to an input. All you need is the JSON export of extractors from any
-              other Graylog setup or from <a href="https://marketplace.graylog.org/" target="_blank">the Graylog
-              Marketplace</a>.
+              导出的提取器可以被导入到一个输入。你所需的就是一份JSON导出。
             </span>
           </PageHeader>
           <ImportExtractors input={this.state.input} />

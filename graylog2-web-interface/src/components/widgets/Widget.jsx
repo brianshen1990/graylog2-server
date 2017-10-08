@@ -177,7 +177,6 @@ const Widget = React.createClass({
     if (this._isBoundToStream()) {
       return Routes.stream_search(this.props.widget.config.stream_id, config.query, this._getTimeRange(), config.interval);
     }
-
     return Routes.search(config.query, this._getTimeRange(), config.interval);
   },
   _showConfig() {
@@ -186,13 +185,36 @@ const Widget = React.createClass({
   _showEditConfig() {
     this.refs.editModal.open();
   },
+  _transfer_log_type(query){
+      try {
+        const add_query = "log_type:\"Violation log\"";
+        if(!query || query === ""){
+          // all
+          query = add_query;
+        }else{
+          // No type
+          var index_count = query.indexOf("log_type:");
+          if(index_count < 0){
+            query = "( " + query + " ) AND " + add_query;
+          }
+        }
+        return query;
+      }catch(e){
+        console.log("error" + e);
+        return query;
+      }
+  },
   updateWidget(newWidgetData) {
     newWidgetData.id = this.props.widget.id;
-
+    try{
+      newWidgetData.config.query = this._transfer_log_type(newWidgetData.config.query);
+    }catch(e){
+      console.log("error" + e)
+    }
     WidgetsStore.updateWidget(this.props.dashboardId, newWidgetData);
   },
   deleteWidget() {
-    if (window.confirm(`Do you really want to delete "${this.props.widget.description}"?`)) {
+    if (window.confirm(`确定要删除组件描述 "${this.props.widget.description}"?`)) {
       this.setState({ deleted: true });
       WidgetsActions.removeWidget(this.props.dashboardId, this.props.widget.id);
     }
@@ -217,7 +239,7 @@ const Widget = React.createClass({
     let disabledTooltip = null;
     if (this.props.streamIds != null && this.props.widget.config.stream_id &&
         !this.props.streamIds[this.props.widget.config.stream_id]) {
-      disabledTooltip = 'The stream is not available, cannot replay search.';
+      disabledTooltip = '数据流不可用, 无法复现查询.';
     }
     return (
       <div ref="widget" className="widget" data-widget-id={this.props.widget.id}>

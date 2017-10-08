@@ -17,7 +17,7 @@ const InputTypesDataTable = React.createClass({
         <td className="limited">{inputType.type}</td>
         <td className="limited" style={{ width: 150 }}>
           {inputType.link_to_docs &&
-          <a href={inputType.link_to_docs} target="_blank"><i className="fa fa-external-link" /> Documentation</a>
+          <a href={inputType.link_to_docs} target="_blank"><i className="fa fa-external-link" /> 文档</a>
           }
         </td>
       </tr>
@@ -49,7 +49,7 @@ const InputTypesDataTable = React.createClass({
                  sortByKey={'name'}
                  rows={rows}
                  dataRowFormatter={this._inputTypeFormatter}
-                 filterLabel="Filter"
+                 filterLabel="筛选"
                  filterKeys={[]} />
     );
   },

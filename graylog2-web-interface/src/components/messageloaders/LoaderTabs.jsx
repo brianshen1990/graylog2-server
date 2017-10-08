@@ -113,7 +113,7 @@ const LoaderTabs = React.createClass({
 
     if (this._isTabVisible('recent')) {
       messageLoaders.push(
-        <Tab key="recent" eventKey={this.TAB_KEYS.recent} title="Recent Message" style={{ marginBottom: 10 }}>
+        <Tab key="recent" eventKey={this.TAB_KEYS.recent} title="最近消息" style={{ marginBottom: 10 }}>
           <RecentMessageLoader inputs={this.state.inputs}
                                selectedInputId={this.props.selectedInputId}
                                onMessageLoaded={this.onMessageLoaded} />
@@ -123,9 +123,9 @@ const LoaderTabs = React.createClass({
 
     if (this._isTabVisible('messageId')) {
       messageLoaders.push(
-        <Tab key="messageId" eventKey={this.TAB_KEYS.messageId} title="Message ID" style={{ marginBottom: 10 }}>
+        <Tab key="messageId" eventKey={this.TAB_KEYS.messageId} title="消息 ID" style={{ marginBottom: 10 }}>
           <div style={{ marginTop: 5, marginBottom: 15 }}>
-            Please provide the id and index of the message that you want to load in this form:
+            请提供消息的id 和 index：
           </div>
 
           <MessageLoader ref="messageLoader" onMessageLoaded={this.onMessageLoaded} hidden={false} hideText />
@@ -135,9 +135,9 @@ const LoaderTabs = React.createClass({
 
     if (this._isTabVisible('raw')) {
       messageLoaders.push(
-        <Tab key="raw" eventKey={this.TAB_KEYS.raw} title="Raw Message" style={{ marginBottom: 10 }}>
+        <Tab key="raw" eventKey={this.TAB_KEYS.raw} title="原始消息" style={{ marginBottom: 10 }}>
           <div style={{ marginTop: 5, marginBottom: 15 }}>
-            Load a message from text, as if it was sent by a log source.
+            从text中导入一条消息。
           </div>
 
           <RawMessageLoader onMessageLoaded={this.onMessageLoaded} />

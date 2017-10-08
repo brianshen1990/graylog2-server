@@ -17,8 +17,8 @@ const SourceTitle = React.createClass({
         {this.props.children}
         <span style={{ marginLeft: 10 }}>
           <button id={this.props.resetFilterId} className={`btn btn-info btn-xs ${this.props.className}`}
-                    onClick={this.props.resetFilters} title="Reset filter" style={{ display: 'none' }}>
-              Reset
+                    onClick={this.props.resetFilters} title="重置筛选条件" style={{ display: 'none' }}>
+              重置
             </button>
         </span>
       </h3>

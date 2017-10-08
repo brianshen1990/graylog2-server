@@ -6,13 +6,11 @@ import { LoggerOverview } from 'components/loggers';
 const LoggersPage = React.createClass({
   render() {
     return (
-      <DocumentTitle title="Logging">
+      <DocumentTitle title="系统日志">
         <span>
-          <PageHeader title="Logging">
+          <PageHeader title="系统日志">
             <span>
-              This section controls logging of the Graylog architecture and allows you to change log
-              levels on the fly. Note that log levels are reset to their defaults after you restart
-              the affected service.
+              此处可以控制 xxxx 日志平台的系统日志。您可以更改日志等级。请注意，当对应服务重启后，恢复默认设置。
             </span>
           </PageHeader>
           <LoggerOverview />

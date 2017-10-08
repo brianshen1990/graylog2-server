@@ -139,10 +139,10 @@ const WidgetEditConfigModal = React.createClass({
   _getTimeRangeFormControls() {
     const rangeTypeSelector = (
       <Input type="text"
-             label="Time range type"
+             label="时间区域类型"
              disabled
              value={StringUtils.capitalizeFirstLetter(this.state.config.timerange.type)}
-             help="Type of time range to use in the widget." />
+             help="为组件添加时间区域." />
     );
 
     let rangeValueInput;
@@ -153,12 +153,12 @@ const WidgetEditConfigModal = React.createClass({
           <Input type="number"
                  id="timerange-relative"
                  name="range"
-                 label="Search relative time"
+                 label="查找相对时间"
                  required
                  min="0"
                  defaultValue={this.state.config.timerange.range}
                  onChange={this._bindTimeRangeValue}
-                 help="Number of seconds relative to the moment the search executes. 0 searches in all messages." />
+                 help="相对时间, 以秒为单位. 0表示搜索全部消息" />
         );
         break;
       case 'absolute':
@@ -167,21 +167,21 @@ const WidgetEditConfigModal = React.createClass({
             <Input type="text"
                    id="timerange-absolute-from"
                    name="from"
-                   label="Search from"
+                   label="开始时间"
                    required
                    bsStyle={this.state.errors.from === true ? 'error' : null}
                    defaultValue={this._formatDateTime(this.state.config.timerange.from)}
                    onChange={this._bindTimeRangeValue}
-                   help="Earliest time to be included in the search. E.g. 2015-03-27 13:23:41" />
+                   help="搜索开始时间, 示例 2015-03-27 13:23:41" />
             <Input type="text"
                    id="timerange-absolute-to"
                    name="to"
-                   label="Search to"
+                   label="结束时间"
                    required
                    bsStyle={this.state.errors.to === true ? 'error' : null}
                    defaultValue={this._formatDateTime(this.state.config.timerange.to)}
                    onChange={this._bindTimeRangeValue}
-                   help="Latest time to be included in the search. E.g. 2015-03-27 13:23:41" />
+                   help="搜索结束时间, 示例 2015-03-27 13:23:41" />
           </div>
         );
         break;
@@ -190,11 +190,11 @@ const WidgetEditConfigModal = React.createClass({
           <Input type="text"
                  id="timerange-keyword"
                  name="keyword"
-                 label="Search keyword"
+                 label="查找关键字"
                  required
                  defaultValue={this.state.config.timerange.keyword}
                  onChange={this._bindTimeRangeValue}
-                 help="Search keyword representing the time to be included in the search. E.g. last day" />
+                 help="查找关键字表示查找的范围, 示例 last day" />
         );
         break;
       default:
@@ -223,29 +223,29 @@ const WidgetEditConfigModal = React.createClass({
   render() {
     return (
       <BootstrapModalForm ref="editModal"
-                          title={`Edit widget "${this.state.description}"`}
+                          title={`修改组件 "${this.state.description}"`}
                           onSubmitForm={this.save}
                           onModalClose={this.props.onModalHidden}
-                          submitButtonText="Update">
+                          submitButtonText="更新">
         <fieldset>
           <Input type="text"
                  id="title"
                  name="description"
-                 label="Title"
+                 label="标题"
                  required
                  defaultValue={this.state.description}
                  onChange={this._bindValue}
-                 help="Type a name that describes your widget."
+                 help="为你的组件定义名称。"
                  autoFocus />
           <Input type="number"
                  min="1"
                  required
                  id="cache_time"
                  name="cache_time"
-                 label="Cache time"
+                 label="缓存时间"
                  defaultValue={this.state.cache_time}
                  onChange={this._bindValue}
-                 help="Number of seconds the widget value will be cached." />
+                 help="组件数据缓存时间。" />
           {this._getTimeRangeFormControls()}
           {this._getSpecificConfigurationControls()}
         </fieldset>

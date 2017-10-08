@@ -49,26 +49,20 @@ const EditAlertConditionPage = React.createClass({
     const stream = this.state.stream;
 
     return (
-      <DocumentTitle title={`Condition ${condition.title || 'Untitled'}`}>
+      <DocumentTitle title={`告警条件 ${condition.title || '未命名'}`}>
         <div>
-          <PageHeader title={<span>Condition <em>{condition.title || 'Untitled'}</em></span>}>
+          <PageHeader title={<span>告警条件 <em>{condition.title || '未命名'}</em></span>}>
             <span>
-              Define an alert condition and configure the way Graylog will notify you when that condition is satisfied.
-            </span>
-
-            <span>
-              Are the default conditions not flexible enough? You can write your own! Read more about alerting in
-              the{' '}
-              <DocumentationLink page={DocsHelper.PAGES.ALERTS} text="documentation" />.
+              定义告警条件, 系统在满足条件的情况下将会给您通知.
             </span>
 
             <span>
               <LinkContainer to={Routes.ALERTS.CONDITIONS}>
-                <Button bsStyle="info">Manage conditions</Button>
+                <Button bsStyle="info">管理告警条件</Button>
               </LinkContainer>
               &nbsp;
               <LinkContainer to={Routes.ALERTS.NOTIFICATIONS}>
-                <Button bsStyle="info">Manage notifications</Button>
+                <Button bsStyle="info">管理告警通知</Button>
               </LinkContainer>
             </span>
           </PageHeader>

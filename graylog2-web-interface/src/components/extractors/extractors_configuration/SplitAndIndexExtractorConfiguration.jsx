@@ -48,7 +48,7 @@ const SplitAndIndexExtractorConfiguration = React.createClass({
 
     promise.then((result) => {
       if (!result.successful) {
-        UserNotification.warning('We were not able to run the split and index extraction. Please check your parameters.');
+        UserNotification.warning('我们无法运行分割和位置提取器。请检查您的参数.');
         return;
       }
 
@@ -65,15 +65,15 @@ const SplitAndIndexExtractorConfiguration = React.createClass({
   render() {
     const splitByHelpMessage = (
       <span>
-        What character to split on. <strong>Example:</strong> A whitespace character will split{' '}
-        <em>foo bar baz</em> to <em>[foo,bar,baz]</em>.
+        以什么字符来分割. <strong>示例:</strong> 空格符号{' '}
+        <em>foo bar baz</em> 转换到 <em>[foo,bar,baz]</em>.
       </span>
     );
 
     const indexHelpMessage = (
       <span>
-        What part of the split string to you want to use? <strong>Example:</strong> <em>2</em> selects <em>bar</em>{' '}
-        from <em>foo bar baz</em> when split by whitespace.
+        哪一部分数据你需要使用? <strong>示例:</strong> <em>2</em> 选择 <em>bar</em>{' '}
+        在 <em>foo bar baz</em> 当应用分割符号.
       </span>
     );
 
@@ -81,7 +81,7 @@ const SplitAndIndexExtractorConfiguration = React.createClass({
       <div>
         <Input type="text"
                id="split_by"
-               label="Split by"
+               label="分割符"
                labelClassName="col-md-2"
                wrapperClassName="col-md-10"
                defaultValue={this.state.configuration.split_by}
@@ -91,7 +91,7 @@ const SplitAndIndexExtractorConfiguration = React.createClass({
 
         <Input type="number"
                id="index"
-               label="Target index"
+               label="目标位置"
                labelClassName="col-md-2"
                wrapperClassName="col-md-10"
                defaultValue={this.state.configuration.index}
@@ -102,7 +102,7 @@ const SplitAndIndexExtractorConfiguration = React.createClass({
 
         <Input wrapperClassName="col-md-offset-2 col-md-10">
           <Button bsStyle="info" onClick={this._onTryClick} disabled={this._isTryButtonDisabled()}>
-            {this.state.trying ? <i className="fa fa-spin fa-spinner" /> : 'Try'}
+            {this.state.trying ? <i className="fa fa-spin fa-spinner" /> : '试一试'}
           </Button>
         </Input>
       </div>

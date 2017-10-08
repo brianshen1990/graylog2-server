@@ -18,10 +18,10 @@ const InputsPage = React.createClass({
   },
   render() {
     return (
-      <DocumentTitle title="Inputs">
+      <DocumentTitle title="输入">
         <div>
-          <PageHeader title="Inputs">
-            <span>Graylog nodes accept data via inputs. Launch or terminate as many inputs as you want here.</span>
+          <PageHeader title="输入">
+            <span>xxxx 日志平台通过 输入 接收数据。 开始或者结束任意的输入。</span>
           </PageHeader>
           <InputsList permissions={this.state.currentUser.permissions} />
         </div>

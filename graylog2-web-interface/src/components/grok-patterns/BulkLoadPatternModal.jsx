@@ -27,7 +27,7 @@ const BulkLoadPatternModal = React.createClass({
     reader.onload = (loaded) => {
       const request = loaded.target.result;
       GrokPatternsStore.bulkImport(request, this.state.replacePatterns).then(() => {
-        UserNotification.success('Grok Patterns imported successfully', 'Success!');
+        UserNotification.success('Grok 模式导入成功！', 'Success!');
         this.refs.modal.close();
         this.props.onSuccess();
       });
@@ -38,21 +38,21 @@ const BulkLoadPatternModal = React.createClass({
   render() {
     return (
       <span>
-        <Button bsStyle="info" style={{ marginRight: 5 }} onClick={() => this.refs.modal.open()}>Import pattern file</Button>
+        <Button bsStyle="info" style={{ marginRight: 5 }} onClick={() => this.refs.modal.open()}>导入模式文件</Button>
 
         <BootstrapModalForm ref="modal"
-                              title="Import Grok patterns from file"
-                              submitButtonText="Upload"
+                              title="从文件中导入 Grok 模式"
+                              submitButtonText="上传"
                               formProps={{ onSubmit: this._onSubmit }}>
           <Input type="file"
                    ref="pattern-file"
                    name="patterns"
-                   label="Pattern file"
-                   help="A file containing Grok patterns, one per line. Name and patterns should be separated by whitespace."
+                   label="模式文件"
+                   help="文件包含 Grok 模式，每一行一个，名称和模式需要使用空格分开。"
                    required />
           <Input type="checkbox"
                    name="replace"
-                   label="Replace all existing patterns?"
+                   label="替换所有现存的模式?"
                    onChange={e => this.setState({ replacePatterns: e.target.checked })}
             />
         </BootstrapModalForm>

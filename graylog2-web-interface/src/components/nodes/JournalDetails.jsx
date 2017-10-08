@@ -104,7 +104,7 @@ const JournalDetails = React.createClass({
     return (
       <Row className="row-sm">
         <Col md={6}>
-          <h3>Configuration</h3>
+          <h3>配置</h3>
           <dl className="system-journal">
             <dt>Path:</dt>
             <dd>{journalInformation.journal_config.directory}</dd>
@@ -122,7 +122,7 @@ const JournalDetails = React.createClass({
           </dl>
         </Col>
         <Col md={6} className="journal-details-usage">
-          <h3>Utilization</h3>
+          <h3>使用</h3>
 
           <ProgressBar now={metrics.utilizationRatio * 100}
                        label={NumberUtils.formatPercentage(metrics.utilizationRatio)} />

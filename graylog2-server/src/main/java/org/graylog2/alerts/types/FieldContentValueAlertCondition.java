@@ -76,8 +76,8 @@ public class FieldContentValueAlertCondition extends AbstractAlertCondition {
         @Override
         public ConfigurationRequest getRequestedConfiguration() {
             final ConfigurationRequest configurationRequest = ConfigurationRequest.createWithFields(
-                    new TextField("field", "Field", "", "Field name that should be checked", ConfigurationField.Optional.NOT_OPTIONAL),
-                    new TextField("value", "Value", "", "Value that the field should be checked against", ConfigurationField.Optional.NOT_OPTIONAL)
+                    new TextField("field", "字段", "", "字段名称将会被检查", ConfigurationField.Optional.NOT_OPTIONAL),
+                    new TextField("value", "值", "", "值将会被检查", ConfigurationField.Optional.NOT_OPTIONAL)
             );
             configurationRequest.addFields(AbstractAlertCondition.getDefaultConfigurationFields());
 
@@ -88,9 +88,9 @@ public class FieldContentValueAlertCondition extends AbstractAlertCondition {
     public static class Descriptor extends AlertCondition.Descriptor {
         public Descriptor() {
             super(
-                "Field Content Alert Condition",
+                "字段内容告警条件",
                 "https://www.graylog.org/",
-                "This condition is triggered when the content of messages is equal to a defined value."
+                "这种条件会在消息内容匹配的情况下触发。"
             );
         }
     }

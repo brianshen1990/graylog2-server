@@ -115,8 +115,8 @@ const LdapGroupsComponent = React.createClass({
             <ul style={{ padding: 0 }}>{content}</ul>
           </Col>
           <Col md={10} mdPush={2}>
-            <Button type="submit" bsStyle="primary" className="save-button-margin">Save</Button>
-            <Button onClick={this.props.onCancel}>Cancel</Button>
+            <Button type="submit" bsStyle="primary" className="save-button-margin">保存</Button>
+            <Button onClick={this.props.onCancel}>取消</Button>
           </Col>
         </Row>
       </form>

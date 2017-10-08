@@ -15,8 +15,8 @@ const GrokPatternsStore = {
 
   loadPatterns(callback: (patterns: Array<GrokPattern>) => void) {
     var failCallback = (error) => {
-      UserNotification.error("Loading Grok patterns failed with status: " + error.message,
-        "Could not load Grok patterns");
+      UserNotification.error("导入 Grok 模式失败: " + error.message,
+        "无法导入Grok 模式");
     };
     // get the current list of patterns and sort it by name
     fetch('GET', this.URL).then(
@@ -33,8 +33,8 @@ const GrokPatternsStore = {
 
   savePattern(pattern: GrokPattern, callback: () => void) {
     var failCallback = (error) => {
-      UserNotification.error("Saving Grok pattern \"" + pattern.name + "\" failed with status: " + error.message,
-        "Could not save Grok pattern");
+      UserNotification.error("保存 Grok 模式 \"" + pattern.name + "\" 失败: " + error.message,
+        "无法保存Grok 模式");
     };
 
     const requestPattern = {
@@ -56,8 +56,8 @@ const GrokPatternsStore = {
       .then(
         response => {
           callback();
-          const action = pattern.id === "" ? "created" : "updated";
-          const message = "Grok pattern \"" + pattern.name + "\" successfully " + action;
+          const action = pattern.id === "" ? "创建" : "更新";
+          const message = "Grok 模式 \"" + pattern.name + "\" 成功 " + action;
           UserNotification.success(message);
           return response;
         },
@@ -67,14 +67,14 @@ const GrokPatternsStore = {
 
   deletePattern(pattern: GrokPattern, callback: () => void) {
     var failCallback = (error) => {
-      UserNotification.error("Deleting Grok pattern \"" + pattern.name + "\" failed with status: " + error.message,
-        "Could not delete Grok pattern");
+      UserNotification.error("删除 Grok 模式 \"" + pattern.name + "\" 失败: " + error.message,
+        "无法删除 Grok 模式");
     };
     fetch('DELETE', this.URL + "/" + pattern.id)
       .then(
         response => {
           callback();
-          UserNotification.success("Grok pattern \"" + pattern.name + "\" successfully deleted");
+          UserNotification.success("Grok 模式 \"" + pattern.name + "\" 删除成功");
           return response;
         },
         failCallback
@@ -83,8 +83,8 @@ const GrokPatternsStore = {
 
   bulkImport(patterns: string, replaceAll: boolean) {
     var failCallback = (error) => {
-      UserNotification.error("Importing Grok pattern file failed with status: " + error.message,
-        "Could not load Grok patterns");
+      UserNotification.error("导入 Grok 模式文件失败: " + error.message,
+        "无法导入Grok 模式");
     };
 
     const promise = fetchPlainText('POST', `${this.URL}?replace=${replaceAll}`, patterns);

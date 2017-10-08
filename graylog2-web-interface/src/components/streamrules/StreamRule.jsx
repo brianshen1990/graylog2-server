@@ -26,12 +26,12 @@ const StreamRule = React.createClass({
   },
   _onDelete(event) {
     event.preventDefault();
-    if (window.confirm('Do you really want to delete this stream rule?')) {
+    if (window.confirm('确定删除该数据流规则?')) {
       StreamRulesStore.remove(this.props.stream.id, this.props.streamRule.id, () => {
         if (this.props.onDelete) {
           this.props.onDelete(this.props.streamRule.id);
         }
-        UserNotification.success('Stream rule has been successfully deleted.', 'Success');
+        UserNotification.success('数据流规则删除成功.', '成功');
       });
     }
   },
@@ -40,7 +40,7 @@ const StreamRule = React.createClass({
       if (this.props.onSubmit) {
         this.props.onSubmit(streamRuleId, data);
       }
-      UserNotification.success('Stream rule has been successfully updated.', 'Success');
+      UserNotification.success('数据流规则更新成功.', '成功');
     });
   },
   _formatActionItems() {
@@ -69,7 +69,7 @@ const StreamRule = React.createClass({
         {actionItems}
         <HumanReadableStreamRule streamRule={streamRule} streamRuleTypes={streamRuleTypes} />
         <StreamRuleForm ref="streamRuleForm" streamRule={streamRule} streamRuleTypes={streamRuleTypes}
-                        title="Edit Stream Rule" onSubmit={this._onSubmit} />
+                        title="编辑数据流规则" onSubmit={this._onSubmit} />
         {description}
       </li>
     );

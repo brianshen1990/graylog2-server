@@ -34,13 +34,13 @@ const DataAdapterPicker = React.createClass({
 
     return (
       <fieldset>
-        <Input label="Data Adapter"
+        <Input label="数据转接器"
                required
                autoFocus
-               help="Select an existing data adapter"
+               help="选取数据转接器"
                labelClassName="col-sm-3"
                wrapperClassName="col-sm-9">
-          <Select placeholder="Select a data adapter"
+          <Select placeholder="选取数据转接器"
                   clearable={false}
                   options={sortedAdapters}
                   matchProp="value"

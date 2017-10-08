@@ -35,6 +35,8 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.HashMap;
+import java.util.ArrayList;
 
 @Provider
 @Produces(MoreMediaTypes.TEXT_CSV)
@@ -67,14 +69,61 @@ public class ScrollChunkWriter implements MessageBodyWriter<ScrollResult.ScrollC
         if (LOG.isDebugEnabled()) {
             LOG.debug("[{}] Writing chunk {}", Thread.currentThread().getId(), scrollChunk.getChunkNumber());
         }
+
+        if (scrollChunk.isFirstChunk()) {
+            entityStream.write(0xEF);
+            entityStream.write(0xBB);
+            entityStream.write(0xBF);
+        }
+
         final CSVWriter csvWriter = new CSVWriter(new OutputStreamWriter(entityStream, StandardCharsets.UTF_8));
 
         final List<String> fields = scrollChunk.getFields();
         final int numberOfFields = fields.size();
 
         if (scrollChunk.isFirstChunk()) {
-            // write field headers only on first chunk
-            csvWriter.writeNext(fields.toArray(new String[numberOfFields]));
+            List<String> mapped_Columns =  new ArrayList<String>();
+            try {
+                // write field headers only on first chunk
+                HashMap<String, String> mapping_Columns = new HashMap<>();
+                mapping_Columns.put("action", "措施");
+                mapping_Columns.put("ips_rule", "入侵防御规则");
+                mapping_Columns.put("url_category1", "URL类别");
+                mapping_Columns.put("host_name", "主机名");
+                mapping_Columns.put("source_address", "客户端地址");
+                mapping_Columns.put("destination_address", "服务器地址");
+                mapping_Columns.put("destination_port", "服务器端口");
+                mapping_Columns.put("protocol", "协议类型");
+                mapping_Columns.put("application_id", "应用");
+                mapping_Columns.put("rule_name", "规则名称");
+                mapping_Columns.put("type", "日志类别");
+                mapping_Columns.put("malware_name", "恶意软件名称");
+                mapping_Columns.put("source_port", "客户端端口");
+                mapping_Columns.put("log_time", "日志时间");
+                mapping_Columns.put("source_user", "用户");
+                mapping_Columns.put("application_attribute_id", "应用属性");
+                mapping_Columns.put("file_name", "文件名");
+                mapping_Columns.put("wrs_score", "WRS 评分");
+                mapping_Columns.put("host", "主机");
+                mapping_Columns.put("url", "URL");
+                mapping_Columns.put("url_category2", "URL类别2");
+                mapping_Columns.put("url_category3", "URL类别3");
+                mapping_Columns.put("url_category4", "URL类别4");
+                mapping_Columns.put("direction", "方向");
+                mapping_Columns.put("mail_sender", "发件人");
+                mapping_Columns.put("mail_recipient", "收件人");
+                mapping_Columns.put("mail_subject", "邮件主题");
+                for (String str : fields) {
+                    if (mapping_Columns.containsKey(str)) {
+                        mapped_Columns.add(mapping_Columns.get(str));
+                    } else {
+                        mapped_Columns.add(str);
+                    }
+                }
+            }catch(Exception e){
+                mapped_Columns = fields;
+            }
+            csvWriter.writeNext(mapped_Columns.toArray(new String[numberOfFields]));
         }
         // write result set in same order as the header row
         final String[] fieldValues = new String[numberOfFields];

@@ -32,8 +32,8 @@ const SavedSearchesStore = Reflux.createStore({
           return response;
         },
         (error) => {
-          UserNotification.error(`Fetching saved searches failed with status: ${error}`,
-            'Could not get saved searches');
+          UserNotification.error(`获取存档搜索结果失败: ${error}`,
+            '无法获取存档搜索结果');
         });
 
     SavedSearchesActions.list.promise(promise);
@@ -114,13 +114,13 @@ const SavedSearchesStore = Reflux.createStore({
     promise
       .then(
         (response) => {
-          UserNotification.success(`Search criteria saved as "${title}".`);
+          UserNotification.success(`搜索准则 "${title}"保存成功.`);
           SavedSearchesActions.list.triggerPromise();
           return response;
         },
         (error) => {
-          UserNotification.error(`Saving search criteria failed with status: ${error}`,
-            'Could not save search criteria');
+          UserNotification.error(`搜索准则保存失败: ${error}`,
+            '无法保存搜索准则');
         });
 
     SavedSearchesActions.create.promise(promise);
@@ -131,13 +131,13 @@ const SavedSearchesStore = Reflux.createStore({
     promise
       .then(
         (response) => {
-          UserNotification.success(`Saved search "${title}" was updated.`);
+          UserNotification.success(`存档搜索结果 "${title}" 保存成功.`);
           SavedSearchesActions.list.triggerPromise();
           return response;
         },
         (error) => {
-          UserNotification.error(`Updating saved search "${title}" failed with status: ${error}`,
-            'Could not update saved search');
+          UserNotification.error(`更新存档搜索结果 "${title}" 失败: ${error}`,
+            '无法更新存档搜索结果');
         });
 
     SavedSearchesActions.update.promise(promise);
@@ -151,14 +151,14 @@ const SavedSearchesStore = Reflux.createStore({
     promise
       .then(
         (response) => {
-          UserNotification.success(`Saved search ${title} was deleted successfully.`);
+          UserNotification.success(`存档搜索 ${title} 删除成功.`);
           SearchStore.savedSearchDeleted(searchId);
           SavedSearchesActions.list.triggerPromise();
           return response;
         },
         (error) => {
-          UserNotification.error(`Deleting saved search ${title} failed with status: ${error}`,
-            'Could not delete saved search');
+          UserNotification.error(`存档搜索结果 ${title} 删除失败: ${error}`,
+            '无法删除存档搜索结果');
         });
 
     SavedSearchesActions.delete.promise(promise);

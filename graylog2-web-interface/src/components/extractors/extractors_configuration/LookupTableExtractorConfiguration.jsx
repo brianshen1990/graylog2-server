@@ -62,14 +62,14 @@ const LookupTableExtractorConfiguration = React.createClass({
     const promise = ToolsStore.testLookupTable(this.props.configuration.lookup_table_name, this.props.exampleMessage);
     promise.then((result) => {
       if (result.error) {
-        UserNotification.warning(`We were not able to run the lookup: ${result.error_message}`);
+        UserNotification.warning(`无法运行查找: ${result.error_message}`);
         return;
       }
 
       if (!result.empty) {
         this.props.onExtractorPreviewLoad(result.value);
       } else {
-        this.props.onExtractorPreviewLoad(`no lookup result for "${result.key}"`);
+        this.props.onExtractorPreviewLoad(`没有查找结果 "${result.key}"`);
       }
     });
 
@@ -91,20 +91,20 @@ const LookupTableExtractorConfiguration = React.createClass({
 
     const helpMessage = (
       <span>
-        Lookup tables can be created <LinkContainer to={Routes.SYSTEM.LOOKUPTABLES.OVERVIEW}><a>here</a></LinkContainer>.
+        查找表可以在 <LinkContainer to={Routes.SYSTEM.LOOKUPTABLES.OVERVIEW}><a>这里</a></LinkContainer>创建.
       </span>
     );
 
     return (
       <div>
         <Input id="lookup_table_name"
-               label="Lookup Table"
+               label="查找表"
                labelClassName="col-md-2"
                wrapperClassName="col-md-10"
                help={helpMessage}>
           <Row className="row-sm">
             <Col md={11}>
-              <Select placeholder="Select a lookup table"
+              <Select placeholder="选择一个查找表"
                       clearable={false}
                       options={lookupTables}
                       matchProp="value"
@@ -113,7 +113,7 @@ const LookupTableExtractorConfiguration = React.createClass({
             </Col>
             <Col md={1} className="text-right">
               <Button bsStyle="info" onClick={this._onTryClick} disabled={this._isTryButtonDisabled()}>
-                {this.state.trying ? <i className="fa fa-spin fa-spinner" /> : 'Try'}
+                {this.state.trying ? <i className="fa fa-spin fa-spinner" /> : '试一试'}
               </Button>
             </Col>
           </Row>

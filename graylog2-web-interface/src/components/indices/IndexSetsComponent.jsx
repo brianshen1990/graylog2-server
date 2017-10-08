@@ -63,15 +63,15 @@ const IndexSetsComponent = React.createClass({
     const actions = (
       <div>
         <LinkContainer to={Routes.SYSTEM.INDEX_SETS.CONFIGURATION(indexSet.id)}>
-          <Button bsStyle="info">Edit</Button>
+          <Button bsStyle="info">编辑</Button>
         </LinkContainer>
         {' '}
-        <DropdownButton title="More Actions" id={`index-set-dropdown-${indexSet.id}`} pullRight>
+        <DropdownButton title="更多操作" id={`index-set-dropdown-${indexSet.id}`} pullRight>
           <MenuItem
             onSelect={this._onSetDefault(indexSet)}
-            disabled={!indexSet.writable || indexSet.default}>Set as default</MenuItem>
+            disabled={!indexSet.writable || indexSet.default}>设置为默认</MenuItem>
           <MenuItem divider />
-          <MenuItem onSelect={this._onDelete(indexSet)}>Delete</MenuItem>
+          <MenuItem onSelect={this._onDelete(indexSet)}>删除</MenuItem>
         </DropdownButton>
       </div>
     );
@@ -90,11 +90,11 @@ const IndexSetsComponent = React.createClass({
       </LinkContainer>
     );
 
-    const isDefault = indexSet.default ? <Label key={`index-set-${indexSet.id}-default-label`} bsStyle="primary">default</Label> : '';
-    const isReadOnly = !indexSet.writable ? <Label key={`index-set-${indexSet.id}-readOnly-label`} bsStyle="info">read only</Label> : '';
+    const isDefault = indexSet.default ? <Label key={`index-set-${indexSet.id}-default-label`} bsStyle="primary">默认</Label> : '';
+    const isReadOnly = !indexSet.writable ? <Label key={`index-set-${indexSet.id}-readOnly-label`} bsStyle="info">支付</Label> : '';
     let description = indexSet.description;
     if (indexSet.default) {
-      description += `${description.endsWith('.') ? '' : '.'} Graylog will use this index set by default.`;
+      description += `${description.endsWith('.') ? '' : '.'} xxxx 日志平台默认使用该索引.`;
     }
 
     let statsString;
@@ -131,7 +131,7 @@ const IndexSetsComponent = React.createClass({
         <PaginatedList pageSize={this.PAGE_SIZE} totalItems={this.state.indexSetsCount} onChange={this._onChangePaginatedList}
                        showPageSizeSelect={false}>
           <EntityList bsNoItemsStyle="info"
-                      noItemsText="There are no index sets to display"
+                      noItemsText="没有索引集可以查看。"
                       items={this.state.indexSets.map(indexSet => this._formatIndexSet(indexSet))} />
         </PaginatedList>
       </div>

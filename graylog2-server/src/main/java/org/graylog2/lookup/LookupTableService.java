@@ -291,7 +291,7 @@ public class LookupTableService extends AbstractIdleService {
             }
             final LookupDataAdapter adapter = factory.create(dto.id(), dto.name(), dto.config());
             adapter.addListener(new LoggingServiceListener(
-                            "Data Adapter",
+                            "数据转接器",
                             String.format(Locale.ENGLISH, "%s/%s [@%s]", dto.name(), dto.id(), objectId(adapter)),
                             LOG),
                     scheduler);

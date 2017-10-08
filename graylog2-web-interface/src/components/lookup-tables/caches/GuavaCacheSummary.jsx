@@ -9,11 +9,11 @@ const GuavaCacheSummary = React.createClass({
   render() {
     const config = this.props.cache.config;
     return (<dl>
-      <dt>Maximum entries</dt>
+      <dt>最大缓存数</dt>
       <dd>{config.max_size}</dd>
-      <dt>Expire after access</dt>
+      <dt>获取后失效时间</dt>
       <dd><TimeUnit value={config.expire_after_access} unit={config.expire_after_access_unit} /></dd>
-      <dt>Expire after write</dt>
+      <dt>写入后失效</dt>
       <dd><TimeUnit value={config.expire_after_write} unit={config.expire_after_write_unit} /></dd>
     </dl>);
   },

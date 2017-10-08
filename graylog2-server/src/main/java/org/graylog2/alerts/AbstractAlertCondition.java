@@ -211,9 +211,9 @@ public abstract class AbstractAlertCondition implements EmbeddedPersistable, Ale
 
     public static List<ConfigurationField> getDefaultConfigurationFields() {
         return Lists.newArrayList(
-            new NumberField("grace", "Grace Period", 0, "Number of minutes to wait after an alert is resolved, to trigger another alert", ConfigurationField.Optional.NOT_OPTIONAL),
-            new NumberField("backlog", "Message Backlog", 0, "The number of messages to be included in alert notifications", ConfigurationField.Optional.NOT_OPTIONAL),
-            new BooleanField("repeat_notifications", "Repeat notifications", false, "Check this box to send notifications every time the alert condition is evaluated and satisfied regardless of its state.")
+            new NumberField("grace", "间歇期", 0, "在一个告警被解决后，另一个告警被触发的时间间隔。", ConfigurationField.Optional.NOT_OPTIONAL),
+            new NumberField("backlog", "消息积压", 0, "在通知中需要被包括的消息数目。", ConfigurationField.Optional.NOT_OPTIONAL),
+            new BooleanField("repeat_notifications", "重复通知", false, "勾选后每次告警条件满足都会触发。")
         );
     }
 }

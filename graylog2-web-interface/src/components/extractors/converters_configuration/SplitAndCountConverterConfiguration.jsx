@@ -34,9 +34,9 @@ const SplitAndCountConverterConfiguration = React.createClass({
   render() {
     const splitByHelpMessage = (
       <span>
-        The Split & Count converter is splitting the extracted part by the defined character and stores the token{' '}
-        count as field. <strong>Example:</strong> <em>?fields=first_name,last_name,zip</em> split by <em>,</em>{' '}
-        results in <em>3</em>. You just counted the requested fields of a GET user REST request.
+        分割和位置转换器湖北用来分割内容并存储{' '}
+        字段. <strong>示例:</strong> <em>?fields=first_name,last_name,zip</em> 用 <em>,</em>分割{' '}
+        结果是 <em>3</em>.
       </span>
     );
 
@@ -45,7 +45,7 @@ const SplitAndCountConverterConfiguration = React.createClass({
         <Input type="checkbox"
                ref="converterEnabled"
                id={`enable-${this.props.type}-converter`}
-               label="Split & Count"
+               label="分割和位置"
                wrapperClassName="col-md-offset-2 col-md-10"
                defaultChecked
                onChange={this._toggleConverter} />

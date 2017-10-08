@@ -42,21 +42,21 @@ const ExtractorUtils = {
   getReadableExtractorTypeName(extractorType) {
     switch (extractorType) {
       case ExtractorTypes.COPY_INPUT:
-        return 'Copy input';
+        return '拷贝输入';
       case ExtractorTypes.GROK:
-        return 'Grok pattern';
+        return 'Grok 模式';
       case ExtractorTypes.JSON:
         return 'JSON';
       case ExtractorTypes.REGEX:
-        return 'Regular expression';
+        return '正则表达式';
       case ExtractorTypes.REGEX_REPLACE:
-        return 'Replace with regular expression';
+        return '正则替换';
       case ExtractorTypes.SPLIT_AND_INDEX:
-        return 'Split & Index';
+        return '分割和序号';
       case ExtractorTypes.SUBSTRING:
-        return 'Substring';
+        return '子字符串';
       case ExtractorTypes.LOOKUP_TABLE:
-        return 'Lookup Table';
+        return '查找表';
       default:
         return extractorType;
     }
@@ -65,31 +65,31 @@ const ExtractorUtils = {
   getReadableConverterTypeName(converterType) {
     switch (converterType) {
       case this.ConverterTypes.NUMERIC:
-        return 'Numeric';
+        return '数字';
       case this.ConverterTypes.DATE:
-        return 'Date';
+        return '日期';
       case this.ConverterTypes.FLEXDATE:
-        return 'Flexible Date';
+        return '灵活日期';
       case this.ConverterTypes.HASH:
-        return 'Hash';
+        return '哈希';
       case this.ConverterTypes.LOWERCASE:
-        return 'Lowercase';
+        return '小写';
       case this.ConverterTypes.UPPERCASE:
-        return 'Uppercase';
+        return '大写';
       case this.ConverterTypes.TOKENIZER:
-        return 'Key = Value Pairs To Fields';
+        return 'Key = Value 组合转换为字段';
       case this.ConverterTypes.CSV:
-        return 'CSV To Fields';
+        return 'CSV 转换为字段';
       case this.ConverterTypes.SPLIT_AND_COUNT:
-        return 'Split & Count';
+        return '分割和位置';
       case this.ConverterTypes.IP_ANONYMIZER:
-        return 'Anonymize IPv4 Addresses';
+        return 'IPv4 地址';
       case this.ConverterTypes.SYSLOG_PRI_LEVEL:
-        return 'Syslog Level From PRI';
+        return 'Syslog PRI转换为级别';
       case this.ConverterTypes.SYSLOG_PRI_FACILITY:
-        return 'Syslog Facility From PRI';
+        return 'Syslog PRI转换为Facility';
       case this.ConverterTypes.LOOKUP_TABLE:
-        return 'Lookup Table';
+        return '查找表';
       default:
         return converterType;
     }

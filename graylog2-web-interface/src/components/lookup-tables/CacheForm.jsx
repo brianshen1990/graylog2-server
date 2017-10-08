@@ -201,11 +201,11 @@ const CacheForm = React.createClass({
               <Input type="text"
                      id="title"
                      name="title"
-                     label="Title"
+                     label="标题"
                      autoFocus
                      required
                      onChange={this._onChange}
-                     help="A short title for this cache."
+                     help="缓存的标题。"
                      value={cache.title}
                      labelClassName="col-sm-3"
                      wrapperClassName="col-sm-9" />
@@ -213,9 +213,9 @@ const CacheForm = React.createClass({
               <Input type="text"
                      id="description"
                      name="description"
-                     label="Description"
+                     label="描述"
                      onChange={this._onChange}
-                     help="Cache description."
+                     help="缓存描述"
                      value={cache.description}
                      labelClassName="col-sm-3"
                      wrapperClassName="col-sm-9" />
@@ -223,10 +223,10 @@ const CacheForm = React.createClass({
               <Input type="text"
                      id="name"
                      name="name"
-                     label="Name"
+                     label="名称"
                      required
                      onChange={this._onChange}
-                     help={this._validationMessage('name', 'The name that is being used to refer to this cache. Must be unique.')}
+                     help={this._validationMessage('name', '该名称会被用于检索。请确保唯一性。')}
                      bsStyle={this._validationState('name')}
                      value={cache.name}
                      labelClassName="col-sm-3"
@@ -235,7 +235,7 @@ const CacheForm = React.createClass({
             {configFieldSet}
             <fieldset>
               <Input wrapperClassName="col-sm-offset-3 col-sm-9">
-                <Button type="submit" bsStyle="success">{this.props.create ? 'Create Cache' : 'Update Cache'}</Button>
+                <Button type="submit" bsStyle="success">{this.props.create ? '创建缓存' : '更新缓存'}</Button>
               </Input>
             </fieldset>
           </form>

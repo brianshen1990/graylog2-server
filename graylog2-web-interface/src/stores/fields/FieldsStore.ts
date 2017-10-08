@@ -12,8 +12,8 @@ var FieldsStore = {
         let promise = fetch('GET', URLUtils.qualifyUrl(url));
         promise = promise.then((data) => data.fields);
         promise.catch((errorThrown) => {
-            UserNotification.error("Loading field information failed with status: " + errorThrown.additional.message,
-                "Could not load field information");
+            UserNotification.error("加载字段信息失败: " + errorThrown.additional.message,
+                "无法加载字段信息");
         });
         return promise;
     }

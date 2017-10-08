@@ -31,13 +31,13 @@ const AssignOutputDropdown = React.createClass({
         <div className="form-inline">
           <select value={this.state.selectedOutput} name="outputId" className="form-control"
                   onChange={this._handleUpdate}>
-            <option value={this.PLACEHOLDER} disabled>Select existing output</option>
+            <option value={this.PLACEHOLDER} disabled>选择已存在输出</option>
             {outputList}
           </select>
           &nbsp;
           <Button ref="submitButton" id="add-existing-output" bsStyle="success" type="button"
                   disabled={this.state.selectedOutput === this.PLACEHOLDER} onClick={this._handleClick}>
-            Assign existing Output
+            指定已存在输出
           </Button>
         </div>
       </div>

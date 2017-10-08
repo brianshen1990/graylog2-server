@@ -103,14 +103,14 @@ const StreamForm = React.createClass({
                           title={this.props.title}
                           onSubmitForm={this._onSubmit}
                           submitButtonText="Save">
-        <Input id="Title" type="text" required label="Title" name="Title"
-               placeholder="A descriptive name of the new stream"
+        <Input id="Title" type="text" required label="标题" name="Title"
+               placeholder="新数据流的标题"
                valueLink={this.linkState('title')} autoFocus />
-        <Input id="Description" type="text" required label="Description" name="Description"
-               placeholder="What kind of messages are routed into this stream?"
+        <Input id="Description" type="text" required label="描述" name="Description"
+               placeholder="什么样的数据会被转发到该数据流中?"
                valueLink={this.linkState('description')} />
         {indexSetSelect}
-        <Input id="RemoveFromDefaultStream" type="checkbox" label="Remove matches from 'All messages' stream" name="Remove from All messages"
+        <Input id="RemoveFromDefaultStream" type="checkbox" label="从 'All messages' 数据流中移出" name="Remove from All messages"
                help={<span>Remove messages that match this stream from the 'All messages' stream which is assigned to every message by default.</span>}
                checkedLink={this.linkState('remove_matches_from_default_stream')} />
       </BootstrapModalForm>

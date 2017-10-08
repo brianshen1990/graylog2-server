@@ -44,40 +44,40 @@ const Navigation = React.createClass({
   },
 
   _systemTitle() {
-    const prefix = 'System';
+    const prefix = '系统';
 
     if (this._isActive('/system/overview')) {
-      return `${prefix} / Overview`;
+      return `${prefix} / 概述`;
     }
     if (this._isActive('/system/nodes')) {
-      return `${prefix} / Nodes`;
+      return `${prefix} / 节点`;
     }
     if (this._isActive('/system/inputs')) {
-      return `${prefix} / Inputs`;
+      return `${prefix} / 输入`;
     }
     if (this._isActive('/system/outputs')) {
-      return `${prefix} / Outputs`;
+      return `${prefix} / 输出`;
     }
     if (this._isActive('/system/indices')) {
-      return `${prefix} / Indices`;
+      return `${prefix} / 索引`;
     }
     if (this._isActive('/system/logging')) {
-      return `${prefix} / Logging`;
+      return `${prefix} / 日志`;
     }
     if (this._isActive('/system/authentication')) {
-      return `${prefix} / Authentication`;
+      return `${prefix} / 认证`;
     }
     if (this._isActive('/system/contentpacks')) {
-      return `${prefix} / Content Packs`;
+      return `${prefix} / 内容包`;
     }
     if (this._isActive('/system/grokpatterns')) {
-      return `${prefix} / Grok Patterns`;
+      return `${prefix} / Grok 模式`;
     }
     if (this._isActive('/system/lookuptables')) {
-      return `${prefix} / Lookup Tables`;
+      return `${prefix} / 查找表`;
     }
     if (this._isActive('/system/configurations')) {
-      return `${prefix} / Configurations`;
+      return `${prefix} / 配置`;
     }
 
     const pluginRoute = PluginStore.exports('systemnavigation').filter(route => this._isActive(route.path))[0];
@@ -150,25 +150,25 @@ const Navigation = React.createClass({
           <Nav navbar>
             <IfPermitted permissions={['searches:absolute', 'searches:relative', 'searches:keyword']}>
               <LinkContainer to={Routes.SEARCH}>
-                <NavItem to="search">Search</NavItem>
+                <NavItem to="search">搜索</NavItem>
               </LinkContainer>
             </IfPermitted>
 
             <LinkContainer to={Routes.STREAMS}>
-              <NavItem>Streams</NavItem>
+              <NavItem>数据流</NavItem>
             </LinkContainer>
 
             <LinkContainer to={Routes.ALERTS.LIST}>
-              <NavItem>Alerts</NavItem>
+              <NavItem>告警</NavItem>
             </LinkContainer>
 
             <LinkContainer to={Routes.DASHBOARDS}>
-              <NavItem >Dashboards</NavItem>
+              <NavItem >面板</NavItem>
             </LinkContainer>
 
             <IfPermitted permissions="sources:read">
               <LinkContainer to={Routes.SOURCES}>
-                <NavItem>Sources</NavItem>
+                <NavItem>数据源</NavItem>
               </LinkContainer>
             </IfPermitted>
 
@@ -181,54 +181,54 @@ const Navigation = React.createClass({
              */}
             <NavDropdown title={this._systemTitle()} id="system-menu-dropdown">
               <LinkContainer to={Routes.SYSTEM.OVERVIEW}>
-                <MenuItem>Overview</MenuItem>
+                <MenuItem>概述</MenuItem>
               </LinkContainer>
               {this.isPermitted(this.props.permissions, ['clusterconfigentry:read']) &&
               <LinkContainer to={Routes.SYSTEM.CONFIGURATIONS}>
-                <MenuItem>Configurations</MenuItem>
+                <MenuItem>配置</MenuItem>
               </LinkContainer>
               }
               <LinkContainer to={Routes.SYSTEM.NODES.LIST}>
-                <MenuItem>Nodes</MenuItem>
+                <MenuItem>节点</MenuItem>
               </LinkContainer>
               {this.isPermitted(this.props.permissions, ['inputs:read']) &&
                 <LinkContainer to={Routes.SYSTEM.INPUTS}>
-                  <MenuItem>Inputs</MenuItem>
+                  <MenuItem>输入</MenuItem>
                 </LinkContainer>
               }
               {this.isPermitted(this.props.permissions, ['outputs:read']) &&
                 <LinkContainer to={Routes.SYSTEM.OUTPUTS}>
-                  <MenuItem>Outputs</MenuItem>
+                  <MenuItem>输出</MenuItem>
                 </LinkContainer>
               }
               {this.isPermitted(this.props.permissions, ['indices:read']) &&
                 <LinkContainer to={Routes.SYSTEM.INDICES.LIST}>
-                  <MenuItem>Indices</MenuItem>
+                  <MenuItem>索引</MenuItem>
                 </LinkContainer>
               }
               {this.isPermitted(this.props.permissions, ['loggers:read']) &&
                 <LinkContainer to={Routes.SYSTEM.LOGGING}>
-                  <MenuItem>Logging</MenuItem>
+                  <MenuItem>日志</MenuItem>
                 </LinkContainer>
               }
               {this.isAnyPermitted(this.props.permissions, ['users:list, roles:read']) &&
               <LinkContainer to={Routes.SYSTEM.AUTHENTICATION.OVERVIEW}>
-                <MenuItem>Authentication</MenuItem>
+                <MenuItem>认证</MenuItem>
               </LinkContainer>
               }
               {this.isPermitted(this.props.permissions, ['dashboards:create', 'inputs:create', 'streams:create']) &&
               <LinkContainer to={Routes.SYSTEM.CONTENTPACKS.LIST}>
-                <MenuItem>Content Packs</MenuItem>
+                <MenuItem>内容包</MenuItem>
               </LinkContainer>
               }
               {this.isPermitted(this.props.permissions, ['inputs:edit']) &&
                <LinkContainer to={Routes.SYSTEM.GROKPATTERNS}>
-                 <MenuItem>Grok Patterns</MenuItem>
+                 <MenuItem>Grok 模式</MenuItem>
                </LinkContainer>
               }
               {this.isPermitted(this.props.permissions, ['inputs:edit']) &&
                 <LinkContainer to={Routes.SYSTEM.LOOKUPTABLES.OVERVIEW}>
-                <MenuItem>Lookup Tables</MenuItem>
+                <MenuItem>查找表</MenuItem>
                 </LinkContainer>
               }
               {pluginSystemNavigations}

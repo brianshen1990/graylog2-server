@@ -8,9 +8,9 @@ const WidgetVisualizationNotFound = React.createClass({
   render() {
     return (
       <Alert bsStyle="danger">
-        <i className="fa fa-exclamation-circle" /> Widget Visualization (<i>{this.props.widgetClassName}</i>) not found.
+        <i className="fa fa-exclamation-circle" /> 可视化组件 (<i>{this.props.widgetClassName}</i>) 丢失.
 
-        Seems like the plugin supplying this widget is not loaded.
+        可能的原因是显示组件没有被加载.
       </Alert>
     );
   },
