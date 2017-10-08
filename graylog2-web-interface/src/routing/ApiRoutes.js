@@ -1,4 +1,5 @@
 import Qs from 'qs';
+import AppConfig from 'util/AppConfig';
 
 const ApiRoutes = {
   AlarmCallbacksApiController: {
@@ -213,17 +214,7 @@ const ApiRoutes = {
   UniversalSearchApiController: {
     _transfer_log_type(query) {
       try {
-        const add_query = "log_type:\"Violation log\"";
-        if(query === "*"){
-          // all
-          query = add_query;
-        }else{
-          // No type
-          var index_count = query.indexOf("log_type:");
-          if(index_count < 0){
-            query = "( " + query + " ) AND " + add_query;
-          }
-        }
+        query  = AppConfig.transfer_search_confition(query);
         return query;
       }catch(e){
         console.log("error" + e);

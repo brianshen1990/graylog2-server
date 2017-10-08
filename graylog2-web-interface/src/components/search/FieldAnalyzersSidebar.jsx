@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Input } from 'components/bootstrap';
+import AppConfig from 'util/AppConfig';
 
 import { DecoratedSidebarMessageField, SidebarMessageField } from 'components/search';
 
@@ -102,39 +103,11 @@ const FieldAnalyzersSidebar = React.createClass({
 
   render() {
     var _get_show_list_in_order = function(){
-      return ["host_name", "source_address", "destination_address", "destination_port", "action",
-          "ips_rule", "application_id", "type", "malware_name", "source_port"]
+        return AppConfig.get_show_list_in_order();
     };
 
-    let pattern_mappings = {
-      "action" : "措施",
-      "ips_rule" : "入侵防御规则",
-      "url_category1": "URL类别",
-      "host_name": "主机名",
-      "source_address" : "客户端地址",
-      "destination_address": "服务器地址",
-      "destination_port": "服务器端口",
-      "protocol": "协议类型",
-      "application_id": "应用",
-      "rule_name": "规则名称",
-      "type": "日志类别",
-      "malware_name": "恶意软件名称",
-      "source_port":"客户端端口",
-      "log_time": "日志时间",
-      "source_user": "用户",
-      "application_attribute_id": "应用属性",
-      "file_name": "文件名",
-      "wrs_score": "WRS 评分",
-      "host": "主机",
-      "url": "URL",
-      "url_category2": "URL类别2",
-      "url_category3": "URL类别3",
-      "url_category4": "URL类别4",
-      "direction": "方向",
-      "mail_sender":"发件人",
-      "mail_recipient":"收件人",
-      "mail_subject": "邮件主题"
-    };
+    let pattern_mappings = AppConfig.pattern_mappings();
+
     const decorationStats = this.props.result.decoration_stats;
     const decoratedFields = decorationStats ? [].concat(decorationStats.added_fields || [], decorationStats.changed_fields || []) : [];
     var messageFields = this.props.fields
@@ -148,30 +121,14 @@ const FieldAnalyzersSidebar = React.createClass({
         return false;
       })
       .filter(field => {
-        return field.name.indexOf("z_") != 0;
+        return  AppConfig.skip_show_fields( field.name )==false;
       })
       .sort((a, b) => {
+
         var field1 = a.name.toLowerCase();
         var field2 = b.name.toLowerCase();
-        try {
-          if (_get_show_list_in_order().indexOf(field1)>=0 && _get_show_list_in_order().indexOf(field2)<0) {
-            return -1;
-          }
-          if (_get_show_list_in_order().indexOf(field1)<0 && _get_show_list_in_order().indexOf(field2)>=0) {
-            return 1;
-          }
-          if (_get_show_list_in_order().indexOf(field1)<0 && _get_show_list_in_order().indexOf(field2)<0) {
-            var ret =  field1.toLowerCase().localeCompare(field2.toLowerCase());
-            return ret;
-          }
-          if (_get_show_list_in_order().indexOf(field1)>=0 && _get_show_list_in_order().indexOf(field2)>=0) {
-            var ret =( ( _get_show_list_in_order().indexOf(field1) > _get_show_list_in_order().indexOf(field2) ) ? 1:-1 );
-            return ret;
-          }
-        }catch(e){
-          console.log("error 1" + e);
-          return field1.localeCompare(field2)
-        }
+        return AppConfig.compare_field1_field2(field1, field2);
+
       });
     messageFields = messageFields
       .map((field) => {

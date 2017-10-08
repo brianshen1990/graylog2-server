@@ -10,6 +10,7 @@ const SearchStore = StoreProvider.getStore('Search');
 
 import { PluginStore } from 'graylog-web-plugin/plugin';
 import {} from 'components/field-analyzers'; // Make sure to load all field analyzer plugins!
+import AppConfig from 'util/AppConfig';
 
 const SearchResult = React.createClass({
   propTypes: {
@@ -78,8 +79,7 @@ const SearchResult = React.createClass({
     this.setState({ showAllFields: !this.state.showAllFields });
   },
   _get_show_list_in_order(){
-      return ["host_name", "source_address", "destination_address", "destination_port", "action",
-          "ips_rule", "application_id", "type", "malware_name", "source_port"]
+      return AppConfig.get_show_list_in_order();
   },
   predefinedFieldSelection(setName) {
     if (setName === 'none') {
@@ -109,26 +109,9 @@ const SearchResult = React.createClass({
     }
     newFieldSet = newFieldSet.delete('source');
     const remainingFieldsSorted = newFieldSet.sort((field1, field2) => {
-      try {
-        field1 = field1.toLowerCase();
-        field2 = field2.toLowerCase();
-        if (this._get_show_list_in_order().indexOf(field1)>=0 && this._get_show_list_in_order().indexOf(field2)<0) {
-          return -1;
-        }
-        if (this._get_show_list_in_order().indexOf(field1)<0 && this._get_show_list_in_order().indexOf(field2)>=0) {
-          return 1;
-        }
-        if (this._get_show_list_in_order().indexOf(field1)<0 && this._get_show_list_in_order().indexOf(field2)<0) {
-          return field1.toLowerCase().localeCompare(field2.toLowerCase());
-        }
-        if (this._get_show_list_in_order().indexOf(field1)>=0 && this._get_show_list_in_order().indexOf(field2)>=0) {
-          return ((this._get_show_list_in_order().indexOf(field1) > this._get_show_list_in_order().indexOf(field2))?1:-1);
-        }
-      }catch(e){
-        console.log("error_2");
-        console.log(e);
-        return field1.toLowerCase().localeCompare(field2.toLowerCase());
-      }
+      field1 = field1.toLowerCase();
+      field2 = field2.toLowerCase();
+      return AppConfig.compare_field1_field2(field1, field2);
     });
     return sortedFields.concat(remainingFieldsSorted);
   },

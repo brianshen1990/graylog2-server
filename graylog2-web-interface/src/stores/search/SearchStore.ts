@@ -7,12 +7,15 @@
 import $ = require('jquery');
 import Immutable = require('immutable');
 import ApiRoutes = require('routing/ApiRoutes');
+
+
 const Routes = require('routing/Routes');
 var Qs = require('qs');
 const URLUtils = require('util/URLUtils');
 const moment = require('moment');
 const history = require('util/History');
 const DateTime = require('logic/datetimes/DateTime');
+const AppConfig = require('util/AppConfig');
 
 class SearchStore {
     static NOT_OPERATOR = "NOT";
@@ -71,8 +74,7 @@ class SearchStore {
 
     initializeFieldsFromHash() {
         var _get_show_list_in_order = function(){
-            return ["host_name", "source_address", "destination_address", "destination_port", "action",
-                "ips_rule", "application_id", "type", "malware_name", "source_port"]
+            return AppConfig.get_show_list_in_order();
           };
         var parsedSearch = Immutable.Map<string, any>(URLUtils.getParsedSearch(window.location));
         var parsedHash = Immutable.Map<string, any>(URLUtils.getParsedHash(window.location));

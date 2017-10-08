@@ -13,6 +13,7 @@ const WidgetsActions = ActionsProvider.getActions('Widgets');
 
 import Routes from 'routing/Routes';
 import EventHandlersThrottler from 'util/EventHandlersThrottler';
+import AppConfig from 'util/AppConfig';
 
 const Widget = React.createClass({
   propTypes: {
@@ -187,17 +188,7 @@ const Widget = React.createClass({
   },
   _transfer_log_type(query){
       try {
-        const add_query = "log_type:\"Violation log\"";
-        if(!query || query === ""){
-          // all
-          query = add_query;
-        }else{
-          // No type
-          var index_count = query.indexOf("log_type:");
-          if(index_count < 0){
-            query = "( " + query + " ) AND " + add_query;
-          }
-        }
+        query = AppConfig.modify_search_condition(query);
         return query;
       }catch(e){
         console.log("error" + e);

@@ -10,6 +10,7 @@ const WidgetsStore = StoreProvider.getStore('Widgets');
 import PermissionsMixin from 'util/PermissionsMixin';
 import { WidgetCreationModal } from 'components/widgets';
 import { EditDashboardModal } from 'components/dashboard';
+import AppConfig from 'util/AppConfig';
 
 const AddToDashboardMenu = React.createClass({
   propTypes: {
@@ -73,17 +74,7 @@ const AddToDashboardMenu = React.createClass({
   },
   _transfer_log_type(query){
       try {
-        const add_query = "log_type:\"Violation log\"";
-        if(!query || query === ""){
-          // all
-          query = add_query;
-        }else{
-          // No type
-          var index_count = query.indexOf("log_type:");
-          if(index_count < 0){
-            query = "( " + query + " ) AND " + add_query;
-          }
-        }
+        query = AppConfig.modify_search_condition(query);
         return query;
       }catch(e){
         console.log("error" + e);
