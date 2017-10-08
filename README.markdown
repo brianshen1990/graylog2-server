@@ -1,3 +1,15 @@
+
+# Graylog 2.3.1_CN_0.1
+
+## Translation to CN for most pages, especially those pages which should be displayed to customers.
+
+## Please go to branch 2.3.1_CN_0.1
+
+## Best Regards
+
+
+----------------------------------------------
+
 # Graylog
 
 [![Build Status](https://travis-ci.org/Graylog2/graylog2-server.svg?branch=master)](https://travis-ci.org/Graylog2/graylog2-server)
