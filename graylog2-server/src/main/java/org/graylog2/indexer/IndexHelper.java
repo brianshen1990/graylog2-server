@@ -19,6 +19,9 @@ package org.graylog2.indexer;
 import com.google.common.collect.ImmutableSet;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.aggregations.bucket.histogram.DateHistogramBuilder;
+import org.joda.time.DateTime;
+
 import org.graylog2.plugin.Message;
 import org.graylog2.plugin.Tools;
 import org.graylog2.plugin.indexer.searches.timeranges.TimeRange;
@@ -29,8 +32,12 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 public class IndexHelper {
+    private static final Logger LOG = LoggerFactory.getLogger(IndexHelper.class);
     public static Set<String> getOldestIndices(IndexSet indexSet, int count) {
         final String[] managedIndicesNames = indexSet.getManagedIndices();
         if (count <= 0 || managedIndicesNames.length <= count) {
@@ -53,9 +60,18 @@ public class IndexHelper {
             return null;
         }
 
-        return QueryBuilders.rangeQuery(Message.FIELD_TIMESTAMP)
-                .gte(Tools.buildElasticSearchTimeFormat(range.getFrom()))
-                .lte(Tools.buildElasticSearchTimeFormat(range.getTo()));
+        final QueryBuilder builder =  QueryBuilders.rangeQuery(Message.FIELD_TIMESTAMP)
+                .gte(Tools.buildElasticSearchTimeFormatAdminTimeZone(range.getFrom()))
+                .lte(Tools.buildElasticSearchTimeFormatAdminTimeZone(range.getTo()))
+                .timeZone(Tools.getConfiguration().getRootTimeZone().toString());
+        return builder;
+    }
+
+    public static DateHistogramBuilder decorateWithTimeZone(DateHistogramBuilder builder) {
+        // If both timestamps are in the same zone, we add the time_zone parameter to the filter. This allows us to
+        // use non-UTC timestamps and Elasticsearch will convert them to UTC internally.
+        // See: https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-range-query.html#_time_zone_in_range_queries
+        return builder.timeZone(Tools.getConfiguration().getRootTimeZone().toString());
     }
 
     private static List<String> prependPrefixes(String prefix, Collection<Integer> numbers) {

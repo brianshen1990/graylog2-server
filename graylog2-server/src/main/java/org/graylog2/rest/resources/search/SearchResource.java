@@ -30,6 +30,7 @@ import org.graylog2.indexer.searches.Searches;
 import org.graylog2.indexer.searches.SearchesClusterConfig;
 import org.graylog2.indexer.searches.Sorting;
 import org.graylog2.plugin.Message;
+import org.graylog2.plugin.Tools;
 import org.graylog2.plugin.cluster.ClusterConfigService;
 import org.graylog2.plugin.indexer.searches.timeranges.AbsoluteRange;
 import org.graylog2.rest.models.messages.responses.ResultMessageSummary;
@@ -205,6 +206,7 @@ public abstract class SearchResource extends RestResource {
         final AbsoluteRange histogramBoundaries = histogram.getHistogramBoundaries();
         return HistogramResult.create(
             histogram.getInterval().toString().toLowerCase(Locale.ENGLISH),
+            //Tools.revertElasticRangeTime(histogram.getResults()),
             histogram.getResults(),
             histogram.tookMs(),
             histogram.getBuiltQuery(),

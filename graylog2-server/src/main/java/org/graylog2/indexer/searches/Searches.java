@@ -72,6 +72,7 @@ import org.graylog2.plugin.Message;
 import org.graylog2.plugin.indexer.searches.timeranges.TimeRange;
 import org.graylog2.plugin.streams.Stream;
 import org.graylog2.streams.StreamService;
+import org.graylog2.indexer.IndexHelper;
 import org.joda.time.Period;
 
 import javax.annotation.Nullable;
@@ -538,9 +539,11 @@ public class Searches {
     public HistogramResult histogram(String query, DateHistogramInterval interval, String filter, TimeRange range) {
         final FilterAggregationBuilder builder = AggregationBuilders.filter(AGG_FILTER)
             .subAggregation(
-                AggregationBuilders.dateHistogram(AGG_HISTOGRAM)
-                    .field(Message.FIELD_TIMESTAMP)
-                    .interval(interval.toESInterval())
+                IndexHelper.decorateWithTimeZone(
+                    AggregationBuilders.dateHistogram(AGG_HISTOGRAM)
+                        .field(Message.FIELD_TIMESTAMP)
+                        .interval(interval.toESInterval())
+                )
             )
             .filter(standardAggregationFilters(range, filter));
 

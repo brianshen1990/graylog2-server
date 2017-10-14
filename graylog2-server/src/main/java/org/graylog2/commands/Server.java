@@ -155,6 +155,7 @@ public class Server extends ServerBootstrap {
                 configuration.isMaster(),
                 configuration.getRestTransportUri(),
                 Tools.getLocalCanonicalHostname());
+        Tools.InitConfiguration(configuration);
         serverStatus.setLocalMode(isLocal());
         if (configuration.isMaster() && !nodeService.isOnlyMaster(serverStatus.getNodeId())) {
             LOG.warn("Detected another master in the cluster. Retrying in {} seconds to make sure it is not "

@@ -15,11 +15,17 @@
  * along with Graylog.  If not, see <http://www.gnu.org/licenses/>.
  */
 package org.graylog2.plugin;
+import org.graylog2.Configuration;
+import org.elasticsearch.index.query.RangeQueryBuilder;
+import org.elasticsearch.search.aggregations.bucket.histogram.DateHistogramBuilder;
 
 import com.google.common.collect.ImmutableSortedSet;
 import com.google.common.io.BaseEncoding;
 import com.google.common.io.ByteStreams;
 import com.google.common.primitives.Doubles;
+import com.google.common.collect.Maps;
+
+import org.graylog2.indexer.IndexHelper;
 import org.graylog2.shared.SuppressForbidden;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
@@ -29,8 +35,10 @@ import org.joda.time.format.DateTimeFormatterBuilder;
 import org.joda.time.format.DateTimeParser;
 import org.joda.time.format.ISODateTimeFormat;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nullable;
+import javax.tools.Tool;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -43,13 +51,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Enumeration;
-import java.util.Locale;
-import java.util.Map;
-import java.util.SortedSet;
-import java.util.UUID;
+import java.util.*;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.InflaterInputStream;
 
@@ -61,6 +63,8 @@ import static com.google.common.base.Strings.isNullOrEmpty;
  */
 public final class Tools {
 
+    private static Configuration configuration = new Configuration();
+    private static final Logger LOG = LoggerFactory.getLogger(Tools.class);
     public static final String ES_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS";
     public static final String ES_DATE_FORMAT_NO_MS = "yyyy-MM-dd HH:mm:ss";
 
@@ -282,6 +286,16 @@ public final class Tools {
         return addr.getCanonicalHostName();
     }
 
+    public static Boolean InitConfiguration(final Configuration config) {
+        configuration = config;
+        LOG.info("brian init config : " + config.getRootTimeZone());
+        return Boolean.TRUE;
+    }
+
+    public static Configuration getConfiguration(){
+        return configuration;
+    }
+
     public static int getTimestampDaysAgo(int ts, int days) {
         return (ts - (days * 86400));
     }
@@ -306,6 +320,32 @@ public final class Tools {
     public static <T extends Comparable<? super T>> SortedSet<T> asSortedSet(Collection<T> c) {
         return ImmutableSortedSet.copyOf(c);
     }
+
+    public static String buildElasticSearchTimeFormatAdminTimeZone(DateTime timestamp) {
+        return timestamp.toString(
+            DateTimeFormat.forPattern(Tools.ES_DATE_FORMAT).withZone(configuration.getRootTimeZone())
+        );
+    }
+
+    public static Map revertElasticRangeTime(final Map origin){
+        try {
+            Map results = Maps.newTreeMap();
+            Iterator iter = origin.entrySet().iterator();
+            while (iter.hasNext()) {
+                Map.Entry entry = (Map.Entry) iter.next();
+                Object key = entry.getKey();
+                Object val = entry.getValue();
+                key = (Long) key - (Tools.getConfiguration().getRootTimeZone().getOffset(0) / 1000);
+                results.put(key, val);
+            }
+            LOG.info("brian Result_time " + origin + " ---- " + results);
+            return results;
+        }catch (Exception e){
+            LOG.error("brian Result_time error" + e);
+            return origin;
+        }
+    }
+
 
     public static String buildElasticSearchTimeFormat(DateTime timestamp) {
         return timestamp.toString(ES_DATE_FORMAT_FORMATTER);
@@ -370,6 +410,14 @@ public final class Tools {
     public static String elasticSearchTimeFormatToISO8601(String time) {
         try {
             DateTime dt = DateTime.parse(time, ES_DATE_FORMAT_FORMATTER);
+            return getISO8601String(dt);
+        } catch (IllegalArgumentException e) {
+            return time;
+        }
+    }
+    public static String elasticSearchTimeFormatToISO8601AdminTimeZone(String time, String zone) {
+        try {
+            DateTime dt = ES_DATE_FORMAT_FORMATTER.withZone(DateTimeZone.forID(zone)).parseDateTime(time);
             return getISO8601String(dt);
         } catch (IllegalArgumentException e) {
             return time;
